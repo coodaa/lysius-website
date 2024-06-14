@@ -1,0 +1,21 @@
+/* src/styles/Navbar.module.css */
+
+.navbar {
+  width: 100%;
+  background-color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 2px -2px gray;
+}
+
+.nav a {
+  margin-left: 2rem;
+  text-decoration: none;
+  color: black;
+}
+
+.nav a:hover {
+  text-decoration: underline;
+}
