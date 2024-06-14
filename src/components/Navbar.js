@@ -1,7 +1,5 @@
-// src/components/Navbar.js
-
 import Link from "next/link";
-import styles from "../styles/Navbar.module.css"; // Korrigierter Pfad
+import styles from "../styles/Navbar.module.css";
 
 const Navbar = () => {
   return (

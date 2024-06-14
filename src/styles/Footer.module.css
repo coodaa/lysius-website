@@ -1,0 +1,33 @@
+/* src/styles/Footer.module.css */
+
+.footer {
+  padding: 1rem;
+  background-color: #f8f9fa;
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.link {
+  margin: 0 1rem;
+  text-decoration: none;
+  color: black;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.copy {
+  font-size: 0.875rem;
+}
