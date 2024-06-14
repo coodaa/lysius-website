@@ -1,15 +1,17 @@
-// src/components/Layout.js
 
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import styles from "../styles/Layout.module.css";
 
 const Layout = ({ children }) => {
   return (
-    <>
-      <Navbar />
-      <main>{children}</main>
-      <Footer />
-    </>
+    <div className={styles.pageContainer}>
+      <div className={styles.contentContainer}>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+      </div>
+    </div>
   );
 };
 

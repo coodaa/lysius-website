@@ -20,7 +20,6 @@ const Footer = () => {
           DE/EN
         </Link>
       </nav>
-      <p className={styles.copy}>&copy; 2024 Lysius. All rights reserved.</p>
     </footer>
   );
 };

@@ -1,25 +1,25 @@
 /* src/styles/Footer.module.css */
 
 .footer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
   padding: 1rem;
   background-color: #f8f9fa;
-  text-align: center;
-  position: fixed;
-  width: 100%;
-  bottom: 0;
+  text-align: right;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .nav {
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   margin-bottom: 0.5rem;
 }
 
 .link {
-  margin: 0 1rem;
+  margin-left: 1rem;
   text-decoration: none;
   color: black;
 }
