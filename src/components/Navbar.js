@@ -21,16 +21,16 @@ const Navbar = () => {
       </div>
       <nav className={`${styles.nav} ${menuOpen ? styles.open : ""}`}>
         <Link href="/mitglieder" className={styles.link}>
-          MITGLIEDER
+          Die Maßnahme
         </Link>
         <Link href="/agb" className={styles.link}>
-          AGB
+          Высшая мера / Höchstmaß{" "}
         </Link>
         <Link href="/impressum" className={styles.link}>
-          IMPRESSUM
+          Höchstmaß / Pfad des Oktober
         </Link>
         <Link href="/de-en" className={styles.link}>
-          DE/EN
+          Syntax in Space
         </Link>
       </nav>
     </header>
