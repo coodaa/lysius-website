@@ -1,2 +1,4 @@
-/* src/styles/Layout.module.css */
-
+.pageContainer {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}

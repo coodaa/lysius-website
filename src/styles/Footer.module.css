@@ -4,8 +4,7 @@
   position: fixed;
   bottom: 0;
   right: 0;
-  padding: 1rem;
-  background-color: #f8f9fa;
+  /* padding-right: 4rem; */
   text-align: right;
   display: flex;
   flex-direction: column;
@@ -16,6 +15,8 @@
   display: flex;
   justify-content: flex-end;
   margin-bottom: 0.5rem;
+  padding-right: 4rem;
+
 }
 
 .link {
