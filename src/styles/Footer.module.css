@@ -1,22 +1,18 @@
-/* src/styles/Footer.module.css */
-
 .footer {
   position: fixed;
   bottom: 0;
   right: 0;
-  /* padding-right: 4rem; */
   text-align: right;
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  padding-right: 1rem;
 }
 
 .nav {
   display: flex;
   justify-content: flex-end;
   margin-bottom: 0.5rem;
-  padding-right: 4rem;
-
 }
 
 .link {
@@ -31,4 +27,10 @@
 
 .copy {
   font-size: 0.875rem;
+}
+
+@media (max-width: 599px) {
+  .nav .link:not([href='/de-en']) {
+    display: none; /* Blendet alle Links außer DE/EN aus */
+  }
 }
