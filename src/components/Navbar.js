@@ -15,7 +15,7 @@ const Navbar = () => {
         <Link href="/">LYSIUS</Link>
       </div>
       <div className={styles.menuButton} onClick={toggleMenu}>
-        MENU
+        {menuOpen ? "CLOSE" : "MENU"}
       </div>
       <nav className={`${styles.nav} ${menuOpen ? styles.open : ""}`}>
         <ul className={styles.navList}>

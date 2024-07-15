@@ -34,7 +34,7 @@
   top: 4rem; /* Platz für die fixe Navbar */
   left: 0;
   width: 100%;
-  height: calc(100% - 6rem); /* Höhe abzüglich der Navbar */
+  height: calc(100% - 4.2rem); /* Höhe abzüglich der Navbar */
   background-color: white; /* Hintergrundfarbe für das Dropdown-Menü */
   overflow: hidden;
   max-height: 0;
@@ -43,7 +43,7 @@
 }
 
 .nav.open {
-  max-height: calc(100vh - 5rem); /* Erhöhe die maximale Höhe für sichtbare Elemente */
+  max-height: calc(100vh - 4rem); /* Erhöhe die maximale Höhe für sichtbare Elemente */
 }
 
 .navList {
@@ -85,11 +85,40 @@
 }
 
 @media (min-width: 600px) {
-  .footerList {
-    display: none; /* Verstecke Footer-Elemente auf größeren Bildschirmen */
+  .nav {
+    position: fixed;
+    top: 4rem;
+    right: 0;
+    left: auto;
+    width: 20rem;
+    height: calc(100vh - 5.5rem);
+    transition: max-height 0.3s ease-in-out;
+    background-color: white;
+    z-index: 1000;
+    overflow-y: auto;
   }
 
-  .nav {
-    width: auto;
+  .logo,
+  .menuButton {
+    padding: 2rem 2rem 0 2rem;
+  }
+
+  .footerList {
+    display: none;
+  }
+}
+
+
+@media (min-width: 900px) {
+  .logo,
+  .menuButton {
+    padding: 2rem 3rem 0 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .logo,
+  .menuButton {
+    padding: 2rem 4rem 0 4rem;
   }
 }
