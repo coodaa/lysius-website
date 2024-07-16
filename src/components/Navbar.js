@@ -50,13 +50,38 @@ const Navbar = () => {
       </div>
       <nav className={`${styles.nav} ${menuOpen ? styles.open : ""}`}>
         <ul className={styles.navList}>
-          {plays.map((play) => (
-            <li key={play.id}>
-              <Link href={`/plays/${play.id}`} className={styles.link}>
-                {play.attributes.Beschreibung}
-              </Link>
-            </li>
-          ))}
+          {plays.length > 0 ? (
+            plays.map((play) => (
+              <li key={play.id}>
+                <Link href={`/plays/${play.id}`} className={styles.link}>
+                  {play.attributes.Beschreibung}
+                </Link>
+              </li>
+            ))
+          ) : (
+            <li>Loading...</li>
+          )}
+        </ul>
+        <ul
+          className={`${styles.footerList} ${
+            menuOpen ? styles.footerOpen : ""
+          }`}
+        >
+          <li className={styles.footerItem}>
+            <Link href="/mitglieder" className={styles.link}>
+              Mitglieder
+            </Link>
+          </li>
+          <li>
+            <Link href="/agb" className={styles.link}>
+              AGB
+            </Link>
+          </li>
+          <li>
+            <Link href="/impressum" className={styles.link}>
+              Impressum
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>
