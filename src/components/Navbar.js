@@ -53,12 +53,16 @@ const Navbar = () => {
           {plays.map((play) => (
             <li key={play.id}>
               <Link href={`/plays/${play.id}`} className={styles.link}>
-                {play.attributes.Beschreibung}
+                {play.attributes.Titel}
               </Link>
             </li>
           ))}
         </ul>
-        <ul className={`${styles.footerList} ${menuOpen ? styles.footerOpen : ""}`}>
+        <ul
+          className={`${styles.footerList} ${
+            menuOpen ? styles.footerOpen : ""
+          }`}
+        >
           <li className={styles.footerItem}>
             <Link href="/mitglieder" className={styles.link}>
               MITGLIEDER

@@ -1,9 +1,10 @@
-// src/pages/plays/[id].js
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import { getPlayById } from "../../lib/api";
+import styles from "../../styles/Play.module.css";
 
-const PlayDetails = () => {
+const Play = () => {
   const router = useRouter();
   const { id } = router.query;
   const [play, setPlay] = useState(null);
@@ -12,6 +13,7 @@ const PlayDetails = () => {
     if (id) {
       const fetchData = async () => {
         const data = await getPlayById(id);
+        console.log("Fetched play data:", JSON.stringify(data, null, 2)); // Detaillierte Debugging-Ausgabe
         setPlay(data?.data);
       };
       fetchData();
@@ -22,12 +24,28 @@ const PlayDetails = () => {
     return <div>Loading...</div>;
   }
 
+  const firstImage = play.attributes?.Bilder?.data?.[0]?.attributes?.url;
+  const imageUrl = firstImage
+    ? `${process.env.NEXT_PUBLIC_API_URL.replace("/api", "")}${firstImage}`
+    : null;
+  console.log("Image URL:", imageUrl); // Überprüfen Sie die URL in der Konsole
+
   return (
-    <div>
-      <h1>{play.attributes.Beschreibung}</h1>
-      {/* Weitere Details des Theaterstücks hier anzeigen */}
+    <div className={styles.container}>
+      {imageUrl ? (
+        <div className={styles.imageWrapper}>
+          <Image
+            src={imageUrl}
+            alt="Play Image"
+            layout="fill"
+            className={styles.image}
+          />
+        </div>
+      ) : (
+        <div>No Image Available</div>
+      )}
     </div>
   );
 };
 
-export default PlayDetails;
+export default Play;

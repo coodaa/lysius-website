@@ -24,5 +24,5 @@ export const getPlays = async () => {
 };
 
 export const getPlayById = async (id) => {
-  return await fetchAPI(`/plays/${id}`);
+  return await fetchAPI(`/plays/${id}?populate=Bilder`);
 };
