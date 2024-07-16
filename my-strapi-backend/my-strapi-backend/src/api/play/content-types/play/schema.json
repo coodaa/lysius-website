@@ -4,25 +4,30 @@
   "info": {
     "singularName": "play",
     "pluralName": "plays",
-    "displayName": "Play"
+    "displayName": "Play",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
-    "Beschreibung": {
+    "Titel": {
       "type": "string"
     },
     "Bilder": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
       "allowedTypes": [
         "images",
         "files",
         "videos",
         "audios"
-      ],
-      "type": "media",
-      "multiple": true
+      ]
+    },
+    "Beschreibung": {
+      "type": "text"
     }
   }
 }

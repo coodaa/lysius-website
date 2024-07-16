@@ -1,9 +1,9 @@
 import axios from "axios";
 
+export const fetcher = (url) => axios.get(url).then((res) => res.data);
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN;
-
-export const fetcher = (url) => axios.get(url).then((res) => res.data);
 
 export const fetchAPI = async (path) => {
   try {

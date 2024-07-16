@@ -368,13 +368,15 @@ export interface ApiPlayPlay extends Schema.CollectionType {
     singularName: 'play';
     pluralName: 'plays';
     displayName: 'Play';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
-    Beschreibung: Attribute.String;
+    Titel: Attribute.String;
     Bilder: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    Beschreibung: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
