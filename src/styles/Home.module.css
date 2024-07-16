@@ -20,7 +20,7 @@
 }
 
 .image {
-  object-fit: cover; /* Passt das Bild an, ohne das Seitenverhältnis zu ändern */
+  object-fit: cover;
 }
 
 .title {
