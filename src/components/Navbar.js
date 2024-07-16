@@ -1,4 +1,3 @@
-// src/components/Navbar.js
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "../styles/Navbar.module.css";
@@ -7,7 +6,6 @@ import { getPlays } from "../lib/api";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [plays, setPlays] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -36,11 +34,8 @@ const Navbar = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      console.log("Fetching plays...");
       const data = await getPlays();
-      console.log("Fetched data:", data);
       setPlays(data?.data || []);
-      setLoading(false);
     };
     fetchData();
   }, []);
@@ -55,23 +50,15 @@ const Navbar = () => {
       </div>
       <nav className={`${styles.nav} ${menuOpen ? styles.open : ""}`}>
         <ul className={styles.navList}>
-          {loading ? (
-            <li>Loading...</li>
-          ) : (
-            plays.map((play) => (
-              <li key={play.id}>
-                <Link href={`/plays/${play.id}`} className={styles.link}>
-                  {play.attributes.Titel}
-                </Link>
-              </li>
-            ))
-          )}
+          {plays.map((play) => (
+            <li key={play.id}>
+              <Link href={`/plays/${play.id}`} className={styles.link}>
+                {play.attributes.Beschreibung}
+              </Link>
+            </li>
+          ))}
         </ul>
-        <ul
-          className={`${styles.footerList} ${
-            menuOpen ? styles.footerOpen : ""
-          }`}
-        >
+        <ul className={`${styles.footerList} ${menuOpen ? styles.footerOpen : ""}`}>
           <li className={styles.footerItem}>
             <Link href="/mitglieder" className={styles.link}>
               MITGLIEDER

@@ -11,7 +11,6 @@ export default function Home() {
             alt="Michael Donath"
             className={styles.image}
             fill
-            priority
           />
         </div>
         <h1 className={styles.title}>Lysius</h1>

@@ -45,10 +45,10 @@
   .title {
     font-size: 15rem;
   }
+}
 
 @media (min-width: 1200px) {
   .title {
     font-size: 20rem;
   }
-}
 }
