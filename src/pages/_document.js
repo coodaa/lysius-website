@@ -6,7 +6,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <link rel="stylesheet" href="/styles/global.css" />
+          {/* Füge hier Meta-Tags oder andere globale Kopfzeilen-Elemente hinzu */}
         </Head>
         <body>
           <Main />

@@ -1,13 +1,44 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import styles from "../styles/Navbar.module.css";
+import { getPlays } from "../lib/api";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [plays, setPlays] = useState([]);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
+
+  const closeMenu = (e) => {
+    if (
+      !e.target.closest(`.${styles.nav}`) &&
+      !e.target.closest(`.${styles.menuButton}`)
+    ) {
+      setMenuOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (menuOpen) {
+      document.addEventListener("mousedown", closeMenu);
+    } else {
+      document.removeEventListener("mousedown", closeMenu);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", closeMenu);
+    };
+  }, [menuOpen]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getPlays();
+      setPlays(data?.data || []);
+    };
+    fetchData();
+  }, []);
 
   return (
     <header className={styles.navbar}>
@@ -19,43 +50,13 @@ const Navbar = () => {
       </div>
       <nav className={`${styles.nav} ${menuOpen ? styles.open : ""}`}>
         <ul className={styles.navList}>
-          <li>
-            <Link href="/mitglieder" className={styles.link}>
-              Die Maßnahme
-            </Link>
-          </li>
-          <li>
-            <Link href="/agb" className={styles.link}>
-              Высшая мера / Höchstmaß
-            </Link>
-          </li>
-          <li>
-            <Link href="/impressum" className={styles.link}>
-              Höchstmaß / Pfad des Oktober
-            </Link>
-          </li>
-          <li>
-            <Link href="/de-en" className={styles.link}>
-              Syntax in Space
-            </Link>
-          </li>
-        </ul>
-        <ul className={`${styles.footerList} ${menuOpen ? styles.footerOpen : ""}`}>
-          <li className={styles.footerItem}>
-            <Link href="/mitglieder" className={styles.link}>
-              MITGLIEDER
-            </Link>
-          </li>
-          <li className={styles.footerItem}>
-            <Link href="/agb" className={styles.link}>
-              AGB
-            </Link>
-          </li>
-          <li className={styles.footerItem}>
-            <Link href="/impressum" className={styles.link}>
-              IMPRESSUM
-            </Link>
-          </li>
+          {plays.map((play) => (
+            <li key={play.id}>
+              <Link href={`/plays/${play.id}`} className={styles.link}>
+                {play.attributes.Beschreibung}
+              </Link>
+            </li>
+          ))}
         </ul>
       </nav>
     </header>

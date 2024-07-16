@@ -29,6 +29,14 @@
   font-size: 1.5rem;
 }
 
+.logo a:hover {
+  text-decoration: underline; /* Unterstreicht den Link beim Hover */
+}
+
+.menuButton:hover {
+  text-decoration: underline; /* Unterstreicht den Button beim Hover */
+}
+
 .nav {
   position: fixed;
   top: 4rem; /* Platz für die fixe Navbar */
@@ -50,6 +58,17 @@
   list-style: none; /* Entferne die Punkte vor den <li>-Elementen */
   padding: 0;
   margin: 0;
+}
+
+.navList a {
+  display: block;
+  padding: 1rem;
+  text-decoration: none;
+  color: black;
+}
+
+.navList a:hover {
+  text-decoration: underline; /* Unterstreicht den Link beim Hover */
 }
 
 .link {
@@ -107,7 +126,6 @@
     display: none;
   }
 }
-
 
 @media (min-width: 900px) {
   .logo,

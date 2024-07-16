@@ -8,7 +8,6 @@
   align-items: flex-end;
   padding-right: 1rem;
   background-color: white;
-
 }
 
 .nav {
@@ -27,12 +26,34 @@
   text-decoration: underline;
 }
 
+.active {
+  text-decoration: underline;
+}
+
 .copy {
   font-size: 0.875rem;
 }
 
 @media (max-width: 599px) {
   .nav .link:not([href='/de-en']) {
-    display: none; /* Blendet alle Links außer DE/EN aus */
+    display: none;
+  }
+}
+
+@media (min-width: 600px) {
+  .footer {
+    padding-right: 2rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .footer {
+    padding-right: 3rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .footer {
+    padding-right: 4rem;
   }
 }
