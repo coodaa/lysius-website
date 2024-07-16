@@ -23,10 +23,27 @@
   margin: 0;
 }
 
+/* Stil für den Untertitel */
+.subtitle {
+  position: absolute;
+  top: 50%; /* Unter dem Haupttitel */
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem; /* Default für mobile Geräte */
+  font-family: 'Arial', sans-serif;
+  color: red;
+  background-color: pink;
+  margin: 0;
+}
+
 /* Medienabfragen für größere Bildschirme */
 @media (min-width: 600px) {
   .title {
     font-size: 10rem;
+  }
+
+  .subtitle {
+    font-size: 3rem;
   }
 }
 
@@ -34,10 +51,18 @@
   .title {
     font-size: 15rem;
   }
+
+  .subtitle {
+    font-size: 4rem;
+  }
 }
 
 @media (min-width: 1200px) {
   .title {
     font-size: 20rem;
+  }
+
+  .subtitle {
+    font-size: 5rem;
   }
 }

@@ -10,6 +10,7 @@ export default function Home() {
           className={styles.image}
         />
         <h1 className={styles.title}>Lysius</h1>
+        <p className={styles.subtitle}>Under Construction</p>
       </div>
     </div>
   );
