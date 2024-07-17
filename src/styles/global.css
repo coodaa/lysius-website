@@ -23,6 +23,7 @@ footer {
 a {
   text-decoration: none;
   color: inherit; /* Behält die aktuelle Textfarbe bei */
+  font-weight: bold; /* Stellt sicher, dass die Links fett dargestellt werden */
 }
 
 a:hover {

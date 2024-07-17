@@ -9,6 +9,7 @@
   left: 0;
   z-index: 1000;
   background-color: white;
+  font-weight: bold !important;
 }
 
 .logo {
@@ -21,12 +22,14 @@
   font-size: 1.5rem;
   user-select: none;
   -webkit-user-select: none; /* Safari-Unterstützung */
+  font-weight: bold; /* Schrift fett machen */
 }
 
 .logo a {
   text-decoration: none;
   color: black;
   font-size: 1.5rem;
+  font-weight: bold; /* Schrift fett machen */
 }
 
 .logo a:hover {
@@ -58,6 +61,7 @@
   list-style: none; /* Entferne die Punkte vor den <li>-Elementen */
   padding: 0;
   margin: 0;
+  font-weight: bold !important;
 }
 
 .navList a {
@@ -65,6 +69,7 @@
   padding: 1rem;
   text-decoration: none;
   color: black;
+  font-weight: bold; /* Schrift fett machen */
 }
 
 .navList a:hover {
@@ -76,6 +81,7 @@
   padding: 1rem;
   text-decoration: none;
   color: black;
+  font-weight: bold; /* Schrift fett machen */
 }
 
 .link:hover {
@@ -92,6 +98,7 @@
   position: absolute;
   right: 1rem;
   bottom: 1rem;
+  font-weight: bold; /* Schrift fett machen */
 }
 
 .footerOpen {
