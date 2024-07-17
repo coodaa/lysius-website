@@ -5,7 +5,7 @@ module.exports = [
     name: "strapi::cors",
     config: {
       enabled: true,
-      origin: ["https://www.lysius.org"], // Zulassen der Anfragen von Ihrer Domain
+      origin: ["https://www.lysius.org"],
     },
   },
   "strapi::poweredBy",
