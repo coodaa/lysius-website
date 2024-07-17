@@ -1,8 +1,9 @@
+/* Play.module.css */
 .container {
   position: relative;
   text-align: center;
   width: 100%;
-  height: 100vh; /* Vollbildhöhe */
+  height: calc(100vh - 8rem); /* Vollbildhöhe minus Navbar und Footer */
 }
 
 .imageWrapper {

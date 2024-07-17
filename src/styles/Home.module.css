@@ -2,7 +2,7 @@
   position: relative;
   text-align: center;
   width: 100%;
-  height: 100vh; /* Vollbildhöhe */
+  height: calc(100vh - 8rem); /* Vollbildhöhe minus Navbar und Footer */
 }
 
 .overlayContainer {
@@ -28,7 +28,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 5rem; /* Standardgröße für mobile Geräte */
+  font-size: 7rem; /* Standardgröße für mobile Geräte */
   font-family: 'Playfair Display', serif;
   color: white;
   margin: 0;
@@ -45,10 +45,10 @@
   .title {
     font-size: 15rem;
   }
-}
 
 @media (min-width: 1200px) {
   .title {
     font-size: 20rem;
   }
+}
 }

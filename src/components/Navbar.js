@@ -20,6 +20,10 @@ const Navbar = () => {
     }
   };
 
+  const handleLinkClick = () => {
+    setMenuOpen(false);
+  };
+
   useEffect(() => {
     if (menuOpen) {
       document.addEventListener("mousedown", closeMenu);
@@ -51,7 +55,7 @@ const Navbar = () => {
       <nav className={`${styles.nav} ${menuOpen ? styles.open : ""}`}>
         <ul className={styles.navList}>
           {plays.map((play) => (
-            <li key={play.id}>
+            <li key={play.id} onClick={handleLinkClick}>
               <Link href={`/plays/${play.id}`} className={styles.link}>
                 {play.attributes.Titel}
               </Link>
@@ -63,17 +67,17 @@ const Navbar = () => {
             menuOpen ? styles.footerOpen : ""
           }`}
         >
-          <li className={styles.footerItem}>
+          <li className={styles.footerItem} onClick={handleLinkClick}>
             <Link href="/mitglieder" className={styles.link}>
               MITGLIEDER
             </Link>
           </li>
-          <li>
+          <li onClick={handleLinkClick}>
             <Link href="/agb" className={styles.link}>
               AGB
             </Link>
           </li>
-          <li>
+          <li onClick={handleLinkClick}>
             <Link href="/impressum" className={styles.link}>
               IMPRESSUM
             </Link>
