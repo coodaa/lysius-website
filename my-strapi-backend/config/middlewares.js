@@ -5,7 +5,7 @@ module.exports = [
     name: "strapi::cors",
     config: {
       enabled: true,
-      origin: ["*"], // oder spezifisch ['https://your-vercel-domain.com']
+      origin: ["https://www.lysius.org"], // Zulassen der Anfragen von Ihrer Domain
     },
   },
   "strapi::poweredBy",
