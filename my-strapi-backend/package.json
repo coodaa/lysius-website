@@ -10,23 +10,24 @@
     "strapi": "strapi",
     "deploy": "strapi deploy"
   },
-  "devDependencies": {},
   "dependencies": {
-    "@strapi/strapi": "4.25.3",
-    "@strapi/plugin-users-permissions": "4.25.3",
-    "@strapi/plugin-i18n": "4.25.3",
-    "@strapi/plugin-cloud": "4.25.3",
+    "@strapi/plugin-cloud": "4.25.4",
+    "@strapi/plugin-i18n": "4.25.4",
+    "@strapi/plugin-users-permissions": "4.25.4",
+    "@strapi/strapi": "4.25.4",
+    "@types/node": "^20.14.11",
     "better-sqlite3": "8.6.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "5.3.4",
-    "styled-components": "5.3.3"
+    "styled-components": "5.3.3",
+    "typescript": "^5.5.3"
   },
   "author": {
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "0c49b72a-8456-43a9-b183-fa2cd27466fb"
+    "uuid": "df9482b3-19dc-45a3-95cf-ac6bba30205f"
   },
   "engines": {
     "node": ">=18.0.0 <=20.x.x",

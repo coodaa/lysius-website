@@ -11,8 +11,11 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "Beschreibung": {
+    "Titel": {
       "type": "string"
+    },
+    "Beschreibung": {
+      "type": "text"
     },
     "Bilder": {
       "allowedTypes": [
