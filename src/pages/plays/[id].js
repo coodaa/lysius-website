@@ -12,9 +12,13 @@ const Play = () => {
   useEffect(() => {
     if (id) {
       const fetchData = async () => {
-        const data = await getPlayById(id);
-        console.log("Fetched play data:", JSON.stringify(data, null, 2)); // Detaillierte Debugging-Ausgabe
-        setPlay(data?.data);
+        try {
+          const data = await getPlayById(id);
+          console.log("Fetched play data:", JSON.stringify(data, null, 2)); // Detaillierte Debugging-Ausgabe
+          setPlay(data?.data);
+        } catch (error) {
+          console.error("Error fetching play data:", error);
+        }
       };
       fetchData();
     }
