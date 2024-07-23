@@ -34,6 +34,44 @@
   margin: 0;
 }
 
+
+.container {
+  position: relative;
+  text-align: center;
+  width: 100%;
+  height: calc(100vh - 8rem); /* Vollbildhöhe minus Navbar und Footer */
+}
+
+.overlayContainer {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.imageWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 2s ease-in-out; /* Übergangseffekt */
+}
+
+.image:nth-child(1) {
+  opacity: 1;
+}
+
 /* Medienabfragen für größere Bildschirme */
 @media (min-width: 600px) {
   .title {
@@ -45,10 +83,10 @@
   .title {
     font-size: 15rem;
   }
+}
 
 @media (min-width: 1200px) {
   .title {
     font-size: 20rem;
   }
-}
 }
