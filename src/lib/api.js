@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const fetcher = (url) => axios.get(url).then((res) => res.data);
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL;
+const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
 const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN;
 
 export const fetchAPI = async (path) => {
@@ -14,15 +14,18 @@ export const fetchAPI = async (path) => {
     });
     return res.data;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    console.error(
+      "Error fetching data:",
+      error.response ? error.response.data : error.message
+    );
     return null;
   }
 };
 
 export const getPlays = async () => {
-  return await fetchAPI("/plays");
+  return await fetchAPI("/api/plays"); // Achte auf den richtigen API-Pfad
 };
 
 export const getPlayById = async (id) => {
-  return await fetchAPI(`/plays/${id}?populate=Bilder`);
+  return await fetchAPI(`/api/plays/${id}?populate=Bilder`);
 };

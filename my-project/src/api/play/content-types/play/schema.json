@@ -1,0 +1,22 @@
+{
+  "kind": "collectionType",
+  "collectionName": "plays",
+  "info": {
+    "singularName": "play",
+    "pluralName": "plays",
+    "displayName": "play",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "Titel": {
+      "type": "string"
+    },
+    "Stueckbeschreibung": {
+      "type": "text"
+    }
+  }
+}
