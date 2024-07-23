@@ -2,8 +2,13 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
+const isProd = process.env.NODE_ENV === "production";
+const strapiUrl = isProd
+  ? process.env.NEXT_PUBLIC_STRAPI_API_URL_PROD
+  : process.env.NEXT_PUBLIC_STRAPI_API_URL_LOCAL;
+
 export async function getServerSideProps() {
-  const apiUrl = `${process.env.NEXT_PUBLIC_STRAPI_API_URL}/api/galleries?populate=images`;
+  const apiUrl = `${strapiUrl}/api/galleries?populate=images`;
 
   try {
     const response = await fetch(apiUrl, {
@@ -57,7 +62,7 @@ export default function Home({ images }) {
           {images.map((imageUrl, index) => (
             <Image
               key={index}
-              src={`${process.env.NEXT_PUBLIC_STRAPI_API_URL}${imageUrl}`}
+              src={`${strapiUrl}${imageUrl}`}
               alt={`Bild ${index}`}
               className={`${styles.image} ${
                 index === currentImageIndex ? styles.show : ""
