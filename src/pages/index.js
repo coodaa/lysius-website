@@ -62,13 +62,13 @@ export default function Home({ images }) {
           {images.map((imageUrl, index) => (
             <Image
               key={index}
-              src={`${strapiUrl}${imageUrl}`}
+              src={imageUrl.startsWith("http") ? imageUrl : `${strapiUrl}${imageUrl}`}
               alt={`Bild ${index}`}
               className={`${styles.image} ${
                 index === currentImageIndex ? styles.show : ""
               }`}
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
               priority={index === currentImageIndex}
             />
           ))}

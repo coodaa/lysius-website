@@ -2,30 +2,25 @@ import axios from "axios";
 
 export const fetcher = (url) => axios.get(url).then((res) => res.data);
 
-const API_URL = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-const API_TOKEN = process.env.NEXT_PUBLIC_API_TOKEN;
+const isProd = process.env.NODE_ENV === "production";
+const strapiUrl = isProd
+  ? process.env.NEXT_PUBLIC_STRAPI_API_URL_PROD
+  : process.env.NEXT_PUBLIC_STRAPI_API_URL_LOCAL;
 
 export const fetchAPI = async (path) => {
   try {
-    const res = await axios.get(`${API_URL}${path}`, {
+    const res = await axios.get(`${strapiUrl}${path}`, {
       headers: {
-        Authorization: `Bearer ${API_TOKEN}`,
+        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
       },
     });
     return res.data;
   } catch (error) {
-    console.error(
-      "Error fetching data:",
-      error.response ? error.response.data : error.message
-    );
+    console.error("Error fetching data:", error);
     return null;
   }
 };
 
 export const getPlays = async () => {
-  return await fetchAPI("/api/plays"); // Achte auf den richtigen API-Pfad
-};
-
-export const getPlayById = async (id) => {
-  return await fetchAPI(`/api/plays/${id}?populate=Bilder`);
+  return await fetchAPI("/api/plays");
 };
