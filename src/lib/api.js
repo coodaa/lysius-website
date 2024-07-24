@@ -1,26 +1,47 @@
-import axios from "axios";
+import { supabase } from './supabase';
 
-export const fetcher = (url) => axios.get(url).then((res) => res.data);
-
-const isProd = process.env.NODE_ENV === "production";
-const strapiUrl = isProd
-  ? process.env.NEXT_PUBLIC_STRAPI_API_URL_PROD
-  : process.env.NEXT_PUBLIC_STRAPI_API_URL_LOCAL;
-
-export const fetchAPI = async (path) => {
+export const fetchGalleries = async () => {
   try {
-    const res = await axios.get(`${strapiUrl}${path}`, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-      },
-    });
-    return res.data;
+    const { data, error } = await supabase
+      .from('galleries')
+      .select(`
+        id,
+        images (
+          url
+        )
+      `);
+
+    if (error) {
+      throw error;
+    }
+
+    console.log("Fetched data:", data); // Debug-Ausgabe
+
+    // Extrahiere die Bild-URLs und filtere leere Arrays
+    const images = data.flatMap(item => item.images.map(image => image.url)).filter(url => url);
+
+    return images;
   } catch (error) {
     console.error("Error fetching data:", error);
-    return null;
+    return [];
   }
 };
 
+
+// Funktion zum Abrufen der Plays
 export const getPlays = async () => {
-  return await fetchAPI("/api/plays");
+  try {
+    const { data, error } = await supabase
+      .from('plays') // Ersetze 'plays' durch den Namen deiner Tabelle
+      .select('*');
+
+    if (error) {
+      throw error;
+    }
+
+    return data;
+  } catch (error) {
+    console.error("Error fetching data:", error);
+    return [];
+  }
 };

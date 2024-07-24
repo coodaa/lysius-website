@@ -1,53 +1,25 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Home.module.css";
+import { fetchGalleries } from "../lib/api";
 
-const isProd = process.env.NODE_ENV === "production";
-const strapiUrl = isProd
-  ? process.env.NEXT_PUBLIC_STRAPI_API_URL_PROD
-  : process.env.NEXT_PUBLIC_STRAPI_API_URL_LOCAL;
-
-export async function getServerSideProps() {
-  const apiUrl = `${strapiUrl}/api/galleries?populate=images`;
-
-  try {
-    const response = await fetch(apiUrl, {
-      headers: {
-        Authorization: `Bearer ${process.env.NEXT_PUBLIC_API_TOKEN}`,
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
-    }
-
-    const data = await response.json();
-    console.log("API Response:", data); // Überprüfe die API-Antwort in der Konsole
-
-    const images = data.data.flatMap((item) =>
-      item.attributes.images.data.map((image) => image.attributes.url)
-    );
-
-    return {
-      props: {
-        images: images.length > 0 ? images : ["/default-image.jpg"],
-      },
-    };
-  } catch (error) {
-    console.error("Fehler beim Abrufen der Bilder:", error);
-
-    return {
-      props: {
-        images: ["/default-image.jpg"],
-      },
-    };
-  }
-}
-
-export default function Home({ images }) {
+export default function Home() {
+  const [images, setImages] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
+    async function fetchData() {
+      const data = await fetchGalleries();
+      if (data) {
+        setImages(data);
+      }
+    }
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    if (images.length === 0) return;
+
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
     }, 3000); // Ändert das Bild alle 3 Sekunden
@@ -62,14 +34,15 @@ export default function Home({ images }) {
           {images.map((imageUrl, index) => (
             <Image
               key={index}
-              src={imageUrl.startsWith("http") ? imageUrl : `${strapiUrl}${imageUrl}`}
+              src={imageUrl}
               alt={`Bild ${index}`}
               className={`${styles.image} ${
                 index === currentImageIndex ? styles.show : ""
               }`}
-              fill
+              layout="fill"
               style={{ objectFit: "cover" }}
               priority={index === currentImageIndex}
+              fetchpriority={index === currentImageIndex ? "high" : "low"}
             />
           ))}
         </div>
