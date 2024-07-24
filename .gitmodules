@@ -1,0 +1,3 @@
+[submodule "lysius-strapi"]
+	path = lysius-strapi
+	url = https://github.com/coodaa/lysius-strapi.git
