@@ -1,5 +1,3 @@
-// lib/api.js
-
 export const fetchImages = async () => {
   try {
     const res = await fetch(
