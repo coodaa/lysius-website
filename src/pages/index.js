@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import styles from "../styles/Home.module.css";
 import { fetchImages } from "../lib/api";
+import styles from "../styles/Home.module.css";
 
 export default function Home() {
   const [images, setImages] = useState([]);
@@ -11,7 +11,7 @@ export default function Home() {
     async function fetchData() {
       const data = await fetchImages();
       if (data) {
-        setImages(data);
+        setImages(data.map((img) => img.formats.large.url)); // Verwenden Sie das richtige Bildformat
       }
     }
     fetchData();
@@ -31,10 +31,10 @@ export default function Home() {
     <div className={styles.container}>
       <div className={styles.overlayContainer}>
         <div className={styles.imageWrapper}>
-          {images.map((image, index) => (
+          {images.map((imageUrl, index) => (
             <Image
               key={index}
-              src={image.url}
+              src={imageUrl}
               alt={`Bild ${index}`}
               className={`${styles.image} ${
                 index === currentImageIndex ? styles.show : ""
