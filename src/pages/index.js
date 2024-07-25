@@ -1,19 +1,17 @@
-import { useEffect, useState } from "react";
-import Image from "next/image";
+import { useState, useEffect } from "react";
 import { fetchImages } from "../lib/api";
+import Image from "next/image";
 import styles from "../styles/Home.module.css";
 
-export default function Home() {
+const HomePage = () => {
   const [images, setImages] = useState([]);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
-    async function fetchData() {
+    const fetchData = async () => {
       const data = await fetchImages();
-      if (data) {
-        setImages(data.map((img) => img.formats.large.url)); // Verwenden Sie das richtige Bildformat
-      }
-    }
+      setImages(data);
+    };
     fetchData();
   }, []);
 
@@ -31,10 +29,10 @@ export default function Home() {
     <div className={styles.container}>
       <div className={styles.overlayContainer}>
         <div className={styles.imageWrapper}>
-          {images.map((imageUrl, index) => (
+          {images.map((image, index) => (
             <Image
               key={index}
-              src={imageUrl}
+              src={image.url}
               alt={`Bild ${index}`}
               className={`${styles.image} ${
                 index === currentImageIndex ? styles.show : ""
@@ -49,4 +47,6 @@ export default function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default HomePage;
