@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
-import { fetchImages } from "../lib/api";
-import Image from "next/image";
+import { useEffect, useState } from "react";
+import { fetchImages } from "../lib/fetchImages";
 import styles from "../styles/Home.module.css";
 
 const HomePage = () => {
@@ -20,7 +19,7 @@ const HomePage = () => {
 
     const interval = setInterval(() => {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 3000); // Ändert das Bild alle 3 Sekunden
+    }, 3000);
 
     return () => clearInterval(interval);
   }, [images.length]);
@@ -30,17 +29,25 @@ const HomePage = () => {
       <div className={styles.overlayContainer}>
         <div className={styles.imageWrapper}>
           {images.map((image, index) => (
-            <Image
+            <div
               key={index}
-              src={image.url}
-              alt={`Bild ${index}`}
               className={`${styles.image} ${
                 index === currentImageIndex ? styles.show : ""
               }`}
-              layout="fill"
-              objectFit="cover"
-              priority={index === currentImageIndex}
-            />
+            >
+              <img
+                src={image.url}
+                alt={image.name}
+                style={{
+                  position: "absolute",
+                  height: "100%",
+                  width: "100%",
+                  inset: "0px",
+                  objectFit: "cover",
+                }}
+              />
+              <p>{image.url}</p> {/* Debugging output */}
+            </div>
           ))}
         </div>
         <h1 className={styles.title}>Lysius</h1>

@@ -1,30 +1,23 @@
+import { createClient } from "@supabase/supabase-js";
+
+const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
+const supabaseKey = process.env.NEXT_PUBLIC_SUPABASE_API_KEY;
+const supabase = createClient(supabaseUrl, supabaseKey);
+
 export const fetchImages = async () => {
-  const apiUrl = process.env.NEXT_PUBLIC_STRAPI_API_URL;
-  const apiToken = process.env.NEXT_PUBLIC_API_TOKEN;
-
-  console.log("API URL:", apiUrl);
-  console.log("API Token:", apiToken);
-
   try {
-    const res = await fetch(`${apiUrl}/api/landingpage-images?populate=*`, {
-      headers: {
-        Authorization: `Bearer ${apiToken}`,
-      },
-    });
+    const { data, error } = await supabase
+      .from("landingpage_images")
+      .select("image_url");
 
-    if (!res.ok) {
-      throw new Error(`An error occurred: ${res.status}`);
+    if (error) {
+      console.error("Error fetching images from Supabase:", error);
+      return [];
     }
 
-    const data = await res.json();
-    console.log("Fetched data:", data);
-    return data.data.map((item) => ({
-      url: item.attributes.Bilder.data.attributes.url,
-      formats: item.attributes.Bilder.data.attributes.formats,
-    }));
+    return data.map((item) => item.image_url);
   } catch (error) {
     console.error("Error fetching images:", error);
     return [];
   }
 };
-// sdfsdf
