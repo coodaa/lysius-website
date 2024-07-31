@@ -4,30 +4,46 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import Modal from "./Modal";
 import PlayDetailsList from "./PlayDetailsList";
+import SecondCarousel from "./SecondCarousel";
 import styles from "../styles/PlayPage.module.css";
 
 const PlayDetails = ({ play, setCurrentTitle }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const images = [
+    play.imageUrl,
+    play.imageUrl1,
+    play.imageUrl2,
+    play.imageUrl3,
+    play.imageUrl4,
+    play.imageUrl5,
+    play.imageUrl6,
+    play.imageUrl7,
+    play.imageUrl8,
+    play.imageUrl9,
+    play.imageUrl10,
+  ].filter(Boolean);
+
+  const secondCarouselImages = [
+    play.imageUrl,
+    play.imageUrl1,
+    play.imageUrl2,
+    play.imageUrl3,
+    play.imageUrl4,
+    play.imageUrl5,
+    play.imageUrl6,
+    play.imageUrl7,
+    play.imageUrl8,
+    play.imageUrl9,
+    play.imageUrl10,
+  ].filter(Boolean);
+
   useEffect(() => {
     setCurrentTitle(play.title);
-
-    const images = [
-      play.imageUrl,
-      play.imageUrl1,
-      play.imageUrl2,
-      play.imageUrl3,
-      play.imageUrl4,
-      play.imageUrl5,
-      play.imageUrl6,
-      play.imageUrl7,
-      play.imageUrl8,
-      play.imageUrl9,
-      play.imageUrl10,
-    ].filter(Boolean);
 
     if (images.length === 0) return;
 
@@ -46,20 +62,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     setCurrentImageIndex(index);
     setIsModalOpen(true);
   };
-
-  const images = [
-    play.imageUrl,
-    play.imageUrl1,
-    play.imageUrl2,
-    play.imageUrl3,
-    play.imageUrl4,
-    play.imageUrl5,
-    play.imageUrl6,
-    play.imageUrl7,
-    play.imageUrl8,
-    play.imageUrl9,
-    play.imageUrl10,
-  ].filter(Boolean);
 
   const videoUrl =
     play.videoUrl
@@ -87,50 +89,47 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
         ))}
       </div>
       <div className={styles.contentContainer}>
-        <h1 className={styles.title}>{play.title}</h1>
-        <p className={styles.subtitle}>
-          {play.subtitle
-            ? play.subtitle
-                .split(" ")
-                .map((word, index) => <span key={index}>{word} </span>)
-            : ""}
-        </p>
-        <PlayDetailsList play={play} />
-
-        <div className={styles.carousel}>
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className={`${styles.carouselImage} ${
-                index === currentImageIndex ? styles.show : ""
-              }`}
-              onClick={() => handleCarouselImageClick(index)}
-            >
-              <Image
-                src={image}
-                alt={play.title}
-                layout="fill"
-                objectFit="contain"
-                priority
-              />
-            </div>
-          ))}
-
-          <div className={styles.carouselDots}>
-            {images.map((_, index) => (
-              <span
-                key={index}
-                className={`${styles.dot} ${
-                  index === currentImageIndex ? styles.activeDot : ""
-                }`}
-                onClick={() => setCurrentImageIndex(index)}
-              ></span>
-            ))}
+        <div className={styles.textContainer}>
+          <h1 className={styles.title}>{play.title}</h1>
+          <p className={styles.subtitle}>
+            {play.subtitle
+              ? play.subtitle
+                  .split(" ")
+                  .map((word, index) => <span key={index}>{word} </span>)
+              : ""}
+          </p>
+          <div className={styles.playDesktop}>
+            <PlayDetailsList play={play} />
+          </div>
+          <div className={styles.description}>
+            <p>{play.description}</p>
           </div>
         </div>
 
-        <div className={styles.description}>
-          <p>{play.description}</p>
+        <div className={styles.carouselVideoContainer}>
+          <h1 className={styles.titleDesktop}>{play.title}</h1>
+          <p className={styles.subtitleDesktop}>
+            {play.subtitle
+              ? play.subtitle
+                  .split(" ")
+                  .map((word, index) => <span key={index}>{word} </span>)
+              : ""}
+          </p>
+
+          <SecondCarousel
+            images={secondCarouselImages}
+            onImageClick={(index) => handleCarouselImageClick(index)}
+          />
+          {videoUrl && (
+            <div className={styles.videoContainer}>
+              <iframe
+                src={videoUrl}
+                frameBorder="0"
+                allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
+          )}
         </div>
       </div>
       {isModalOpen && (
@@ -139,16 +138,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           initialIndex={currentImageIndex}
           onClose={() => setIsModalOpen(false)}
         />
-      )}
-      {videoUrl && (
-        <div className={styles.videoContainer}>
-          <iframe
-            src={videoUrl}
-            frameBorder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        </div>
       )}
     </div>
   );
