@@ -1,0 +1,186 @@
+.pageContainer {
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+  text-align: center;
+}
+
+.imageContainer {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+}
+
+.contentContainer {
+  background-color: white;
+}
+
+.backButton {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  background-color: transparent;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.title {
+  font-size: 3rem;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.4rem;
+  color: white;
+  display: inline-block;
+  max-width: 70vw;
+  line-height: 2;
+  word-wrap: break-word;
+  white-space: normal;
+  margin-bottom: 3rem;
+}
+
+.subtitle span {
+  display: inline;
+  background: black;
+  padding-left: .8em;
+  padding-right: .8em;
+  padding-top: .2em;
+  padding-bottom: .2em;
+}
+
+.details {
+  text-align: center;
+  margin: 0 auto;
+  font-size: 1.3rem;
+}
+
+.details .label {
+  background-color: black;
+  color: white;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: block;
+  width: 100%;
+}
+
+.details .value {
+  color: black;
+  padding: 0.5rem;
+  display: block;
+  width: 95%;
+  background-color: white;
+}
+
+.details p {
+  margin: 0;
+}
+
+.imageWrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+
+.image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.image.show {
+  opacity: 1;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 500px; /* Set your desired height */
+  background-color: black;
+  margin-bottom: 2rem;
+}
+
+.carouselImage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.carouselImage.show {
+  opacity: 1;
+}
+
+.carouselDots {
+  position: absolute;
+  bottom: 5vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.dot,
+.activeDot {
+  height: 10px;
+  width: 10px;
+  margin: 0 5px;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.dot {
+  background-color: black;
+}
+
+.activeDot {
+  background-color: white;
+  border: 2px solid black;
+}
+
+.videoContainer {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: black;
+  margin-bottom: 2rem;
+}
+
+.videoContainer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.description {
+  margin-top: 2rem;
+  max-width: 95vw;
+  font-size: 1.2rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  word-break: break-word;
+  word-wrap: break-word;
+  line-height: 1.3;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  white-space: pre-wrap;
+  margin-bottom: 10rem;
+}
