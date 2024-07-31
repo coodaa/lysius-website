@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { useTranslation } from 'next-i18next';
-import styles from '../styles/Home.module.css';
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from "next-i18next";
+import styles from "../styles/Home.module.css";
 
 export async function getServerSideProps({ locale }) {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
@@ -72,3 +72,9 @@ const HomePage = ({ images }) => {
 };
 
 export default HomePage;
+
+// sdfsfds
+
+
+// sdgsdg
+// sdg
