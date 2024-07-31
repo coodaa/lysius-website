@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import Modal from "./Modal";
+import PlayDetailsList from "./PlayDetailsList";
 import styles from "../styles/PlayPage.module.css";
 
 const PlayDetails = ({ play, setCurrentTitle }) => {
@@ -94,102 +95,8 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 .map((word, index) => <span key={index}>{word} </span>)
             : ""}
         </p>
-        <div className={styles.details}>
-          {play.productionDirector && (
-            <>
-              <p className={styles.label}>{t("production_director")}</p>
-              <p className={styles.value}>{play.productionDirector}</p>
-            </>
-          )}
-          {play.artisticSupervision && (
-            <>
-              <p className={styles.label}>{t("artistic_supervision")}</p>
-              <p className={styles.value}>{play.artisticSupervision}</p>
-            </>
-          )}
-          {play.musicalDirector && (
-            <>
-              <p className={styles.label}>{t("musical_director")}</p>
-              <p className={styles.value}>{play.musicalDirector}</p>
-            </>
-          )}
-          {play.regie && (
-            <>
-              <p className={styles.label}>{t("regie")}</p>
-              <p className={styles.value}>{play.regie}</p>
-            </>
-          )}
-          {play.produktion && (
-            <>
-              <p className={styles.label}>{t("produktion")}</p>
-              <p className={styles.value}>{play.produktion}</p>
-            </>
-          )}
-          {play.kuenstlerischeBegleitung && (
-            <>
-              <p className={styles.label}>{t("kuenstlerische_begleitung")}</p>
-              <p className={styles.value}>{play.kuenstlerischeBegleitung}</p>
-            </>
-          )}
-          {play.musikalischeLeitung && (
-            <>
-              <p className={styles.label}>{t("musikalische_leitung")}</p>
-              <p className={styles.value}>{play.musikalischeLeitung}</p>
-            </>
-          )}
-          {play.mit && (
-            <>
-              <p className={styles.label}>{t("mit")}</p>
-              <p className={styles.value}>{play.mit}</p>
-            </>
-          )}
-          {play.sopranistin && (
-            <>
-              <p className={styles.label}>{t("sopranistin")}</p>
-              <p className={styles.value}>{play.sopranistin}</p>
-            </>
-          )}
-          {play.sopranist && (
-            <>
-              <p className={styles.label}>{t("sopranist")}</p>
-              <p className={styles.value}>{play.sopranist}</p>
-            </>
-          )}
-          {play.bass && (
-            <>
-              <p className={styles.label}>{t("bass")}</p>
-              <p className={styles.value}>{play.bass}</p>
-            </>
-          )}
-          {play.chor && (
-            <>
-              <p className={styles.label}>{t("chor")}</p>
-              <p className={styles.value}>{play.chor}</p>
-            </>
-          )}
-          {play.orchester && (
-            <>
-              <p className={styles.label}>{t("orchester")}</p>
-              <p className={styles.value}>{play.orchester}</p>
-            </>
-          )}
-          {play.foerderung && (
-            <>
-              <p className={styles.label}>{t("foerderung")}</p>
-              <p className={styles.value}>{play.foerderung}</p>
-            </>
-          )}
-        </div>
-        {videoUrl && (
-          <div className={styles.videoContainer}>
-            <iframe
-              src={videoUrl}
-              frameBorder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
-          </div>
-        )}
+        <PlayDetailsList play={play} />
+
         <div className={styles.carousel}>
           {images.map((image, index) => (
             <div
@@ -208,6 +115,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
               />
             </div>
           ))}
+
           <div className={styles.carouselDots}>
             {images.map((_, index) => (
               <span
@@ -220,6 +128,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             ))}
           </div>
         </div>
+
         <div className={styles.description}>
           <p>{play.description}</p>
         </div>
@@ -231,10 +140,18 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           onClose={() => setIsModalOpen(false)}
         />
       )}
+      {videoUrl && (
+        <div className={styles.videoContainer}>
+          <iframe
+            src={videoUrl}
+            frameBorder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          ></iframe>
+        </div>
+      )}
     </div>
   );
 };
 
 export default PlayDetails;
-
-
