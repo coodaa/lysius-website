@@ -31,6 +31,7 @@ const HomePage = ({ images }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
+    console.log("Images:", images);
     if (images.length === 0) return;
 
     const interval = setInterval(() => {
@@ -72,9 +73,3 @@ const HomePage = ({ images }) => {
 };
 
 export default HomePage;
-
-// sdfsfds
-
-
-// sdgsdg
-// sdg
