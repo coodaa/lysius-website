@@ -9,7 +9,7 @@
   left: 0;
   z-index: 1000;
   background-color: white;
-  font-weight: bold !important;
+  /* font-weight: bold !important; */
   padding-bottom: 0.5em;
 }
 
@@ -18,7 +18,7 @@
   display: block;
   width: 100vw;
   margin: 0 auto;
-  border-bottom: 4px solid black;
+  border-bottom: 1.5px solid black;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -35,14 +35,15 @@
   font-size: 1.8rem;
   user-select: none;
   -webkit-user-select: none;
-  font-weight: bold;
+  /* font-weight: 500; */
+  /* font-weight: bold; */
 }
 
 .logo a {
   text-decoration: none;
   color: black;
   font-size: 1.8rem;
-  font-weight: bold;
+  /* font-weight: bold; */
   position: relative;
 }
 
