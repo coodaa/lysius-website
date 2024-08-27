@@ -25,7 +25,6 @@ export async function getServerSideProps({ locale }) {
     },
   };
 }
-
 const HomePage = ({ images }) => {
   const { t } = useTranslation("common");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -43,6 +42,11 @@ const HomePage = ({ images }) => {
 
   return (
     <div className={styles.container}>
+      {/* Overlay für "Seite im Bau" */}
+      <div className={styles.constructionOverlay}>
+        Diese Seite befindet sich im Bau
+      </div>
+
       <div className={styles.overlayContainer}>
         <div className={styles.imageWrapper}>
           {images.map((image, index) => (
@@ -73,6 +77,3 @@ const HomePage = ({ images }) => {
 };
 
 export default HomePage;
-
-
-// sdflknsf
