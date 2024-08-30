@@ -41,3 +41,14 @@ a:hover {
 .active {
   text-decoration: underline;
 }
+
+/* styles/global.css */
+.right-sidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 4em; /* Breite des Balkens */
+  height: 100vh; /* Höhe des Balkens */
+  background-color: white; /* Hintergrundfarbe */
+  z-index: 1000; /* Damit der Balken über anderen Inhalten liegt */
+}

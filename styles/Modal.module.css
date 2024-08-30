@@ -4,21 +4,32 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: white;
+  background: rgba(0, 0, 0, 0.5); /* Hintergrund leicht abdunkeln */
   display: flex;
-  justify-content: center;
+  justify-content: flex-end; /* Modal von rechts einblenden */
   align-items: center;
   z-index: 1000;
 }
 
+.whiteBar {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 4em;
+  height: 100vh;
+  background: white;
+  z-index: 999; /* Etwas unterhalb des Modals, aber über dem Overlay */
+}
+
 .modalContent {
   position: relative;
-  width: 90.5vw;
-  height: 100vh;
+  width: calc(90vw - 4em); /* Modal breiter machen, um Platz für den weißen Balken zu lassen */
+  height: 80vh;
+  background-color: white;
+  padding-right: 2em; /* Abstand vom rechten Rand des Modals */
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: white;
 }
 
 .modalImageWrapper {
@@ -38,13 +49,12 @@
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: white;
+  color: black; /* Farbe für bessere Sichtbarkeit */
   font-size: 2rem;
   cursor: pointer;
   z-index: 10;
   padding: 1rem;
   border-radius: 50%;
-  mix-blend-mode: difference;
 }
 
 .prevButton {
@@ -57,7 +67,7 @@
 
 .closeButtonContainer {
   position: absolute;
-  top: 0rem;
+  top: 0;
   right: 0;
   width: 100%;
   display: flex;
@@ -71,7 +81,7 @@
   font-size: 1.8rem;
   cursor: pointer;
   font-weight: bold;
-  padding: 2rem 0rem 0 0;
+  padding: 2rem 0 0 0;
   padding-bottom: 0.3em;
 }
 

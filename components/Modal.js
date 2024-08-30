@@ -23,6 +23,7 @@ const Modal = ({ images, initialIndex, onClose }) => {
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
+      <div className={styles.whiteBar}></div> {/* Weißer Balken */}
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <div className={styles.closeButtonContainer}>
           <button className={styles.closeButton} onClick={onClose}>

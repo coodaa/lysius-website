@@ -80,13 +80,13 @@ const Navbar = ({ currentTitle, plays }) => {
           }`}
         >
           <li className={styles.footerItem} onClick={handleLinkClick}>
-            <Link href="/members" legacyBehavior>
+            <Link href="/about" legacyBehavior>
               <a
                 className={`${styles.link} ${
-                  router.pathname === "/members" ? styles.active : ""
+                  router.pathname === "/about" ? styles.active : ""
                 }`}
               >
-                {t("members")}
+                {t("about")}
               </a>
             </Link>
           </li>

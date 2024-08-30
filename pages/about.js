@@ -1,13 +1,12 @@
-// src/pages/members.js
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 
-const MembersPage = () => {
+const AboutPage = () => {
   const { t } = useTranslation("common");
 
   return (
     <div>
-      <h1>{t("legal")}</h1>
+      <h1>{t("about")}</h1>
       <p>
         Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
         ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
@@ -40,4 +39,4 @@ export const getServerSideProps = async ({ locale }) => ({
   },
 });
 
-export default MembersPage;
+export default AboutPage;

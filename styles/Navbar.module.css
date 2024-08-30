@@ -79,6 +79,8 @@
 
 .nav.open {
   transform: translateX(-100%);
+    margin-right: 4em;
+
 }
 
 .navList {
