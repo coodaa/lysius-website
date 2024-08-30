@@ -13,7 +13,7 @@
   z-index: 9999; /* Sehr hoher z-index, damit es über allem liegt */
   text-align: center;
   font-family: 'Arial', sans-serif;
-  font-size: 6rem;
+  font-size: 3rem;
   padding: 20px;
   box-sizing: border-box;
 }
