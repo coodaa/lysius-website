@@ -42,9 +42,9 @@ const HomePage = ({ images }) => {
 
   return (
     <div className={styles.container}>
-      {/* <div className={styles.constructionOverlay}>
-        Diese Seite befindet sich im Bau. Verfügbar ab dem 15. September.
-      </div> */}
+      <div className={styles.constructionOverlay}>
+        Diese Seite befindet sich im Bau.
+      </div>
 
       <div className={styles.overlayContainer}>
         <div className={styles.imageWrapper}>
