@@ -9,7 +9,7 @@
   left: 0;
   z-index: 1000;
   background-color: white;
-  /* font-weight: bold !important; */
+  font-weight: bold !important;
   padding-bottom: 0.5em;
 }
 
@@ -18,7 +18,7 @@
   display: block;
   width: 100vw;
   margin: 0 auto;
-  border-bottom: 1.5px solid black;
+  border-bottom: 2px solid black;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -79,8 +79,6 @@
 
 .nav.open {
   transform: translateX(-100%);
-    margin-right: 4em;
-
 }
 
 .navList {
@@ -169,6 +167,7 @@
 
   .nav.open {
     transform: translateX(-20rem);
+    margin-right: 2em;
   }
 
   .logo,
@@ -187,6 +186,12 @@
     padding: 2rem 3rem 0 3rem;
   }
 
+  .nav.open {
+    transform: translateX(-20rem);
+    margin-right: 3em;
+  }
+
+
   .navbar::after {
     width: calc(100% - 6rem); /* Matches the padding */
   }
@@ -196,6 +201,11 @@
   .logo,
   .menuButton {
     padding: 2rem 4rem 0 4rem;
+  }
+
+  .nav.open {
+    transform: translateX(-20rem);
+    margin-right: 4em;
   }
 
   .navbar::after {

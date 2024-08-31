@@ -31,6 +31,7 @@ const Layout = ({ children }) => {
   return (
     <div className={styles.pageContainer}>
       <Navbar currentTitle={currentTitle} plays={plays} />
+      <div className={styles.rightSidebar}></div> {/* Der weiße Balken */}
       <main className={styles.contentContainer}>{childrenWithProps}</main>
     </div>
   );

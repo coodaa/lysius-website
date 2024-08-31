@@ -1,13 +1,30 @@
-/* .pageContainer {
-  padding-left: 1rem;
-  padding-right: 1rem;
-} */
+.contentContainer {
+  height: 100vh; /* Höhe des Viewports */
+  overflow: hidden; /* Verhindert das Scrollen */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Zentriert den Inhalt vertikal */
+}
+
+.rightSidebar {
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 4em; /* Breite des Balkens */
+  height: 100vh; /* Höhe des Balkens */
+  background-color: white; /* Hintergrundfarbe */
+  z-index: 1000; /* Damit der Balken über anderen Inhalten liegt */
+}
 
 @media (min-width: 600px) {
   .pageContainer {
     padding-left: 2rem;
     padding-right: 2rem;
     padding-bottom: 2rem;
+  }
+
+  .rightSidebar {
+    width: 2em;
   }
 }
 
@@ -17,6 +34,11 @@
     padding-right: 3rem;
     padding-bottom: 3rem;
   }
+
+  .rightSidebar {
+    width: 3em;
+  }
+
 }
 
 @media (min-width: 1200px) {
@@ -25,12 +47,8 @@
     padding-right: 4rem;
     padding-bottom: 3rem;
   }
-}
 
-.contentContainer {
-  height: 100vh; /* Höhe des Viewports */
-  overflow: hidden; /* Verhindert das Scrollen */
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* Zentriert den Inhalt vertikal */
+  .rightSidebar {
+    width: 3em;
+  }
 }
