@@ -9,14 +9,10 @@ import styles from "../styles/PlayPage.module.css";
 
 const PlayDetails = ({ play, setCurrentTitle }) => {
   const router = useRouter();
-  const { t } = useTranslation("common");
+  const { t, i18n } = useTranslation("common");
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
-  if (!play) {
-    return <div>{t("error.playNotFound")}</div>; // Display a message if play is undefined
-  }
 
   const desktopImages = [
     play?.imageUrl,
@@ -100,7 +96,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             <PlayDetailsList play={play} />
           </div>
           <div className={styles.description}>
-            <p>{play?.mainDescription || t("noDescription")}</p>
+            <p>{play?.mainDescription || t("keine Beschreibung vorhanden")}</p>
           </div>
         </div>
 
@@ -130,6 +126,14 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
               ></iframe>
             </div>
           )}
+
+          <div className={styles.additionalTexts}>
+            <h3>{t("additional_text_1")}</h3>
+            <p>{play?.additionalText1 || t("additional_text_1")}</p>
+            <p>{play?.additionalText2 || t("additional_text_2")}</p>
+            <p>{play?.additionalText3 || t("additional_text_3")}</p>
+            <p>{play?.additionalText4 || t("additional_text_4")}</p>
+          </div>
         </div>
       </div>
       {isModalOpen && (
