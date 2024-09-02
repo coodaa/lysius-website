@@ -14,36 +14,38 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const images = [
-    play.imageUrl,
-    play.imageUrl1,
-    play.imageUrl2,
-    play.imageUrl3,
-    play.imageUrl4,
-    play.imageUrl5,
-    play.imageUrl6,
-    play.imageUrl7,
-    play.imageUrl8,
-    play.imageUrl9,
-    play.imageUrl10,
+  if (!play) {
+    return <div>{t("error.playNotFound")}</div>; // Display a message if play is undefined
+  }
+
+  const desktopImages = [
+    play?.imageUrl,
+    play?.imageUrl1,
+    play?.imageUrl2,
+    play?.imageUrl3,
+    play?.imageUrl4,
+    play?.imageUrl5,
+    play?.imageUrl6,
+    play?.imageUrl7,
+    play?.imageUrl8,
+    play?.imageUrl9,
+    play?.imageUrl10,
   ].filter(Boolean);
 
-  const secondCarouselImages = [
-    play.imageUrl,
-    play.imageUrl1,
-    play.imageUrl2,
-    play.imageUrl3,
-    play.imageUrl4,
-    play.imageUrl5,
-    play.imageUrl6,
-    play.imageUrl7,
-    play.imageUrl8,
-    play.imageUrl9,
-    play.imageUrl10,
+  const mobileImages = [
+    play?.mobileImageUrl1,
+    play?.mobileImageUrl2,
+    play?.mobileImageUrl3,
+    play?.mobileImageUrl4,
+    play?.mobileImageUrl5,
   ].filter(Boolean);
+
+  const images = mobileImages.length > 0 ? mobileImages : desktopImages;
 
   useEffect(() => {
-    setCurrentTitle(play.title);
+    if (play?.title) {
+      setCurrentTitle(play.title);
+    }
 
     if (images.length === 0) return;
 
@@ -52,11 +54,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     }, 7000);
 
     return () => clearInterval(interval);
-  }, [play, setCurrentTitle]);
-
-  const goBack = () => {
-    router.push("/");
-  };
+  }, [play, images, setCurrentTitle]);
 
   const handleCarouselImageClick = (index) => {
     setCurrentImageIndex(index);
@@ -64,7 +62,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   };
 
   const videoUrl =
-    play.videoUrl
+    play?.videoUrl
       ?.replace("youtu.be/", "www.youtube.com/embed/")
       .split("?")[0] || "";
 
@@ -80,7 +78,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           >
             <Image
               src={image}
-              alt={play.title}
+              alt={play?.title || "Play Image"}
               layout="fill"
               objectFit="cover"
               priority
@@ -90,9 +88,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
       </div>
       <div className={styles.contentContainer}>
         <div className={styles.textContainer}>
-          <h1 className={styles.title}>{play.title}</h1>
+          <h1 className={styles.title}>{play?.title || t("untitled")}</h1>
           <p className={styles.subtitle}>
-            {play.subtitle
+            {play?.subtitle
               ? play.subtitle
                   .split(" ")
                   .map((word, index) => <span key={index}>{word} </span>)
@@ -102,14 +100,16 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             <PlayDetailsList play={play} />
           </div>
           <div className={styles.description}>
-            <p>{play.description}</p>
+            <p>{play?.mainDescription || t("noDescription")}</p>
           </div>
         </div>
 
         <div className={styles.carouselVideoContainer}>
-          <h1 className={styles.titleDesktop}>{play.title}</h1>
+          <h1 className={styles.titleDesktop}>
+            {play?.title || t("untitled")}
+          </h1>
           <p className={styles.subtitleDesktop}>
-            {play.subtitle
+            {play?.subtitle
               ? play.subtitle
                   .split(" ")
                   .map((word, index) => <span key={index}>{word} </span>)
@@ -117,7 +117,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           </p>
 
           <SecondCarousel
-            images={secondCarouselImages}
+            images={desktopImages}
             onImageClick={(index) => handleCarouselImageClick(index)}
           />
           {videoUrl && (

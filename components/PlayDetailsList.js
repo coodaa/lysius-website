@@ -20,6 +20,12 @@ const PlayDetailsList = ({ play }) => {
     { key: "chor", label: "chor" },
     { key: "orchester", label: "orchester" },
     { key: "foerderung", label: "foerderung" },
+    // Neue Textfelder hinzufügen
+    { key: "mainDescription", label: "main_description" },
+    { key: "additionalText1", label: "additional_text_1" },
+    { key: "additionalText2", label: "additional_text_2" },
+    { key: "additionalText3", label: "additional_text_3" },
+    { key: "additionalText4", label: "additional_text_4" },
   ];
 
   return (

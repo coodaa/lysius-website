@@ -1,58 +1,90 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 model landingpageimg {
-  id    Int    @id @default(autoincrement())
-  url   String
-  name  String
+  id          Int     @id @default(autoincrement())
+  url         String  @db.VarChar(255)
+  name        String  @db.VarChar(255)
+  metadata    String? @db.LongText
+  description String? @db.VarChar(255)
 }
 
 model PlayImages {
-  id       Int    @id @default(autoincrement())
-  playId   Int
-  imageUrl String
-  play     Play   @relation(fields: [playId], references: [id])
+  id       Int     @id @default(autoincrement())
+  playId   Int?
+  imageUrl String? @db.VarChar(255)
+  play     Play?   @relation("PlayImagesToPlay", fields: [playId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "PlayImages_ibfk_1")
 
-  @@index([playId], name: "playId")
+  @@index([playId], map: "playId")
 }
 
 model Play {
-  id                       Int      @id @default(autoincrement())
-  title                    String
-  description              String?
-  imageUrl                 String?
-  videoUrl                 String?
-  image                    Bytes?
-  subtitle                 String?
-  productionDirector       String?
-  artisticSupervision      String?
-  musicalDirector          String?
-  regie                    String?
-  produktion               String?
-  kuenstlerischeBegleitung String?
-  musikalischeLeitung      String?
-  mit                      String?
-  sopranistin              String?
-  sopranist                String?
-  bass                     String?
-  chor                     String?
-  orchester                String?
-  foerderung               String?
-  imageUrl1                String?
-  imageUrl2                String?
-  imageUrl3                String?
-  imageUrl4                String?
-  imageUrl5                String?
-  imageUrl6                String?
-  imageUrl7                String?
-  imageUrl8                String?
-  imageUrl9                String?
-  imageUrl10               String?
-  images                   PlayImages[]
+  id                          Int          @id @default(autoincrement())
+  title                       String       @db.VarChar(255)
+  description                 String?      @db.Text
+  imageUrl                    String?      @db.VarChar(255)
+  videoUrl                    String?      @db.VarChar(255)
+  image                       Bytes?       @db.Blob
+  subtitle                    String?      @db.VarChar(255)
+  productionDirector          String?      @db.VarChar(255)
+  artisticSupervision         String?      @db.VarChar(255)
+  musicalDirector             String?      @db.VarChar(255)
+  regie                       String?      @db.VarChar(255)
+  produktion                  String?      @db.VarChar(255)
+  kuenstlerischeBegleitung    String?      @db.VarChar(255)
+  musikalischeLeitung         String?      @db.VarChar(255)
+  mit                         String?      @db.VarChar(255)
+  sopranistin                 String?      @db.VarChar(255)
+  sopranist                   String?      @db.VarChar(255)
+  bass                        String?      @db.VarChar(255)
+  chor                        String?      @db.VarChar(255)
+  orchester                   String?      @db.VarChar(255)
+  foerderung                  String?      @db.VarChar(255)
+  imageUrl1                   String?      @db.VarChar(255)
+  imageUrl2                   String?      @db.VarChar(255)
+  imageUrl3                   String?      @db.VarChar(255)
+  imageUrl4                   String?      @db.VarChar(255)
+  imageUrl5                   String?      @db.VarChar(255)
+  imageUrl6                   String?      @db.VarChar(255)
+  imageUrl7                   String?      @db.VarChar(255)
+  imageUrl8                   String?      @db.VarChar(255)
+  imageUrl9                   String?      @db.VarChar(255)
+  imageUrl10                  String?      @db.VarChar(255)
+  subtitle_en                 String?      @db.VarChar(255)
+  productionDirector_en       String?      @db.VarChar(255)
+  artisticSupervision_en      String?      @db.VarChar(255)
+  musicalDirector_en          String?      @db.VarChar(255)
+  regie_en                    String?      @db.VarChar(255)
+  produktion_en               String?      @db.VarChar(255)
+  kuenstlerischeBegleitung_en String?      @db.VarChar(255)
+  musikalischeLeitung_en      String?      @db.VarChar(255)
+  mit_en                      String?      @db.VarChar(255)
+  sopranistin_en              String?      @db.VarChar(255)
+  sopranist_en                String?      @db.VarChar(255)
+  bass_en                     String?      @db.VarChar(255)
+  chor_en                     String?      @db.VarChar(255)
+  orchester_en                String?      @db.VarChar(255)
+  foerderung_en               String?      @db.VarChar(255)
+  mainDescription             String?      @db.Text
+  additionalText1             String?      @db.Text
+  additionalText2             String?      @db.Text
+  additionalText3             String?      @db.Text
+  additionalText4             String?      @db.Text
+  mainDescription_en          String?      @db.Text
+  additionalText1_en          String?      @db.Text
+  additionalText2_en          String?      @db.Text
+  additionalText3_en          String?      @db.Text
+  additionalText4_en          String?      @db.Text
+  mobileImageUrl1             String?      @db.VarChar(255)
+  mobileImageUrl2             String?      @db.VarChar(255)
+  mobileImageUrl3             String?      @db.VarChar(255)
+  mobileImageUrl4             String?      @db.VarChar(255)
+  mobileImageUrl5             String?      @db.VarChar(255)
+  images                      PlayImages[] @relation("PlayImagesToPlay")
 }

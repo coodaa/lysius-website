@@ -1,20 +1,44 @@
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import { PrismaClient } from "@prisma/client";
+
+let prisma;
+
+if (!global.prisma) {
+  prisma = new PrismaClient();
+  if (process.env.NODE_ENV === "development") {
+    global.prisma = prisma;
+  }
+} else {
+  prisma = global.prisma;
+}
+
+export async function handler(req, res) {
+  try {
+    console.log("API /api/plays hit");
+    const plays = await prisma.play.findMany();
+    console.log("Fetched plays from database:", plays);
+    res.status(200).json(plays);
+  } catch (error) {
+    console.error("Error fetching plays:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
 
 export async function getServerSideProps({ locale }) {
-  console.log("getServerSideProps called"); // Debugging-Ausgabe
+  console.log("getServerSideProps called");
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-  console.log("API URL:", apiUrl); // Debugging-Ausgabe
+  console.log("API URL:", apiUrl);
   let plays = [];
 
   try {
     const res = await fetch(`${apiUrl}/api/plays`);
-    console.log("Fetch response status:", res.status); // Debugging-Ausgabe
-    console.log("Hello World"); // Debugging-Ausgabe
+    console.log("Fetch response status:", res.status);
+
     if (res.ok) {
       plays = await res.json();
-      console.log("Plays fetched successfully:", plays); // Debugging-Ausgabe
+      console.log("Plays fetched successfully:", plays);
       plays = plays.map((play) => ({
         ...play,
         videoUrl: play.videoUrl
@@ -39,8 +63,7 @@ export async function getServerSideProps({ locale }) {
 export default function Home({ plays }) {
   const { t } = useTranslation("common");
 
-  console.log("Rendering Home component"); // Debugging-Ausgabe
-  console.log("Hello World from Home component"); // Debugging-Ausgabe
+  console.log("Rendering Home component");
 
   return (
     <div>
