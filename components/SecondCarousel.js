@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import Image from "next/image";
 import styles from "../styles/PlayPage.module.css";
 
-const SecondCarousel = ({ images, initialIndex = 0, onImageClick }) => {
+const SecondCarousel = ({
+  images,
+  credits,
+  initialIndex = 0,
+  onImageClick,
+}) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(initialIndex);
 
   const handleDotClick = (index) => {
@@ -39,6 +44,11 @@ const SecondCarousel = ({ images, initialIndex = 0, onImageClick }) => {
           ></span>
         ))}
       </div>
+      {credits[currentImageIndex] && (
+        <div className={styles.carouselCredits}>
+          {credits[currentImageIndex]}
+        </div>
+      )}
     </div>
   );
 };

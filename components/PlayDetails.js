@@ -17,51 +17,61 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
   const isEnglish = i18n.language === "en";
 
-  // Desktop images
   const desktopImages = [
     {
       url: play?.imageUrl,
-      credit: play?.imageCredit1 || "",
+      credit: play?.imageCredit1 || "No credit available",
     },
     {
       url: play?.imageUrl1,
-      credit: play?.imageCredit2 || "",
+      credit: play?.imageCredit2 || "No credit available",
     },
     {
       url: play?.imageUrl2,
-      credit: play?.imageCredit3 || "",
+      credit: play?.imageCredit3 || "No credit available",
     },
     {
       url: play?.imageUrl3,
-      credit: play?.imageCredit4 || "",
+      credit: play?.imageCredit4 || "No credit available",
     },
     {
       url: play?.imageUrl4,
-      credit: play?.imageCredit5 || "",
+      credit: play?.imageCredit5 || "No credit available",
     },
   ].filter((image) => image.url);
 
-  // Mobile images
+  console.log("Desktop Images Final Data:", desktopImages);
+
   const mobileImages = [
     {
       url: play?.mobileImageUrl1,
-      credit: play?.mobileImageCredit1 || "No credit available",
+      credit: play?.mobileImageCredit1
+        ? play.mobileImageCredit1
+        : "No credit available",
     },
     {
       url: play?.mobileImageUrl2,
-      credit: play?.mobileImageCredit2 || "No credit available",
+      credit: play?.mobileImageCredit2
+        ? play.mobileImageCredit2
+        : "No credit available",
     },
     {
       url: play?.mobileImageUrl3,
-      credit: play?.mobileImageCredit3 || "No credit available",
+      credit: play?.mobileImageCredit3
+        ? play.mobileImageCredit3
+        : "No credit available",
     },
     {
       url: play?.mobileImageUrl4,
-      credit: play?.mobileImageCredit4 || "No credit available",
+      credit: play?.mobileImageCredit4
+        ? play.mobileImageCredit4
+        : "No credit available",
     },
     {
       url: play?.mobileImageUrl5,
-      credit: play?.mobileImageCredit5 || "No credit available",
+      credit: play?.mobileImageCredit5
+        ? play.mobileImageCredit5
+        : "No credit available",
     },
   ].filter((image) => image.url);
 
@@ -74,6 +84,11 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     : play?.subtitle || "";
 
   const activeImages = mobileImages.length > 0 ? mobileImages : desktopImages;
+
+  // Debugging: Prüfe, ob das play-Objekt überhaupt die expected fields enthält
+  useEffect(() => {
+    console.log("Play Object Data on loadhier:", play);
+  }, [play]);
 
   useEffect(() => {
     if (play?.title) {
@@ -105,8 +120,13 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     "Current Image Credits:",
     desktopImages[currentImageIndex]?.credit
   );
-  console.log("Desktop Images Data:", desktopImages);
-  console.log("Play Object Data:", play);
+  console.log("Desktop Images Credit Data:", {
+    imageCredit1: play?.imageCredit1,
+    imageCredit2: play?.imageCredit2,
+    imageCredit3: play?.imageCredit3,
+    imageCredit4: play?.imageCredit4,
+    imageCredit5: play?.imageCredit5,
+  });
 
   return (
     <>
@@ -164,10 +184,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 objectFit="cover"
                 priority
               />
-
-              {image.credit && (
-                <p className={styles.imageCredit}>{image.credit}</p>
-              )}
             </div>
           ))}
         </div>
@@ -204,15 +220,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
             <SecondCarousel
               images={desktopImages.map((img) => img.url)}
+              credits={desktopImages.map((img) => img.credit)}
               onImageClick={handleImageClick}
             />
-
-            {/* Image credits directly below the carousel points */}
-            {desktopImages[currentImageIndex]?.credit && (
-              <div className={styles.carouselCredits}>
-                {desktopImages[currentImageIndex]?.credit}
-              </div>
-            )}
 
             {videoUrl && (
               <div className={styles.videoContainer}>

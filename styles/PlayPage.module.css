@@ -116,15 +116,18 @@
   height: 50vh;
   background-color: black;
   margin-bottom: 2rem;
+  overflow: hidden; /* Verhindert, dass etwas aus dem Carousel herausragt */
 }
 
 .carouselImage {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  width: 80%;
+  height: 80%;
   object-fit: contain;
   opacity: 0;
-  transition: opacity 1s ease-in-out;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .carouselImage.show {
@@ -133,10 +136,19 @@
 
 .carouselDots {
   position: absolute;
-  bottom: 5vh;
+  bottom: 15%; /* Dots etwas höher ansetzen, damit Platz für die Credits bleibt */
   width: 100%;
   display: flex;
   justify-content: center;
+}
+
+.carouselCredits {
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  text-align: center; /* Text zentrieren */
+  font-size: 0.9rem; /* Schriftgröße der Credits */
+  color: white; /* Farbe der Credits */
 }
 
 .dot,
@@ -211,20 +223,6 @@
   display: block;
 }
 
-.imageCredit {
-  font-size: 0.8rem;
-  color: #888;
-  text-align: right;
-  margin-top: 0.5rem;
-}
-
-.carouselCredits {
-  font-size: 0.8rem;
-  color: #888;
-  text-align: center;
-  margin-top: 0.5rem;
-}
-
 
 
 
@@ -264,21 +262,39 @@
 
   .textContainer {
     flex: 1;
-    max-width: 33.33%; /* 1/3 of the container width */
+    max-width: 50%;
     text-align: left;
     padding-right: 2rem;
+    position: relative; /* Notwendig für das Pseudo-Element */
+    height: auto; /* Höhe automatisch anpassen */
   }
 
+  .textContainer::before {
+    content: '';
+    position: absolute;
+    top: 5em; /* Abstand von oben */
+    bottom: 0; /* Bis zum unteren Rand */
+    right: 0; /* An der rechten Seite des Containers */
+    width: 1px;
+    background-color: black; /* Farbe des Strichs */
+  }
+
+
+
   .carouselVideoContainer {
-    flex: 2; /* Takes up twice the available space of textContainer */
-    max-width: 66.67%; /* 2/3 of the container width */
+    flex: 2;
+    max-width: 55%;
     display: flex;
     flex-direction: column; /* Vertical layout for carousel and video */
     justify-content: center;
   }
 
   .carouselDots {
-    bottom: 1vh;
+    bottom: 5%;
+  }
+
+  .carouselCredits {
+    bottom: 1%;
   }
 
   .title, .subtitle {
