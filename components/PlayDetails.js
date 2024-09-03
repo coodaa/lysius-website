@@ -6,6 +6,7 @@ import Head from "next/head";
 import Modal from "./Modal";
 import PlayDetailsList from "./PlayDetailsList";
 import SecondCarousel from "./SecondCarousel";
+import CustomVideoPlayer from "./CustomVideoPlayer"; // Importiere die neue Komponente
 import styles from "../styles/PlayPage.module.css";
 
 const PlayDetails = ({ play, setCurrentTitle }) => {
@@ -224,16 +225,8 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
               onImageClick={handleImageClick}
             />
 
-            {videoUrl && (
-              <div className={styles.videoContainer}>
-                <iframe
-                  src={videoUrl}
-                  frameBorder="0"
-                  allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                ></iframe>
-              </div>
-            )}
+            {/* Verwende die CustomVideoPlayer Komponente */}
+            {videoUrl && <CustomVideoPlayer videoUrl={videoUrl} />}
 
             {(isEnglish ? play?.additionalText1_en : play?.additionalText1) && (
               <div className={styles.additionalTexts}>

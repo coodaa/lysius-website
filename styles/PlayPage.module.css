@@ -193,6 +193,7 @@
 
 .description {
   margin-top: 2rem;
+  margin-bottom: 2rem;
   max-width: 95vw;
   font-size: 1.2rem;
   margin-left: auto;
@@ -224,26 +225,74 @@
 }
 
 
+.videoContainer {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  max-width: 100%;
+  background: black;
+}
 
+.videoContainer iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.playButton {
+  font-size: 3rem;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+  outline: none;
+}
+
+.additionalTexts:last-child {
+  margin-bottom: 6em;
+}
 
 @media only screen and (max-width: 767px) {
   .mobileImages {
     display: block;
   }
+
   .desktopImages {
     display: none;
   }
-}
 
-@media only screen and (min-width: 768px) {
-  .mobileImages {
-    display: none;
+  .mobileImages .image {
+    height: 100vh; /* Höhe entspricht der Höhe des Viewports */
+    width: 100%;   /* Breite entspricht der gesamten Breite */
+    object-fit: cover; /* Das Bild wird so skaliert, dass es den Container ausfüllt, ohne das Seitenverhältnis zu verlieren */
   }
-  .desktopImages {
-    display: block;
+
+  .mobileImages .image.show {
+    opacity: 1;
+  }
+
+  .mobileImages .imageContainer {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* Container hat auch die Höhe des Viewports */
   }
 }
-
 
 /* Desktop styles */
 @media (min-width: 768px) {
@@ -273,12 +322,11 @@
     content: '';
     position: absolute;
     top: 5em; /* Abstand von oben */
-    bottom: 0; /* Bis zum unteren Rand */
+    bottom: 1em; /* Bis zum unteren Rand */
     right: 0; /* An der rechten Seite des Containers */
     width: 1px;
     background-color: black; /* Farbe des Strichs */
   }
-
 
 
   .carouselVideoContainer {
@@ -330,6 +378,7 @@
 
   .description {
     margin-top: 1rem;
+    margin-bottom: 5rem;
     max-width: 100%;
   }
 
@@ -339,6 +388,10 @@
     max-width: 100%;
     text-align: left;
     font-size: 1.2rem;
+  }
+
+  .additionalTexts:last-child {
+    margin-bottom: 3em;
   }
 
   .desktopOnly {

@@ -15,7 +15,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  /* width: 4em; */
+  width: 4em;
   height: 100vh;
   background: white;
   z-index: 999; /* Etwas unterhalb des Modals, aber über dem Overlay */
@@ -23,19 +23,20 @@
 
 .modalContent {
   position: relative;
-  width: calc(90vw - 4em); /* Modal breiter machen, um Platz für den weißen Balken zu lassen */
-  height: 80vh;
+  width: 100vw; /* Breite auf 100% setzen */
+  height: 100vh; /* Höhe auf 100% setzen */
   background-color: white;
-  padding-right: 2em; /* Abstand vom rechten Rand des Modals */
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-right: 4em; /* Platz für den weißen Balken */
+  overflow: hidden;
 }
 
 .modalImageWrapper {
   position: relative;
-  width: 100%;
-  height: 80vh;
+  width: calc(100% - 8em); /* Platz für Buttons links und rechts */
+  height: 100vh; /* Höhe auf 100% setzen */
 }
 
 .modalImage {
@@ -68,8 +69,7 @@
 .closeButtonContainer {
   position: absolute;
   top: 0;
-  right: 0;
-  width: 100%;
+  right: 4em; /* Positionierung am rechten Rand, aber innerhalb des weißen Balkens */
   display: flex;
   justify-content: flex-end;
 }
@@ -82,7 +82,6 @@
   cursor: pointer;
   font-weight: bold;
   padding: 2rem 0 0 0;
-  padding-bottom: 0.3em;
 }
 
 .closeButtonContainer::after {
