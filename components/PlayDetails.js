@@ -38,9 +38,19 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     play?.mobileImageUrl5,
   ].filter(Boolean);
 
+  // Setze den Titel basierend auf der aktuellen Sprache
+  const title = isEnglish
+    ? play?.title_en || play?.title || t("untitled")
+    : play?.title || t("untitled");
+
+  const subtitle = isEnglish
+    ? play?.subtitle_en || play?.subtitle || ""
+    : play?.subtitle || "";
+
+  // useEffect zur Behandlung der Bildrotation und des Setzens des Titels
   useEffect(() => {
     if (play?.title) {
-      setCurrentTitle(play.title);
+      setCurrentTitle(title);
     }
 
     const activeImages = mobileImages.length > 0 ? mobileImages : desktopImages;
@@ -53,19 +63,12 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
       }, 7000);
       return () => clearInterval(interval);
     }
-  }, [play, desktopImages, mobileImages, setCurrentTitle]);
+  }, [title, play, desktopImages, mobileImages, setCurrentTitle]);
 
   const videoUrl =
     play?.videoUrl
       ?.replace("youtu.be/", "www.youtube.com/embed/")
       .split("?")[0] || "";
-
-  const title = isEnglish
-    ? play?.title_en || play?.title || t("untitled")
-    : play?.title || t("untitled");
-  const subtitle = isEnglish
-    ? play?.subtitle_en || play?.subtitle || ""
-    : play?.subtitle || "";
 
   return (
     <div className={styles.pageContainer}>
@@ -110,7 +113,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
       </div>
 
       <div className={styles.contentContainer}>
-        {/* Rest des Inhalts */}
         <div className={styles.textContainer}>
           <h1 className={styles.title}>{title}</h1>
           <p className={styles.subtitle}>
@@ -142,7 +144,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
           <SecondCarousel
             images={desktopImages}
-            onImageClick={(index) => handleCarouselImageClick(index)}
+            onImageClick={(index) => setCurrentImageIndex(index)}
           />
           {videoUrl && (
             <div className={styles.videoContainer}>
@@ -190,7 +192,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
       </div>
       {isModalOpen && (
         <Modal
-          images={images}
+          images={mobileImages.length > 0 ? mobileImages : desktopImages}
           initialIndex={currentImageIndex}
           onClose={() => setIsModalOpen(false)}
         />
