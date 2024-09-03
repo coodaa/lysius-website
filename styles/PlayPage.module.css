@@ -211,6 +211,23 @@
   display: block;
 }
 
+.imageCredit {
+  font-size: 0.8rem;
+  color: #888;
+  text-align: right;
+  margin-top: 0.5rem;
+}
+
+.carouselCredits {
+  font-size: 0.8rem;
+  color: #888;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+
+
+
 @media only screen and (max-width: 767px) {
   .mobileImages {
     display: block;

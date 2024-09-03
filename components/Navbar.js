@@ -60,19 +60,26 @@ const Navbar = ({ currentTitle, plays }) => {
       </div>
       <nav className={`${styles.nav} ${menuOpen ? styles.open : ""}`}>
         <ul className={styles.navList}>
-          {plays.map((play) => (
-            <li key={play.id} onClick={handleLinkClick}>
-              <Link href={`/plays/${play.id}`} legacyBehavior>
-                <a
-                  className={`${styles.link} ${
-                    router.pathname === `/plays/${play.id}` ? styles.active : ""
-                  }`}
-                >
-                  {play.title}
-                </a>
-              </Link>
-            </li>
-          ))}
+          {plays.map((play) => {
+            const playTitle =
+              i18n.language === "en" ? play.title_en || play.title : play.title;
+
+            return (
+              <li key={play.id} onClick={handleLinkClick}>
+                <Link href={`/plays/${play.id}`} legacyBehavior>
+                  <a
+                    className={`${styles.link} ${
+                      router.pathname === `/plays/${play.id}`
+                        ? styles.active
+                        : ""
+                    }`}
+                  >
+                    {playTitle}
+                  </a>
+                </Link>
+              </li>
+            );
+          })}
         </ul>
         <ul
           className={`${styles.footerList} ${
