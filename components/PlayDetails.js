@@ -17,49 +17,31 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
   const isEnglish = i18n.language === "en";
 
+  // Desktop images
   const desktopImages = [
     {
       url: play?.imageUrl,
-      credit: play?.imageCredit1 || "No credit available",
+      credit: play?.imageCredit1 || "",
     },
     {
       url: play?.imageUrl1,
-      credit: play?.imageCredit2 || "No credit available",
+      credit: play?.imageCredit2 || "",
     },
     {
       url: play?.imageUrl2,
-      credit: play?.imageCredit3 || "No credit available",
+      credit: play?.imageCredit3 || "",
     },
     {
       url: play?.imageUrl3,
-      credit: play?.imageCredit4 || "No credit available",
+      credit: play?.imageCredit4 || "",
     },
     {
       url: play?.imageUrl4,
-      credit: play?.imageCredit5 || "No credit available",
-    },
-    {
-      url: play?.imageUrl5,
-      credit: play?.imageCredit6 || "No credit available",
-    },
-    {
-      url: play?.imageUrl6,
-      credit: play?.imageCredit7 || "No credit available",
-    },
-    {
-      url: play?.imageUrl7,
-      credit: play?.imageCredit8 || "No credit available",
-    },
-    {
-      url: play?.imageUrl8,
-      credit: play?.imageCredit9 || "No credit available",
-    },
-    {
-      url: play?.imageUrl9,
-      credit: play?.imageCredit10 || "No credit available",
+      credit: play?.imageCredit5 || "",
     },
   ].filter((image) => image.url);
 
+  // Mobile images
   const mobileImages = [
     {
       url: play?.mobileImageUrl1,
@@ -118,12 +100,13 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
       ?.replace("youtu.be/", "www.youtube.com/embed/")
       .split("?")[0] || "";
 
-  // Debugging: Check current image credits and desktop images data
+  // Debugging
   console.log(
     "Current Image Credits:",
     desktopImages[currentImageIndex]?.credit
   );
   console.log("Desktop Images Data:", desktopImages);
+  console.log("Play Object Data:", play);
 
   return (
     <>
@@ -172,7 +155,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
               className={`${styles.image} ${
                 index === currentImageIndex ? styles.show : ""
               }`}
-              onClick={() => handleImageClick(index)} // Image click handler
+              onClick={() => handleImageClick(index)}
             >
               <Image
                 src={image.url}
@@ -181,6 +164,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 objectFit="cover"
                 priority
               />
+
               {image.credit && (
                 <p className={styles.imageCredit}>{image.credit}</p>
               )}
