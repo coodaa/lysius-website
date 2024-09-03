@@ -57,6 +57,7 @@ model Play {
   imageUrl9                   String?      @db.VarChar(255)
   imageUrl10                  String?      @db.VarChar(255)
   subtitle_en                 String?      @db.VarChar(255)
+  title_en                    String?      @db.VarChar(255)
   productionDirector_en       String?      @db.VarChar(255)
   artisticSupervision_en      String?      @db.VarChar(255)
   musicalDirector_en          String?      @db.VarChar(255)

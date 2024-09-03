@@ -14,6 +14,8 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const isEnglish = i18n.language === "en"; // Überprüfen, ob die Sprache Englisch ist
+
   const desktopImages = [
     play?.imageUrl,
     play?.imageUrl1,
@@ -36,36 +38,60 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     play?.mobileImageUrl5,
   ].filter(Boolean);
 
-  const images = mobileImages.length > 0 ? mobileImages : desktopImages;
-
   useEffect(() => {
     if (play?.title) {
       setCurrentTitle(play.title);
     }
 
-    if (images.length === 0) return;
+    const activeImages = mobileImages.length > 0 ? mobileImages : desktopImages;
 
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }, 7000);
-
-    return () => clearInterval(interval);
-  }, [play, images, setCurrentTitle]);
-
-  const handleCarouselImageClick = (index) => {
-    setCurrentImageIndex(index);
-    setIsModalOpen(true);
-  };
+    if (activeImages.length > 0) {
+      const interval = setInterval(() => {
+        setCurrentImageIndex(
+          (prevIndex) => (prevIndex + 1) % activeImages.length
+        );
+      }, 7000);
+      return () => clearInterval(interval);
+    }
+  }, [play, desktopImages, mobileImages, setCurrentTitle]);
 
   const videoUrl =
     play?.videoUrl
       ?.replace("youtu.be/", "www.youtube.com/embed/")
       .split("?")[0] || "";
 
+  const title = isEnglish
+    ? play?.title_en || play?.title || t("untitled")
+    : play?.title || t("untitled");
+  const subtitle = isEnglish
+    ? play?.subtitle_en || play?.subtitle || ""
+    : play?.subtitle || "";
+
   return (
     <div className={styles.pageContainer}>
-      <div className={styles.imageContainer}>
-        {images.map((image, index) => (
+      {mobileImages.length > 0 && (
+        <div className={`${styles.imageContainer} ${styles.mobileImages}`}>
+          {mobileImages.map((image, index) => (
+            <div
+              key={index}
+              className={`${styles.image} ${
+                index === currentImageIndex ? styles.show : ""
+              }`}
+            >
+              <Image
+                src={image}
+                alt={title}
+                layout="fill"
+                objectFit="cover"
+                priority
+              />
+            </div>
+          ))}
+        </div>
+      )}
+
+      <div className={`${styles.imageContainer} ${styles.desktopImages}`}>
+        {desktopImages.map((image, index) => (
           <div
             key={index}
             className={`${styles.image} ${
@@ -74,7 +100,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           >
             <Image
               src={image}
-              alt={play?.title || "Play Image"}
+              alt={title}
               layout="fill"
               objectFit="cover"
               priority
@@ -82,34 +108,36 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           </div>
         ))}
       </div>
+
       <div className={styles.contentContainer}>
+        {/* Rest des Inhalts */}
         <div className={styles.textContainer}>
-          <h1 className={styles.title}>{play?.title || t("untitled")}</h1>
+          <h1 className={styles.title}>{title}</h1>
           <p className={styles.subtitle}>
-            {play?.subtitle
-              ? play.subtitle
-                  .split(" ")
-                  .map((word, index) => <span key={index}>{word} </span>)
-              : ""}
+            {subtitle.split(" ").map((word, index) => (
+              <span key={index}>{word} </span>
+            ))}
           </p>
           <div className={styles.playDesktop}>
             <PlayDetailsList play={play} />
           </div>
           <div className={styles.description}>
-            <p>{play?.mainDescription || t("keine Beschreibung vorhanden")}</p>
+            <p>
+              {isEnglish
+                ? play?.mainDescription_en ||
+                  play?.mainDescription ||
+                  t("no_description_available")
+                : play?.mainDescription || t("no_description_available")}
+            </p>
           </div>
         </div>
 
         <div className={styles.carouselVideoContainer}>
-          <h1 className={styles.titleDesktop}>
-            {play?.title || t("untitled")}
-          </h1>
+          <h1 className={styles.titleDesktop}>{title}</h1>
           <p className={styles.subtitleDesktop}>
-            {play?.subtitle
-              ? play.subtitle
-                  .split(" ")
-                  .map((word, index) => <span key={index}>{word} </span>)
-              : ""}
+            {subtitle.split(" ").map((word, index) => (
+              <span key={index}>{word} </span>
+            ))}
           </p>
 
           <SecondCarousel
@@ -129,10 +157,34 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
           <div className={styles.additionalTexts}>
             <h3>{t("additional_text_1")}</h3>
-            <p>{play?.additionalText1 || t("additional_text_1")}</p>
-            <p>{play?.additionalText2 || t("additional_text_2")}</p>
-            <p>{play?.additionalText3 || t("additional_text_3")}</p>
-            <p>{play?.additionalText4 || t("additional_text_4")}</p>
+            <p>
+              {isEnglish
+                ? play?.additionalText1_en ||
+                  play?.additionalText1 ||
+                  t("additional_text_1")
+                : play?.additionalText1 || t("additional_text_1")}
+            </p>
+            <p>
+              {isEnglish
+                ? play?.additionalText2_en ||
+                  play?.additionalText2 ||
+                  t("additional_text_2")
+                : play?.additionalText2 || t("additional_text_2")}
+            </p>
+            <p>
+              {isEnglish
+                ? play?.additionalText3_en ||
+                  play?.additionalText3 ||
+                  t("additional_text_3")
+                : play?.additionalText3 || t("additional_text_3")}
+            </p>
+            <p>
+              {isEnglish
+                ? play?.additionalText4_en ||
+                  play?.additionalText4 ||
+                  t("additional_text_4")
+                : play?.additionalText4 || t("additional_text_4")}
+            </p>
           </div>
         </div>
       </div>

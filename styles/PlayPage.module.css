@@ -201,6 +201,35 @@
   text-align: left;
 }
 
+
+/* Mobiler Bildercontainer */
+.mobileImages {
+  display: none;
+}
+
+.desktopImages {
+  display: block;
+}
+
+@media only screen and (max-width: 767px) {
+  .mobileImages {
+    display: block;
+  }
+  .desktopImages {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .mobileImages {
+    display: none;
+  }
+  .desktopImages {
+    display: block;
+  }
+}
+
+
 /* Desktop styles */
 @media (min-width: 768px) {
   .contentContainer {
