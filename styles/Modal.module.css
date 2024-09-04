@@ -1,10 +1,11 @@
+/* Grundlegendes Styling */
 .modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.8);
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -23,20 +24,25 @@
 
 .modalContent {
   position: relative;
-  width: 100vw; /* Breite auf 100% setzen */
-  height: 100vh; /* Höhe auf 100% setzen */
-  background-color: white;
+  width: 100vw;
+  height: 100vh;
+  background-color: white; /* Weißes Passepartout */
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-right: 4em; /* Platz für den weißen Balken */
+  padding-top: 2em; /* Passepartout oben */
+  padding-right: 4em; /* Platz für whiteBar */
+  padding-left: 2em; /* Passepartout links */
+  padding-bottom: 2em; /* Passepartout unten */
   overflow: hidden;
+  box-sizing: border-box;
 }
 
 .modalImageWrapper {
   position: relative;
-  width: calc(100% - 8em); /* Platz für Buttons links und rechts */
-  height: 100vh; /* Höhe auf 100% setzen */
+  width: calc(100% - 6em); /* 2em links + 4em rechts */
+  height: calc(100% - 4em); /* 2em oben + 2em unten */
+  background-color: black; /* Schwarzer Hintergrund um die Bilder */
 }
 
 .modalImage {
@@ -50,7 +56,7 @@
   transform: translateY(-50%);
   background: none;
   border: none;
-  color: black; /* Farbe für bessere Sichtbarkeit */
+  color: black;
   font-size: 2rem;
   cursor: pointer;
   z-index: 10;
@@ -59,31 +65,28 @@
 }
 
 .prevButton {
-  left: 1rem;
+  left: .2rem;
 }
 
 .nextButton {
-  right: 1rem;
-  z-index: 1000;
-
+  right: .2rem;
 }
 
 .closeButtonContainer {
   position: absolute;
-  top: 0;
-  right: 4em; /* Positionierung am rechten Rand, aber innerhalb des weißen Balkens */
-  display: flex;
-  justify-content: flex-end;
+  top: 1rem;
+  right: 1rem; /* Positionierung näher an der rechten oberen Ecke */
+  z-index: 1001; /* Sicherstellen, dass es über dem weißen Balken liegt */
 }
 
 .closeButton {
   background: none;
   border: none;
-  color: black;
-  font-size: 1.8rem;
+  color: black; /* Schwarzes 'X', damit es auf dem weißen Balken sichtbar ist */
+  font-size: 2rem; /* Größer machen für bessere Sichtbarkeit */
   cursor: pointer;
   font-weight: bold;
-  padding: 2rem 0 0 0;
+  margin-right: 3em;
 }
 
 .closeButtonContainer::after {
@@ -91,7 +94,7 @@
   display: block;
   width: 100%;
   height: 4px;
-  background-color: black;
+  background-color: white;
   position: absolute;
   bottom: 0;
 }
@@ -102,7 +105,7 @@
 
 .carouselDots {
   position: absolute;
-  bottom: 5vh;
+  bottom: 3vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -110,8 +113,8 @@
 
 .dot,
 .activeDot {
-  height: 10px;
-  width: 10px;
+  height: 20px;
+  width: 20px;
   margin: 0 5px;
   border-radius: 50%;
   display: inline-block;
@@ -125,5 +128,78 @@
 
 .activeDot {
   background-color: white;
-  border: 2px solid black;
+  border: 1px solid black;
+}
+
+.imageCredit {
+  position: absolute;
+  bottom: 1vh;
+  width: 100%;
+  text-align: center;
+  font-size: 0.9rem;
+  z-index: 1000;
+}
+
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .modalContent {
+    padding-top: 2em; /* Optional: Behalte den oberen Abstand */
+    padding-right: 1em; /* Weniger Padding rechts */
+    padding-left: 1em; /* Weniger Padding links */
+    padding-bottom: 1em; /* Weniger Padding unten */
+  }
+
+  .modalImageWrapper {
+    width: calc(100% - 2em); /* 1em links + 1em rechts */
+    height: calc(100% - 3em); /* 2em oben + 1em unten */
+  }
+
+  .closeButtonContainer {
+    top: 0.5em;
+    right: 0.5em;
+    z-index: 1001; /* Sicherstellen, dass es über anderen Elementen liegt */
+  }
+
+  .closeButton {
+    font-size: 1.5rem; /* Kleinere Schriftgröße */
+    padding: 1rem 0 0 0;
+    margin-right: 1em;
+  }
+
+  .prevButton,
+  .nextButton {
+    font-size: 1.5rem; /* Kleinere Schriftgröße */
+    padding: 0.5rem; /* Weniger Padding */
+  }
+
+  .carouselDots {
+    bottom: 17vh;
+  }
+
+  .dot {
+    background-color: white;
+  }
+
+  .activeDot {
+    background-color: black;
+    border: 1px solid white;
+  }
+
+  .dot,
+  .activeDot {
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+  }
+
+  .imageCredit {
+    bottom: 13vh;
+    color: white;
+  }
+
+  /* Optional: Verstecke die whiteBar auf mobilen Geräten */
+  .whiteBar {
+    display: none;
+  }
 }

@@ -40,6 +40,26 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
       url: play?.imageUrl4,
       credit: play?.imageCredit5 || "No credit available",
     },
+    {
+      url: play?.imageUrl5,
+      credit: play?.imageCredit6 || "No credit available",
+    },
+    {
+      url: play?.imageUrl6,
+      credit: play?.imageCredit7 || "No credit available",
+    },
+    {
+      url: play?.imageUrl7,
+      credit: play?.imageCredit8 || "No credit available",
+    },
+    {
+      url: play?.imageUrl8,
+      credit: play?.imageCredit9 || "No credit available",
+    },
+    {
+      url: play?.imageUrl9,
+      credit: play?.imageCredit10 || "No credit available",
+    },
   ].filter((image) => image.url);
 
   // Mobile-Bilder (nur für das mobile Carousel)
@@ -250,7 +270,8 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
         {/* Modal für Desktop-Bilder */}
         {isModalOpen && (
           <Modal
-            images={desktopImages.map((img) => img.url)} // Nur Desktop-Bilder für das Modal
+            images={desktopImages.map((img) => img.url)} // Desktop-Bilder
+            credits={desktopImages.map((img) => img.credit)} // Desktop-Bild-Credits
             initialIndex={currentImageIndex}
             onClose={() => setIsModalOpen(false)}
           />

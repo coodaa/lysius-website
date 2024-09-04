@@ -179,7 +179,7 @@
   overflow: hidden;
   max-width: 100%;
   background: black;
-  margin-bottom: 2rem;
+  margin-bottom: 4rem;
 }
 
 .videoContainer iframe {
@@ -326,6 +326,8 @@
     display: flex;
     flex-direction: column; /* Vertical layout for carousel and video */
     justify-content: center;
+    margin-bottom: 4rem;
+
   }
 
   .carouselDots {

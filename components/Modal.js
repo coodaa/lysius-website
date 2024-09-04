@@ -3,7 +3,7 @@ import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import styles from "../styles/Modal.module.css";
 
-const Modal = ({ images, initialIndex, onClose }) => {
+const Modal = ({ images, credits = [], initialIndex, onClose }) => {
   const { t } = useTranslation("common");
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
 
@@ -23,7 +23,7 @@ const Modal = ({ images, initialIndex, onClose }) => {
 
   return (
     <div className={styles.modalOverlay} onClick={onClose}>
-      <div className={styles.whiteBar}></div> {/* Weißer Balken */}
+      <div className={styles.whiteBar}></div>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <div className={styles.closeButtonContainer}>
           <button className={styles.closeButton} onClick={onClose}>
@@ -45,6 +45,8 @@ const Modal = ({ images, initialIndex, onClose }) => {
         <button className={styles.nextButton} onClick={handleNext}>
           {">"}
         </button>
+
+        {/* Dots */}
         <div className={styles.carouselDots}>
           {images.map((_, index) => (
             <span
@@ -55,6 +57,11 @@ const Modal = ({ images, initialIndex, onClose }) => {
               onClick={() => handleDotClick(index)}
             ></span>
           ))}
+        </div>
+
+        {/* Bild-Credits */}
+        <div className={styles.imageCredit}>
+          {credits[currentIndex] ? credits[currentIndex] : ""} {/* Nur anzeigen, wenn vorhanden */}
         </div>
       </div>
     </div>
