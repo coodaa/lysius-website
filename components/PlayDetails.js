@@ -6,7 +6,7 @@ import Head from "next/head";
 import Modal from "./Modal";
 import PlayDetailsList from "./PlayDetailsList";
 import SecondCarousel from "./SecondCarousel";
-import CustomVideoPlayer from "./CustomVideoPlayer"; // Importiere die neue Komponente
+import CustomVideoPlayer from "./CustomVideoPlayer";
 import styles from "../styles/PlayPage.module.css";
 
 const PlayDetails = ({ play, setCurrentTitle }) => {
@@ -18,6 +18,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
   const isEnglish = i18n.language === "en";
 
+  // Desktop-Bilder (für Carousel und Modal)
   const desktopImages = [
     {
       url: play?.imageUrl,
@@ -41,38 +42,27 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     },
   ].filter((image) => image.url);
 
-  console.log("Desktop Images Final Data:", desktopImages);
-
+  // Mobile-Bilder (nur für das mobile Carousel)
   const mobileImages = [
     {
       url: play?.mobileImageUrl1,
-      credit: play?.mobileImageCredit1
-        ? play.mobileImageCredit1
-        : "No credit available",
+      credit: play?.mobileImageCredit1 || "No credit available",
     },
     {
       url: play?.mobileImageUrl2,
-      credit: play?.mobileImageCredit2
-        ? play.mobileImageCredit2
-        : "No credit available",
+      credit: play?.mobileImageCredit2 || "No credit available",
     },
     {
       url: play?.mobileImageUrl3,
-      credit: play?.mobileImageCredit3
-        ? play.mobileImageCredit3
-        : "No credit available",
+      credit: play?.mobileImageCredit3 || "No credit available",
     },
     {
       url: play?.mobileImageUrl4,
-      credit: play?.mobileImageCredit4
-        ? play.mobileImageCredit4
-        : "No credit available",
+      credit: play?.mobileImageCredit4 || "No credit available",
     },
     {
       url: play?.mobileImageUrl5,
-      credit: play?.mobileImageCredit5
-        ? play.mobileImageCredit5
-        : "No credit available",
+      credit: play?.mobileImageCredit5 || "No credit available",
     },
   ].filter((image) => image.url);
 
@@ -84,12 +74,8 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     ? play?.subtitle_en || play?.subtitle || ""
     : play?.subtitle || "";
 
+  // Im mobilen Modus mobileImages, sonst desktopImages
   const activeImages = mobileImages.length > 0 ? mobileImages : desktopImages;
-
-  // Debugging: Prüfe, ob das play-Objekt überhaupt die expected fields enthält
-  useEffect(() => {
-    console.log("Play Object Data on loadhier:", play);
-  }, [play]);
 
   useEffect(() => {
     if (play?.title) {
@@ -116,19 +102,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
       ?.replace("youtu.be/", "www.youtube.com/embed/")
       .split("?")[0] || "";
 
-  // Debugging
-  console.log(
-    "Current Image Credits:",
-    desktopImages[currentImageIndex]?.credit
-  );
-  console.log("Desktop Images Credit Data:", {
-    imageCredit1: play?.imageCredit1,
-    imageCredit2: play?.imageCredit2,
-    imageCredit3: play?.imageCredit3,
-    imageCredit4: play?.imageCredit4,
-    imageCredit5: play?.imageCredit5,
-  });
-
   return (
     <>
       <Head>
@@ -147,6 +120,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
       </Head>
 
       <div className={styles.pageContainer}>
+        {/* Mobiles Carousel */}
         {mobileImages.length > 0 && (
           <div className={`${styles.imageContainer} ${styles.mobileImages}`}>
             {mobileImages.map((image, index) => (
@@ -169,6 +143,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           </div>
         )}
 
+        {/* Desktop Carousel */}
         <div className={`${styles.imageContainer} ${styles.desktopImages}`}>
           {desktopImages.map((image, index) => (
             <div
@@ -225,9 +200,10 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
               onImageClick={handleImageClick}
             />
 
-            {/* Verwende die CustomVideoPlayer Komponente */}
+            {/* CustomVideoPlayer für Video */}
             {videoUrl && <CustomVideoPlayer videoUrl={videoUrl} />}
 
+            {/* Zusätzliche Texte */}
             {(isEnglish ? play?.additionalText1_en : play?.additionalText1) && (
               <div className={styles.additionalTexts}>
                 <h3>{t("reviews")}</h3>
@@ -270,9 +246,11 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             )}
           </div>
         </div>
+
+        {/* Modal für Desktop-Bilder */}
         {isModalOpen && (
           <Modal
-            images={activeImages.map((img) => img.url)}
+            images={desktopImages.map((img) => img.url)} // Nur Desktop-Bilder für das Modal
             initialIndex={currentImageIndex}
             onClose={() => setIsModalOpen(false)}
           />

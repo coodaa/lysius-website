@@ -4,9 +4,9 @@
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5); /* Hintergrund leicht abdunkeln */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  justify-content: flex-end; /* Modal von rechts einblenden */
+  justify-content: flex-end;
   align-items: center;
   z-index: 1000;
 }
@@ -18,7 +18,7 @@
   width: 4em;
   height: 100vh;
   background: white;
-  z-index: 999; /* Etwas unterhalb des Modals, aber über dem Overlay */
+  z-index: 999;
 }
 
 .modalContent {
@@ -64,6 +64,8 @@
 
 .nextButton {
   right: 1rem;
+  z-index: 1000;
+
 }
 
 .closeButtonContainer {

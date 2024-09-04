@@ -116,7 +116,7 @@
   height: 50vh;
   background-color: black;
   margin-bottom: 2rem;
-  overflow: hidden; /* Verhindert, dass etwas aus dem Carousel herausragt */
+  overflow: hidden;
 }
 
 .carouselImage {
@@ -136,7 +136,7 @@
 
 .carouselDots {
   position: absolute;
-  bottom: 15%; /* Dots etwas höher ansetzen, damit Platz für die Credits bleibt */
+  bottom: 15%;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -146,9 +146,9 @@
   position: absolute;
   bottom: 5%;
   width: 100%;
-  text-align: center; /* Text zentrieren */
-  font-size: 0.9rem; /* Schriftgröße der Credits */
-  color: white; /* Farbe der Credits */
+  text-align: center;
+  font-size: 0.9rem;
+  color: white;
 }
 
 .dot,
@@ -191,13 +191,10 @@
   border: 0;
 }
 
-.description {
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+.description,
+.additionalTexts {
+  margin: 2rem auto;
   max-width: 95vw;
-  font-size: 1.2rem;
-  margin-left: auto;
-  margin-right: auto;
   text-align: left;
   word-break: break-word;
   word-wrap: break-word;
@@ -207,12 +204,6 @@
   white-space: pre-wrap;
 }
 
-.additionalTexts {
-  display: block;
-  margin-top: 2rem;
-  max-width: 100%;
-  text-align: left;
-}
 
 
 /* Mobiler Bildercontainer */
@@ -278,8 +269,8 @@
   }
 
   .mobileImages .image {
-    height: 100vh; /* Höhe entspricht der Höhe des Viewports */
-    width: 100%;   /* Breite entspricht der gesamten Breite */
+    height: 100vh;
+    width: 100%;
     object-fit: cover; /* Das Bild wird so skaliert, dass es den Container ausfüllt, ohne das Seitenverhältnis zu verlieren */
   }
 
@@ -387,7 +378,6 @@
     margin-top: 2rem;
     max-width: 100%;
     text-align: left;
-    font-size: 1.2rem;
   }
 
   .additionalTexts:last-child {
