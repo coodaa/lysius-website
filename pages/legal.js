@@ -1,43 +1,51 @@
-// src/pages/members.js
+import { PrismaClient } from "@prisma/client";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import styles from "../styles/LegalPage.module.css";
 
-const MembersPage = () => {
-  const { t } = useTranslation("common");
+const prisma = new PrismaClient();
+
+const LegalPage = ({ legalData }) => {
+  const { t, i18n } = useTranslation("common");
+  const isEnglish = i18n.language === "en";
+
+  const content = isEnglish ? legalData.content_en : legalData.content;
+
+  // Den Text in Absätze aufteilen
+  const paragraphs = content ? content.split("\n").filter(Boolean) : [];
 
   return (
-    <div>
-      <h1>{t("legal")}</h1>
-      <p>
-        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo
-        ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis
-        dis parturient montes, nascetur ridiculus mus. Donec quam felis,
-        ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa
-        quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget,
-        arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo.
-        Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras
-        dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend
-        tellus. Aenean leo ligula, porttitor eu, conse- quat vitae, eleifend ac,
-        enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus.
-        Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean
-        imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper
-        ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus
-        eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing
-        sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar,
-        hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec
-        vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit
-        amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris
-        sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget
-        bibendum sodales, augue velit cursus nunc,
-      </p>
+    <div className={styles.container}>
+      {/* <h1>{legalData.type === "AGB" ? t("terms") : t("privacy_policy")}</h1> */}
+      <div className={styles.text}>
+        {paragraphs.map((paragraph, index) => (
+          <p key={index}>{paragraph}</p>
+        ))}
+      </div>
     </div>
   );
 };
 
-export const getServerSideProps = async ({ locale }) => ({
-  props: {
-    ...(await serverSideTranslations(locale, ["common"])),
-  },
-});
+// Server-side Daten holen
+export const getServerSideProps = async ({ locale, query }) => {
+  const { type } = query;
 
-export default MembersPage;
+  // AGB oder Datenschutz basierend auf dem `type`-Parameter abfragen
+  const legalData = await prisma.legal.findFirst({
+    where: { type },
+  });
+
+  if (legalData) {
+    // Konvertiere createdAt (und andere Date-Felder, falls nötig) in ein ISO-String-Format
+    legalData.createdAt = legalData.createdAt.toISOString();
+  }
+
+  return {
+    props: {
+      legalData,
+      ...(await serverSideTranslations(locale, ["common"])),
+    },
+  };
+};
+
+export default LegalPage;

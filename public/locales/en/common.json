@@ -1,7 +1,7 @@
 {
   "theater_pieces": "Theater Pieces",
   "about": "About",
-  "terms": "Terms",
+  "terms": "Privacy",
   "legal": "Legal notice",
   "menu": "MENU",
   "close": "X",
@@ -54,5 +54,8 @@
   "image_credit_4": "Image Credit 4",
   "image_credit_4_en": "Image Credit 4 (EN)",
   "image_credit_5": "Image Credit 5",
-  "image_credit_5_en": "Image Credit 5 (EN)"
+  "image_credit_5_en": "Image Credit 5 (EN)",
+  "privacy_policy": "Privacy Policy",
+  "no_data_found": "No data found"
+
 }

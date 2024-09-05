@@ -11,7 +11,6 @@ const AboutPage = ({ aboutData }) => {
 
   return (
     <div className={styles.container}>
-      <h1>{t("about")}</h1>
 
       <div className={styles.text}>
         <p>{isEnglish ? aboutData.textField1_en : aboutData.textField1}</p>

@@ -114,3 +114,12 @@ model About {
   textField5   String? @db.Text    // Textfeld 5 auf Deutsch
   textField5_en String? @db.Text   // Textfeld 5 auf Englisch
 }
+
+
+model Legal {
+  id           Int     @id @default(autoincrement())
+  type         String  @db.VarChar(100) // 'AGB' oder 'Datenschutz'
+  content      String? @db.Text         // Inhalt auf Deutsch
+  content_en   String? @db.Text         // Inhalt auf Englisch
+  createdAt    DateTime @default(now())
+}

@@ -1,4 +1,4 @@
-/* Container, der scrollen kann */
+/* LegalPage.module.css */
 .container {
   margin-top: 10em;
   min-height: 100vh;
@@ -11,13 +11,12 @@
   margin-bottom: 10em;
 }
 
-/* Ab einer bestimmten Bildschirmbreite (Desktop) */
+
+
 @media (min-width: 768px) {
   .text {
     width: 75%;
-    margin: 0;
+    margin-left: 0;
     padding-left: 0;
-    padding: 0em;
-
   }
 }
