@@ -8,11 +8,15 @@ datasource db {
 }
 
 model landingpageimg {
-  id          Int     @id @default(autoincrement())
-  url         String  @db.VarChar(255)
-  name        String  @db.VarChar(255)
-  metadata    String? @db.LongText
-  description String? @db.VarChar(255)
+  id             Int     @id @default(autoincrement())
+  url            String  @db.VarChar(255)
+  name           String  @db.VarChar(255)
+  metadata       String? @db.LongText
+  description    String? @db.VarChar(255)
+  mobileImageUrl String? @db.VarChar(255)
+
+  @@index([url])
+  @@index([name])
 }
 
 model Play {
@@ -94,4 +98,19 @@ model Play {
   mobileImageCredit3          String? @db.VarChar(255)
   mobileImageCredit4          String? @db.VarChar(255)
   mobileImageCredit5          String? @db.VarChar(255)
+}
+
+
+model About {
+  id           Int     @id @default(autoincrement())
+  textField1   String? @db.Text    // Textfeld 1 auf Deutsch
+  textField1_en String? @db.Text   // Textfeld 1 auf Englisch
+  textField2   String? @db.Text    // Textfeld 2 auf Deutsch
+  textField2_en String? @db.Text   // Textfeld 2 auf Englisch
+  textField3   String? @db.Text    // Textfeld 3 auf Deutsch
+  textField3_en String? @db.Text   // Textfeld 3 auf Englisch
+  textField4   String? @db.Text    // Textfeld 4 auf Deutsch
+  textField4_en String? @db.Text   // Textfeld 4 auf Englisch
+  textField5   String? @db.Text    // Textfeld 5 auf Deutsch
+  textField5_en String? @db.Text   // Textfeld 5 auf Englisch
 }

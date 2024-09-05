@@ -1,0 +1,17 @@
+.container {
+  padding: 0.5em;
+}
+
+.text {
+  margin: 0 auto;
+  width: 100%; /* Mobile-first: volle Breite */
+}
+
+/* Ab einer bestimmten Bildschirmbreite (Desktop) */
+@media (min-width: 768px) {
+  .text {
+    width: 66.66%; /* 2/3 der Breite */
+    margin: 0; /* Entferne Auto-Margin, damit es nicht zentriert wird */
+    padding-left: 0; /* Text soll links bündig sein */
+  }
+}

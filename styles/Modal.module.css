@@ -144,7 +144,7 @@
 /* Mobile Styles */
 @media (max-width: 768px) {
   .modalContent {
-    padding-top: 2em; /* Optional: Behalte den oberen Abstand */
+    padding-top: 1em; /* Optional: Behalte den oberen Abstand */
     padding-right: 1em; /* Weniger Padding rechts */
     padding-left: 1em; /* Weniger Padding links */
     padding-bottom: 1em; /* Weniger Padding unten */
@@ -156,15 +156,15 @@
   }
 
   .closeButtonContainer {
-    top: 0.5em;
+    top: 0em;
     right: 0.5em;
-    z-index: 1001; /* Sicherstellen, dass es über anderen Elementen liegt */
+    z-index: 1001;
   }
 
   .closeButton {
     font-size: 1.5rem; /* Kleinere Schriftgröße */
     padding: 1rem 0 0 0;
-    margin-right: 1em;
+    margin-right: 0em
   }
 
   .prevButton,

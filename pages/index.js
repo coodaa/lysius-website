@@ -25,12 +25,28 @@ export async function getServerSideProps({ locale }) {
     },
   };
 }
+
 const HomePage = ({ images }) => {
   const { t } = useTranslation("common");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Überwache die Bildschirmbreite und setze den Zustand für mobile Geräte
   useEffect(() => {
-    console.log("Images:", images);
+    const updateIsMobile = () => {
+      setIsMobile(window.innerWidth <= 768); // Setze einen Schwellenwert für mobile Geräte
+    };
+
+    updateIsMobile();
+    window.addEventListener("resize", updateIsMobile);
+
+    return () => {
+      window.removeEventListener("resize", updateIsMobile);
+    };
+  }, []);
+
+  // Image rotation logic
+  useEffect(() => {
     if (images.length === 0) return;
 
     const interval = setInterval(() => {
@@ -56,7 +72,11 @@ const HomePage = ({ images }) => {
               }`}
             >
               <img
-                src={image.url}
+                src={
+                  isMobile && image.mobileImageUrl
+                    ? image.mobileImageUrl
+                    : image.url
+                }
                 alt={image.name}
                 style={{
                   position: "absolute",
