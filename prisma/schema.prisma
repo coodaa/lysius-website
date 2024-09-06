@@ -117,17 +117,9 @@ model About {
 
 
 model Legal {
-  id           Int     @id @default(autoincrement())
-  type         String  @db.VarChar(100) // 'AGB' oder 'Datenschutz'
-  content      String? @db.Text         // Inhalt auf Deutsch
-  content_en   String? @db.Text         // Inhalt auf Englisch
-  createdAt    DateTime @default(now())
+  id        Int      @id @default(autoincrement())
+  type      String   @db.VarChar(100)  // 'AGB', 'Datenschutz' oder 'Impressum'
+  content   String?  @db.Text          // Inhalt auf Deutsch
+  content_en String?  @db.Text         // Inhalt auf Englisch (optional)
+  createdAt DateTime @default(now())   // Zeitstempel für die Erstellung
 }
-
-CREATE TABLE Legal (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  type VARCHAR(100) NOT NULL,      -- 'AGB', 'Datenschutz' oder 'Impressum'
-  content TEXT,                    -- Inhalt auf Deutsch
-  content_en TEXT,                 -- Inhalt auf Englisch (optional)
-  createdAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-);
