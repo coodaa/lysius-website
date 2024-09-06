@@ -41,9 +41,22 @@ const Navbar = ({ currentTitle, plays }) => {
     };
   }, [menuOpen]);
 
-  const displayTitle = router.pathname.startsWith("/plays/")
-    ? currentTitle
-    : "LYSIUS";
+  // Titel basierend auf der Route festlegen
+  const getDisplayTitle = () => {
+    if (router.pathname.startsWith("/plays/")) {
+      return currentTitle;
+    } else if (router.pathname === "/about") {
+      return t("about");
+    } else if (router.pathname === "/legal") {
+      return t("legal");
+    } else if (router.pathname === "/terms") {
+      return t("terms");
+    } else {
+      return "LYSIUS";
+    }
+  };
+
+  const displayTitle = getDisplayTitle();
 
   return (
     <header className={styles.navbar}>
