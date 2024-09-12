@@ -63,7 +63,7 @@ const Navbar = ({ currentTitle, plays }) => {
         <Link href="/" legacyBehavior>
           <a className={styles.titleLink}>
             <span className={styles.title}>{displayTitle}</span>
-            <span className={styles.hoverTitle}>LYSIUS</span>
+            {/* <span className={styles.hoverTitle}>LYSIUS</span> */}
           </a>
         </Link>
       </div>
