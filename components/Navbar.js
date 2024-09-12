@@ -41,7 +41,6 @@ const Navbar = ({ currentTitle, plays }) => {
     };
   }, [menuOpen]);
 
-  // Titel basierend auf der Route festlegen
   const getDisplayTitle = () => {
     if (router.pathname.startsWith("/plays/")) {
       return currentTitle;
@@ -132,6 +131,8 @@ const Navbar = ({ currentTitle, plays }) => {
               </a>
             </Link>
           </li>
+
+          {/* Language Switch */}
           <li className={styles.languageSwitch}>
             <span
               onClick={() => switchLanguage("de")}

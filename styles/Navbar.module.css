@@ -26,11 +26,11 @@
 }
 
 .logo {
-  padding: 2rem 1rem 0 .5rem;
+  padding: 1rem 1rem 0 .5rem;
 }
 
 .menuButton {
-  padding: 2rem .5rem 0 0;
+  padding: 1rem .5rem 0 0;
   cursor: pointer;
   font-size: 1.6rem;
   user-select: none;
@@ -62,10 +62,10 @@
 
 .nav {
   position: fixed;
-  top: 4.6rem;
+  top: 4rem;
   right: -100%;
   width: 100%;
-  height: calc(100% - 4.6rem);
+  height: calc(100% - 4rem);
   background-color: white;
   transition: transform 0.3s ease-in-out;
   z-index: 999;
@@ -85,7 +85,7 @@
   font-weight: bold !important;
   margin-top: 2em;
   font-size: 1.2rem;
-  left: 1rem;
+  left: .5rem;
   position: absolute;
 }
 
@@ -103,11 +103,10 @@
 
 .link {
   display: block;
-  padding: 1rem;
+  padding-bottom: 1rem;
   text-decoration: none;
   color: black;
   font-weight: bold;
-  text-align: left;
 }
 
 .footerList {
@@ -122,6 +121,7 @@
   bottom: 1rem;
   font-weight: bold;
   font-size: 1.3rem;
+  text-align: right;
 }
 
 .footerOpen {
@@ -130,14 +130,13 @@
 }
 
 .footerItem {
-  margin: 0;
+  text-align: right;
 }
 
 .languageSwitch {
   display: flex;
+  justify-content: flex-end; /* Sprache rechtsbündig */
   gap: 0.3rem;
-  padding-left: 1rem;
-  margin-top: 3rem;
 }
 
 .languageLink {
@@ -183,7 +182,6 @@
     transform: translateX(-20rem);
     margin-right: 3em;
   }
-
 
   .navbar::after {
     width: calc(100% - 10rem); /* Matches the padding */
