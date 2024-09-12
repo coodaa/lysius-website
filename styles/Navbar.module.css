@@ -51,7 +51,7 @@
 .logo .titleLink:hover .title {
   display: none;
 } */
-/* 
+/*
 .logo .titleLink:hover .hoverTitle {
   display: inline;
 } */
@@ -187,7 +187,7 @@
   }
 
   .nav.open {
-    transform: translateX(-20rem);
+    transform: translateX(-22rem);
     margin-right: 3em;
   }
 
@@ -203,11 +203,11 @@
   }
 
   .nav.open {
-    transform: translateX(-23rem);
-    margin-right: 4em;
+    transform: translateX(-26rem);
+    margin-right: 1em;
   }
 
   .navbar::after {
-    width: calc(100% - 14rem); /* Matches the padding */
+    width: calc(100% - 14rem);
   }
 }
