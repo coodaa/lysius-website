@@ -9,7 +9,7 @@
 .imageContainer {
   position: relative;
   width: 100%;
-  height: 100vh;
+  height: 92vh;
 }
 
 .contentContainer {
@@ -70,15 +70,15 @@
 .details .label {
   background-color: black;
   color: white;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+  padding-top: 0.3rem;
+  padding-bottom: 0.3rem;
   display: block;
   width: 100%;
 }
 
 .details .value {
   color: black;
-  padding: 0.5rem;
+  padding: 0.3rem;
   display: block;
   width: 95%;
   background-color: white;

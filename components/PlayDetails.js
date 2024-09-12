@@ -22,67 +22,72 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   const desktopImages = [
     {
       url: play?.imageUrl,
-      credit: play?.imageCredit1 || "No credit available",
+      credit: play?.imageCredit1 || "Lysius",
     },
     {
       url: play?.imageUrl1,
-      credit: play?.imageCredit2 || "No credit available",
+      credit: play?.imageCredit2 || "Lysius",
     },
     {
       url: play?.imageUrl2,
-      credit: play?.imageCredit3 || "No credit available",
+      credit: play?.imageCredit3 || "Lysius",
     },
     {
       url: play?.imageUrl3,
-      credit: play?.imageCredit4 || "No credit available",
+      credit: play?.imageCredit4 || "Lysius",
     },
     {
       url: play?.imageUrl4,
-      credit: play?.imageCredit5 || "No credit available",
+      credit: play?.imageCredit5 || "Lysius",
     },
     {
       url: play?.imageUrl5,
-      credit: play?.imageCredit6 || "No credit available",
+      credit: play?.imageCredit6 || "Lysius",
     },
     {
       url: play?.imageUrl6,
-      credit: play?.imageCredit7 || "No credit available",
+      credit: play?.imageCredit7 || "Lysius",
     },
     {
       url: play?.imageUrl7,
-      credit: play?.imageCredit8 || "No credit available",
+      credit: play?.imageCredit8 || "Lysius",
     },
     {
       url: play?.imageUrl8,
-      credit: play?.imageCredit9 || "No credit available",
+      credit: play?.imageCredit9 || "Lysius",
     },
     {
       url: play?.imageUrl9,
-      credit: play?.imageCredit10 || "No credit available",
+      credit: play?.imageCredit10 || "Lysius",
     },
   ].filter((image) => image.url);
 
-  // Mobile-Bilder (nur für das mobile Carousel)
+  // Mobile-Bilder (wenn keine mobilen Bilder vorhanden sind, Desktop-Bilder verwenden)
   const mobileImages = [
     {
-      url: play?.mobileImageUrl1,
-      credit: play?.mobileImageCredit1 || "No credit available",
+      url: play?.mobileImageUrl1 || play?.imageUrl,
+      credit:
+        play?.mobileImageCredit1 || play?.imageCredit1 || "Lysius",
     },
     {
-      url: play?.mobileImageUrl2,
-      credit: play?.mobileImageCredit2 || "No credit available",
+      url: play?.mobileImageUrl2 || play?.imageUrl1,
+      credit:
+        play?.mobileImageCredit2 || play?.imageCredit2 || "Lysius",
     },
     {
-      url: play?.mobileImageUrl3,
-      credit: play?.mobileImageCredit3 || "No credit available",
+      url: play?.mobileImageUrl3 || play?.imageUrl2,
+      credit:
+        play?.mobileImageCredit3 || play?.imageCredit3 || "Lysius",
     },
     {
-      url: play?.mobileImageUrl4,
-      credit: play?.mobileImageCredit4 || "No credit available",
+      url: play?.mobileImageUrl4 || play?.imageUrl3,
+      credit:
+        play?.mobileImageCredit4 || play?.imageCredit4 || "Lysius",
     },
     {
-      url: play?.mobileImageUrl5,
-      credit: play?.mobileImageCredit5 || "No credit available",
+      url: play?.mobileImageUrl5 || play?.imageUrl4,
+      credit:
+        play?.mobileImageCredit5 || play?.imageCredit5 || "Lysius",
     },
   ].filter((image) => image.url);
 
