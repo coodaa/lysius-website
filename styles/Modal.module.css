@@ -51,6 +51,12 @@
 
 .prevButton,
 .nextButton {
+  display: none;
+}
+
+
+/* .prevButton,
+.nextButton {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -70,7 +76,7 @@
 
 .nextButton {
   right: .2rem;
-}
+} */
 
 .closeButtonContainer {
   position: absolute;
