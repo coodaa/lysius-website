@@ -40,14 +40,19 @@
 
 .modalImageWrapper {
   position: relative;
-  width: calc(100% - 6em); /* 2em links + 4em rechts */
-  height: calc(100% - 4em); /* 2em oben + 2em unten */
-  background-color: black; /* Schwarzer Hintergrund um die Bilder */
+  width: 90vw;
+  height: 90vh;
+  background-color: black;
 }
 
 .modalImage {
   object-fit: contain;
+  width: 100%;
+  height: 100%;
 }
+
+
+
 
 .prevButton,
 .nextButton {
@@ -81,15 +86,15 @@
 .closeButtonContainer {
   position: absolute;
   top: 1rem;
-  right: 1rem; /* Positionierung näher an der rechten oberen Ecke */
-  z-index: 1001; /* Sicherstellen, dass es über dem weißen Balken liegt */
+  right: 1rem;
+  z-index: 1001;
 }
 
 .closeButton {
   background: none;
   border: none;
   color: black; /* Schwarzes 'X', damit es auf dem weißen Balken sichtbar ist */
-  font-size: 2rem; /* Größer machen für bessere Sichtbarkeit */
+  font-size: 1.6rem;
   cursor: pointer;
   font-weight: bold;
   margin-right: 3em;

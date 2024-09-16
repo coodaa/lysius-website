@@ -1,11 +1,25 @@
-import React, { useState } from "react";
-import Image from "next/image";
+import React, { useState, useEffect } from "react";
+import Image from "next/image"; // Das ist die Next.js-Komponente
 import { useTranslation } from "next-i18next";
 import styles from "../styles/Modal.module.css";
 
 const Modal = ({ images, credits = [], initialIndex, onClose }) => {
   const { t } = useTranslation("common");
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
+  const [objectFit, setObjectFit] = useState("contain");
+
+  // Dynamisch überprüfen, ob das Bild Querformat oder Hochformat ist
+  useEffect(() => {
+    const img = new window.Image(); // Verwende das native JavaScript-Image-Objekt, nicht das Next.js Image
+    img.src = images[currentIndex];
+    img.onload = () => {
+      if (img.width > img.height) {
+        setObjectFit("cover"); // Querformat
+      } else {
+        setObjectFit("contain"); // Hochformat
+      }
+    };
+  }, [currentIndex, images]);
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
@@ -38,7 +52,7 @@ const Modal = ({ images, credits = [], initialIndex, onClose }) => {
             src={images[currentIndex]}
             alt={`Image ${currentIndex + 1}`}
             layout="fill"
-            objectFit="contain"
+            objectFit={objectFit} // Dynamisches objectFit je nach Bildformat
             className={styles.modalImage}
           />
         </div>
@@ -60,9 +74,9 @@ const Modal = ({ images, credits = [], initialIndex, onClose }) => {
         </div>
 
         {/* Bild-Credits */}
-        <div className={styles.imageCredit}>
-          {credits[currentIndex] ? credits[currentIndex] : ""} {/* Nur anzeigen, wenn vorhanden */}
-        </div>
+        {credits[currentIndex] && (
+          <div className={styles.imageCredit}>{credits[currentIndex]}</div>
+        )}
       </div>
     </div>
   );
