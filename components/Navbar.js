@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import styles from "../styles/Navbar.module.css";
 
-const Navbar = ({ currentTitle, plays }) => {
+const Navbar = ({ currentTitle, plays, isModalOpen, closeModal }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
   const { t, i18n } = useTranslation("common");
@@ -42,7 +42,9 @@ const Navbar = ({ currentTitle, plays }) => {
   }, [menuOpen]);
 
   const getDisplayTitle = () => {
-    if (router.pathname.startsWith("/plays/")) {
+    if (isModalOpen) {
+      return t("close"); // "X" when the modal is open
+    } else if (router.pathname.startsWith("/plays/")) {
       return currentTitle;
     } else if (router.pathname === "/about") {
       return t("about");
@@ -63,13 +65,18 @@ const Navbar = ({ currentTitle, plays }) => {
         <Link href="/" legacyBehavior>
           <a className={styles.titleLink}>
             <span className={styles.title}>{displayTitle}</span>
-            {/* <span className={styles.hoverTitle}>LYSIUS</span> */}
           </a>
         </Link>
       </div>
-      <div className={styles.menuButton} onClick={toggleMenu}>
-        {menuOpen ? t("close") : t("menu")}
-      </div>
+      {isModalOpen ? (
+        <div className={styles.menuButton} onClick={closeModal}>
+          {t("close")} {/* X button when modal is open */}
+        </div>
+      ) : (
+        <div className={styles.menuButton} onClick={toggleMenu}>
+          {menuOpen ? t("close") : t("menu")}
+        </div>
+      )}
       <nav className={`${styles.nav} ${menuOpen ? styles.open : ""}`}>
         <ul className={styles.navList}>
           {plays.map((play) => {

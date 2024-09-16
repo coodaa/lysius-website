@@ -1,16 +1,19 @@
 import React, { useState, useEffect } from "react";
-import Image from "next/image"; // Das ist die Next.js-Komponente
+import Image from "next/image";
 import { useTranslation } from "next-i18next";
 import styles from "../styles/Modal.module.css";
 
-const Modal = ({ images, credits = [], initialIndex, onClose }) => {
+const Modal = ({ images, initialIndex, onClose }) => {
   const { t } = useTranslation("common");
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [objectFit, setObjectFit] = useState("contain");
 
+  let touchStartX = 0;
+  let touchEndX = 0;
+
   // Dynamisch überprüfen, ob das Bild Querformat oder Hochformat ist
   useEffect(() => {
-    const img = new window.Image(); // Verwende das native JavaScript-Image-Objekt, nicht das Next.js Image
+    const img = new window.Image();
     img.src = images[currentIndex];
     img.onload = () => {
       if (img.width > img.height) {
@@ -21,14 +24,26 @@ const Modal = ({ images, credits = [], initialIndex, onClose }) => {
     };
   }, [currentIndex, images]);
 
-  const handleNext = () => {
-    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+  // Wischen nach links oder rechts, um das Bild zu wechseln
+  const handleTouchStart = (e) => {
+    touchStartX = e.changedTouches[0].screenX;
   };
 
-  const handlePrev = () => {
-    setCurrentIndex(
-      (prevIndex) => (prevIndex - 1 + images.length) % images.length
-    );
+  const handleTouchMove = (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStartX - touchEndX > 50) {
+      // Swipe nach links (nächstes Bild)
+      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }
+    if (touchStartX - touchEndX < -50) {
+      // Swipe nach rechts (vorheriges Bild)
+      setCurrentIndex(
+        (prevIndex) => (prevIndex - 1 + images.length) % images.length
+      );
+    }
   };
 
   const handleDotClick = (index) => {
@@ -36,29 +51,28 @@ const Modal = ({ images, credits = [], initialIndex, onClose }) => {
   };
 
   return (
-    <div className={styles.modalOverlay} onClick={onClose}>
-      <div className={styles.whiteBar}></div>
+    <div
+      className={styles.modalOverlay}
+      onClick={onClose}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
+    >
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
         <div className={styles.closeButtonContainer}>
           <button className={styles.closeButton} onClick={onClose}>
             {t("close")}
           </button>
         </div>
-        <button className={styles.prevButton} onClick={handlePrev}>
-          {"<"}
-        </button>
         <div className={styles.modalImageWrapper}>
           <Image
             src={images[currentIndex]}
             alt={`Image ${currentIndex + 1}`}
             layout="fill"
-            objectFit={objectFit} // Dynamisches objectFit je nach Bildformat
+            objectFit={objectFit}
             className={styles.modalImage}
           />
         </div>
-        <button className={styles.nextButton} onClick={handleNext}>
-          {">"}
-        </button>
 
         {/* Dots */}
         <div className={styles.carouselDots}>
@@ -72,11 +86,6 @@ const Modal = ({ images, credits = [], initialIndex, onClose }) => {
             ></span>
           ))}
         </div>
-
-        {/* Bild-Credits */}
-        {credits[currentIndex] && (
-          <div className={styles.imageCredit}>{credits[currentIndex]}</div>
-        )}
       </div>
     </div>
   );

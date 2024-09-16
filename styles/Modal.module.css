@@ -1,87 +1,40 @@
-/* Grundlegendes Styling */
 .modalOverlay {
   position: fixed;
-  top: 0;
+  top: 4rem; /* Platz für die Navbar */
   left: 0;
   width: 100vw;
-  height: 100vh;
-  background: rgba(0, 0, 0, 0.8);
+  height: calc(100vh - 4rem); /* Die Höhe des Modals wird um die Höhe der Navbar reduziert */
+  background: white;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   align-items: center;
   z-index: 1000;
 }
 
-.whiteBar {
-  position: fixed;
-  top: 0;
-  right: 0;
-  width: 4em;
-  height: 100vh;
-  background: white;
-  z-index: 999;
-}
-
 .modalContent {
-  position: relative;
-  width: 100vw;
-  height: 100vh;
-  background-color: white; /* Weißes Passepartout */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding-top: 2em; /* Passepartout oben */
-  padding-right: 4em; /* Platz für whiteBar */
-  padding-left: 2em; /* Passepartout links */
-  padding-bottom: 2em; /* Passepartout unten */
-  overflow: hidden;
+  width: 90vw;
+  max-width: 1200px;
+  height: 80vh;
+  background-color: white;
+  padding: 2rem;
   box-sizing: border-box;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .modalImageWrapper {
   position: relative;
-  width: 90vw;
-  height: 90vh;
+  width: 100%;
+  height: 100%;
   background-color: black;
 }
 
 .modalImage {
   object-fit: contain;
-  width: 100%;
-  height: 100%;
 }
-
-
-
-
-.prevButton,
-.nextButton {
-  display: none;
-}
-
-
-/* .prevButton,
-.nextButton {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: none;
-  border: none;
-  color: black;
-  font-size: 2rem;
-  cursor: pointer;
-  z-index: 10;
-  padding: 1rem;
-  border-radius: 50%;
-}
-
-.prevButton {
-  left: .2rem;
-}
-
-.nextButton {
-  right: .2rem;
-} */
 
 .closeButtonContainer {
   position: absolute;
@@ -93,44 +46,28 @@
 .closeButton {
   background: none;
   border: none;
-  color: black; /* Schwarzes 'X', damit es auf dem weißen Balken sichtbar ist */
+  color: black;
   font-size: 1.6rem;
   cursor: pointer;
   font-weight: bold;
-  margin-right: 3em;
-}
-
-.closeButtonContainer::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 4px;
-  background-color: white;
-  position: absolute;
-  bottom: 0;
-}
-
-.closeButton:hover {
-  text-decoration: underline;
 }
 
 .carouselDots {
   position: absolute;
-  bottom: 3vh;
-  width: 100%;
+  bottom: 1rem;
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .dot,
 .activeDot {
-  height: 20px;
-  width: 20px;
+  height: 10px;
+  width: 10px;
   margin: 0 5px;
   border-radius: 50%;
   display: inline-block;
   cursor: pointer;
-  box-sizing: border-box;
 }
 
 .dot {
@@ -140,77 +77,4 @@
 .activeDot {
   background-color: white;
   border: 1px solid black;
-}
-
-.imageCredit {
-  position: absolute;
-  bottom: 1vh;
-  width: 100%;
-  text-align: center;
-  font-size: 0.9rem;
-  z-index: 1000;
-}
-
-
-/* Mobile Styles */
-@media (max-width: 768px) {
-  .modalContent {
-    padding-top: 1em; /* Optional: Behalte den oberen Abstand */
-    padding-right: 1em; /* Weniger Padding rechts */
-    padding-left: 1em; /* Weniger Padding links */
-    padding-bottom: 1em; /* Weniger Padding unten */
-  }
-
-  .modalImageWrapper {
-    width: calc(100% - 2em); /* 1em links + 1em rechts */
-    height: calc(100% - 3em); /* 2em oben + 1em unten */
-  }
-
-  .closeButtonContainer {
-    top: 0em;
-    right: 0.5em;
-    z-index: 1001;
-  }
-
-  .closeButton {
-    font-size: 1.5rem; /* Kleinere Schriftgröße */
-    padding: 1rem 0 0 0;
-    margin-right: 0em
-  }
-
-  .prevButton,
-  .nextButton {
-    font-size: 1.5rem; /* Kleinere Schriftgröße */
-    padding: 0.5rem; /* Weniger Padding */
-  }
-
-  .carouselDots {
-    bottom: 17vh;
-  }
-
-  .dot {
-    background-color: white;
-  }
-
-  .activeDot {
-    background-color: black;
-    border: 1px solid white;
-  }
-
-  .dot,
-  .activeDot {
-    height: 15px;
-    width: 15px;
-    margin: 0 5px;
-  }
-
-  .imageCredit {
-    bottom: 13vh;
-    color: white;
-  }
-
-  /* Optional: Verstecke die whiteBar auf mobilen Geräten */
-  .whiteBar {
-    display: none;
-  }
 }
