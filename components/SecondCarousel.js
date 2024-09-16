@@ -15,24 +15,27 @@ const SecondCarousel = ({
   };
 
   return (
-    <div className={styles.carousel}>
-      {images.map((image, index) => (
-        <div
-          key={index}
-          className={`${styles.carouselImage} ${
-            index === currentImageIndex ? styles.show : ""
-          }`}
-          onClick={() => onImageClick(index)}
-        >
-          <Image
-            src={image}
-            alt={`Carousel image ${index + 1}`}
-            layout="fill"
-            objectFit="contain"
-            priority
-          />
-        </div>
-      ))}
+    <div className={styles.carouselWrapper}>
+      <div className={styles.carousel}>
+        {images.map((image, index) => (
+          <div
+            key={index}
+            className={`${styles.carouselImage} ${
+              index === currentImageIndex ? styles.show : ""
+            }`}
+            onClick={() => onImageClick(index)}
+          >
+            <Image
+              src={image}
+              alt={`Carousel image ${index + 1}`}
+              layout="fill"
+              objectFit="contain"
+              priority
+            />
+          </div>
+        ))}
+      </div>
+      {/* Credits and dots are now outside the carousel */}
       <div className={styles.carouselDots}>
         {images.map((_, index) => (
           <span
