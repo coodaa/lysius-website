@@ -7,7 +7,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Überlagert die Seite */
+  /* z-index: 1000; Überlagert die Seite */
 }
 
 .modalContent {
@@ -17,6 +17,10 @@
   justify-content: center;
   align-items: center;
   position: relative;
+  padding: 7rem;
+  padding-bottom: 16rem;
+
+
 }
 
 .modalImageWrapper {
@@ -35,27 +39,12 @@
   object-fit: cover; /* Das Bild füllt den Container proportional aus */
 }
 
-.closeButtonContainer {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1001;
-}
 
-.closeButton {
-  background: none;
-  border: none;
-  color: white;
-  font-size: 2rem;
-  cursor: pointer;
-  font-weight: bold;
-}
-
-
+/*
 .modalContent {
-  width: 86vw;
+  width: 100%;
   height: 90vh;
-  /* background-color: black; */
+  background-color: white;
   padding: 4rem;
   box-sizing: border-box;
   position: relative;
@@ -63,7 +52,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 
 .modalImageWrapper {
   position: relative;
@@ -76,21 +65,7 @@
   object-fit: contain;
 }
 
-.closeButtonContainer {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
-  z-index: 1001;
-}
 
-.closeButton {
-  background: none;
-  border: none;
-  color: black;
-  font-size: 1.6rem;
-  cursor: pointer;
-  font-weight: bold;
-}
 
 .carouselDots {
   position: absolute;
@@ -98,6 +73,8 @@
   display: flex;
   justify-content: center;
   width: 100%;
+  z-index: 1000;
+
 }
 
 .dot,
