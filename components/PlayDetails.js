@@ -66,28 +66,23 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   const mobileImages = [
     {
       url: play?.mobileImageUrl1 || play?.imageUrl,
-      credit:
-        play?.mobileImageCredit1 || play?.imageCredit1 || "Lysius",
+      credit: play?.mobileImageCredit1 || play?.imageCredit1 || "Lysius",
     },
     {
       url: play?.mobileImageUrl2 || play?.imageUrl1,
-      credit:
-        play?.mobileImageCredit2 || play?.imageCredit2 || "Lysius",
+      credit: play?.mobileImageCredit2 || play?.imageCredit2 || "Lysius",
     },
     {
       url: play?.mobileImageUrl3 || play?.imageUrl2,
-      credit:
-        play?.mobileImageCredit3 || play?.imageCredit3 || "Lysius",
+      credit: play?.mobileImageCredit3 || play?.imageCredit3 || "Lysius",
     },
     {
       url: play?.mobileImageUrl4 || play?.imageUrl3,
-      credit:
-        play?.mobileImageCredit4 || play?.imageCredit4 || "Lysius",
+      credit: play?.mobileImageCredit4 || play?.imageCredit4 || "Lysius",
     },
     {
       url: play?.mobileImageUrl5 || play?.imageUrl4,
-      credit:
-        play?.mobileImageCredit5 || play?.imageCredit5 || "Lysius",
+      credit: play?.mobileImageCredit5 || play?.imageCredit5 || "Lysius",
     },
   ].filter((image) => image.url);
 
