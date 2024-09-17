@@ -113,7 +113,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   }, [title, play, activeImages, setCurrentTitle]);
 
   useEffect(() => {
-    console.log(play);
+    console.log("Loaded play:", play);
   }, [play]);
 
   const handleImageClick = (index) => {
