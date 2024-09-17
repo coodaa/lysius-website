@@ -204,6 +204,37 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   : play?.mainDescription || t("No description available.")}
               </p>
             </div>
+
+            {/* Zusätzliche Texte (extraText1, extraText2, extraText3) */}
+            {(isEnglish ? play?.extraText1_en : play?.extraText1) && (
+              <div className={styles.additionalTexts}>
+                <p>
+                  {isEnglish
+                    ? play?.extraText1_en || t("extra_text_1")
+                    : play?.extraText1 || t("extra_text_1")}
+                </p>
+              </div>
+            )}
+
+            {(isEnglish ? play?.extraText2_en : play?.extraText2) && (
+              <div className={styles.additionalTexts}>
+                <p>
+                  {isEnglish
+                    ? play?.extraText2_en || t("extra_text_2")
+                    : play?.extraText2 || t("extra_text_2")}
+                </p>
+              </div>
+            )}
+
+            {(isEnglish ? play?.extraText3_en : play?.extraText3) && (
+              <div className={styles.additionalTexts}>
+                <p>
+                  {isEnglish
+                    ? play?.extraText3_en || t("extra_text_3")
+                    : play?.extraText3 || t("extra_text_3")}
+                </p>
+              </div>
+            )}
           </div>
 
           <div className={styles.carouselVideoContainer}>
