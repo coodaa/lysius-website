@@ -16,122 +16,6 @@ model landingpageimg {
   mobileImageUrl String? @db.VarChar(255)
 }
 
-model Play {
-  id                            Int     @id @default(autoincrement())
-  title                         String? @db.VarChar(100)
-  title_en                      String? @db.Text
-  subtitle                      String? @db.VarChar(100)
-  subtitle_en                   String? @db.Text
-  productionDirector            String? @db.Text
-  productionDirector_en         String? @db.Text
-  artisticSupervision           String? @db.Text
-  artisticSupervision_en        String? @db.Text
-  musicalDirector               String? @db.Text
-  musicalDirector_en            String? @db.Text
-  regie                         String? @db.VarChar(100)
-  regie_en                      String? @db.Text
-  produktion                    String? @db.VarChar(100)
-  produktion_en                 String? @db.Text
-  kuenstlerischeBegleitung      String? @db.VarChar(100)
-  kuenstlerischeBegleitung_en   String? @db.Text
-  musikalischeLeitung           String? @db.VarChar(255)
-  musikalischeLeitung_en        String? @db.Text
-  mit                           String? @db.VarChar(100)
-  mit_en                        String? @db.Text
-  sopranistin                   String? @db.VarChar(100)
-  sopranistin_en                String? @db.Text
-  sopranist                     String? @db.VarChar(100)
-  sopranist_en                  String? @db.Text
-  bass                          String? @db.VarChar(100)
-  bass_en                       String? @db.Text
-  chor                          String? @db.VarChar(100)
-  chor_en                       String? @db.Text
-  orchester                     String? @db.VarChar(100)
-  orchester_en                  String? @db.Text
-  foerderung                    String? @db.VarChar(100)
-  foerderung_en                 String? @db.Text
-  artisticDirection             String? @db.VarChar(255)
-  text                          String? @db.VarChar(255)
-  music                         String? @db.VarChar(255)
-  mainDescription               String? @db.Text
-  mainDescription_en            String? @db.Text
-  extraText1                    String? @db.Text
-  extraText1_en                 String? @db.Text
-  extraText2                    String? @db.Text
-  extraText2_en                 String? @db.Text
-  extraText3                    String? @db.Text
-  extraText3_en                 String? @db.Text
-  additionalText1               String? @db.Text
-  additionalText1_en            String? @db.Text
-  additionalText2               String? @db.Text
-  additionalText2_en            String? @db.Text
-  additionalText3               String? @db.Text
-  additionalText3_en            String? @db.Text
-  additionalText4               String? @db.Text
-  additionalText4_en            String? @db.Text
-  description                   String? @db.Text
-  conductorFemale               String? @db.VarChar(255)
-  conductorMale                 String? @db.VarChar(255)
-  choirDirection                String? @db.VarChar(255)
-  choirRehearsal                String? @db.VarChar(255)
-  piano                         String? @db.VarChar(255)
-  soloists                      String? @db.VarChar(255)
-  soloistFemale                 String? @db.VarChar(255)
-  soloistMale                   String? @db.VarChar(255)
-  photography                   String? @db.VarChar(255)
-  translation                   String? @db.VarChar(255)
-  postproduction                String? @db.VarChar(255)
-  graphics                      String? @db.VarChar(255)
-  dramaturgy                    String? @db.VarChar(255)
-  choreography                  String? @db.VarChar(255)
-  setDesign                     String? @db.VarChar(255)
-  costume                       String? @db.VarChar(255)
-  assistance                    String? @db.VarChar(255)
-  mask                          String? @db.VarChar(255)
-  additionalSupport             String? @db.VarChar(255)
-  trailer                       String? @db.VarChar(255)
-  designDirection               String? @db.Text
-  coding                        String? @db.Text
-  logo                          String? @db.Text
-  productionManagementFinances  String? @db.Text
-  productionManagementLogistics String? @db.Text
-  artisticProductionManagement  String? @db.Text
-  patronage                     String? @db.Text
-  imageUrl                      String? @db.VarChar(255)
-  videoUrl                      String? @db.VarChar(255)
-  imageUrl1                     String? @db.VarChar(255)
-  imageUrl2                     String? @db.VarChar(255)
-  imageUrl3                     String? @db.VarChar(255)
-  imageUrl4                     String? @db.VarChar(255)
-  imageUrl5                     String? @db.VarChar(255)
-  imageUrl6                     String? @db.VarChar(255)
-  imageUrl7                     String? @db.VarChar(255)
-  imageUrl8                     String? @db.VarChar(255)
-  imageUrl9                     String? @db.VarChar(255)
-  imageUrl10                    String? @db.VarChar(255)
-  mobileImageUrl1               String? @db.VarChar(255)
-  mobileImageUrl2               String? @db.VarChar(255)
-  mobileImageUrl3               String? @db.VarChar(255)
-  mobileImageUrl4               String? @db.VarChar(255)
-  mobileImageUrl5               String? @db.VarChar(255)
-  imageCredit                   String? @db.VarChar(255)
-  imageCredit1                  String? @db.VarChar(255)
-  imageCredit2                  String? @db.VarChar(255)
-  imageCredit3                  String? @db.VarChar(255)
-  imageCredit4                  String? @db.VarChar(255)
-  imageCredit5                  String? @db.VarChar(255)
-  imageCredit6                  String? @db.VarChar(255)
-  imageCredit7                  String? @db.VarChar(255)
-  imageCredit8                  String? @db.VarChar(255)
-  imageCredit9                  String? @db.VarChar(255)
-  imageCredit10                 String? @db.VarChar(255)
-  mobileImageCredit1            String? @db.VarChar(255)
-  mobileImageCredit2            String? @db.VarChar(255)
-  mobileImageCredit3            String? @db.VarChar(255)
-  mobileImageCredit4            String? @db.VarChar(255)
-  mobileImageCredit5            String? @db.VarChar(255)
-}
-
 model About {
   id            Int     @id @default(autoincrement())
   textField1    String? @db.Text
@@ -152,4 +36,115 @@ model Legal {
   content    String?  @db.Text
   content_en String?  @db.Text
   createdAt  DateTime @default(now()) @db.Timestamp(0)
+}
+
+model Play {
+  id                    Int      @id @default(autoincrement())
+  title                 String?
+  title_en              String?
+  subtitle1             String?
+  subtitle1_en          String?
+  subtitle2             String?
+  subtitle2_en          String?
+  subtitle3             String?
+  subtitle3_en          String?
+
+  // Dynamische Positionen
+  position1             String?
+  position1_en          String?
+  position2             String?
+  position2_en          String?
+  position3             String?
+  position3_en          String?
+  position4             String?
+  position4_en          String?
+  position5             String?
+  position5_en          String?
+  position6             String?
+  position6_en          String?
+  position7             String?
+  position7_en          String?
+  position8             String?
+  position8_en          String?
+  position9             String?
+  position9_en          String?
+  position10            String?
+  position10_en         String?
+  position11            String?
+  position11_en         String?
+  position12            String?
+  position12_en         String?
+  position13            String?
+  position13_en         String?
+  position14            String?
+  position14_en         String?
+  position15            String?
+  position15_en         String?
+  position16            String?
+  position16_en         String?
+  position17            String?
+  position17_en         String?
+  position18            String?
+  position18_en         String?
+  position19            String?
+  position19_en         String?
+  position20            String?
+  position20_en         String?
+
+  // Beschreibungen (Links und Rechts)
+  descriptionleft1      String?
+  descriptionleft1_en   String?
+  descriptionleft2      String?
+  descriptionleft2_en   String?
+  descriptionleft3      String?
+  descriptionleft3_en   String?
+  descriptionleft4      String?
+  descriptionleft4_en   String?
+  textright1            String?
+  textright1_en         String?
+  textright2            String?
+  textright2_en         String?
+  textright3            String?
+  textright3_en         String?
+  textright4            String?
+  textright4_en         String?
+
+  // Bilder und Credits
+  imageUrl              String?
+  imageUrl1             String?
+  imageUrl2             String?
+  imageUrl3             String?
+  imageUrl4             String?
+  imageUrl5             String?
+  imageUrl6             String?
+  imageUrl7             String?
+  imageUrl8             String?
+  imageUrl9             String?
+  imageUrl10            String?
+  imageCredit1          String?
+  imageCredit2          String?
+  imageCredit3          String?
+  imageCredit4          String?
+  imageCredit5          String?
+  imageCredit6          String?
+  imageCredit7          String?
+  imageCredit8          String?
+  imageCredit9          String?
+  imageCredit10         String?
+
+  // Mobile Bilder und Credits
+  mobileImageUrl1       String?
+  mobileImageUrl2       String?
+  mobileImageUrl3       String?
+  mobileImageUrl4       String?
+  mobileImageUrl5       String?
+  mobileImageCredit1    String?
+  mobileImageCredit2    String?
+  mobileImageCredit3    String?
+  mobileImageCredit4    String?
+  mobileImageCredit5    String?
+
+  // Video-URL und Credit
+  videoUrl1             String?
+  videoCredit1          String?
 }
