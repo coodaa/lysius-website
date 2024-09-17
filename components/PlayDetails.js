@@ -112,6 +112,10 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     }
   }, [title, play, activeImages, setCurrentTitle]);
 
+  useEffect(() => {
+    console.log(play);
+  }, [play]);
+
   const handleImageClick = (index) => {
     setCurrentImageIndex(index);
     setIsModalOpen(true);
@@ -262,6 +266,16 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   {isEnglish
                     ? play?.additionalText1_en || t("additional_text_1")
                     : play?.additionalText1 || t("additional_text_1")}
+                </p>
+              </div>
+            )}
+
+            {(isEnglish ? play?.extraText1_en : play?.extraText1) && (
+              <div className={styles.additionalTexts}>
+                <p>
+                  {isEnglish
+                    ? play?.extraText1_en || t("extra_text_1")
+                    : play?.extraText1 || t("extra_text_1")}
                 </p>
               </div>
             )}
