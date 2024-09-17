@@ -261,7 +261,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             {/* Zusätzliche Texte */}
             {(isEnglish ? play?.additionalText1_en : play?.additionalText1) && (
               <div className={styles.additionalTexts}>
-                <h3>{t("reviews")}</h3>
+                {/* <h3>{t("reviews")}</h3> */}
                 <p>
                   {isEnglish
                     ? play?.additionalText1_en || t("additional_text_1")
