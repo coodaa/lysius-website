@@ -14,112 +14,142 @@ model landingpageimg {
   metadata       String? @db.LongText
   description    String? @db.VarChar(255)
   mobileImageUrl String? @db.VarChar(255)
-
-  @@index([url])
-  @@index([name])
 }
 
 model Play {
-  id                          Int     @id @default(autoincrement())
-  title                       String? @db.VarChar(100)
-  title_en                    String? @db.Text
-  subtitle                    String? @db.VarChar(100)
-  subtitle_en                 String? @db.Text
-  productionDirector          String? @db.VarChar(100)
-  productionDirector_en       String? @db.Text
-  artisticSupervision         String? @db.VarChar(100)
-  artisticSupervision_en      String? @db.Text
-  musicalDirector             String? @db.VarChar(100)
-  musicalDirector_en          String? @db.Text
-  regie                       String? @db.VarChar(100)
-  regie_en                    String? @db.Text
-  produktion                  String? @db.VarChar(100)
-  produktion_en               String? @db.Text
-  kuenstlerischeBegleitung    String? @db.VarChar(100)
-  kuenstlerischeBegleitung_en String? @db.Text
-  musikalischeLeitung         String? @db.VarChar(100)
-  musikalischeLeitung_en      String? @db.Text
-  mit                         String? @db.VarChar(100)
-  mit_en                      String? @db.Text
-  sopranistin                 String? @db.VarChar(100)
-  sopranistin_en              String? @db.Text
-  sopranist                   String? @db.VarChar(100)
-  sopranist_en                String? @db.Text
-  bass                        String? @db.VarChar(100)
-  bass_en                     String? @db.Text
-  chor                        String? @db.VarChar(100)
-  chor_en                     String? @db.Text
-  orchester                   String? @db.VarChar(100)
-  orchester_en                String? @db.Text
-  foerderung                  String? @db.VarChar(100)
-  foerderung_en               String? @db.Text
-  mainDescription             String? @db.Text
-  mainDescription_en          String? @db.Text
-  additionalText1             String? @db.Text
-  additionalText1_en          String? @db.Text
-  additionalText2             String? @db.Text
-  additionalText2_en          String? @db.Text
-  additionalText3             String? @db.Text
-  additionalText3_en          String? @db.Text
-  additionalText4             String? @db.Text
-  additionalText4_en          String? @db.Text
-  description                 String? @db.Text
-  imageUrl                    String? @db.VarChar(255)
-  videoUrl                    String? @db.VarChar(255)
-  image                       Bytes?  @db.Blob
-  imageUrl1                   String? @db.VarChar(255)
-  imageUrl2                   String? @db.VarChar(255)
-  imageUrl3                   String? @db.VarChar(255)
-  imageUrl4                   String? @db.VarChar(255)
-  imageUrl5                   String? @db.VarChar(255)
-  imageUrl6                   String? @db.VarChar(255)
-  imageUrl7                   String? @db.VarChar(255)
-  imageUrl8                   String? @db.VarChar(255)
-  imageUrl9                   String? @db.VarChar(255)
-  imageUrl10                  String? @db.VarChar(255)
-  mobileImageUrl1             String? @db.VarChar(255)
-  mobileImageUrl2             String? @db.VarChar(255)
-  mobileImageUrl3             String? @db.VarChar(255)
-  mobileImageUrl4             String? @db.VarChar(255)
-  mobileImageUrl5             String? @db.VarChar(255)
-  imageCredit                 String? @db.VarChar(255)
-  imageCredit1                String? @db.VarChar(255)
-  imageCredit2                String? @db.VarChar(255)
-  imageCredit3                String? @db.VarChar(255)
-  imageCredit4                String? @db.VarChar(255)
-  imageCredit5                String? @db.VarChar(255)
-  imageCredit6                String? @db.VarChar(255)
-  imageCredit7                String? @db.VarChar(255)
-  imageCredit8                String? @db.VarChar(255)
-  imageCredit9                String? @db.VarChar(255)
-  imageCredit10               String? @db.VarChar(255)
-  mobileImageCredit1          String? @db.VarChar(255)
-  mobileImageCredit2          String? @db.VarChar(255)
-  mobileImageCredit3          String? @db.VarChar(255)
-  mobileImageCredit4          String? @db.VarChar(255)
-  mobileImageCredit5          String? @db.VarChar(255)
+  id                            Int     @id @default(autoincrement())
+  title                         String? @db.VarChar(100)
+  title_en                      String? @db.Text
+  subtitle                      String? @db.VarChar(100)
+  subtitle_en                   String? @db.Text
+  productionDirector            String? @db.Text
+  productionDirector_en         String? @db.Text
+  artisticSupervision           String? @db.Text
+  artisticSupervision_en        String? @db.Text
+  musicalDirector               String? @db.Text
+  musicalDirector_en            String? @db.Text
+  regie                         String? @db.VarChar(100)
+  regie_en                      String? @db.Text
+  produktion                    String? @db.VarChar(100)
+  produktion_en                 String? @db.Text
+  kuenstlerischeBegleitung      String? @db.VarChar(100)
+  kuenstlerischeBegleitung_en   String? @db.Text
+  musikalischeLeitung           String? @db.VarChar(255)
+  musikalischeLeitung_en        String? @db.Text
+  mit                           String? @db.VarChar(100)
+  mit_en                        String? @db.Text
+  sopranistin                   String? @db.VarChar(100)
+  sopranistin_en                String? @db.Text
+  sopranist                     String? @db.VarChar(100)
+  sopranist_en                  String? @db.Text
+  bass                          String? @db.VarChar(100)
+  bass_en                       String? @db.Text
+  chor                          String? @db.VarChar(100)
+  chor_en                       String? @db.Text
+  orchester                     String? @db.VarChar(100)
+  orchester_en                  String? @db.Text
+  foerderung                    String? @db.VarChar(100)
+  foerderung_en                 String? @db.Text
+  artisticDirection             String? @db.VarChar(255)
+  text                          String? @db.VarChar(255)
+  music                         String? @db.VarChar(255)
+  mainDescription               String? @db.Text
+  mainDescription_en            String? @db.Text
+  extraText1                    String? @db.Text
+  extraText1_en                 String? @db.Text
+  extraText2                    String? @db.Text
+  extraText2_en                 String? @db.Text
+  extraText3                    String? @db.Text
+  extraText3_en                 String? @db.Text
+  additionalText1               String? @db.Text
+  additionalText1_en            String? @db.Text
+  additionalText2               String? @db.Text
+  additionalText2_en            String? @db.Text
+  additionalText3               String? @db.Text
+  additionalText3_en            String? @db.Text
+  additionalText4               String? @db.Text
+  additionalText4_en            String? @db.Text
+  description                   String? @db.Text
+  conductorFemale               String? @db.VarChar(255)
+  conductorMale                 String? @db.VarChar(255)
+  choirDirection                String? @db.VarChar(255)
+  choirRehearsal                String? @db.VarChar(255)
+  piano                         String? @db.VarChar(255)
+  soloists                      String? @db.VarChar(255)
+  soloistFemale                 String? @db.VarChar(255)
+  soloistMale                   String? @db.VarChar(255)
+  photography                   String? @db.VarChar(255)
+  translation                   String? @db.VarChar(255)
+  postproduction                String? @db.VarChar(255)
+  graphics                      String? @db.VarChar(255)
+  dramaturgy                    String? @db.VarChar(255)
+  choreography                  String? @db.VarChar(255)
+  setDesign                     String? @db.VarChar(255)
+  costume                       String? @db.VarChar(255)
+  assistance                    String? @db.VarChar(255)
+  mask                          String? @db.VarChar(255)
+  additionalSupport             String? @db.VarChar(255)
+  trailer                       String? @db.VarChar(255)
+  designDirection               String? @db.Text
+  coding                        String? @db.Text
+  logo                          String? @db.Text
+  productionManagementFinances  String? @db.Text
+  productionManagementLogistics String? @db.Text
+  artisticProductionManagement  String? @db.Text
+  patronage                     String? @db.Text
+  imageUrl                      String? @db.VarChar(255)
+  videoUrl                      String? @db.VarChar(255)
+  imageUrl1                     String? @db.VarChar(255)
+  imageUrl2                     String? @db.VarChar(255)
+  imageUrl3                     String? @db.VarChar(255)
+  imageUrl4                     String? @db.VarChar(255)
+  imageUrl5                     String? @db.VarChar(255)
+  imageUrl6                     String? @db.VarChar(255)
+  imageUrl7                     String? @db.VarChar(255)
+  imageUrl8                     String? @db.VarChar(255)
+  imageUrl9                     String? @db.VarChar(255)
+  imageUrl10                    String? @db.VarChar(255)
+  mobileImageUrl1               String? @db.VarChar(255)
+  mobileImageUrl2               String? @db.VarChar(255)
+  mobileImageUrl3               String? @db.VarChar(255)
+  mobileImageUrl4               String? @db.VarChar(255)
+  mobileImageUrl5               String? @db.VarChar(255)
+  imageCredit                   String? @db.VarChar(255)
+  imageCredit1                  String? @db.VarChar(255)
+  imageCredit2                  String? @db.VarChar(255)
+  imageCredit3                  String? @db.VarChar(255)
+  imageCredit4                  String? @db.VarChar(255)
+  imageCredit5                  String? @db.VarChar(255)
+  imageCredit6                  String? @db.VarChar(255)
+  imageCredit7                  String? @db.VarChar(255)
+  imageCredit8                  String? @db.VarChar(255)
+  imageCredit9                  String? @db.VarChar(255)
+  imageCredit10                 String? @db.VarChar(255)
+  mobileImageCredit1            String? @db.VarChar(255)
+  mobileImageCredit2            String? @db.VarChar(255)
+  mobileImageCredit3            String? @db.VarChar(255)
+  mobileImageCredit4            String? @db.VarChar(255)
+  mobileImageCredit5            String? @db.VarChar(255)
 }
-
 
 model About {
-  id           Int     @id @default(autoincrement())
-  textField1   String? @db.Text    // Textfeld 1 auf Deutsch
-  textField1_en String? @db.Text   // Textfeld 1 auf Englisch
-  textField2   String? @db.Text    // Textfeld 2 auf Deutsch
-  textField2_en String? @db.Text   // Textfeld 2 auf Englisch
-  textField3   String? @db.Text    // Textfeld 3 auf Deutsch
-  textField3_en String? @db.Text   // Textfeld 3 auf Englisch
-  textField4   String? @db.Text    // Textfeld 4 auf Deutsch
-  textField4_en String? @db.Text   // Textfeld 4 auf Englisch
-  textField5   String? @db.Text    // Textfeld 5 auf Deutsch
-  textField5_en String? @db.Text   // Textfeld 5 auf Englisch
+  id            Int     @id @default(autoincrement())
+  textField1    String? @db.Text
+  textField1_en String? @db.Text
+  textField2    String? @db.Text
+  textField2_en String? @db.Text
+  textField3    String? @db.Text
+  textField3_en String? @db.Text
+  textField4    String? @db.Text
+  textField4_en String? @db.Text
+  textField5    String? @db.Text
+  textField5_en String? @db.Text
 }
 
-
 model Legal {
-  id        Int      @id @default(autoincrement())
-  type      String   @db.VarChar(100)  // 'AGB', 'Datenschutz' oder 'Impressum'
-  content   String?  @db.Text          // Inhalt auf Deutsch
-  content_en String?  @db.Text         // Inhalt auf Englisch (optional)
-  createdAt DateTime @default(now())   // Zeitstempel für die Erstellung
+  id         Int      @id @default(autoincrement())
+  type       String   @db.VarChar(100)
+  content    String?  @db.Text
+  content_en String?  @db.Text
+  createdAt  DateTime @default(now()) @db.Timestamp(0)
 }

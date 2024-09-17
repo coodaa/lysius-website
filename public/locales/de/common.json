@@ -56,9 +56,34 @@
   "image_credit_5": "Bildnachweis 5",
   "image_credit_5_en": "Image Credit 5",
   "privacy_policy": "Datenschutzerklärung",
-  "no_data_found": "No data found",
-  "legal_notice": "Impressum"
+  "no_data_found": "Keine Daten gefunden",
+  "legal_notice": "Impressum",
 
-
-
+  "conductor_female": "Dirigentin",
+  "conductor_male": "Dirigent",
+  "choir_direction": "Chorleitung",
+  "choir_rehearsal": "Choreinstudierung",
+  "piano": "Klavier",
+  "soloists": "SolistInnen",
+  "soloist_female": "Solistin",
+  "soloist_male": "Solist",
+  "photography": "Kamera",
+  "translation": "Übersetzung",
+  "postproduction": "Postproduktion",
+  "graphics": "Grafik",
+  "dramaturgy": "Dramaturgie",
+  "choreography": "Choreografie",
+  "set_design": "Bühnenbild",
+  "costume": "Kostüm",
+  "assistance": "Assistenz",
+  "mask": "Maske",
+  "additional_support": "Mitarbeit",
+  "trailer": "Trailer",
+  "design_direction": "Leitung Gestaltung",
+  "coding": "Programmierung",
+  "logo": "Logo",
+  "production_management_finances": "Produktionsleitung Finanzen",
+  "production_management_logistics": "Projektleitung Logistik",
+  "artistic_production_management": "Künstlerische Produktionsleitung",
+  "patronage": "Schirmherrschaft"
 }

@@ -20,6 +20,44 @@ const PlayDetailsList = ({ play }) => {
     { key: "chor", label: "chor" },
     { key: "orchester", label: "orchester" },
     { key: "foerderung", label: "foerderung" },
+
+    // Neue Begriffe
+    { key: "conductorFemale", label: "conductor_female" },
+    { key: "conductorMale", label: "conductor_male" },
+    { key: "choirDirection", label: "choir_direction" },
+    { key: "choirRehearsal", label: "choir_rehearsal" },
+    { key: "piano", label: "piano" },
+    { key: "soloists", label: "soloists" },
+    { key: "soloistFemale", label: "soloist_female" },
+    { key: "soloistMale", label: "soloist_male" },
+    { key: "photography", label: "photography" },
+    { key: "translation", label: "translation" },
+    { key: "postproduction", label: "postproduction" },
+    { key: "graphics", label: "graphics" },
+    { key: "dramaturgy", label: "dramaturgy" },
+    { key: "choreography", label: "choreography" },
+    { key: "setDesign", label: "set_design" },
+    { key: "costume", label: "costume" },
+    { key: "assistance", label: "assistance" },
+    { key: "mask", label: "mask" },
+    { key: "additionalSupport", label: "additional_support" },
+    { key: "trailer", label: "trailer" },
+    { key: "designDirection", label: "design_direction" },
+    { key: "coding", label: "coding" },
+    { key: "logo", label: "logo" },
+    {
+      key: "productionManagementFinances",
+      label: "production_management_finances",
+    },
+    {
+      key: "productionManagementLogistics",
+      label: "production_management_logistics",
+    },
+    {
+      key: "artisticProductionManagement",
+      label: "artistic_production_management",
+    },
+    { key: "patronage", label: "patronage" },
   ];
 
   const getText = (key) => {

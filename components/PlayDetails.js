@@ -22,43 +22,43 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   const desktopImages = [
     {
       url: play?.imageUrl,
-      credit: play?.imageCredit1 || "Lysius",
+      credit: play?.imageCredit1 || "",
     },
     {
       url: play?.imageUrl1,
-      credit: play?.imageCredit2 || "Lysius",
+      credit: play?.imageCredit2 || "",
     },
     {
       url: play?.imageUrl2,
-      credit: play?.imageCredit3 || "Lysius",
+      credit: play?.imageCredit3 || "",
     },
     {
       url: play?.imageUrl3,
-      credit: play?.imageCredit4 || "Lysius",
+      credit: play?.imageCredit4 || "",
     },
     {
       url: play?.imageUrl4,
-      credit: play?.imageCredit5 || "Lysius",
+      credit: play?.imageCredit5 || "",
     },
     {
       url: play?.imageUrl5,
-      credit: play?.imageCredit6 || "Lysius",
+      credit: play?.imageCredit6 || "",
     },
     {
       url: play?.imageUrl6,
-      credit: play?.imageCredit7 || "Lysius",
+      credit: play?.imageCredit7 || "",
     },
     {
       url: play?.imageUrl7,
-      credit: play?.imageCredit8 || "Lysius",
+      credit: play?.imageCredit8 || "",
     },
     {
       url: play?.imageUrl8,
-      credit: play?.imageCredit9 || "Lysius",
+      credit: play?.imageCredit9 || "",
     },
     {
       url: play?.imageUrl9,
-      credit: play?.imageCredit10 || "Lysius",
+      credit: play?.imageCredit10 || "",
     },
   ].filter((image) => image.url);
 
@@ -66,23 +66,23 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   const mobileImages = [
     {
       url: play?.mobileImageUrl1 || play?.imageUrl,
-      credit: play?.mobileImageCredit1 || play?.imageCredit1 || "Lysius",
+      credit: play?.mobileImageCredit1 || play?.imageCredit1 || "",
     },
     {
       url: play?.mobileImageUrl2 || play?.imageUrl1,
-      credit: play?.mobileImageCredit2 || play?.imageCredit2 || "Lysius",
+      credit: play?.mobileImageCredit2 || play?.imageCredit2 || "",
     },
     {
       url: play?.mobileImageUrl3 || play?.imageUrl2,
-      credit: play?.mobileImageCredit3 || play?.imageCredit3 || "Lysius",
+      credit: play?.mobileImageCredit3 || play?.imageCredit3 || "",
     },
     {
       url: play?.mobileImageUrl4 || play?.imageUrl3,
-      credit: play?.mobileImageCredit4 || play?.imageCredit4 || "Lysius",
+      credit: play?.mobileImageCredit4 || play?.imageCredit4 || "",
     },
     {
       url: play?.mobileImageUrl5 || play?.imageUrl4,
-      credit: play?.mobileImageCredit5 || play?.imageCredit5 || "Lysius",
+      credit: play?.mobileImageCredit5 || play?.imageCredit5 || "",
     },
   ].filter((image) => image.url);
 
