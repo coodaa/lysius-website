@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
@@ -16,130 +16,71 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const isEnglish = i18n.language === "en";
+  const isEnglish = useMemo(() => i18n.language === "en", [i18n.language]);
 
-  // Desktop-Bilder (für Carousel und Modal)
-  const desktopImages = [
-    {
-      url: play?.imageUrl,
-      credit: play?.imageCredit1 || "",
-    },
-    {
-      url: play?.imageUrl1,
-      credit: play?.imageCredit2 || "",
-    },
-    {
-      url: play?.imageUrl2,
-      credit: play?.imageCredit3 || "",
-    },
-    {
-      url: play?.imageUrl3,
-      credit: play?.imageCredit4 || "",
-    },
-    {
-      url: play?.imageUrl4,
-      credit: play?.imageCredit5 || "",
-    },
-    {
-      url: play?.imageUrl5,
-      credit: play?.imageCredit6 || "",
-    },
-    {
-      url: play?.imageUrl6,
-      credit: play?.imageCredit7 || "",
-    },
-    {
-      url: play?.imageUrl7,
-      credit: play?.imageCredit8 || "",
-    },
-    {
-      url: play?.imageUrl8,
-      credit: play?.imageCredit9 || "",
-    },
-    {
-      url: play?.imageUrl9,
-      credit: play?.imageCredit10 || "",
-    },
-  ].filter((image) => image.url);
+  const title = useMemo(() =>
+    isEnglish
+      ? play?.title_en || play?.title || t("untitled")
+      : play?.title || t("untitled"),
+    [isEnglish, play, t]
+  );
 
-  // Mobile-Bilder (wenn keine mobilen Bilder vorhanden sind, Desktop-Bilder verwenden)
-  const mobileImages = [
-    {
-      url: play?.mobileImageUrl1 || play?.imageUrl,
-      credit: play?.mobileImageCredit1 || play?.imageCredit1 || "",
-    },
-    {
-      url: play?.mobileImageUrl2 || play?.imageUrl1,
-      credit: play?.mobileImageCredit2 || play?.imageCredit2 || "",
-    },
-    {
-      url: play?.mobileImageUrl3 || play?.imageUrl2,
-      credit: play?.mobileImageCredit3 || play?.imageCredit3 || "",
-    },
-    {
-      url: play?.mobileImageUrl4 || play?.imageUrl3,
-      credit: play?.mobileImageCredit4 || play?.imageCredit4 || "",
-    },
-    {
-      url: play?.mobileImageUrl5 || play?.imageUrl4,
-      credit: play?.mobileImageCredit5 || play?.imageCredit5 || "",
-    },
-  ].filter((image) => image.url);
+  const subtitles = useMemo(() =>
+    [play?.subtitle1, play?.subtitle2, play?.subtitle3].filter(Boolean),
+    [play]
+  );
 
-  const title = isEnglish
-    ? play?.title_en || play?.title || t("untitled")
-    : play?.title || t("untitled");
+  const desktopImages = useMemo(() => [
+    { url: play?.imageUrl, credit: play?.imageCredit1 || "" },
+    { url: play?.imageUrl1, credit: play?.imageCredit2 || "" },
+    { url: play?.imageUrl2, credit: play?.imageCredit3 || "" },
+    { url: play?.imageUrl3, credit: play?.imageCredit4 || "" },
+    { url: play?.imageUrl4, credit: play?.imageCredit5 || "" },
+    { url: play?.imageUrl5, credit: play?.imageCredit6 || "" },
+    { url: play?.imageUrl6, credit: play?.imageCredit7 || "" },
+    { url: play?.imageUrl7, credit: play?.imageCredit8 || "" },
+    { url: play?.imageUrl8, credit: play?.imageCredit9 || "" },
+    { url: play?.imageUrl9, credit: play?.imageCredit10 || "" },
+  ].filter(image => image.url), [play]);
 
-  const subtitle = isEnglish
-    ? play?.subtitle_en || play?.subtitle || ""
-    : play?.subtitle || "";
+  const mobileImages = useMemo(() => [
+    { url: play?.mobileImageUrl1 || play?.imageUrl, credit: play?.mobileImageCredit1 || play?.imageCredit1 || "" },
+    { url: play?.mobileImageUrl2 || play?.imageUrl1, credit: play?.mobileImageCredit2 || play?.imageCredit2 || "" },
+    { url: play?.mobileImageUrl3 || play?.imageUrl2, credit: play?.mobileImageCredit3 || play?.imageCredit3 || "" },
+    { url: play?.mobileImageUrl4 || play?.imageUrl3, credit: play?.mobileImageCredit4 || play?.imageCredit4 || "" },
+    { url: play?.mobileImageUrl5 || play?.imageUrl4, credit: play?.mobileImageCredit5 || play?.imageCredit5 || "" },
+  ].filter(image => image.url), [play]);
 
-  // Im mobilen Modus mobileImages, sonst desktopImages
   const activeImages = mobileImages.length > 0 ? mobileImages : desktopImages;
 
   useEffect(() => {
-    if (play?.title) {
-      setCurrentTitle(title);
-    }
+    if (play?.title) setCurrentTitle(title);
 
     if (activeImages.length > 0) {
       const interval = setInterval(() => {
-        setCurrentImageIndex(
-          (prevIndex) => (prevIndex + 1) % activeImages.length
-        );
+        setCurrentImageIndex(prevIndex => (prevIndex + 1) % activeImages.length);
       }, 7000);
       return () => clearInterval(interval);
     }
   }, [title, play, activeImages, setCurrentTitle]);
 
-  useEffect(() => {
-    console.log("Loaded play hier:", play);
-  }, [play]);
-
-  const handleImageClick = (index) => {
+  const handleImageClick = useCallback((index) => {
     setCurrentImageIndex(index);
     setIsModalOpen(true);
-  };
+  }, []);
 
-  const videoUrl =
-    play?.videoUrl
-      ?.replace("youtu.be/", "www.youtube.com/embed/")
-      .split("?")[0] || "";
+  const videoUrl = play?.videoUrl?.replace("youtu.be/", "www.youtube.com/embed/")?.split("?")[0] || "";
 
   return (
     <>
       <Head>
         <title>{title}</title>
-        <meta name="description" content={subtitle} />
+        <meta name="description" content={subtitles[0]} />
         {activeImages.map((image, index) => (
           <meta key={index} property="og:image" content={image.url} />
         ))}
         {activeImages.map((image, index) => (
-          <meta
-            key={index}
-            name={`image-credit-${index + 1}`}
-            content={image.credit}
-          />
+          <meta key={index} name={`image-credit-${index + 1}`} content={image.credit} />
         ))}
       </Head>
 
@@ -150,9 +91,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             {mobileImages.map((image, index) => (
               <div
                 key={index}
-                className={`${styles.image} ${
-                  index === currentImageIndex ? styles.show : ""
-                }`}
+                className={`${styles.image} ${index === currentImageIndex ? styles.show : ""}`}
                 onClick={() => handleImageClick(index)}
               >
                 <Image
@@ -160,7 +99,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   alt={title}
                   layout="fill"
                   objectFit="cover"
-                  priority
+                  priority={index === 0} // Erstes Bild priorisieren
+                  loading={index === 0 ? "eager" : "lazy"} // Rest lazy laden
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
             ))}
@@ -172,9 +113,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           {desktopImages.map((image, index) => (
             <div
               key={index}
-              className={`${styles.image} ${
-                index === currentImageIndex ? styles.show : ""
-              }`}
+              className={`${styles.image} ${index === currentImageIndex ? styles.show : ""}`}
               onClick={() => handleImageClick(index)}
             >
               <Image
@@ -182,7 +121,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 alt={title}
                 layout="fill"
                 objectFit="cover"
-                priority
+                priority={index === 0}
+                loading={index === 0 ? "eager" : "lazy"}
+                sizes="(max-width: 1200px) 100vw, 50vw"
               />
             </div>
           ))}
@@ -191,110 +132,68 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
         <div className={styles.contentContainer}>
           <div className={styles.textContainer}>
             <h1 className={styles.title}>{title}</h1>
+
             <p className={styles.subtitle}>
-              {subtitle.split(" ").map((word, index) => (
-                <span key={index}>{word} </span>
+              {subtitles.map((subtitle, i) => (
+                <span key={i}>
+                  {subtitle.split(" ").map((word, index) => (
+                    <span key={index}>{word} </span>
+                  ))}
+                </span>
               ))}
             </p>
+
             <div className={styles.playDesktop}>
               <PlayDetailsList play={play} />
             </div>
+
             <div className={styles.description}>
-              <p>
-                {isEnglish
-                  ? play?.descriptionleft1_en ||
-                    play?.descriptionleft1 ||
-                    t("No description available.")
-                  : play?.descriptionleft1 || t("No description available.")}
-              </p>
-              <p>
-                {isEnglish
-                  ? play?.descriptionleft2_en ||
-                    play?.descriptionleft2 ||
-                    t("No description available.")
-                  : play?.descriptionleft2 || t("No description available.")}
-              </p>
-              <p>
-                {isEnglish
-                  ? play?.descriptionleft3_en ||
-                    play?.descriptionleft3 ||
-                    t("No description available.")
-                  : play?.descriptionleft3 || t("No description available.")}
-              </p>
-              <p>
-                {isEnglish
-                  ? play?.descriptionleft4_en ||
-                    play?.descriptionleft4 ||
-                    t("No description available.")
-                  : play?.descriptionleft4 || t("No description available.")}
-              </p>
+              {[1, 2, 3, 4].map(i => (
+                <p key={i}>
+                  {isEnglish
+                    ? play?.[`descriptionleft${i}_en`] || play?.[`descriptionleft${i}`] || t("No description available.")
+                    : play?.[`descriptionleft${i}`] || t("No description available.")}
+                </p>
+              ))}
             </div>
           </div>
 
           <div className={styles.carouselVideoContainer}>
             <h1 className={styles.titleDesktop}>{title}</h1>
-            <p className={styles.subtitleDesktop}>
-              {subtitle.split(" ").map((word, index) => (
-                <span key={index}>{word} </span>
-              ))}
-            </p>
+
+            {subtitles.map((subtitle, i) => (
+              <p key={i} className={styles.subtitleDesktop}>
+                {subtitle.split(" ").map((word, index) => (
+                  <span key={index}>{word} </span>
+                ))}
+              </p>
+            ))}
 
             <SecondCarousel
-              images={desktopImages.map((img) => img.url)}
-              credits={desktopImages.map((img) => img.credit)}
+              images={desktopImages.map(img => img.url)}
+              credits={desktopImages.map(img => img.credit)}
               onImageClick={handleImageClick}
             />
 
-            {/* CustomVideoPlayer für Video */}
             {videoUrl && <CustomVideoPlayer videoUrl={videoUrl} />}
 
-            {(isEnglish ? play?.textright1_en : play?.textright1) && (
-              <div className={styles.additionalTexts}>
+            {[1, 2, 3, 4].map(i => (
+              <div key={i} className={styles.additionalTexts}>
                 <p>
                   {isEnglish
-                    ? play?.textright1_en || t("extra_text_1")
-                    : play?.textright1 || t("extra_text_1")}
+                    ? play?.[`textright${i}_en`] || t(`extra_text_${i}`)
+                    : play?.[`textright${i}`] || t(`extra_text_${i}`)}
                 </p>
               </div>
-            )}
-
-            {(isEnglish ? play?.textright2_en : play?.textright2) && (
-              <div className={styles.additionalTexts}>
-                <p>
-                  {isEnglish
-                    ? play?.textright2_en || t("additional_text_2")
-                    : play?.textright2 || t("additional_text_2")}
-                </p>
-              </div>
-            )}
-
-            {(isEnglish ? play?.textright3_en : play?.textright3) && (
-              <div className={styles.additionalTexts}>
-                <p>
-                  {isEnglish
-                    ? play?.textright3_en || t("additional_text_3")
-                    : play?.textright3 || t("additional_text_3")}
-                </p>
-              </div>
-            )}
-
-            {(isEnglish ? play?.textright4_en : play?.textright4) && (
-              <div className={styles.additionalTexts}>
-                <p>
-                  {isEnglish
-                    ? play?.textright4_en || t("additional_text_4")
-                    : play?.textright4 || t("additional_text_4")}
-                </p>
-              </div>
-            )}
+            ))}
           </div>
         </div>
 
         {/* Modal für Desktop-Bilder */}
         {isModalOpen && (
           <Modal
-            images={desktopImages.map((img) => img.url)} // Desktop-Bilder
-            credits={desktopImages.map((img) => img.credit)} // Desktop-Bild-Credits
+            images={desktopImages.map(img => img.url)}
+            credits={desktopImages.map(img => img.credit)}
             initialIndex={currentImageIndex}
             onClose={() => setIsModalOpen(false)}
           />
