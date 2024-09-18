@@ -18,38 +18,62 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
   const isEnglish = useMemo(() => i18n.language === "en", [i18n.language]);
 
-  const title = useMemo(() =>
-    isEnglish
-      ? play?.title_en || play?.title || t("untitled")
-      : play?.title || t("untitled"),
+  const title = useMemo(
+    () =>
+      isEnglish
+        ? play?.title_en || play?.title || t("untitled")
+        : play?.title || t("untitled"),
     [isEnglish, play, t]
   );
 
-  const subtitles = useMemo(() =>
-    [play?.subtitle1, play?.subtitle2, play?.subtitle3].filter(Boolean),
+  const subtitles = useMemo(
+    () => [play?.subtitle1, play?.subtitle2, play?.subtitle3].filter(Boolean),
     [play]
   );
 
-  const desktopImages = useMemo(() => [
-    { url: play?.imageUrl, credit: play?.imageCredit1 || "" },
-    { url: play?.imageUrl1, credit: play?.imageCredit2 || "" },
-    { url: play?.imageUrl2, credit: play?.imageCredit3 || "" },
-    { url: play?.imageUrl3, credit: play?.imageCredit4 || "" },
-    { url: play?.imageUrl4, credit: play?.imageCredit5 || "" },
-    { url: play?.imageUrl5, credit: play?.imageCredit6 || "" },
-    { url: play?.imageUrl6, credit: play?.imageCredit7 || "" },
-    { url: play?.imageUrl7, credit: play?.imageCredit8 || "" },
-    { url: play?.imageUrl8, credit: play?.imageCredit9 || "" },
-    { url: play?.imageUrl9, credit: play?.imageCredit10 || "" },
-  ].filter(image => image.url), [play]);
+  const desktopImages = useMemo(
+    () =>
+      [
+        { url: play?.imageUrl, credit: play?.imageCredit1 || "" },
+        { url: play?.imageUrl1, credit: play?.imageCredit2 || "" },
+        { url: play?.imageUrl2, credit: play?.imageCredit3 || "" },
+        { url: play?.imageUrl3, credit: play?.imageCredit4 || "" },
+        { url: play?.imageUrl4, credit: play?.imageCredit5 || "" },
+        { url: play?.imageUrl5, credit: play?.imageCredit6 || "" },
+        { url: play?.imageUrl6, credit: play?.imageCredit7 || "" },
+        { url: play?.imageUrl7, credit: play?.imageCredit8 || "" },
+        { url: play?.imageUrl8, credit: play?.imageCredit9 || "" },
+        { url: play?.imageUrl9, credit: play?.imageCredit10 || "" },
+      ].filter((image) => image.url),
+    [play]
+  );
 
-  const mobileImages = useMemo(() => [
-    { url: play?.mobileImageUrl1 || play?.imageUrl, credit: play?.mobileImageCredit1 || play?.imageCredit1 || "" },
-    { url: play?.mobileImageUrl2 || play?.imageUrl1, credit: play?.mobileImageCredit2 || play?.imageCredit2 || "" },
-    { url: play?.mobileImageUrl3 || play?.imageUrl2, credit: play?.mobileImageCredit3 || play?.imageCredit3 || "" },
-    { url: play?.mobileImageUrl4 || play?.imageUrl3, credit: play?.mobileImageCredit4 || play?.imageCredit4 || "" },
-    { url: play?.mobileImageUrl5 || play?.imageUrl4, credit: play?.mobileImageCredit5 || play?.imageCredit5 || "" },
-  ].filter(image => image.url), [play]);
+  const mobileImages = useMemo(
+    () =>
+      [
+        {
+          url: play?.mobileImageUrl1 || play?.imageUrl,
+          credit: play?.mobileImageCredit1 || play?.imageCredit1 || "",
+        },
+        {
+          url: play?.mobileImageUrl2 || play?.imageUrl1,
+          credit: play?.mobileImageCredit2 || play?.imageCredit2 || "",
+        },
+        {
+          url: play?.mobileImageUrl3 || play?.imageUrl2,
+          credit: play?.mobileImageCredit3 || play?.imageCredit3 || "",
+        },
+        {
+          url: play?.mobileImageUrl4 || play?.imageUrl3,
+          credit: play?.mobileImageCredit4 || play?.imageCredit4 || "",
+        },
+        {
+          url: play?.mobileImageUrl5 || play?.imageUrl4,
+          credit: play?.mobileImageCredit5 || play?.imageCredit5 || "",
+        },
+      ].filter((image) => image.url),
+    [play]
+  );
 
   const activeImages = mobileImages.length > 0 ? mobileImages : desktopImages;
 
@@ -58,7 +82,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
     if (activeImages.length > 0) {
       const interval = setInterval(() => {
-        setCurrentImageIndex(prevIndex => (prevIndex + 1) % activeImages.length);
+        setCurrentImageIndex(
+          (prevIndex) => (prevIndex + 1) % activeImages.length
+        );
       }, 7000);
       return () => clearInterval(interval);
     }
@@ -69,7 +95,10 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     setIsModalOpen(true);
   }, []);
 
-  const videoUrl = play?.videoUrl?.replace("youtu.be/", "www.youtube.com/embed/")?.split("?")[0] || "";
+  const videoUrl =
+    play?.videoUrl
+      ?.replace("youtu.be/", "www.youtube.com/embed/")
+      ?.split("?")[0] || "";
 
   return (
     <>
@@ -80,7 +109,11 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           <meta key={index} property="og:image" content={image.url} />
         ))}
         {activeImages.map((image, index) => (
-          <meta key={index} name={`image-credit-${index + 1}`} content={image.credit} />
+          <meta
+            key={index}
+            name={`image-credit-${index + 1}`}
+            content={image.credit}
+          />
         ))}
       </Head>
 
@@ -91,7 +124,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             {mobileImages.map((image, index) => (
               <div
                 key={index}
-                className={`${styles.image} ${index === currentImageIndex ? styles.show : ""}`}
+                className={`${styles.image} ${
+                  index === currentImageIndex ? styles.show : ""
+                }`}
                 onClick={() => handleImageClick(index)}
               >
                 <Image
@@ -113,7 +148,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           {desktopImages.map((image, index) => (
             <div
               key={index}
-              className={`${styles.image} ${index === currentImageIndex ? styles.show : ""}`}
+              className={`${styles.image} ${
+                index === currentImageIndex ? styles.show : ""
+              }`}
               onClick={() => handleImageClick(index)}
             >
               <Image
@@ -135,11 +172,11 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
             <p className={styles.subtitle}>
               {subtitles.map((subtitle, i) => (
-                <span key={i}>
+                <p key={i}>
                   {subtitle.split(" ").map((word, index) => (
                     <span key={index}>{word} </span>
                   ))}
-                </span>
+                </p>
               ))}
             </p>
 
@@ -148,11 +185,14 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             </div>
 
             <div className={styles.description}>
-              {[1, 2, 3, 4].map(i => (
+              {[1, 2, 3, 4].map((i) => (
                 <p key={i}>
                   {isEnglish
-                    ? play?.[`descriptionleft${i}_en`] || play?.[`descriptionleft${i}`] || t("No description available.")
-                    : play?.[`descriptionleft${i}`] || t("No description available.")}
+                    ? play?.[`descriptionleft${i}_en`] ||
+                      play?.[`descriptionleft${i}`] ||
+                      t("No description available.")
+                    : play?.[`descriptionleft${i}`] ||
+                      t("No description available.")}
                 </p>
               ))}
             </div>
@@ -170,14 +210,14 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             ))}
 
             <SecondCarousel
-              images={desktopImages.map(img => img.url)}
-              credits={desktopImages.map(img => img.credit)}
+              images={desktopImages.map((img) => img.url)}
+              credits={desktopImages.map((img) => img.credit)}
               onImageClick={handleImageClick}
             />
 
             {videoUrl && <CustomVideoPlayer videoUrl={videoUrl} />}
 
-            {[1, 2, 3, 4].map(i => (
+            {[1, 2, 3, 4].map((i) => (
               <div key={i} className={styles.additionalTexts}>
                 <p>
                   {isEnglish
@@ -192,8 +232,8 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
         {/* Modal für Desktop-Bilder */}
         {isModalOpen && (
           <Modal
-            images={desktopImages.map(img => img.url)}
-            credits={desktopImages.map(img => img.credit)}
+            images={desktopImages.map((img) => img.url)}
+            credits={desktopImages.map((img) => img.credit)}
             initialIndex={currentImageIndex}
             onClose={() => setIsModalOpen(false)}
           />

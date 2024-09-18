@@ -24,14 +24,13 @@
 }
 
 .subtitle {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   color: white;
   display: inline-block;
-  max-width: 97vw;
+  max-width: 95vw;
+  line-height: 1.5;
   word-wrap: break-word;
   white-space: normal;
-  margin-bottom: 3rem;
-  line-height: 1.8;
 }
 
 .subtitle span {
@@ -113,8 +112,9 @@
   width: 100%;
   height: auto;
   background-color: black;
-  margin-bottom: 1rem; /* Added margin to separate from dots and credits */
-  aspect-ratio: 1 / 1; /* Ensures a square container */
+  margin-bottom: 1rem;
+  margin-top: 2em;
+  aspect-ratio: 1 / 1;
   overflow: hidden;
 }
 
@@ -358,12 +358,12 @@
     color: white;
     display: inline-block;
     max-width: 70vw;
-    line-height: 1;
+    line-height: 1; /* Reduziere den line-height auf 1.2 */
     word-wrap: break-word;
     white-space: normal;
-    margin-bottom: 3rem;
-    line-height: 1.8;
+    margin-bottom: -.1em;
   }
+
 
   .subtitleDesktop span {
     display: inline;
@@ -373,6 +373,7 @@
     padding-top: .2em;
     padding-bottom: .2em;
   }
+
 
   .subtitle span:first-child {
     padding-left: 40em;

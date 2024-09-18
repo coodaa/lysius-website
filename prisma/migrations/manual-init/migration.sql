@@ -8,46 +8,109 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `subtitle2_en` VARCHAR(255),
   `subtitle3` VARCHAR(255),
   `subtitle3_en` VARCHAR(255),
+
+  -- Positionen und deren Namen
   `position1` TEXT,
+  `position1_name` VARCHAR(255),
   `position1_en` TEXT,
+  `position1_name_en` VARCHAR(255),
+
   `position2` TEXT,
+  `position2_name` VARCHAR(255),
   `position2_en` TEXT,
+  `position2_name_en` VARCHAR(255),
+
   `position3` TEXT,
+  `position3_name` VARCHAR(255),
   `position3_en` TEXT,
+  `position3_name_en` VARCHAR(255),
+
   `position4` TEXT,
+  `position4_name` VARCHAR(255),
   `position4_en` TEXT,
+  `position4_name_en` VARCHAR(255),
+
   `position5` TEXT,
+  `position5_name` VARCHAR(255),
   `position5_en` TEXT,
+  `position5_name_en` VARCHAR(255),
+
   `position6` TEXT,
+  `position6_name` VARCHAR(255),
   `position6_en` TEXT,
+  `position6_name_en` VARCHAR(255),
+
   `position7` TEXT,
+  `position7_name` VARCHAR(255),
   `position7_en` TEXT,
+  `position7_name_en` VARCHAR(255),
+
   `position8` TEXT,
+  `position8_name` VARCHAR(255),
   `position8_en` TEXT,
+  `position8_name_en` VARCHAR(255),
+
   `position9` TEXT,
+  `position9_name` VARCHAR(255),
   `position9_en` TEXT,
+  `position9_name_en` VARCHAR(255),
+
   `position10` TEXT,
+  `position10_name` VARCHAR(255),
   `position10_en` TEXT,
+  `position10_name_en` VARCHAR(255),
+
   `position11` TEXT,
+  `position11_name` VARCHAR(255),
   `position11_en` TEXT,
+  `position11_name_en` VARCHAR(255),
+
   `position12` TEXT,
+  `position12_name` VARCHAR(255),
   `position12_en` TEXT,
+  `position12_name_en` VARCHAR(255),
+
   `position13` TEXT,
+  `position13_name` VARCHAR(255),
   `position13_en` TEXT,
+  `position13_name_en` VARCHAR(255),
+
   `position14` TEXT,
+  `position14_name` VARCHAR(255),
   `position14_en` TEXT,
+  `position14_name_en` VARCHAR(255),
+
   `position15` TEXT,
+  `position15_name` VARCHAR(255),
   `position15_en` TEXT,
+  `position15_name_en` VARCHAR(255),
+
   `position16` TEXT,
+  `position16_name` VARCHAR(255),
   `position16_en` TEXT,
+  `position16_name_en` VARCHAR(255),
+
   `position17` TEXT,
+  `position17_name` VARCHAR(255),
   `position17_en` TEXT,
+  `position17_name_en` VARCHAR(255),
+
   `position18` TEXT,
+  `position18_name` VARCHAR(255),
   `position18_en` TEXT,
+  `position18_name_en` VARCHAR(255),
+
   `position19` TEXT,
+  `position19_name` VARCHAR(255),
   `position19_en` TEXT,
+  `position19_name_en` VARCHAR(255),
+
   `position20` TEXT,
+  `position20_name` VARCHAR(255),
   `position20_en` TEXT,
+  `position20_name_en` VARCHAR(255),
+
+  -- Beschreibungen und zusätzliche Felder
   `descriptionleft1` TEXT,
   `descriptionleft1_en` TEXT,
   `descriptionleft2` TEXT,
@@ -56,6 +119,7 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `descriptionleft3_en` TEXT,
   `descriptionleft4` TEXT,
   `descriptionleft4_en` TEXT,
+
   `textright1` TEXT,
   `textright1_en` TEXT,
   `textright2` TEXT,
@@ -64,6 +128,8 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `textright3_en` TEXT,
   `textright4` TEXT,
   `textright4_en` TEXT,
+
+  -- Bilder und Credits
   `topImage1` TEXT,
   `topImage2` TEXT,
   `topImage3` TEXT,
@@ -88,6 +154,8 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `imageCredit8` TEXT,
   `imageCredit9` TEXT,
   `imageCredit10` TEXT,
+
+  -- Mobile Images
   `mobileImageUrl1` TEXT,
   `mobileImageUrl2` TEXT,
   `mobileImageUrl3` TEXT,
@@ -98,16 +166,13 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `mobileImageCredit3` TEXT,
   `mobileImageCredit4` TEXT,
   `mobileImageCredit5` TEXT,
+
+  -- Video und Logo
   `videoUrl1` TEXT,
   `videoCredit1` TEXT,
-  `additionalText1` TEXT,
-  `additionalText1_en` TEXT,
-  `additionalText2` TEXT,
-  `additionalText2_en` TEXT,
-  `additionalText3` TEXT,
-  `additionalText3_en` TEXT,
   `logo1` TEXT,
   `logo2` TEXT,
   `logo3` TEXT,
+
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

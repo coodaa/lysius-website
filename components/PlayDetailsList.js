@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useTranslation } from "next-i18next";
 import styles from "../styles/PlayPage.module.css";
 
 const PlayDetailsList = ({ play }) => {
   const { t, i18n } = useTranslation("common");
+
+  // Konsolenausgabe zur Überprüfung der play-Daten
+  useEffect(() => {
+    console.log("Play data:", play);
+  }, [play]);
 
   const positions = [
     { key: "position1", nameKey: "position1_name" },
@@ -29,9 +34,21 @@ const PlayDetailsList = ({ play }) => {
   ];
 
   const getText = (key) => {
-    return i18n.language === "en" && play[`${key}_en`]
+    if (!play) {
+      console.error(`Play data is missing for key: ${key}`);
+      return ""; 
+    }
+
+    // Gibt die englische Version zurück, falls vorhanden, ansonsten die lokale
+    const text = i18n.language === "en" && play[`${key}_en`]
       ? play[`${key}_en`]
       : play[key] || "";
+
+    if (!text) {
+      console.warn(`Missing value for key: ${key}`);
+    }
+
+    return text;
   };
 
   return (
@@ -39,6 +56,10 @@ const PlayDetailsList = ({ play }) => {
       {positions.map((position) => {
         const positionText = getText(position.key);
         const positionName = getText(position.nameKey);
+
+        // Ausgabe in der Konsole zur Überprüfung der Inhalte
+        console.log(`Position: ${positionText}, Name: ${positionName}`);
+
         if (positionText || positionName) {
           return (
             <React.Fragment key={position.key}>
@@ -47,7 +68,7 @@ const PlayDetailsList = ({ play }) => {
             </React.Fragment>
           );
         }
-        return null;
+        return null; // Keine Anzeige, wenn weder Text noch Name existieren
       })}
     </div>
   );
