@@ -185,18 +185,21 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             </div>
 
             <div className={styles.description}>
-              {[1, 2, 3, 4].map((i) => (
-                <div
-                  key={i}
-                  dangerouslySetInnerHTML={{
-                    __html: isEnglish
-                      ? play?.[`descriptionleft${i}_en`] ||
-                        play?.[`descriptionleft${i}`] ||
-                        t("No description available.")
-                      : play?.[`descriptionleft${i}`] ||
-                        t("No description available."),
-                  }}
-                />
+              {[1, 2, 3, 4].map((i, index) => (
+                <React.Fragment key={i}>
+                  {index < 4 && <hr className={styles.horizontalLine} />}
+
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: isEnglish
+                        ? play?.[`descriptionleft${i}_en`] ||
+                          play?.[`descriptionleft${i}`] ||
+                          t("No description available.")
+                        : play?.[`descriptionleft${i}`] ||
+                          t("No description available."),
+                    }}
+                  />
+                </React.Fragment>
               ))}
             </div>
           </div>

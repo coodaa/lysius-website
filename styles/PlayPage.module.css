@@ -156,7 +156,7 @@
 
 .dot {
   background-color: black;
-  border: 2px solid white;
+  border: 1px solid white;
 }
 
 .activeDot {
@@ -165,14 +165,15 @@
 }
 
 .carouselCredits {
-  margin-top: 0.5rem;
+  /* margin-top: 0.5rem; */
   text-align: center;
   font-size: 0.9rem;
   color: black;
-  min-height: 1.5rem; /* Feste Höhe für den Credit-Bereich */
+  min-height: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: .5em;
 }
 
 
@@ -261,6 +262,14 @@
   margin-bottom: 6em;
 }
 
+
+.horizontalLine {
+  border: none;
+  border-top: 1px solid black;
+  margin: 1rem 0; /* Optional: Abstand um den Strich herum */
+}
+
+
 @media only screen and (max-width: 767px) {
   .mobileImages {
     display: block;
@@ -317,8 +326,8 @@
   .textContainer::before {
     content: '';
     position: absolute;
-    top: 5em; /* Abstand von oben */
-    bottom: 1em; /* Bis zum unteren Rand */
+    top: 5em;
+    bottom: -80vh;
     right: 0; /* An der rechten Seite des Containers */
     width: 1px;
     background-color: black; /* Farbe des Strichs */

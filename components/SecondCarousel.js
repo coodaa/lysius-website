@@ -39,26 +39,27 @@ const SecondCarousel = ({ images, credits = [], onImageClick }) => {
         ))}
       </div>
 
-      {/* Credits nur anzeigen, wenn sie existieren */}
-      {credits.length > 0 && credits[currentImageIndex] && (
-        <div className={styles.carouselCredits}>
-          {credits[currentImageIndex]}
-        </div>
-      )}
-
       <div className={styles.carouselDots}>
         {images.map((_, index) => (
           <span
             key={index}
             className={
-              index === currentImageIndex
-                ? styles.activeDot
-                : styles.dot
+              index === currentImageIndex ? styles.activeDot : styles.dot
             }
             onClick={() => setCurrentImageIndex(index)}
           />
         ))}
       </div>
+
+      {credits.length > 0 && (
+        <div
+          className={`${styles.carouselCredits} ${
+            credits[currentImageIndex] ? styles.visible : ""
+          }`}
+        >
+          {credits[currentImageIndex]}
+        </div>
+      )}
     </div>
   );
 };
