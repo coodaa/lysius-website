@@ -113,7 +113,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   }, [title, play, activeImages, setCurrentTitle]);
 
   useEffect(() => {
-    console.log("Loaded play:", play);
+    console.log("Loaded play hier:", play);
   }, [play]);
 
   const handleImageClick = (index) => {
@@ -202,43 +202,33 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             <div className={styles.description}>
               <p>
                 {isEnglish
-                  ? play?.mainDescription_en ||
-                    play?.mainDescription ||
+                  ? play?.descriptionleft1_en ||
+                    play?.descriptionleft1 ||
                     t("No description available.")
-                  : play?.mainDescription || t("No description available.")}
+                  : play?.descriptionleft1 || t("No description available.")}
+              </p>
+              <p>
+                {isEnglish
+                  ? play?.descriptionleft2_en ||
+                    play?.descriptionleft2 ||
+                    t("No description available.")
+                  : play?.descriptionleft2 || t("No description available.")}
+              </p>
+              <p>
+                {isEnglish
+                  ? play?.descriptionleft3_en ||
+                    play?.descriptionleft3 ||
+                    t("No description available.")
+                  : play?.descriptionleft3 || t("No description available.")}
+              </p>
+              <p>
+                {isEnglish
+                  ? play?.descriptionleft4_en ||
+                    play?.descriptionleft4 ||
+                    t("No description available.")
+                  : play?.descriptionleft4 || t("No description available.")}
               </p>
             </div>
-
-            {/* Zusätzliche Texte (extraText1, extraText2, extraText3) */}
-            {(isEnglish ? play?.extraText1_en : play?.extraText1) && (
-              <div className={styles.additionalTexts}>
-                <p>
-                  {isEnglish
-                    ? play?.extraText1_en || t("extra_text_1")
-                    : play?.extraText1 || t("extra_text_1")}
-                </p>
-              </div>
-            )}
-
-            {(isEnglish ? play?.extraText2_en : play?.extraText2) && (
-              <div className={styles.additionalTexts}>
-                <p>
-                  {isEnglish
-                    ? play?.extraText2_en || t("extra_text_2")
-                    : play?.extraText2 || t("extra_text_2")}
-                </p>
-              </div>
-            )}
-
-            {(isEnglish ? play?.extraText3_en : play?.extraText3) && (
-              <div className={styles.additionalTexts}>
-                <p>
-                  {isEnglish
-                    ? play?.extraText3_en || t("extra_text_3")
-                    : play?.extraText3 || t("extra_text_3")}
-                </p>
-              </div>
-            )}
           </div>
 
           <div className={styles.carouselVideoContainer}>
@@ -258,54 +248,42 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             {/* CustomVideoPlayer für Video */}
             {videoUrl && <CustomVideoPlayer videoUrl={videoUrl} />}
 
-            {/* Zusätzliche Texte */}
-            {(isEnglish ? play?.additionalText1_en : play?.additionalText1) && (
+            {(isEnglish ? play?.textright1_en : play?.textright1) && (
               <div className={styles.additionalTexts}>
-                {/* <h3>{t("reviews")}</h3> */}
                 <p>
                   {isEnglish
-                    ? play?.additionalText1_en || t("additional_text_1")
-                    : play?.additionalText1 || t("additional_text_1")}
+                    ? play?.textright1_en || t("extra_text_1")
+                    : play?.textright1 || t("extra_text_1")}
                 </p>
               </div>
             )}
 
-            {(isEnglish ? play?.extraText1_en : play?.extraText1) && (
+            {(isEnglish ? play?.textright2_en : play?.textright2) && (
               <div className={styles.additionalTexts}>
                 <p>
                   {isEnglish
-                    ? play?.extraText1_en || t("extra_text_1")
-                    : play?.extraText1 || t("extra_text_1")}
+                    ? play?.textright2_en || t("additional_text_2")
+                    : play?.textright2 || t("additional_text_2")}
                 </p>
               </div>
             )}
 
-            {(isEnglish ? play?.additionalText2_en : play?.additionalText2) && (
+            {(isEnglish ? play?.textright3_en : play?.textright3) && (
               <div className={styles.additionalTexts}>
                 <p>
                   {isEnglish
-                    ? play?.additionalText2_en || t("additional_text_2")
-                    : play?.additionalText2 || t("additional_text_2")}
+                    ? play?.textright3_en || t("additional_text_3")
+                    : play?.textright3 || t("additional_text_3")}
                 </p>
               </div>
             )}
 
-            {(isEnglish ? play?.additionalText3_en : play?.additionalText3) && (
+            {(isEnglish ? play?.textright4_en : play?.textright4) && (
               <div className={styles.additionalTexts}>
                 <p>
                   {isEnglish
-                    ? play?.additionalText3_en || t("additional_text_3")
-                    : play?.additionalText3 || t("additional_text_3")}
-                </p>
-              </div>
-            )}
-
-            {(isEnglish ? play?.additionalText4_en : play?.additionalText4) && (
-              <div className={styles.additionalTexts}>
-                <p>
-                  {isEnglish
-                    ? play?.additionalText4_en || t("additional_text_4")
-                    : play?.additionalText4 || t("additional_text_4")}
+                    ? play?.textright4_en || t("additional_text_4")
+                    : play?.textright4 || t("additional_text_4")}
                 </p>
               </div>
             )}

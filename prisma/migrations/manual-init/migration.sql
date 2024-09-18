@@ -64,6 +64,9 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `textright3_en` TEXT,
   `textright4` TEXT,
   `textright4_en` TEXT,
+  `topImage1` TEXT,
+  `topImage2` TEXT,
+  `topImage3` TEXT,
   `imageUrl` TEXT,
   `imageUrl1` TEXT,
   `imageUrl2` TEXT,
@@ -103,5 +106,8 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `additionalText2_en` TEXT,
   `additionalText3` TEXT,
   `additionalText3_en` TEXT,
+  `logo1` TEXT,
+  `logo2` TEXT,
+  `logo3` TEXT,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

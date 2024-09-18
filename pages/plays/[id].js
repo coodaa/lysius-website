@@ -79,6 +79,9 @@ export async function getServerSideProps(context) {
         textright3_en: true,
         textright4: true,
         textright4_en: true,
+        topImage1: true,
+        topImage2: true,
+        topImage3: true,
         imageUrl: true,
         imageUrl1: true,
         imageUrl2: true,
@@ -112,6 +115,9 @@ export async function getServerSideProps(context) {
         mobileImageCredit5: true,
         videoUrl1: true,
         videoCredit1: true,
+        logo1: true,
+        logo2: true,
+        logo3: true,
       },
     });
 

@@ -37,7 +37,6 @@ model Legal {
   content_en String?  @db.Text
   createdAt  DateTime @default(now()) @db.Timestamp(0)
 }
-
 model Play {
   id                  Int     @id @default(autoincrement())
   title               String? @db.VarChar(255)
@@ -48,46 +47,108 @@ model Play {
   subtitle2_en        String? @db.VarChar(255)
   subtitle3           String? @db.VarChar(255)
   subtitle3_en        String? @db.VarChar(255)
+
+  // Positionen und Namen
   position1           String? @db.Text
+  position1_name      String? @db.VarChar(255)
   position1_en        String? @db.Text
+  position1_name_en   String? @db.VarChar(255)
+
   position2           String? @db.Text
+  position2_name      String? @db.VarChar(255)
   position2_en        String? @db.Text
+  position2_name_en   String? @db.VarChar(255)
+
   position3           String? @db.Text
+  position3_name      String? @db.VarChar(255)
   position3_en        String? @db.Text
+  position3_name_en   String? @db.VarChar(255)
+
   position4           String? @db.Text
+  position4_name      String? @db.VarChar(255)
   position4_en        String? @db.Text
+  position4_name_en   String? @db.VarChar(255)
+
   position5           String? @db.Text
+  position5_name      String? @db.VarChar(255)
   position5_en        String? @db.Text
+  position5_name_en   String? @db.VarChar(255)
+
   position6           String? @db.Text
+  position6_name      String? @db.VarChar(255)
   position6_en        String? @db.Text
+  position6_name_en   String? @db.VarChar(255)
+
   position7           String? @db.Text
+  position7_name      String? @db.VarChar(255)
   position7_en        String? @db.Text
+  position7_name_en   String? @db.VarChar(255)
+
   position8           String? @db.Text
+  position8_name      String? @db.VarChar(255)
   position8_en        String? @db.Text
+  position8_name_en   String? @db.VarChar(255)
+
   position9           String? @db.Text
+  position9_name      String? @db.VarChar(255)
   position9_en        String? @db.Text
+  position9_name_en   String? @db.VarChar(255)
+
   position10          String? @db.Text
+  position10_name     String? @db.VarChar(255)
   position10_en       String? @db.Text
+  position10_name_en  String? @db.VarChar(255)
+
   position11          String? @db.Text
+  position11_name     String? @db.VarChar(255)
   position11_en       String? @db.Text
+  position11_name_en  String? @db.VarChar(255)
+
   position12          String? @db.Text
+  position12_name     String? @db.VarChar(255)
   position12_en       String? @db.Text
+  position12_name_en  String? @db.VarChar(255)
+
   position13          String? @db.Text
+  position13_name     String? @db.VarChar(255)
   position13_en       String? @db.Text
+  position13_name_en  String? @db.VarChar(255)
+
   position14          String? @db.Text
+  position14_name     String? @db.VarChar(255)
   position14_en       String? @db.Text
+  position14_name_en  String? @db.VarChar(255)
+
   position15          String? @db.Text
+  position15_name     String? @db.VarChar(255)
   position15_en       String? @db.Text
+  position15_name_en  String? @db.VarChar(255)
+
   position16          String? @db.Text
+  position16_name     String? @db.VarChar(255)
   position16_en       String? @db.Text
+  position16_name_en  String? @db.VarChar(255)
+
   position17          String? @db.Text
+  position17_name     String? @db.VarChar(255)
   position17_en       String? @db.Text
+  position17_name_en  String? @db.VarChar(255)
+
   position18          String? @db.Text
+  position18_name     String? @db.VarChar(255)
   position18_en       String? @db.Text
+  position18_name_en  String? @db.VarChar(255)
+
   position19          String? @db.Text
+  position19_name     String? @db.VarChar(255)
   position19_en       String? @db.Text
+  position19_name_en  String? @db.VarChar(255)
+
   position20          String? @db.Text
+  position20_name     String? @db.VarChar(255)
   position20_en       String? @db.Text
+  position20_name_en  String? @db.VarChar(255)
+
   descriptionleft1    String? @db.Text
   descriptionleft1_en String? @db.Text
   descriptionleft2    String? @db.Text
@@ -96,6 +157,7 @@ model Play {
   descriptionleft3_en String? @db.Text
   descriptionleft4    String? @db.Text
   descriptionleft4_en String? @db.Text
+
   textright1          String? @db.Text
   textright1_en       String? @db.Text
   textright2          String? @db.Text
@@ -104,6 +166,11 @@ model Play {
   textright3_en       String? @db.Text
   textright4          String? @db.Text
   textright4_en       String? @db.Text
+
+  topImage1           String? @db.Text
+  topImage2           String? @db.Text
+  topImage3           String? @db.Text
+
   imageUrl            String? @db.Text
   imageUrl1           String? @db.Text
   imageUrl2           String? @db.Text
@@ -115,6 +182,7 @@ model Play {
   imageUrl8           String? @db.Text
   imageUrl9           String? @db.Text
   imageUrl10          String? @db.Text
+
   imageCredit1        String? @db.Text
   imageCredit2        String? @db.Text
   imageCredit3        String? @db.Text
@@ -125,16 +193,23 @@ model Play {
   imageCredit8        String? @db.Text
   imageCredit9        String? @db.Text
   imageCredit10       String? @db.Text
+
   mobileImageUrl1     String? @db.Text
   mobileImageUrl2     String? @db.Text
   mobileImageUrl3     String? @db.Text
   mobileImageUrl4     String? @db.Text
   mobileImageUrl5     String? @db.Text
+
   mobileImageCredit1  String? @db.Text
   mobileImageCredit2  String? @db.Text
   mobileImageCredit3  String? @db.Text
   mobileImageCredit4  String? @db.Text
   mobileImageCredit5  String? @db.Text
+
   videoUrl1           String? @db.Text
   videoCredit1        String? @db.Text
+
+  logo1               String? @db.Text
+  logo2               String? @db.Text
+  logo3               String? @db.Text
 }
