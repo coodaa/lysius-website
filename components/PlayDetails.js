@@ -96,7 +96,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   }, []);
 
   const videoUrl =
-    play?.videoUrl
+    play?.videoUrl1
       ?.replace("youtu.be/", "www.youtube.com/embed/")
       ?.split("?")[0] || "";
 
@@ -186,14 +186,17 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
             <div className={styles.description}>
               {[1, 2, 3, 4].map((i) => (
-                <p key={i}>
-                  {isEnglish
-                    ? play?.[`descriptionleft${i}_en`] ||
-                      play?.[`descriptionleft${i}`] ||
-                      t("No description available.")
-                    : play?.[`descriptionleft${i}`] ||
-                      t("No description available.")}
-                </p>
+                <div
+                  key={i}
+                  dangerouslySetInnerHTML={{
+                    __html: isEnglish
+                      ? play?.[`descriptionleft${i}_en`] ||
+                        play?.[`descriptionleft${i}`] ||
+                        t("No description available.")
+                      : play?.[`descriptionleft${i}`] ||
+                        t("No description available."),
+                  }}
+                />
               ))}
             </div>
           </div>
@@ -219,11 +222,13 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className={styles.additionalTexts}>
-                <p>
-                  {isEnglish
-                    ? play?.[`textright${i}_en`] || t(`extra_text_${i}`)
-                    : play?.[`textright${i}`] || t(`extra_text_${i}`)}
-                </p>
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: isEnglish
+                      ? play?.[`textright${i}_en`] || t(`extra_text_${i}`)
+                      : play?.[`textright${i}`] || t(`extra_text_${i}`),
+                  }}
+                />
               </div>
             ))}
           </div>
