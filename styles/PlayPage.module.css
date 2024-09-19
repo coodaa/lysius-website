@@ -271,6 +271,39 @@
 }
 
 
+/* Container für die Logos und den Unterstützungstext */
+.logoSection {
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.supportText {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Container für die Logos */
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem; /* Abstand zwischen den Logos */
+}
+
+.logoWrapper {
+  width: 100px; /* Breite der Logos */
+  height: auto; /* Höhe proportional zur Breite */
+}
+
+.logoImage {
+  width: 100%;
+  height: auto;
+  object-fit: contain; /* Bild skaliert proportional und passt sich dem Container an */
+}
+
+
 @media only screen and (max-width: 767px) {
   .mobileImages {
     display: block;
@@ -322,25 +355,42 @@
     padding-right: 2rem;
     position: relative; /* Notwendig für das Pseudo-Element */
     height: auto; /* Höhe automatisch anpassen */
+    min-height: 100vh; /* Stellt sicher, dass der Container mindestens die Höhe des Viewports hat */
   }
+
+
 
   .textContainer::before {
     content: '';
     position: absolute;
-    top: 5em;
-    bottom: -80vh;
+    top: 5em; /* Startet oben */
+    bottom: -50vh; /* Reicht bis zum unteren Ende des Containers */
     right: 0; /* An der rechten Seite des Containers */
     width: 1px;
     background-color: black; /* Farbe des Strichs */
   }
 
+
   .textright {
     margin-top: 2rem;
     max-width: 100%;
     text-align: left;
-    display: block; /* Sicherstellen, dass es ein Block-Element ist */
-    width: 100%; /* Sicherstellen, dass es die volle Breite einnimmt */
-    box-sizing: border-box; /* Die Breite und der Abstand werden richtig berechnet */
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative; /* Notwendig für das Pseudo-Element */
+  }
+
+  /* Füge den Strich zu .textright hinzu */
+  .textright::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: -20vh;
+    right: -2rem; /* Strich wird rechts von .textright gezeichnet */
+    width: 1px;
+    background-color: black;
+    height: 100%;
   }
 
   .carouselVideoContainer {

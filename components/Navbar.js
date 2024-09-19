@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import styles from "../styles/Navbar.module.css";
@@ -60,11 +60,7 @@ const Navbar = ({ currentTitle, plays }) => {
   return (
     <header className={styles.navbar}>
       <div className={styles.logo}>
-        <Link href="/" legacyBehavior>
-          <a className={styles.titleLink}>
-            <span className={styles.title}>{displayTitle}</span>
-          </a>
-        </Link>
+        <span className={styles.title}>{displayTitle}</span>
       </div>
       <div className={styles.menuButton} onClick={toggleMenu}>
         {menuOpen ? t("close") : t("menu")}
@@ -97,6 +93,20 @@ const Navbar = ({ currentTitle, plays }) => {
             menuOpen ? styles.footerOpen : ""
           }`}
         >
+          {/* Lysius Link */}
+          <li className={styles.footerItem} onClick={handleLinkClick}>
+            <Link href="/" legacyBehavior>
+              <a
+                className={`${styles.link} ${
+                  router.pathname === "/" ? styles.active : ""
+                }`}
+              >
+                Lysius
+              </a>
+            </Link>
+          </li>
+
+          {/* About Link */}
           <li className={styles.footerItem} onClick={handleLinkClick}>
             <Link href="/about" legacyBehavior>
               <a
@@ -108,6 +118,8 @@ const Navbar = ({ currentTitle, plays }) => {
               </a>
             </Link>
           </li>
+
+          {/* Terms Link */}
           <li onClick={handleLinkClick}>
             <Link href="/terms" legacyBehavior>
               <a
@@ -119,6 +131,8 @@ const Navbar = ({ currentTitle, plays }) => {
               </a>
             </Link>
           </li>
+
+          {/* Legal Link */}
           <li onClick={handleLinkClick}>
             <Link href="/legal" legacyBehavior>
               <a

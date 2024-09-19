@@ -8,7 +8,6 @@ import PlayDetailsList from "./PlayDetailsList";
 import SecondCarousel from "./SecondCarousel";
 import CustomVideoPlayer from "./CustomVideoPlayer";
 import styles from "../styles/PlayPage.module.css";
-
 const PlayDetails = ({ play, setCurrentTitle }) => {
   const router = useRouter();
   const { t, i18n } = useTranslation("common");
@@ -31,33 +30,13 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     [play]
   );
 
-  // Neue Logik für Desktop- und Mobile-Bilder
   const topImages = useMemo(
     () =>
       [
-        { url: play?.topImage1 || "", credit: play?.imageCredit1 || "" },
-        { url: play?.topImage2 || "", credit: play?.imageCredit2 || "" },
-        { url: play?.topImage3 || "", credit: play?.imageCredit3 || "" },
-      ].filter((image) => image.url), // Nur Bilder mit URL anzeigen
-    [play]
-  );
-
-  const mobileImages = useMemo(
-    () =>
-      [
-        {
-          url: play?.mobileImageUrl1 || "",
-          credit: play?.mobileImageCredit1 || play?.imageCredit1 || "",
-        },
-        {
-          url: play?.mobileImageUrl2 || "",
-          credit: play?.mobileImageCredit2 || play?.imageCredit2 || "",
-        },
-        {
-          url: play?.mobileImageUrl3 || "",
-          credit: play?.mobileImageCredit3 || play?.imageCredit3 || "",
-        },
-      ].filter((image) => image.url), // Nur Bilder mit URL anzeigen
+        { url: play?.topImage1, credit: play?.topImageCredit1 || "" },
+        { url: play?.topImage2, credit: play?.topImageCredit2 || "" },
+        { url: play?.topImage3, credit: play?.topImageCredit3 || "" },
+      ].filter((image) => image.url),
     [play]
   );
 
@@ -78,7 +57,36 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     [play]
   );
 
+  const mobileImages = useMemo(
+    () =>
+      [
+        {
+          url: play?.mobileImageUrl1 || play?.imageUrl,
+          credit: play?.mobileImageCredit1 || play?.imageCredit1 || "",
+        },
+        {
+          url: play?.mobileImageUrl2 || play?.imageUrl1,
+          credit: play?.mobileImageCredit2 || play?.imageCredit2 || "",
+        },
+        {
+          url: play?.mobileImageUrl3 || play?.imageUrl2,
+          credit: play?.mobileImageCredit3 || play?.imageCredit3 || "",
+        },
+        {
+          url: play?.mobileImageUrl4 || play?.imageUrl3,
+          credit: play?.mobileImageCredit4 || play?.imageCredit4 || "",
+        },
+        {
+          url: play?.mobileImageUrl5 || play?.imageUrl4,
+          credit: play?.mobileImageCredit5 || play?.imageCredit5 || "",
+        },
+      ].filter((image) => image.url),
+    [play]
+  );
+
   const activeImages = mobileImages.length > 0 ? mobileImages : topImages;
+
+  const logos = [play?.logo1, play?.logo2, play?.logo3].filter(Boolean);
 
   useEffect(() => {
     if (play?.title) setCurrentTitle(title);
@@ -137,8 +145,8 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   alt={title}
                   layout="fill"
                   objectFit="cover"
-                  priority={index === 0} // Erstes Bild priorisieren
-                  loading={index === 0 ? "eager" : "lazy"} // Rest lazy laden
+                  priority={index === 0}
+                  loading={index === 0 ? "eager" : "lazy"}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
@@ -146,29 +154,27 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           </div>
         )}
 
-        {/* Desktop Carousel */}
-        {topImages.length > 0 && (
-          <div className={`${styles.imageContainer} ${styles.desktopImages}`}>
-            {topImages.map((image, index) => (
-              <div
-                key={index}
-                className={`${styles.image} ${
-                  index === currentImageIndex ? styles.show : ""
-                }`}
-              >
-                <Image
-                  src={image.url}
-                  alt={title}
-                  layout="fill"
-                  objectFit="cover"
-                  priority={index === 0}
-                  loading={index === 0 ? "eager" : "lazy"}
-                  sizes="(max-width: 1200px) 100vw, 50vw"
-                />
-              </div>
-            ))}
-          </div>
-        )}
+        {/* Desktop Carousel für topImages */}
+        <div className={`${styles.imageContainer} ${styles.desktopImages}`}>
+          {topImages.map((image, index) => (
+            <div
+              key={index}
+              className={`${styles.image} ${
+                index === currentImageIndex ? styles.show : ""
+              }`}
+            >
+              <Image
+                src={image.url}
+                alt={title}
+                layout="fill"
+                objectFit="cover"
+                priority={index === 0}
+                loading={index === 0 ? "eager" : "lazy"}
+                sizes="(max-width: 1200px) 100vw, 50vw"
+              />
+            </div>
+          ))}
+        </div>
 
         <div className={styles.contentContainer}>
           <div className={styles.textContainer}>
@@ -192,7 +198,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
               {[1, 2, 3, 4].map((i, index) => (
                 <React.Fragment key={i}>
                   {index < 4 && <hr className={styles.horizontalLine} />}
-
                   <div
                     dangerouslySetInnerHTML={{
                       __html: isEnglish
@@ -205,6 +210,25 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   />
                 </React.Fragment>
               ))}
+
+              {logos.length > 0 && (
+                <div className={styles.logoSection}>
+                  <p className={styles.supportText}>
+                    Mit freundlicher Unterstützung von:
+                  </p>
+                  <div className={styles.logoContainer}>
+                    {logos.map((logo, index) => (
+                      <div key={index} className={styles.logoWrapper}>
+                        <img
+                          src={logo}
+                          alt={`Logo ${index + 1}`}
+                          className={styles.logoImage}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           </div>
 
@@ -219,14 +243,21 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
               </p>
             ))}
 
-            {/* Desktop Carousel mit topImages */}
+            {/* Hier verwenden wir wieder desktopImages */}
             <SecondCarousel
-              images={topImages.map((img) => img.url)}
-              credits={topImages.map((img) => img.credit)}
+              images={desktopImages.map((img) => img.url)}
+              credits={desktopImages.map((img) => img.credit)}
               onImageClick={handleImageClick}
             />
 
             {videoUrl && <CustomVideoPlayer videoUrl={videoUrl} />}
+
+            {/* Video Credit unter dem Video anzeigen */}
+            {play?.videoCredit1 && (
+              <div className={styles.videoCredit}>
+                <p>{play.videoCredit1}</p>
+              </div>
+            )}
 
             {[1, 2, 3, 4].map((i) => (
               <div key={i} className={styles.textright}>
@@ -241,11 +272,11 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             ))}
           </div>
         </div>
-        {/* Modal für alle anderen Bilder, NICHT die topImages */}
+
         {isModalOpen && (
           <Modal
-            images={desktopImages.map((img) => img.url)} // desktopImages für das Modal
-            credits={desktopImages.map((img) => img.credit)} // desktopImages für das Modal
+            images={desktopImages.map((img) => img.url)}
+            credits={desktopImages.map((img) => img.credit)}
             initialIndex={currentImageIndex}
             onClose={() => setIsModalOpen(false)}
           />

@@ -29,6 +29,19 @@
   padding: 1rem 1rem 0 .5rem;
 }
 
+.logo .title {
+  font-size: 1.6rem; /* Gleiche Schriftgröße wie vorher */
+  font-weight: bold;
+  color: black;
+  position: relative;
+  text-decoration: none; /* Kein Unterstrich */
+  cursor: pointer; /* Damit es sich wie ein Link anfühlt */
+}
+
+/* .title:hover {
+  text-decoration: underline; /* Optional, falls es beim Hover wie ein Link wirken soll */
+
+
 .menuButton {
   padding: 1rem .5rem 0 0;
   cursor: pointer;
@@ -36,25 +49,6 @@
   user-select: none;
   -webkit-user-select: none;
 }
-
-.logo a {
-  text-decoration: none;
-  color: black;
-  font-size: 1.6rem;
-  position: relative;
-}
-
-/* .logo .hoverTitle {
-  display: none;
-}
-
-.logo .titleLink:hover .title {
-  display: none;
-} */
-/*
-.logo .titleLink:hover .hoverTitle {
-  display: inline;
-} */
 
 .menuButton:hover {
   text-decoration: underline;
@@ -159,10 +153,8 @@
   }
 
   .navList {
-
     margin-top: 2em;
     left: 2rem;
-
   }
 
   .nav.open {
