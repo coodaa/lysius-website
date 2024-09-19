@@ -260,7 +260,7 @@
 }
 
 .textright:last-child {
-  margin-bottom: 4em;
+  margin-bottom: 10em;
 }
 
 
@@ -380,6 +380,7 @@
     box-sizing: border-box;
     position: relative; /* Notwendig für das Pseudo-Element */
   }
+
 
   /* Füge den Strich zu .textright hinzu */
   .textright::before {

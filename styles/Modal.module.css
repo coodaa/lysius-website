@@ -79,6 +79,7 @@
   background: transparent;
   border: none;
   cursor: pointer;
+  color: black;
   z-index: 30001;
   padding-top: 3.7rem;
   padding-right: 6rem;
