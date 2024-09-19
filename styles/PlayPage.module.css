@@ -197,7 +197,7 @@
 }
 
 .description,
-.additionalTexts {
+.textright {
   margin: 2rem auto;
   max-width: 95vw;
   text-align: left;
@@ -209,6 +209,7 @@
   white-space: pre-wrap;
   font-size: 1.2rem;
 }
+
 
 /* Mobiler Bildercontainer */
 .mobileImages {
@@ -258,8 +259,8 @@
   outline: none;
 }
 
-.additionalTexts:last-child {
-  margin-bottom: 6em;
+.textright:last-child {
+  margin-bottom: 4em;
 }
 
 
@@ -333,6 +334,15 @@
     background-color: black; /* Farbe des Strichs */
   }
 
+  .textright {
+    margin-top: 2rem;
+    max-width: 100%;
+    text-align: left;
+    display: block; /* Sicherstellen, dass es ein Block-Element ist */
+    width: 100%; /* Sicherstellen, dass es die volle Breite einnimmt */
+    box-sizing: border-box; /* Die Breite und der Abstand werden richtig berechnet */
+  }
+
   .carouselVideoContainer {
     flex: 2;
     max-width: 55%;
@@ -399,13 +409,13 @@
   }
 
   /* Zusätzliche Texte */
-  .additionalTexts {
+  .textright {
     margin-top: 2rem;
     max-width: 100%;
     text-align: left;
   }
 
-  .additionalTexts:last-child {
+  .textright:last-child {
     margin-bottom: 3em;
   }
 
