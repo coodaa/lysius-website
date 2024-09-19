@@ -50,6 +50,11 @@ const Modal = ({ images, initialIndex, onClose }) => {
       onTouchStart={handleTouchStart}
     >
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
+        {/* Schließen-Button */}
+        <button className={styles.closeButton} onClick={onClose}>
+          X
+        </button>
+
         <div className={styles.modalImageWrapper}>
           <Image
             src={images[currentIndex]}
@@ -60,7 +65,7 @@ const Modal = ({ images, initialIndex, onClose }) => {
           />
         </div>
 
-        {/* Dots */}
+        {/* Navigationspunkte */}
         <div className={styles.carouselDots}>
           {images.map((_, index) => (
             <span

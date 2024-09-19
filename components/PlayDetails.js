@@ -181,7 +181,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           <div className={styles.textContainer}>
             <h1 className={styles.title}>{title}</h1>
 
-            <p className={styles.subtitle}>
+            <div className={styles.subtitle}>
               {subtitles.map((subtitle, i) => (
                 <p key={i}>
                   {subtitle.split(" ").map((word, index) => (
@@ -189,7 +189,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   ))}
                 </p>
               ))}
-            </p>
+            </div>
 
             <div className={styles.playDesktop}>
               <PlayDetailsList play={play} />
