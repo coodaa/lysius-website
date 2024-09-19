@@ -8,6 +8,7 @@ import PlayDetailsList from "./PlayDetailsList";
 import SecondCarousel from "./SecondCarousel";
 import CustomVideoPlayer from "./CustomVideoPlayer";
 import styles from "../styles/PlayPage.module.css";
+
 const PlayDetails = ({ play, setCurrentTitle }) => {
   const router = useRouter();
   const { t, i18n } = useTranslation("common");
@@ -264,8 +265,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 <div
                   dangerouslySetInnerHTML={{
                     __html: isEnglish
-                      ? play?.[`textright${i}_en`] || t(`extra_text_${i}`)
-                      : play?.[`textright${i}`] || t(`extra_text_${i}`),
+                      ? play?.[`textright${i}_en`] || t(`no_text_available${i}`)
+                      : play?.[`textright${i}`] ||
+                        t(`kein text verfuegbar${i}`),
                   }}
                 />
               </div>

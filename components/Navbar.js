@@ -60,6 +60,7 @@ const Navbar = ({ currentTitle, plays }) => {
   return (
     <header className={styles.navbar}>
       <div className={styles.logo}>
+        {/* Der Titel ist jetzt nur noch ein Text, keine Navigation */}
         <span className={styles.title}>{displayTitle}</span>
       </div>
       <div className={styles.menuButton} onClick={toggleMenu}>

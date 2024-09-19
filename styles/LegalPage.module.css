@@ -3,17 +3,25 @@
   margin-top: 10em;
   min-height: 100vh;
   overflow-y: auto;
+  line-height: 1;
+
 }
 
 .text {
   margin: 0 auto;
   width: 95vw;
   margin-bottom: 10em;
+  line-height: 1;
 }
 
 
 
 @media (min-width: 768px) {
+
+  .container {
+    margin-top: 15em;
+  }
+
   .text {
     width: 75%;
     margin-left: 0;

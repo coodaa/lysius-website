@@ -11,9 +11,12 @@
   margin-bottom: 10em;
 }
 
-
-
 @media (min-width: 768px) {
+
+  .container {
+    margin-top: 15em;
+  }
+
   .text {
     width: 75%;
     margin-left: 0;
