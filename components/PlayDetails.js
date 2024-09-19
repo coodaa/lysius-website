@@ -196,21 +196,26 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             </div>
 
             <div className={styles.description}>
-              {[1, 2, 3, 4].map((i, index) => (
-                <React.Fragment key={i}>
-                  {index < 4 && <hr className={styles.horizontalLine} />}
-                  <div
-                    dangerouslySetInnerHTML={{
-                      __html: isEnglish
-                        ? play?.[`descriptionleft${i}_en`] ||
-                          play?.[`descriptionleft${i}`] ||
-                          t("No description available.")
-                        : play?.[`descriptionleft${i}`] ||
-                          t("No description available."),
-                    }}
-                  />
-                </React.Fragment>
-              ))}
+              {[1, 2, 3, 4].map((i, index) => {
+                const description = isEnglish
+                  ? play?.[`descriptionleft${i}_en`] ||
+                    play?.[`descriptionleft${i}`] ||
+                    ""
+                  : play?.[`descriptionleft${i}`] || "";
+
+                if (!description) return null;
+
+                return (
+                  <React.Fragment key={i}>
+                    {index > 0 && <hr className={styles.horizontalLine} />}
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: description,
+                      }}
+                    />
+                  </React.Fragment>
+                );
+              })}
 
               {logos.length > 0 && (
                 <div className={styles.logoSection}>
@@ -265,9 +270,8 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 <div
                   dangerouslySetInnerHTML={{
                     __html: isEnglish
-                      ? play?.[`textright${i}_en`] || t(`no_text_available${i}`)
-                      : play?.[`textright${i}`] ||
-                        t(`kein text verfuegbar${i}`),
+                      ? play?.[`textright${i}_en`] || t(``)
+                      : play?.[`textright${i}`] || t(``),
                   }}
                 />
               </div>

@@ -364,7 +364,7 @@
     content: '';
     position: absolute;
     top: 5em; /* Startet oben */
-    bottom: -50vh; /* Reicht bis zum unteren Ende des Containers */
+    bottom: -30vh; /* Reicht bis zum unteren Ende des Containers */
     right: 0; /* An der rechten Seite des Containers */
     width: 1px;
     background-color: black; /* Farbe des Strichs */
@@ -471,5 +471,13 @@
 
   .desktopOnly {
     display: block; /* Nur auf Desktop anzeigen */
+  }
+}
+
+@media (min-width: 1200px) {
+
+.textContainer::before {
+
+  bottom: -90vh;
   }
 }
