@@ -116,25 +116,28 @@
 
     @media (max-width: 599px) {
       .modalContent {
-        /* padding-top: 0em; */
+        padding-top: 8em;
         padding-left: 0em;
         padding-right: 0em;
-        padding-bottom: 9em;
-
+        padding-bottom: 9.9em;
       }
 
       .closeButton {
-        padding-right: 0.5rem;
-        padding-left: 100vw;
+        padding-right: 0.2em;
+        top: 1.2em;
       }
 
       .carouselDots {
         position: absolute;
-        bottom: 12.8rem;
+        bottom: 20rem;
         display: flex;
         justify-content: center;
         width: 100%;
         z-index: 1001;
-      }
+        background-color: white;
+        padding-top: 1em;
+        padding-bottom: 2em;
+        margin-bottom: -2em;
 
+      }
     }
