@@ -5,9 +5,10 @@ import styles from "../styles/PlayPage.module.css";
 const PlayDetailsList = ({ play }) => {
   const { t, i18n } = useTranslation("common");
 
-  // Konsolenausgabe zur Überprüfung der play-Daten
   useEffect(() => {
-    console.log("Play data:", play);
+    console.log("Position 21:", play.position21, "Name:", play.position21_name);
+    console.log("Position 22:", play.position22, "Name:", play.position22_name);
+    console.log("Position 23:", play.position23, "Name:", play.position23_name);
   }, [play]);
 
   const positions = [
@@ -31,18 +32,29 @@ const PlayDetailsList = ({ play }) => {
     { key: "position18", nameKey: "position18_name" },
     { key: "position19", nameKey: "position19_name" },
     { key: "position20", nameKey: "position20_name" },
+    { key: "position21", nameKey: "position21_name" },
+    { key: "position22", nameKey: "position22_name" },
+    { key: "position23", nameKey: "position23_name" },
+    { key: "position24", nameKey: "position24_name" },
+    { key: "position25", nameKey: "position25_name" },
+    { key: "position26", nameKey: "position26_name" },
+    { key: "position27", nameKey: "position27_name" },
+    { key: "position28", nameKey: "position28_name" },
+    { key: "position29", nameKey: "position29_name" },
+    { key: "position30", nameKey: "position30_name" },
   ];
 
   const getText = (key) => {
     if (!play) {
       console.error(`Play data is missing for key: ${key}`);
-      return ""; 
+      return "";
     }
 
     // Gibt die englische Version zurück, falls vorhanden, ansonsten die lokale
-    const text = i18n.language === "en" && play[`${key}_en`]
-      ? play[`${key}_en`]
-      : play[key] || "";
+    const text =
+      i18n.language === "en" && play[`${key}_en`]
+        ? play[`${key}_en`]
+        : play[key] || "";
 
     if (!text) {
       console.warn(`Missing value for key: ${key}`);
