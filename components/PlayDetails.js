@@ -9,7 +9,6 @@ import SecondCarousel from "./SecondCarousel";
 import CustomVideoPlayer from "./CustomVideoPlayer";
 import styles from "../styles/PlayPage.module.css";
 
-// Neuer Hook zur Erkennung des Gerätetyps
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
 
@@ -28,10 +27,12 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   const { t, i18n } = useTranslation("common");
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [modalImageIndex, setModalImageIndex] = useState(0); // Zustand für das Modal
+  const [modalImages, setModalImages] = useState([]); // Bilder für das Modal
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const isEnglish = useMemo(() => i18n.language === "en", [i18n.language]);
-  const isMobile = useIsMobile(); // Verwende den Hook hier
+  const isMobile = useIsMobile();
 
   const title = useMemo(
     () =>
@@ -46,7 +47,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     [play]
   );
 
-  // Beispielbilder für topImages
   const topImages = useMemo(
     () =>
       [
@@ -60,16 +60,16 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   const desktopImages = useMemo(
     () =>
       [
-        { url: play?.imageUrl, credit: play?.imageCredit1 || "" },
-        { url: play?.imageUrl1, credit: play?.imageCredit2 || "" },
-        { url: play?.imageUrl2, credit: play?.imageCredit3 || "" },
-        { url: play?.imageUrl3, credit: play?.imageCredit4 || "" },
-        { url: play?.imageUrl4, credit: play?.imageCredit5 || "" },
-        { url: play?.imageUrl5, credit: play?.imageCredit6 || "" },
-        { url: play?.imageUrl6, credit: play?.imageCredit7 || "" },
-        { url: play?.imageUrl7, credit: play?.imageCredit8 || "" },
-        { url: play?.imageUrl8, credit: play?.imageCredit9 || "" },
-        { url: play?.imageUrl9, credit: play?.imageCredit10 || "" },
+        { url: play?.imageUrl1, credit: play?.imageCredit1 || "" },
+        { url: play?.imageUrl2, credit: play?.imageCredit2 || "" },
+        { url: play?.imageUrl3, credit: play?.imageCredit3 || "" },
+        { url: play?.imageUrl4, credit: play?.imageCredit4 || "" },
+        { url: play?.imageUrl5, credit: play?.imageCredit5 || "" },
+        { url: play?.imageUrl6, credit: play?.imageCredit6 || "" },
+        { url: play?.imageUrl7, credit: play?.imageCredit7 || "" },
+        { url: play?.imageUrl8, credit: play?.imageCredit8 || "" },
+        { url: play?.imageUrl9, credit: play?.imageCredit9 || "" },
+        { url: play?.imageUrl10, credit: play?.imageCredit10 || "" },
       ].filter((image) => image.url),
     [play]
   );
@@ -78,30 +78,29 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     () =>
       [
         {
-          url: play?.mobileImageUrl1 || play?.imageUrl,
+          url: play?.mobileImageUrl1 || play?.imageUrl1,
           credit: play?.mobileImageCredit1 || play?.imageCredit1 || "",
         },
         {
-          url: play?.mobileImageUrl2 || play?.imageUrl1,
+          url: play?.mobileImageUrl2 || play?.imageUrl2,
           credit: play?.mobileImageCredit2 || play?.imageCredit2 || "",
         },
         {
-          url: play?.mobileImageUrl3 || play?.imageUrl2,
+          url: play?.mobileImageUrl3 || play?.imageUrl3,
           credit: play?.mobileImageCredit3 || play?.imageCredit3 || "",
         },
         {
-          url: play?.mobileImageUrl4 || play?.imageUrl3,
+          url: play?.mobileImageUrl4 || play?.imageUrl4,
           credit: play?.mobileImageCredit4 || play?.imageCredit4 || "",
         },
         {
-          url: play?.mobileImageUrl5 || play?.imageUrl4,
+          url: play?.mobileImageUrl5 || play?.imageUrl5,
           credit: play?.mobileImageCredit5 || play?.imageCredit5 || "",
         },
       ].filter((image) => image.url),
     [play]
   );
 
-  // Setze activeImages basierend auf dem Gerätetyp
   const activeImages = isMobile ? mobileImages : topImages;
 
   const logos = [play?.logo1, play?.logo2, play?.logo3].filter(Boolean);
@@ -115,15 +114,16 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           const nextIndex = (prevIndex + 1) % activeImages.length;
           return nextIndex;
         });
-      }, 4000);
+      }, 7000);
       return () => clearInterval(interval);
     } else {
       setCurrentImageIndex(0);
     }
   }, [title, play, activeImages, setCurrentTitle]);
 
-  const handleImageClick = useCallback((index) => {
-    setCurrentImageIndex(index);
+  const handleImageClick = useCallback((index, imagesArray) => {
+    setModalImages(imagesArray); // Setze die Bilder für das Modal
+    setModalImageIndex(index); // Setze den Index für das Modal
     setIsModalOpen(true);
   }, []);
 
@@ -160,7 +160,13 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   className={`${styles.image} ${
                     index === currentImageIndex ? styles.show : ""
                   }`}
-                  onClick={() => handleImageClick(index)}
+                  // Entfernen Sie den onClick-Handler hier
+                  // onClick={() =>
+                  //   handleImageClick(
+                  //     index,
+                  //     mobileImages.map((img) => img.url)
+                  //   )
+                  // }
                 >
                   <Image
                     src={image.url}
@@ -188,6 +194,13 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   className={`${styles.image} ${
                     index === currentImageIndex ? styles.show : ""
                   }`}
+                  // Entfernen Sie den onClick-Handler hier
+                  // onClick={() =>
+                  //   handleImageClick(
+                  //     index,
+                  //     topImages.map((img) => img.url)
+                  //   )
+                  // }
                 >
                   <Image
                     src={image.url}
@@ -282,7 +295,12 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
               <SecondCarousel
                 images={desktopImages.map((img) => img.url)}
                 credits={desktopImages.map((img) => img.credit)}
-                onImageClick={handleImageClick}
+                onImageClick={(index) =>
+                  handleImageClick(
+                    index,
+                    desktopImages.map((img) => img.url)
+                  )
+                }
               />
             )}
 
@@ -311,9 +329,8 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
         {isModalOpen && (
           <Modal
-            images={desktopImages.map((img) => img.url)}
-            credits={desktopImages.map((img) => img.credit)}
-            initialIndex={currentImageIndex}
+            images={modalImages} // Verwenden Sie modalImages hier
+            initialIndex={modalImageIndex}
             onClose={() => setIsModalOpen(false)}
           />
         )}

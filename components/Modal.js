@@ -8,8 +8,10 @@ const Modal = ({ images, initialIndex, onClose }) => {
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
   const [objectFit, setObjectFit] = useState("contain");
 
-  let touchStartX = 0;
-  let touchEndX = 0;
+  // Aktualisiere currentIndex, wenn initialIndex sich ändert
+  useEffect(() => {
+    setCurrentIndex(initialIndex);
+  }, [initialIndex]);
 
   // Dynamisch überprüfen, ob das Bild Querformat oder Hochformat ist
   useEffect(() => {
@@ -25,6 +27,9 @@ const Modal = ({ images, initialIndex, onClose }) => {
   }, [currentIndex, images]);
 
   // Swipe-Handling für Touch-Geräte
+  let touchStartX = 0;
+  let touchEndX = 0;
+
   const handleTouchStart = (e) => {
     touchStartX = e.changedTouches[0].screenX;
   };

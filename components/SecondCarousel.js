@@ -19,14 +19,17 @@ const SecondCarousel = ({ images, credits = [], onImageClick }) => {
 
   return (
     <div className={styles.carouselWrapper}>
-      <div className={styles.carousel}>
+      {/* onClick-Handler auf dem sichtbaren Bild */}
+      <div
+        className={styles.carousel}
+        onClick={() => onImageClick(currentImageIndex)}
+      >
         {images.map((image, index) => (
           <div
             key={index}
             className={`${styles.carouselImage} ${
               index === currentImageIndex ? styles.show : ""
             }`}
-            onClick={() => onImageClick(index)}
           >
             <Image
               src={image}

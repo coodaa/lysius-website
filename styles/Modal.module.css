@@ -45,7 +45,9 @@
   border-radius: 50%;
   display: inline-block;
   cursor: pointer;
+  box-sizing: border-box;
 }
+
 
 .dot {
   background-color: black;

@@ -293,7 +293,7 @@
 }
 
 .logoWrapper {
-  width: 100px; /* Breite der Logos */
+  width: 10vw; /* Breite der Logos */
   height: auto; /* Höhe proportional zur Breite */
 }
 
