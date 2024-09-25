@@ -49,85 +49,125 @@ model Play {
   subtitle3           String? @db.VarChar(255)
   subtitle3_en        String? @db.VarChar(255)
   position1           String? @db.Text
-  position1_name      String? @db.VarChar(255)
+  position1_name      String? @db.Text
   position1_en        String? @db.Text
-  position1_name_en   String? @db.VarChar(255)
+  position1_name_en   String? @db.Text
   position2           String? @db.Text
-  position2_name      String? @db.VarChar(255)
+  position2_name      String? @db.Text
   position2_en        String? @db.Text
-  position2_name_en   String? @db.VarChar(255)
+  position2_name_en   String? @db.Text
   position3           String? @db.Text
-  position3_name      String? @db.VarChar(255)
+  position3_name      String? @db.Text
   position3_en        String? @db.Text
-  position3_name_en   String? @db.VarChar(255)
+  position3_name_en   String? @db.Text
   position4           String? @db.Text
-  position4_name      String? @db.VarChar(255)
+  position4_name      String? @db.Text
   position4_en        String? @db.Text
-  position4_name_en   String? @db.VarChar(255)
+  position4_name_en   String? @db.Text
   position5           String? @db.Text
-  position5_name      String? @db.VarChar(255)
+  position5_name      String? @db.Text
   position5_en        String? @db.Text
-  position5_name_en   String? @db.VarChar(255)
+  position5_name_en   String? @db.Text
   position6           String? @db.Text
-  position6_name      String? @db.VarChar(255)
+  position6_name      String? @db.Text
   position6_en        String? @db.Text
-  position6_name_en   String? @db.VarChar(255)
+  position6_name_en   String? @db.Text
   position7           String? @db.Text
-  position7_name      String? @db.VarChar(255)
+  position7_name      String? @db.Text
   position7_en        String? @db.Text
-  position7_name_en   String? @db.VarChar(255)
+  position7_name_en   String? @db.Text
   position8           String? @db.Text
-  position8_name      String? @db.VarChar(255)
+  position8_name      String? @db.Text
   position8_en        String? @db.Text
-  position8_name_en   String? @db.VarChar(255)
+  position8_name_en   String? @db.Text
   position9           String? @db.Text
-  position9_name      String? @db.VarChar(255)
+  position9_name      String? @db.Text
   position9_en        String? @db.Text
-  position9_name_en   String? @db.VarChar(255)
+  position9_name_en   String? @db.Text
   position10          String? @db.Text
-  position10_name     String? @db.VarChar(255)
+  position10_name     String? @db.Text
   position10_en       String? @db.Text
-  position10_name_en  String? @db.VarChar(255)
+  position10_name_en  String? @db.Text
   position11          String? @db.Text
-  position11_name     String? @db.VarChar(255)
+  position11_name     String? @db.Text
   position11_en       String? @db.Text
-  position11_name_en  String? @db.VarChar(255)
+  position11_name_en  String? @db.Text
   position12          String? @db.Text
-  position12_name     String? @db.VarChar(255)
+  position12_name     String? @db.Text
   position12_en       String? @db.Text
-  position12_name_en  String? @db.VarChar(255)
+  position12_name_en  String? @db.Text
   position13          String? @db.Text
-  position13_name     String? @db.VarChar(255)
+  position13_name     String? @db.Text
   position13_en       String? @db.Text
-  position13_name_en  String? @db.VarChar(255)
+  position13_name_en  String? @db.Text
   position14          String? @db.Text
-  position14_name     String? @db.VarChar(255)
+  position14_name     String? @db.Text
   position14_en       String? @db.Text
-  position14_name_en  String? @db.VarChar(255)
+  position14_name_en  String? @db.Text
   position15          String? @db.Text
-  position15_name     String? @db.VarChar(255)
+  position15_name     String? @db.Text
   position15_en       String? @db.Text
-  position15_name_en  String? @db.VarChar(255)
+  position15_name_en  String? @db.Text
   position16          String? @db.Text
-  position16_name     String? @db.VarChar(255)
+  position16_name     String? @db.Text
   position16_en       String? @db.Text
-  position16_name_en  String? @db.VarChar(255)
+  position16_name_en  String? @db.Text
   position17          String? @db.Text
-  position17_name     String? @db.VarChar(255)
+  position17_name     String? @db.Text
   position17_en       String? @db.Text
-  position17_name_en  String? @db.VarChar(255)
+  position17_name_en  String? @db.Text
   position18          String? @db.Text
-  position18_name     String? @db.VarChar(255)
+  position18_name     String? @db.Text
   position18_en       String? @db.Text
-  position18_name_en  String? @db.VarChar(255)
+  position18_name_en  String? @db.Text
   position19          String? @db.Text
-  position19_name     String? @db.VarChar(255)
+  position19_name     String? @db.Text
   position19_en       String? @db.Text
-  position19_name_en  String? @db.VarChar(255)
+  position19_name_en  String? @db.Text
   position20          String? @db.Text
-  position20_name     String? @db.VarChar(255)
+  position20_name     String? @db.Text
   position20_en       String? @db.Text
-  position20_name_en  String? @db.VarChar(255)
+  position20_name_en  String? @db.Text
+  position21          String? @db.Text
+  position21_name     String? @db.Text
+  position21_en       String? @db.Text
+  position21_name_en  String? @db.Text
+  position22          String? @db.Text
+  position22_name     String? @db.Text
+  position22_en       String? @db.Text
+  position22_name_en  String? @db.Text
+  position23          String? @db.Text
+  position23_name     String? @db.Text
+  position23_en       String? @db.Text
+  position23_name_en  String? @db.Text
+  position24          String? @db.Text
+  position24_name     String? @db.Text
+  position24_en       String? @db.Text
+  position24_name_en  String? @db.Text
+  position25          String? @db.Text
+  position25_name     String? @db.Text
+  position25_en       String? @db.Text
+  position25_name_en  String? @db.Text
+  position26          String? @db.Text
+  position26_name     String? @db.Text
+  position26_en       String? @db.Text
+  position26_name_en  String? @db.Text
+  position27          String? @db.Text
+  position27_name     String? @db.Text
+  position27_en       String? @db.Text
+  position27_name_en  String? @db.Text
+  position28          String? @db.Text
+  position28_name     String? @db.Text
+  position28_en       String? @db.Text
+  position28_name_en  String? @db.Text
+  position29          String? @db.Text
+  position29_name     String? @db.Text
+  position29_en       String? @db.Text
+  position29_name_en  String? @db.Text
+  position30          String? @db.Text
+  position30_name     String? @db.Text
+  position30_en       String? @db.Text
+  position30_name_en  String? @db.Text
   descriptionleft1    String? @db.Text
   descriptionleft1_en String? @db.Text
   descriptionleft2    String? @db.Text
