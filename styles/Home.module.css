@@ -9,14 +9,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 9999; /* Sehr hoher z-index, damit es über allem liegt */
+  z-index: 9999;
   text-align: center;
   font-family: 'Arial', sans-serif;
   font-size: 2rem;
   padding: 20px;
   box-sizing: border-box;
 }
-
 
 .container {
   position: relative;
@@ -74,32 +73,29 @@
   color: white;
   padding: 10px;
   border-radius: 5px;
+  font-size: 1rem; /* Standard-Schriftgröße */
 }
 
-
+@media (max-width: 600px) {
+  .description {
+    font-size: 0.8rem; /* Kleinere Schriftgröße für Mobilgeräte */
+  }
+}
 
 @media (min-width: 600px) {
-
   .container {
-
     height: calc(100vh - 4rem);
   }
-
-
 }
 
 @media (min-width: 900px) {
   .container {
-
     height: calc(100vh - 6rem);
   }
-
 }
 
 @media (min-width: 1200px) {
   .container {
-
     height: calc(100vh - 7rem);
   }
-
 }
