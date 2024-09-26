@@ -5,6 +5,9 @@ import styles from "../styles/PlayPage.module.css";
 const PlayDetailsList = ({ play }) => {
   const { t, i18n } = useTranslation("common");
 
+  console.log("PlayDetailsList component rendered");
+  console.log("Play object:", play);
+
   useEffect(() => {
     console.log("Position 21:", play.position21, "Name:", play.position21_name);
     console.log("Position 22:", play.position22, "Name:", play.position22_name);
@@ -68,9 +71,6 @@ const PlayDetailsList = ({ play }) => {
       {positions.map((position) => {
         const positionText = getText(position.key);
         const positionName = getText(position.nameKey);
-
-        // Ausgabe in der Konsole zur Überprüfung der Inhalte
-        console.log(`Position: ${positionText}, Name: ${positionName}`);
 
         if (positionText || positionName) {
           return (

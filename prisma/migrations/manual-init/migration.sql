@@ -9,7 +9,6 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `subtitle3` VARCHAR(255),
   `subtitle3_en` VARCHAR(255),
 
-  -- Positionen und deren Namen
   `position1` TEXT,
   `position1_name` TEXT,
   `position1_en` TEXT,
@@ -110,7 +109,6 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `position20_en` TEXT,
   `position20_name_en` TEXT,
 
-  -- Positionen 21 bis 30
   `position21` TEXT,
   `position21_name` TEXT,
   `position21_en` TEXT,
@@ -161,7 +159,6 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `position30_en` TEXT,
   `position30_name_en` TEXT,
 
-  -- Beschreibungen und zusätzliche Felder
   `descriptionleft1` TEXT,
   `descriptionleft1_en` TEXT,
   `descriptionleft2` TEXT,
@@ -180,7 +177,6 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `textright4` TEXT,
   `textright4_en` TEXT,
 
-  -- Bilder und Credits
   `topImage1` TEXT,
   `topImage2` TEXT,
   `topImage3` TEXT,
@@ -206,7 +202,6 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `imageCredit9` TEXT,
   `imageCredit10` TEXT,
 
-  -- Mobile Images
   `mobileImageUrl1` TEXT,
   `mobileImageUrl2` TEXT,
   `mobileImageUrl3` TEXT,
@@ -218,7 +213,6 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `mobileImageCredit4` TEXT,
   `mobileImageCredit5` TEXT,
 
-  -- Video und Logo
   `videoUrl1` TEXT,
   `videoCredit1` TEXT,
   `logo1` TEXT,
