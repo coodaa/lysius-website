@@ -76,9 +76,9 @@ const HomePage = ({ images }) => {
       </Head>
 
       <div className={styles.container}>
-        <div className={styles.constructionOverlay}>
+        {/* <div className={styles.constructionOverlay}>
           Diese Seite befindet sich im Bau.
-        </div>
+        </div> */}
 
         <div className={styles.overlayContainer}>
           <div className={styles.imageWrapper}>
