@@ -28,7 +28,7 @@
   color: white;
   display: inline-block;
   max-width: 95vw;
-  line-height: 1.2;
+  line-height: 1.5;
   word-wrap: break-word;
   white-space: normal;
 }
@@ -48,6 +48,7 @@
 
 .subtitle span:last-child {
   padding-right:0.5em;
+  line-height: 2;
 }
 
 .titleDesktop {
@@ -429,10 +430,10 @@
     color: white;
     display: inline-block;
     max-width: 70vw;
-    line-height: 1; /* Reduziere den line-height auf 1.2 */
     word-wrap: break-word;
     white-space: normal;
     margin-bottom: -.1em;
+    line-height: 1.8;
   }
 
 

@@ -19,7 +19,6 @@ const SecondCarousel = ({ images, credits = [], onImageClick }) => {
 
   return (
     <div className={styles.carouselWrapper}>
-      {/* onClick-Handler auf dem sichtbaren Bild */}
       <div
         className={styles.carousel}
         onClick={() => onImageClick(currentImageIndex)}
@@ -35,7 +34,7 @@ const SecondCarousel = ({ images, credits = [], onImageClick }) => {
               src={image}
               alt={`Carousel image ${index + 1}`}
               layout="fill"
-              objectFit="cover"
+              objectFit="contain"
               priority={index === 0}
             />
           </div>

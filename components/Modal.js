@@ -6,25 +6,19 @@ import styles from "../styles/Modal.module.css";
 const Modal = ({ images, initialIndex, onClose }) => {
   const { t } = useTranslation("common");
   const [currentIndex, setCurrentIndex] = useState(initialIndex);
-  const [objectFit, setObjectFit] = useState("contain");
 
   // Aktualisiere currentIndex, wenn initialIndex sich ändert
   useEffect(() => {
     setCurrentIndex(initialIndex);
   }, [initialIndex]);
 
-  // Dynamisch überprüfen, ob das Bild Querformat oder Hochformat ist
+  // Bilder vorab laden
   useEffect(() => {
-    const img = new window.Image();
-    img.src = images[currentIndex];
-    img.onload = () => {
-      if (img.width > img.height) {
-        setObjectFit("cover"); // Querformat
-      } else {
-        setObjectFit("contain"); // Hochformat
-      }
-    };
-  }, [currentIndex, images]);
+    images.forEach((imageSrc) => {
+      const img = new window.Image();
+      img.src = imageSrc;
+    });
+  }, [images]);
 
   // Swipe-Handling für Touch-Geräte
   let touchStartX = 0;
@@ -72,9 +66,9 @@ const Modal = ({ images, initialIndex, onClose }) => {
         <div className={styles.modalImageWrapper}>
           <Image
             src={images[currentIndex]}
-            alt={`Image ${currentIndex + 1}`}
+            alt={`Bild ${currentIndex + 1}`}
             layout="fill"
-            objectFit={objectFit}
+            objectFit="contain" // Fest auf "contain" setzen
             className={styles.modalImage}
           />
         </div>

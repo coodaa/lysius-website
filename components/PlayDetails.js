@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from "react";
-import Image from "next/image";
+import NextImage from "next/image"; // Import umbenannt
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
@@ -121,6 +121,23 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     }
   }, [title, play, activeImages, setCurrentTitle]);
 
+  // Bilder vorab laden
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Alle Bilder, die im Modal angezeigt werden können
+      const preloadImages = [
+        ...desktopImages.map((img) => img.url),
+        ...mobileImages.map((img) => img.url),
+      ];
+
+      // Bilder vorab laden
+      preloadImages.forEach((imageSrc) => {
+        const img = new Image();
+        img.src = imageSrc;
+      });
+    }
+  }, [desktopImages, mobileImages]);
+
   const handleImageClick = useCallback((index, imagesArray) => {
     setModalImages(imagesArray); // Setze die Bilder für das Modal
     setModalImageIndex(index); // Setze den Index für das Modal
@@ -160,15 +177,14 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   className={`${styles.image} ${
                     index === currentImageIndex ? styles.show : ""
                   }`}
-                  // Entfernen Sie den onClick-Handler hier
-                  // onClick={() =>
-                  //   handleImageClick(
-                  //     index,
-                  //     mobileImages.map((img) => img.url)
-                  //   )
-                  // }
+                  onClick={() =>
+                    handleImageClick(
+                      index,
+                      mobileImages.map((img) => img.url)
+                    )
+                  }
                 >
-                  <Image
+                  <NextImage
                     src={image.url}
                     alt={title}
                     layout="fill"
@@ -202,7 +218,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   //   )
                   // }
                 >
-                  <Image
+                  <NextImage
                     src={image.url}
                     alt={title}
                     layout="fill"
