@@ -97,6 +97,10 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           url: play?.mobileImageUrl5 || play?.imageUrl5,
           credit: play?.mobileImageCredit5 || play?.imageCredit5 || "",
         },
+        {
+          url: play?.mobileImageUrl6 || play?.imageUrl6,
+          credit: play?.mobileImageCredit6 || play?.imageCredit6 || "",
+        },
       ].filter((image) => image.url),
     [play]
   );

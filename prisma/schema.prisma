@@ -213,11 +213,13 @@ model Play {
   mobileImageUrl3     String? @db.Text
   mobileImageUrl4     String? @db.Text
   mobileImageUrl5     String? @db.Text
+  mobileImageUrl6     String? @db.Text
   mobileImageCredit1  String? @db.Text
   mobileImageCredit2  String? @db.Text
   mobileImageCredit3  String? @db.Text
   mobileImageCredit4  String? @db.Text
   mobileImageCredit5  String? @db.Text
+  mobileImageCredit6  String? @db.Text
   videoUrl1           String? @db.Text
   videoCredit1        String? @db.Text
   logo1               String? @db.Text

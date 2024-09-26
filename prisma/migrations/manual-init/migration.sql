@@ -207,11 +207,13 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `mobileImageUrl3` TEXT,
   `mobileImageUrl4` TEXT,
   `mobileImageUrl5` TEXT,
+  `mobileImageUrl6` TEXT,
   `mobileImageCredit1` TEXT,
   `mobileImageCredit2` TEXT,
   `mobileImageCredit3` TEXT,
   `mobileImageCredit4` TEXT,
   `mobileImageCredit5` TEXT,
+  `mobileImageCredit6` TEXT,
 
   `videoUrl1` TEXT,
   `videoCredit1` TEXT,

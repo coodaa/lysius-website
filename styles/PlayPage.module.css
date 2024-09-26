@@ -384,17 +384,6 @@
   }
 
 
-  /* Füge den Strich zu .textright hinzu */
-  .textright::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: -20vh;
-    right: -2rem; /* Strich wird rechts von .textright gezeichnet */
-    width: 1px;
-    background-color: black;
-    height: 100%;
-  }
 
   .carouselVideoContainer {
     flex: 2;
