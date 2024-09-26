@@ -103,7 +103,7 @@ export async function getServerSideProps(context) {
         position20_name: true,
         position20_en: true,
         position20_name_en: true,
-        position21: true, // Hinzugefügte Positionen 21-30
+        position21: true,
         position21_name: true,
         position21_en: true,
         position21_name_en: true,

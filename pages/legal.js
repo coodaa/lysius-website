@@ -1,40 +1,66 @@
 import { PrismaClient } from "@prisma/client";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
-import styles from "../styles/LegalPage.module.css"; // Passe den Pfad nach Bedarf an
+import Head from "next/head"; // Meta-Tags hinzufügen
+import styles from "../styles/LegalPage.module.css";
 
 const prisma = new PrismaClient();
 
-const ImpressumPage = ({ legalData }) => {
+const LegalPage = ({ legalData }) => {
   const { t, i18n } = useTranslation("common");
   const isEnglish = i18n.language === "en";
 
-  // Den Inhalt basierend auf der Sprache auswählen
   const content = isEnglish ? legalData.content_en : legalData.content;
 
   // Den Text in Absätze aufteilen
   const paragraphs = content ? content.split("\n").filter(Boolean) : [];
 
+  const pageTitle = legalData.type === "AGB" ? t("terms") : t("privacy_policy");
+  const pageDescription = isEnglish
+    ? `Read our ${pageTitle} in English.`
+    : `Lesen Sie unsere ${pageTitle} auf Deutsch.`;
+
   return (
-    <div className={styles.container}>
-      <div className={styles.text}>
-        {paragraphs.map((paragraph, index) => (
-          <p key={index}>{paragraph}</p>
-        ))}
+    <>
+      <Head>
+        <title>{pageTitle} | Lysius</title>
+        <meta name="description" content={pageDescription} />
+        <meta property="og:title" content={`${pageTitle} | Lysius`} />
+        <meta property="og:description" content={pageDescription} />
+        <meta property="og:url" content="https://www.lysius.org/legal" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/path/to/your/image.jpg" />{" "}
+        {/* Optional: Bild hinzufügen */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${pageTitle} | Lysius`} />
+        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:image" content="/path/to/your/image.jpg" />{" "}
+        {/* Optional: Bild hinzufügen */}
+      </Head>
+
+      <div className={styles.container}>
+        <h1>{pageTitle}</h1>
+        <div className={styles.text}>
+          {paragraphs.map((paragraph, index) => (
+            <p key={index}>{paragraph}</p>
+          ))}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
 // Server-side Daten holen
-export const getServerSideProps = async ({ locale }) => {
-  // Impressum aus der Datenbank abrufen
+export const getServerSideProps = async ({ locale, query }) => {
+  const { type } = query;
+
+  // AGB oder Datenschutz basierend auf dem `type`-Parameter abfragen
   const legalData = await prisma.legal.findFirst({
-    where: { type: "Impressum" },
+    where: { type },
   });
 
   if (legalData) {
-    // createdAt (und andere Date-Felder, falls nötig) in ein ISO-String-Format konvertieren
+    // Konvertiere createdAt (und andere Date-Felder, falls nötig) in ein ISO-String-Format
     legalData.createdAt = legalData.createdAt.toISOString();
   }
 
@@ -46,4 +72,4 @@ export const getServerSideProps = async ({ locale }) => {
   };
 };
 
-export default ImpressumPage;
+export default LegalPage;

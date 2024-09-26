@@ -107,7 +107,14 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
   const activeImages = isMobile ? mobileImages : topImages;
 
-  const logos = [play?.logo1, play?.logo2, play?.logo3, play?.logo4, play?.logo5, play?.logo6].filter(Boolean);
+  const logos = [
+    play?.logo1,
+    play?.logo2,
+    play?.logo3,
+    play?.logo4,
+    play?.logo5,
+    play?.logo6,
+  ].filter(Boolean);
 
   useEffect(() => {
     if (play?.title) setCurrentTitle(title);
@@ -280,9 +287,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
               {logos.length > 0 && (
                 <div className={styles.logoSection}>
-                  {/* <p className={styles.supportText}>
-                    Mit freundlicher Unterstützung von:
-                  </p> */}
                   <div className={styles.logoContainer}>
                     {logos.map((logo, index) => (
                       <div key={index} className={styles.logoWrapper}>

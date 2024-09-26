@@ -178,7 +178,6 @@
   margin-bottom: .5em;
 }
 
-
 .videoContainer {
   position: relative;
   padding-bottom: 56.25%;
@@ -212,8 +211,6 @@
   font-size: 1.2rem;
 }
 
-
-/* Mobiler Bildercontainer */
 .mobileImages {
   display: none;
 }
@@ -265,46 +262,34 @@
   margin-bottom: 10em;
 }
 
-
 .horizontalLine {
   border: none;
   border-top: 1px solid black;
-  margin: 1rem 0; /* Optional: Abstand um den Strich herum */
+  margin: 1rem 0;
 }
 
-
-/* Container für die Logos und den Unterstützungstext */
 .logoSection {
   text-align: center;
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
 
-.supportText {
-  font-size: 1.2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-/* Container für die Logos */
 .logoContainer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 2rem; /* Abstand zwischen den Logos */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
 }
 
 .logoWrapper {
-  width: 10vw; /* Breite der Logos */
-  height: auto; /* Höhe proportional zur Breite */
+  width: 100%;
+  height: auto;
 }
 
 .logoImage {
   width: 100%;
   height: auto;
-  object-fit: contain; /* Bild skaliert proportional und passt sich dem Container an */
+  object-fit: contain;
 }
-
 
 @media only screen and (max-width: 767px) {
   .mobileImages {
@@ -318,7 +303,7 @@
   .mobileImages .image {
     height: 100vh;
     width: 100%;
-    object-fit: cover; /* Das Bild wird so skaliert, dass es den Container ausfüllt, ohne das Seitenverhältnis zu verlieren */
+    object-fit: cover;
   }
 
   .mobileImages .image.show {
@@ -328,17 +313,21 @@
   .mobileImages .imageContainer {
     position: relative;
     width: 100%;
-    height: 92vh; /* Container hat auch die Höhe des Viewports */
+    height: 92vh;
+  }
+
+  .logoContainer {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 }
 
-/* Desktop styles */
 @media (min-width: 768px) {
   .contentContainer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start; /* Align items to the top */
+    align-items: flex-start;
     gap: 2rem;
   }
 
@@ -355,23 +344,20 @@
     max-width: 50%;
     text-align: left;
     padding-right: 2rem;
-    position: relative; /* Notwendig für das Pseudo-Element */
-    height: auto; /* Höhe automatisch anpassen */
-    min-height: 100vh; /* Stellt sicher, dass der Container mindestens die Höhe des Viewports hat */
+    position: relative;
+    height: auto;
+    min-height: 100vh;
   }
-
-
 
   .textContainer::before {
     content: '';
     position: absolute;
-    top: 5em; /* Startet oben */
-    bottom: -20vh; /* Reicht bis zum unteren Ende des Containers */
-    right: 0; /* An der rechten Seite des Containers */
+    top: 5em;
+    bottom: -20vh;
+    right: 0;
     width: 1px;
-    background-color: black; /* Farbe des Strichs */
+    background-color: black;
   }
-
 
   .textright {
     margin-top: 2rem;
@@ -380,16 +366,14 @@
     display: block;
     width: 100%;
     box-sizing: border-box;
-    position: relative; /* Notwendig für das Pseudo-Element */
+    position: relative;
   }
-
-
 
   .carouselVideoContainer {
     flex: 2;
     max-width: 55%;
     display: flex;
-    flex-direction: column; /* Vertical layout for carousel and video */
+    flex-direction: column;
     justify-content: center;
     margin-bottom: 0rem;
   }
@@ -403,7 +387,7 @@
   }
 
   .title, .subtitle {
-    display: none; /* Hide on desktop */
+    display: none;
   }
 
   .titleDesktop {
@@ -425,7 +409,6 @@
     line-height: 1.8;
   }
 
-
   .subtitleDesktop span {
     display: inline;
     background: black;
@@ -434,7 +417,6 @@
     padding-top: .2em;
     padding-bottom: .2em;
   }
-
 
   .subtitle span:first-child {
     padding-left: 40em;
@@ -450,7 +432,6 @@
     max-width: 100%;
   }
 
-  /* Zusätzliche Texte */
   .textright {
     margin-top: 2rem;
     max-width: 100%;
@@ -462,14 +443,12 @@
   }
 
   .desktopOnly {
-    display: block; /* Nur auf Desktop anzeigen */
+    display: block;
   }
 }
 
 @media (min-width: 2000px) {
-
-.textContainer::before {
-
-  bottom: -90vh;
+  .textContainer::before {
+    bottom: -90vh;
   }
 }

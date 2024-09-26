@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
+import NextImage from "next/image"; // Verwende Next.js Image-Komponente
+import Head from "next/head"; // Für SEO Meta-Tags
 import styles from "../styles/Home.module.css";
 
 export async function getServerSideProps({ locale }) {
@@ -57,41 +59,54 @@ const HomePage = ({ images }) => {
   }, [images.length]);
 
   return (
-    <div className={styles.container}>
-      <div className={styles.constructionOverlay}>
-        Diese Seite befindet sich im Bau.
-      </div>
+    <>
+      <Head>
+        <title>Lysius</title>
+        <meta
+          name="description"
+          content="Der gemeinnützige Verein Lysius e.V. verbindet seit 2019 eine Initiative von Kulturschaffenden."
+        />
+        <meta name="keywords" content="Lysius, Kultur, Kunst, Theater, Musik" />
+        <meta property="og:title" content="Lysius e.V." />
+        <meta
+          property="og:description"
+          content="Eine Initiative von Kulturschaffenden in Musik, Theater und Gesellschaft."
+        />
+        <meta property="og:image" content={images[currentImageIndex]?.url} />
+      </Head>
 
-      <div className={styles.overlayContainer}>
-        <div className={styles.imageWrapper}>
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className={`${styles.image} ${
-                index === currentImageIndex ? styles.show : ""
-              }`}
-            >
-              <img
-                src={
-                  isMobile && image.mobileImageUrl
-                    ? image.mobileImageUrl
-                    : image.url
-                }
-                alt={image.name}
-                style={{
-                  position: "absolute",
-                  height: "100%",
-                  width: "100%",
-                  inset: "0px",
-                  objectFit: "cover",
-                }}
-              />
-            </div>
-          ))}
+      <div className={styles.container}>
+        <div className={styles.constructionOverlay}>
+          Diese Seite befindet sich im Bau.
         </div>
-        <h1 className={styles.title}>Lysius</h1>
+
+        <div className={styles.overlayContainer}>
+          <div className={styles.imageWrapper}>
+            {images.map((image, index) => (
+              <div
+                key={index}
+                className={`${styles.image} ${
+                  index === currentImageIndex ? styles.show : ""
+                }`}
+              >
+                <NextImage
+                  src={
+                    isMobile && image.mobileImageUrl
+                      ? image.mobileImageUrl
+                      : image.url
+                  }
+                  alt={image.name}
+                  layout="fill"
+                  objectFit="cover"
+                  priority={index === 0} // Erstes Bild wird priorisiert geladen
+                />
+              </div>
+            ))}
+          </div>
+          <h1 className={styles.title}>Lysius</h1>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

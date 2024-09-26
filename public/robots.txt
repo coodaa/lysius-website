@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.lysius.org
+
+# Sitemaps
+Sitemap: https://www.lysius.org/sitemap.xml
