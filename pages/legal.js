@@ -29,13 +29,17 @@ const LegalPage = ({ legalData }) => {
         <meta property="og:description" content={pageDescription} />
         <meta property="og:url" content="https://www.lysius.org/legal" />
         <meta property="og:type" content="website" />
-        <meta property="og:image" content="/path/to/your/image.jpg" />{" "}
-        {/* Optional: Bild hinzufügen */}
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={`${pageTitle} | Lysius`} />
         <meta name="twitter:description" content={pageDescription} />
-        <meta name="twitter:image" content="/path/to/your/image.jpg" />{" "}
-        {/* Optional: Bild hinzufügen */}
+        <meta
+          name="twitter:image"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+        />
       </Head>
 
       <div className={styles.container}>

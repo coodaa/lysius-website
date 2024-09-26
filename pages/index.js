@@ -72,7 +72,10 @@ const HomePage = ({ images }) => {
           property="og:description"
           content="Eine Initiative von Kulturschaffenden in Musik, Theater und Gesellschaft."
         />
-        <meta property="og:image" content={images[currentImageIndex]?.url} />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+        />
       </Head>
 
       <div className={styles.container}>

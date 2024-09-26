@@ -27,7 +27,10 @@ const AboutPage = ({ aboutData }) => {
           property="og:description"
           content="Der Verein Lysius e.V. fördert interdisziplinär Kunst und Kultur."
         />
-        <meta property="og:image" content="/path/to/your-image.jpg" />
+        <meta
+          property="og:image"
+          content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
+        />
       </Head>
 
       <div className={styles.container}>
