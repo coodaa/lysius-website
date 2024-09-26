@@ -165,11 +165,12 @@
 }
 
 .carouselCredits {
-  /* margin-top: 0.5rem; */
+  margin-top: 0.5rem;
   text-align: center;
   font-size: 0.9rem;
   color: black;
   min-height: 2rem;
+  max-width: 95vw;
   display: flex;
   justify-content: center;
   align-items: center;
