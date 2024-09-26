@@ -5,15 +5,6 @@ import styles from "../styles/PlayPage.module.css";
 const PlayDetailsList = ({ play }) => {
   const { t, i18n } = useTranslation("common");
 
-  console.log("PlayDetailsList component rendered");
-  console.log("Play object:", play);
-
-  useEffect(() => {
-    console.log("Position 21:", play.position21, "Name:", play.position21_name);
-    console.log("Position 22:", play.position22, "Name:", play.position22_name);
-    console.log("Position 23:", play.position23, "Name:", play.position23_name);
-  }, [play]);
-
   const positions = [
     { key: "position1", nameKey: "position1_name" },
     { key: "position2", nameKey: "position2_name" },

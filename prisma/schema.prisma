@@ -225,4 +225,7 @@ model Play {
   logo1               String? @db.Text
   logo2               String? @db.Text
   logo3               String? @db.Text
+  logo4               String? @db.Text
+  logo5               String? @db.Text
+  logo6               String? @db.Text
 }

@@ -220,6 +220,9 @@ CREATE TABLE IF NOT EXISTS `Play` (
   `logo1` TEXT,
   `logo2` TEXT,
   `logo3` TEXT,
+  `logo4` TEXT,
+  `logo5` TEXT,
+  `logo6` TEXT,
 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

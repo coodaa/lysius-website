@@ -107,7 +107,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
   const activeImages = isMobile ? mobileImages : topImages;
 
-  const logos = [play?.logo1, play?.logo2, play?.logo3].filter(Boolean);
+  const logos = [play?.logo1, play?.logo2, play?.logo3, play?.logo4, play?.logo5, play?.logo6].filter(Boolean);
 
   useEffect(() => {
     if (play?.title) setCurrentTitle(title);

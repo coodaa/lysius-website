@@ -200,6 +200,9 @@ export async function getServerSideProps(context) {
         logo1: true,
         logo2: true,
         logo3: true,
+        logo4: true,
+        logo5: true,
+        logo6: true,
       },
     });
 
