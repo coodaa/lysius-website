@@ -66,8 +66,8 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
         {
           url: play?.imageUrl1,
           credit: play?.imageCredit1 || "", // Allgemeine Credits
-          credit_de: play?.imageCredit1_de || play?.imageCredit1 || "", // Deutsche Credits, falls vorhanden
-          credit_en: play?.imageCredit1_en || play?.imageCredit1 || "", // Englische Credits, falls vorhanden
+          credit_de: play?.imageCredit1_de || play?.imageCredit1 || "",
+          credit_en: play?.imageCredit1_en || play?.imageCredit1 || "",
         },
         {
           url: play?.imageUrl2,
@@ -173,10 +173,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   const allCredits = desktopImages.map((img) => img.credit); // Allgemeine Credits
   const deCredits = desktopImages.map((img) => img.credit_de); // Deutsche Credits
   const enCredits = desktopImages.map((img) => img.credit_en); // Englische Credits
-
-
-
-
 
   const activeImages = isMobile ? mobileImages : topImages;
 
