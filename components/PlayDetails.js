@@ -63,16 +63,56 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   const desktopImages = useMemo(
     () =>
       [
-        { url: play?.imageUrl1, credit: play?.imageCredit1 || "" },
-        { url: play?.imageUrl2, credit: play?.imageCredit2 || "" },
-        { url: play?.imageUrl3, credit: play?.imageCredit3 || "" },
-        { url: play?.imageUrl4, credit: play?.imageCredit4 || "" },
-        { url: play?.imageUrl5, credit: play?.imageCredit5 || "" },
-        { url: play?.imageUrl6, credit: play?.imageCredit6 || "" },
-        { url: play?.imageUrl7, credit: play?.imageCredit7 || "" },
-        { url: play?.imageUrl8, credit: play?.imageCredit8 || "" },
-        { url: play?.imageUrl9, credit: play?.imageCredit9 || "" },
-        { url: play?.imageUrl10, credit: play?.imageCredit10 || "" },
+        {
+          url: play?.imageUrl1,
+          credit_de: play?.imageCredit1_de || "",
+          credit_en: play?.imageCredit1_en || "",
+        },
+        {
+          url: play?.imageUrl2,
+          credit_de: play?.imageCredit2_de || "",
+          credit_en: play?.imageCredit2_en || "",
+        },
+        {
+          url: play?.imageUrl3,
+          credit_de: play?.imageCredit3_de || "",
+          credit_en: play?.imageCredit3_en || "",
+        },
+        {
+          url: play?.imageUrl4,
+          credit_de: play?.imageCredit4_de || "",
+          credit_en: play?.imageCredit4_en || "",
+        },
+        {
+          url: play?.imageUrl5,
+          credit_de: play?.imageCredit5_de || "",
+          credit_en: play?.imageCredit5_en || "",
+        },
+        {
+          url: play?.imageUrl6,
+          credit_de: play?.imageCredit6_de || "",
+          credit_en: play?.imageCredit6_en || "",
+        },
+        {
+          url: play?.imageUrl7,
+          credit_de: play?.imageCredit7_de || "",
+          credit_en: play?.imageCredit7_en || "",
+        },
+        {
+          url: play?.imageUrl8,
+          credit_de: play?.imageCredit8_de || "",
+          credit_en: play?.imageCredit8_en || "",
+        },
+        {
+          url: play?.imageUrl9,
+          credit_de: play?.imageCredit9_de || "",
+          credit_en: play?.imageCredit9_en || "",
+        },
+        {
+          url: play?.imageUrl10,
+          credit_de: play?.imageCredit10_de || "",
+          credit_en: play?.imageCredit10_en || "",
+        },
       ].filter((image) => image.url),
     [play]
   );
@@ -82,27 +122,33 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
       [
         {
           url: play?.topMobileImage1 || play?.imageUrl1,
-          credit: play?.imageCredit1 || "",
+          credit_de: play?.imageCredit1_de || "",
+          credit_en: play?.imageCredit1_en || "",
         },
         {
           url: play?.topMobileImage2 || play?.imageUrl2,
-          credit: play?.imageCredit2 || "",
+          credit_de: play?.imageCredit2_de || "",
+          credit_en: play?.imageCredit2_en || "",
         },
         {
           url: play?.topMobileImage3 || play?.imageUrl3,
-          credit: play?.imageCredit3 || "",
+          credit_de: play?.imageCredit3_de || "",
+          credit_en: play?.imageCredit3_en || "",
         },
         {
           url: play?.topMobileImage4 || play?.imageUrl4,
-          credit: play?.imageCredit4 || "",
+          credit_de: play?.imageCredit4_de || "",
+          credit_en: play?.imageCredit4_en || "",
         },
         {
           url: play?.topMobileImage5 || play?.imageUrl5,
-          credit: play?.imageCredit5 || "",
+          credit_de: play?.imageCredit5_de || "",
+          credit_en: play?.imageCredit5_en || "",
         },
         {
           url: play?.topMobileImage6 || play?.imageUrl6,
-          credit: play?.imageCredit6 || "",
+          credit_de: play?.imageCredit6_de || "",
+          credit_en: play?.imageCredit6_en || "",
         },
       ].filter((image) => image.url),
     [play]
@@ -330,6 +376,13 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 }
               />
             )}
+
+
+
+
+
+
+
 
             {videoUrl && <CustomVideoPlayer videoUrl={videoUrl} />}
 

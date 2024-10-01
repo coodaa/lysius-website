@@ -2,7 +2,14 @@ import Image from "next/image";
 import styles from "../styles/PlayPage.module.css";
 import React, { useState, useEffect } from "react";
 
-const SecondCarousel = ({ images, credits = [], onImageClick }) => {
+const SecondCarousel = ({
+  images,
+  credits = [],
+  credits_de = [],
+  credits_en = [],
+  language = "de",
+  onImageClick,
+}) => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
@@ -16,6 +23,9 @@ const SecondCarousel = ({ images, credits = [], onImageClick }) => {
   if (!images || images.length === 0) {
     return null; // Kein Rendering, wenn keine Bilder vorhanden sind
   }
+
+  // Wählen Sie die richtigen Credits basierend auf der Sprache aus
+  const selectedCredits = language === "de" ? credits_de : credits_en;
 
   return (
     <div className={styles.carouselWrapper}>
@@ -53,13 +63,14 @@ const SecondCarousel = ({ images, credits = [], onImageClick }) => {
         ))}
       </div>
 
-      {credits.length > 0 && (
+      {/* Credits basierend auf der ausgewählten Sprache anzeigen */}
+      {selectedCredits.length > 0 && (
         <div
           className={`${styles.carouselCredits} ${
-            credits[currentImageIndex] ? styles.visible : ""
+            selectedCredits[currentImageIndex] ? styles.visible : ""
           }`}
         >
-          {credits[currentImageIndex]}
+          {selectedCredits[currentImageIndex]}
         </div>
       )}
     </div>
