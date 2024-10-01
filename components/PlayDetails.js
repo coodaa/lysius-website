@@ -65,53 +65,63 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
       [
         {
           url: play?.imageUrl1,
-          credit_de: play?.imageCredit1_de || "",
-          credit_en: play?.imageCredit1_en || "",
+          credit: play?.imageCredit1 || "", // Allgemeine Credits
+          credit_de: play?.imageCredit1_de || play?.imageCredit1 || "", // Deutsche Credits, falls vorhanden
+          credit_en: play?.imageCredit1_en || play?.imageCredit1 || "", // Englische Credits, falls vorhanden
         },
         {
           url: play?.imageUrl2,
-          credit_de: play?.imageCredit2_de || "",
-          credit_en: play?.imageCredit2_en || "",
+          credit: play?.imageCredit2 || "",
+          credit_de: play?.imageCredit2_de || play?.imageCredit2 || "",
+          credit_en: play?.imageCredit2_en || play?.imageCredit2 || "",
         },
         {
           url: play?.imageUrl3,
-          credit_de: play?.imageCredit3_de || "",
-          credit_en: play?.imageCredit3_en || "",
+          credit: play?.imageCredit3 || "",
+          credit_de: play?.imageCredit3_de || play?.imageCredit3 || "",
+          credit_en: play?.imageCredit3_en || play?.imageCredit3 || "",
         },
         {
           url: play?.imageUrl4,
-          credit_de: play?.imageCredit4_de || "",
-          credit_en: play?.imageCredit4_en || "",
+          credit: play?.imageCredit4 || "",
+          credit_de: play?.imageCredit4_de || play?.imageCredit4 || "",
+          credit_en: play?.imageCredit4_en || play?.imageCredit4 || "",
         },
         {
           url: play?.imageUrl5,
-          credit_de: play?.imageCredit5_de || "",
-          credit_en: play?.imageCredit5_en || "",
+          credit: play?.imageCredit5 || "",
+          credit_de: play?.imageCredit5_de || play?.imageCredit5 || "",
+          credit_en: play?.imageCredit5_en || play?.imageCredit5 || "",
         },
         {
           url: play?.imageUrl6,
-          credit_de: play?.imageCredit6_de || "",
-          credit_en: play?.imageCredit6_en || "",
+          credit: play?.imageCredit6 || "",
+          credit_de: play?.imageCredit6_de || play?.imageCredit6 || "",
+          credit_en: play?.imageCredit6_en || play?.imageCredit6 || "",
         },
         {
           url: play?.imageUrl7,
-          credit_de: play?.imageCredit7_de || "",
-          credit_en: play?.imageCredit7_en || "",
+          credit: play?.imageCredit7 || "",
+          credit_de: play?.imageCredit7_de || play?.imageCredit7 || "",
+          credit_en: play?.imageCredit7_en || play?.imageCredit7 || "",
         },
         {
           url: play?.imageUrl8,
-          credit_de: play?.imageCredit8_de || "",
-          credit_en: play?.imageCredit8_en || "",
+          credit: play?.imageCredit8 || "",
+          credit_de: play?.imageCredit8_de || play?.imageCredit8 || "",
+          credit_en: play?.imageCredit8_en || play?.imageCredit8 || "",
         },
         {
           url: play?.imageUrl9,
-          credit_de: play?.imageCredit9_de || "",
-          credit_en: play?.imageCredit9_en || "",
+          credit: play?.imageCredit9 || "",
+          credit_de: play?.imageCredit9_de || play?.imageCredit9 || "",
+          credit_en: play?.imageCredit9_en || play?.imageCredit9 || "",
         },
         {
           url: play?.imageUrl10,
-          credit_de: play?.imageCredit10_de || "",
-          credit_en: play?.imageCredit10_en || "",
+          credit: play?.imageCredit10 || "",
+          credit_de: play?.imageCredit10_de || play?.imageCredit10 || "",
+          credit_en: play?.imageCredit10_en || play?.imageCredit10 || "",
         },
       ].filter((image) => image.url),
     [play]
@@ -122,37 +132,51 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
       [
         {
           url: play?.topMobileImage1 || play?.imageUrl1,
-          credit_de: play?.imageCredit1_de || "",
-          credit_en: play?.imageCredit1_en || "",
+          credit: play?.imageCredit1 || "",
+          credit_de: play?.imageCredit1_de || play?.imageCredit1 || "",
+          credit_en: play?.imageCredit1_en || play?.imageCredit1 || "",
         },
         {
           url: play?.topMobileImage2 || play?.imageUrl2,
-          credit_de: play?.imageCredit2_de || "",
-          credit_en: play?.imageCredit2_en || "",
+          credit: play?.imageCredit2 || "",
+          credit_de: play?.imageCredit2_de || play?.imageCredit2 || "",
+          credit_en: play?.imageCredit2_en || play?.imageCredit2 || "",
         },
         {
           url: play?.topMobileImage3 || play?.imageUrl3,
-          credit_de: play?.imageCredit3_de || "",
-          credit_en: play?.imageCredit3_en || "",
+          credit: play?.imageCredit3 || "",
+          credit_de: play?.imageCredit3_de || play?.imageCredit3 || "",
+          credit_en: play?.imageCredit3_en || play?.imageCredit3 || "",
         },
         {
           url: play?.topMobileImage4 || play?.imageUrl4,
-          credit_de: play?.imageCredit4_de || "",
-          credit_en: play?.imageCredit4_en || "",
+          credit: play?.imageCredit4 || "",
+          credit_de: play?.imageCredit4_de || play?.imageCredit4 || "",
+          credit_en: play?.imageCredit4_en || play?.imageCredit4 || "",
         },
         {
           url: play?.topMobileImage5 || play?.imageUrl5,
-          credit_de: play?.imageCredit5_de || "",
-          credit_en: play?.imageCredit5_en || "",
+          credit: play?.imageCredit5 || "",
+          credit_de: play?.imageCredit5_de || play?.imageCredit5 || "",
+          credit_en: play?.imageCredit5_en || play?.imageCredit5 || "",
         },
         {
           url: play?.topMobileImage6 || play?.imageUrl6,
-          credit_de: play?.imageCredit6_de || "",
-          credit_en: play?.imageCredit6_en || "",
+          credit: play?.imageCredit6 || "",
+          credit_de: play?.imageCredit6_de || play?.imageCredit6 || "",
+          credit_en: play?.imageCredit6_en || play?.imageCredit6 || "",
         },
       ].filter((image) => image.url),
     [play]
   );
+
+  const allCredits = desktopImages.map((img) => img.credit); // Allgemeine Credits
+  const deCredits = desktopImages.map((img) => img.credit_de); // Deutsche Credits
+  const enCredits = desktopImages.map((img) => img.credit_en); // Englische Credits
+
+
+
+
 
   const activeImages = isMobile ? mobileImages : topImages;
 
@@ -270,13 +294,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   className={`${styles.image} ${
                     index === currentImageIndex ? styles.show : ""
                   }`}
-                  // Entfernen Sie den onClick-Handler hier
-                  // onClick={() =>
-                  //   handleImageClick(
-                  //     index,
-                  //     topImages.map((img) => img.url)
-                  //   )
-                  // }
                 >
                   <NextImage
                     src={image.url}
@@ -367,7 +384,10 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             {desktopImages.length > 0 && (
               <SecondCarousel
                 images={desktopImages.map((img) => img.url)}
-                credits={desktopImages.map((img) => img.credit)}
+                credits={allCredits} // Allgemeine Credits
+                credits_de={deCredits} // Deutsche Credits
+                credits_en={enCredits} // Englische Credits
+                language={i18n.language} // Sprache basierend auf dem aktuellen i18n state
                 onImageClick={(index) =>
                   handleImageClick(
                     index,
@@ -376,13 +396,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 }
               />
             )}
-
-
-
-
-
-
-
 
             {videoUrl && <CustomVideoPlayer videoUrl={videoUrl} />}
 
