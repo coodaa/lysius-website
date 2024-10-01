@@ -53,6 +53,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
         { url: play?.topImage1, credit: play?.topImageCredit1 || "" },
         { url: play?.topImage2, credit: play?.topImageCredit2 || "" },
         { url: play?.topImage3, credit: play?.topImageCredit3 || "" },
+        { url: play?.topImage4, credit: play?.topImageCredit4 || "" },
+        { url: play?.topImage5, credit: play?.topImageCredit5 || "" },
+        { url: play?.topImage6, credit: play?.topImageCredit6 || "" },
       ].filter((image) => image.url && image.url.trim() !== ""),
     [play]
   );
@@ -78,28 +81,28 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     () =>
       [
         {
-          url: play?.mobileImageUrl1 || play?.imageUrl1,
-          credit: play?.mobileImageCredit1 || play?.imageCredit1 || "",
+          url: play?.topMobileImage1 || play?.imageUrl1,
+          credit: play?.imageCredit1 || "",
         },
         {
-          url: play?.mobileImageUrl2 || play?.imageUrl2,
-          credit: play?.mobileImageCredit2 || play?.imageCredit2 || "",
+          url: play?.topMobileImage2 || play?.imageUrl2,
+          credit: play?.imageCredit2 || "",
         },
         {
-          url: play?.mobileImageUrl3 || play?.imageUrl3,
-          credit: play?.mobileImageCredit3 || play?.imageCredit3 || "",
+          url: play?.topMobileImage3 || play?.imageUrl3,
+          credit: play?.imageCredit3 || "",
         },
         {
-          url: play?.mobileImageUrl4 || play?.imageUrl4,
-          credit: play?.mobileImageCredit4 || play?.imageCredit4 || "",
+          url: play?.topMobileImage4 || play?.imageUrl4,
+          credit: play?.imageCredit4 || "",
         },
         {
-          url: play?.mobileImageUrl5 || play?.imageUrl5,
-          credit: play?.mobileImageCredit5 || play?.imageCredit5 || "",
+          url: play?.topMobileImage5 || play?.imageUrl5,
+          credit: play?.imageCredit5 || "",
         },
         {
-          url: play?.mobileImageUrl6 || play?.imageUrl6,
-          credit: play?.mobileImageCredit6 || play?.imageCredit6 || "",
+          url: play?.topMobileImage6 || play?.imageUrl6,
+          credit: play?.imageCredit6 || "",
         },
       ].filter((image) => image.url),
     [play]
