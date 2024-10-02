@@ -9,10 +9,12 @@ const Navbar = ({ currentTitle, plays }) => {
   const router = useRouter();
   const { t, i18n } = useTranslation("common");
 
+  // Menü öffnen oder schließen
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
+  // Menü schließen, wenn außerhalb des Menüs geklickt wird
   const closeMenu = (e) => {
     if (
       !e.target.closest(`.${styles.nav}`) &&
@@ -22,14 +24,18 @@ const Navbar = ({ currentTitle, plays }) => {
     }
   };
 
+  // Link-Klick-Handler, der das Menü schließt und nach oben scrollt
   const handleLinkClick = () => {
     setMenuOpen(false);
+    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   };
 
+  // Sprachwechsel zwischen Deutsch und Englisch
   const switchLanguage = (lang) => {
     router.push(router.pathname, router.asPath, { locale: lang });
   };
 
+  // Fügt Event-Listener zum Schließen des Menüs hinzu/entfernt sie
   useEffect(() => {
     if (menuOpen) {
       document.addEventListener("mousedown", closeMenu);
@@ -41,6 +47,20 @@ const Navbar = ({ currentTitle, plays }) => {
     };
   }, [menuOpen]);
 
+  // Scroll nach oben bei Seitenwechsel
+  useEffect(() => {
+    const handleRouteChange = () => {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
+
+  // Anzeige des aktuellen Titels basierend auf der Route
   const getDisplayTitle = () => {
     if (router.pathname.startsWith("/plays/")) {
       return currentTitle;
@@ -60,7 +80,7 @@ const Navbar = ({ currentTitle, plays }) => {
   return (
     <header className={styles.navbar}>
       <div className={styles.logo}>
-        {/* Der Titel ist jetzt nur noch ein Text, keine Navigation */}
+        {/* Der Titel ist nur ein Text und keine Navigation */}
         <span className={styles.title}>{displayTitle}</span>
       </div>
       <div className={styles.menuButton} onClick={toggleMenu}>
@@ -74,7 +94,7 @@ const Navbar = ({ currentTitle, plays }) => {
 
             return (
               <li key={play.id} onClick={handleLinkClick}>
-                <Link href={`/plays/${play.id}`} legacyBehavior>
+                <Link href={`/plays/${play.id}`} scroll={false} legacyBehavior>
                   <a
                     className={`${styles.link} ${
                       router.pathname === `/plays/${play.id}`
@@ -96,7 +116,7 @@ const Navbar = ({ currentTitle, plays }) => {
         >
           {/* Lysius Link */}
           <li className={styles.footerItem} onClick={handleLinkClick}>
-            <Link href="/" legacyBehavior>
+            <Link href="/" scroll={false} legacyBehavior>
               <a
                 className={`${styles.link} ${
                   router.pathname === "/" ? styles.active : ""
@@ -109,7 +129,7 @@ const Navbar = ({ currentTitle, plays }) => {
 
           {/* About Link */}
           <li className={styles.footerItem} onClick={handleLinkClick}>
-            <Link href="/about" legacyBehavior>
+            <Link href="/about" scroll={false} legacyBehavior>
               <a
                 className={`${styles.link} ${
                   router.pathname === "/about" ? styles.active : ""
@@ -122,7 +142,7 @@ const Navbar = ({ currentTitle, plays }) => {
 
           {/* Terms Link */}
           <li onClick={handleLinkClick}>
-            <Link href="/terms" legacyBehavior>
+            <Link href="/terms" scroll={false} legacyBehavior>
               <a
                 className={`${styles.link} ${
                   router.pathname === "/terms" ? styles.active : ""
@@ -135,7 +155,7 @@ const Navbar = ({ currentTitle, plays }) => {
 
           {/* Legal Link */}
           <li onClick={handleLinkClick}>
-            <Link href="/legal" legacyBehavior>
+            <Link href="/legal" scroll={false} legacyBehavior>
               <a
                 className={`${styles.link} ${
                   router.pathname === "/legal" ? styles.active : ""

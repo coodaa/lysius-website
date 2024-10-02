@@ -164,19 +164,28 @@
   background-color: white;
   border: 1px solid black;
 }
-
 .carouselCredits {
+  display: flex;
+  flex-direction: column; /* Elemente untereinander anordnen */
   margin-top: 0.5rem;
   text-align: center;
   font-size: 0.9rem;
   color: black;
   min-height: 2rem;
   max-width: 95vw;
-  display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: .5em;
+  margin-bottom: 0.5em;
 }
+
+.creditLine {
+  width: 100%; /* Stelle sicher, dass die Linie die ganze Breite einnimmt */
+  text-align: center;
+  padding: 0.2rem 0; /* Platz zwischen den Zeilen */
+}
+
+
+
 
 .videoContainer {
   position: relative;

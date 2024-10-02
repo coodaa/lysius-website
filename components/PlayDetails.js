@@ -42,10 +42,25 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     [isEnglish, play, t]
   );
 
-  const subtitles = useMemo(
-    () => [play?.subtitle1, play?.subtitle2, play?.subtitle3].filter(Boolean),
-    [play]
-  );
+  // Auswahl der passenden Subtitles basierend auf der Sprache
+  const subtitles = useMemo(() => {
+    const defaultSubtitles = [
+      play?.subtitle1,
+      play?.subtitle2,
+      play?.subtitle3,
+    ].filter(Boolean);
+
+    if (isEnglish) {
+      const englishSubtitles = [
+        play?.subtitle1_en,
+        play?.subtitle2_en,
+        play?.subtitle3_en,
+      ].filter(Boolean);
+      return englishSubtitles.length > 0 ? englishSubtitles : defaultSubtitles;
+    }
+
+    return defaultSubtitles;
+  }, [isEnglish, play]);
 
   const topImages = useMemo(
     () =>
@@ -228,6 +243,12 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     play?.videoUrl1
       ?.replace("youtu.be/", "www.youtube.com/embed/")
       ?.split("?")[0] || "";
+
+  useEffect(() => {
+    console.log("All Credits:", allCredits);
+    console.log("DE Credits:", deCredits);
+    console.log("EN Credits:", enCredits);
+  }, [allCredits, deCredits, enCredits]);
 
   return (
     <>
