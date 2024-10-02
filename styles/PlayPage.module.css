@@ -49,6 +49,23 @@
   line-height: 1.9;
 }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .titleDesktop {
   display: none;
 }
@@ -404,13 +421,12 @@
     font-size: 5rem;
     font-family: 'Playfair Display', serif;
     margin-bottom: 0.5rem;
-    /* line-height: 1; */
   }
 
   .subtitleDesktop {
     font-size: 1.3rem;
     color: white;
-    display: inline-block;
+    display: inline;
     max-width: 70vw;
     word-wrap: break-word;
     white-space: normal;
@@ -421,15 +437,20 @@
   .subtitleDesktop span {
     display: inline;
     background: black;
-    padding-left: .2em;
-    padding-right: .2em;
     padding-top: .2em;
     padding-bottom: .2em;
   }
 
-  .subtitle span:first-child {
-    padding-left: 40em;
+
+  .subtitleDesktop span:first-child {
+    padding-left:.5em;
   }
+
+  .subtitleDesktop span:last-child {
+    padding-right:0.5em;
+    line-height: 1.9;
+  }
+
 
   .description {
     margin-top: 1rem;

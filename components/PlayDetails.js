@@ -388,10 +388,10 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             {desktopImages.length > 0 && (
               <SecondCarousel
                 images={desktopImages.map((img) => img.url)}
-                credits={allCredits} // Allgemeine Credits
-                credits_de={deCredits} // Deutsche Credits
-                credits_en={enCredits} // Englische Credits
-                language={i18n.language} // Sprache basierend auf dem aktuellen i18n state
+                credits={allCredits} 
+                credits_de={deCredits}
+                credits_en={enCredits}
+                language={i18n.language}
                 onImageClick={(index) =>
                   handleImageClick(
                     index,
