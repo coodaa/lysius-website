@@ -195,6 +195,11 @@
   height: auto; /* Automatische Höhe für die Inhalte */
   transition: height 0.3s ease-in-out; /* Optional: Weiche Übergänge */
 }
+.carouselCredits {
+  height: 2rem; /* Temporär eine feste Höhe setzen */
+}
+
+
 
 .creditLine {
   width: 100%;

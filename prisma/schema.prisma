@@ -200,34 +200,24 @@ model Play {
   imageUrl8           String? @db.Text
   imageUrl9           String? @db.Text
   imageUrl10          String? @db.Text
-  imageCredit1        String? @db.Text
   imageCredit1_de     String? @db.Text
   imageCredit1_en     String? @db.Text
-  imageCredit2        String? @db.Text
   imageCredit2_de     String? @db.Text
   imageCredit2_en     String? @db.Text
-  imageCredit3        String? @db.Text
   imageCredit3_de     String? @db.Text
   imageCredit3_en     String? @db.Text
-  imageCredit4        String? @db.Text
   imageCredit4_de     String? @db.Text
   imageCredit4_en     String? @db.Text
-  imageCredit5        String? @db.Text
   imageCredit5_de     String? @db.Text
   imageCredit5_en     String? @db.Text
-  imageCredit6        String? @db.Text
   imageCredit6_de     String? @db.Text
   imageCredit6_en     String? @db.Text
-  imageCredit7        String? @db.Text
   imageCredit7_de     String? @db.Text
   imageCredit7_en     String? @db.Text
-  imageCredit8        String? @db.Text
   imageCredit8_de     String? @db.Text
   imageCredit8_en     String? @db.Text
-  imageCredit9        String? @db.Text
   imageCredit9_de     String? @db.Text
   imageCredit9_en     String? @db.Text
-  imageCredit10       String? @db.Text
   imageCredit10_de    String? @db.Text
   imageCredit10_en    String? @db.Text
   topMobileImage1     String? @db.Text

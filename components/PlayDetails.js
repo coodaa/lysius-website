@@ -388,9 +388,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
             {desktopImages.length > 0 && (
               <SecondCarousel
                 images={desktopImages.map((img) => img.url)}
-                credits={allCredits} 
-                credits_de={deCredits}
-                credits_en={enCredits}
+                credits={i18n.language === "de" ? deCredits : enCredits} // Richtiges Credit Array basierend auf der Sprache
+                credits_de={deCredits} // Deutsche Credits
+                credits_en={enCredits} // Englische Credits
                 language={i18n.language}
                 onImageClick={(index) =>
                   handleImageClick(
