@@ -76,6 +76,20 @@ const HomePage = ({ images }) => {
           property="og:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
+
+        {/* Preload-Links für Bilder */}
+        {images.map((image, index) => (
+          <link
+            key={index}
+            rel="preload"
+            href={
+              isMobile && image.mobileImageUrl
+                ? image.mobileImageUrl
+                : image.url
+            }
+            as="image"
+          />
+        ))}
       </Head>
 
       <div className={styles.container}>

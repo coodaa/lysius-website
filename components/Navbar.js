@@ -127,19 +127,6 @@ const Navbar = ({ currentTitle, plays }) => {
             </Link>
           </li>
 
-          {/* About Link */}
-          <li className={styles.footerItem} onClick={handleLinkClick}>
-            <Link href="/about" scroll={false} legacyBehavior>
-              <a
-                className={`${styles.link} ${
-                  router.pathname === "/about" ? styles.active : ""
-                }`}
-              >
-                {t("about")}
-              </a>
-            </Link>
-          </li>
-
           {/* Terms Link */}
           <li onClick={handleLinkClick}>
             <Link href="/terms" scroll={false} legacyBehavior>
