@@ -98,16 +98,20 @@ const SecondCarousel = ({
       </div>
 
       {/* Credits anzeigen, wenn sie vorhanden sind */}
-      {currentCredits.length > 0 && currentCredits[currentImageIndex] && (
-        <div className={styles.carouselCredits}>
-          {/* Hier die Credits in separate Zeilen aufteilen */}
-          {currentCredits[currentImageIndex]
-            .split("\n")
-            .map((credit, index) => (
-              <div key={index} className={styles.creditLine}>
-                {credit}
-              </div>
-            ))}
+      {currentCredits.length > 0 && (
+        <div className={styles.carouselCredits} style={{ minHeight: "2rem" }}>
+          {/* Credits in separate Zeilen aufteilen */}
+          {currentCredits[currentImageIndex] &&
+            currentCredits[currentImageIndex]
+              .split("\n")
+              .map((credit, index) => (
+                <div key={index} className={styles.creditLine}>
+                  {
+                    credit.trim() ||
+                      "\u00A0" /* Leere Zeile durch geschützten Leerraum ersetzen */
+                  }
+                </div>
+              ))}
         </div>
       )}
     </div>

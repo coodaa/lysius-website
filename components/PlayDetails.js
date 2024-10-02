@@ -370,22 +370,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                   </React.Fragment>
                 );
               })}
-
-              {logos.length > 0 && (
-                <div className={styles.logoSection}>
-                  <div className={styles.logoContainer}>
-                    {logos.map((logo, index) => (
-                      <div key={index} className={styles.logoWrapper}>
-                        <img
-                          src={logo}
-                          alt={`Logo ${index + 1}`}
-                          className={styles.logoImage}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
             </div>
           </div>
 
@@ -437,6 +421,22 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 />
               </div>
             ))}
+
+            {logos.length > 0 && (
+              <div className={styles.logoSection}>
+                <div className={styles.logoContainer}>
+                  {logos.map((logo, index) => (
+                    <div key={index} className={styles.logoWrapper}>
+                      <img
+                        src={logo}
+                        alt={`Logo ${index + 1}`}
+                        className={styles.logoImage}
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </div>
 

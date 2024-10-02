@@ -36,8 +36,6 @@
 .subtitle span {
   display: inline;
   background: black;
-  padding-left: .1em;
-  padding-right: .1em;
   padding-top: .2em;
   padding-bottom: .2em;
 }
@@ -48,7 +46,7 @@
 
 .subtitle span:last-child {
   padding-right:0.5em;
-  line-height: 2;
+  line-height: 1.9;
 }
 
 .titleDesktop {
@@ -164,28 +162,28 @@
   background-color: white;
   border: 1px solid black;
 }
+
 .carouselCredits {
   display: flex;
   flex-direction: column; /* Elemente untereinander anordnen */
-  margin-top: 0.5rem;
+  justify-content: center;
+  align-items: center;
   text-align: center;
   font-size: 0.9rem;
   color: black;
-  min-height: 2rem;
+  margin-top: 0.5rem;
+  margin-bottom: 2em;
   max-width: 95vw;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 0.5em;
+  min-height: 2rem; /* Mindesthöhe hinzufügen */
+  height: auto; /* Automatische Höhe für die Inhalte */
+  transition: height 0.3s ease-in-out; /* Optional: Weiche Übergänge */
 }
 
 .creditLine {
-  width: 100%; /* Stelle sicher, dass die Linie die ganze Breite einnimmt */
+  width: 100%;
   text-align: center;
-  padding: 0.2rem 0; /* Platz zwischen den Zeilen */
+  padding: 0.2rem 0;
 }
-
-
-
 
 .videoContainer {
   position: relative;
@@ -267,9 +265,9 @@
   outline: none;
 }
 
-.textright:last-child {
+/* .textright:last-child {
   margin-bottom: 10em;
-}
+} */
 
 .horizontalLine {
   border: none;
@@ -279,8 +277,8 @@
 
 .logoSection {
   text-align: center;
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  /* margin-top: 2rem; */
+  margin-bottom: 10em;
 }
 
 .logoContainer {
@@ -406,7 +404,7 @@
     font-size: 5rem;
     font-family: 'Playfair Display', serif;
     margin-bottom: 0.5rem;
-    line-height: 1;
+    /* line-height: 1; */
   }
 
   .subtitleDesktop {
@@ -416,7 +414,7 @@
     max-width: 70vw;
     word-wrap: break-word;
     white-space: normal;
-    margin-bottom: -.1em;
+    margin-bottom: -0.6em;
     line-height: 1.8;
   }
 
@@ -433,10 +431,6 @@
     padding-left: 40em;
   }
 
-  .subtitle span:last-child {
-    padding-right: 5em;
-  }
-
   .description {
     margin-top: 1rem;
     margin-bottom: 5rem;
@@ -449,17 +443,12 @@
     text-align: left;
   }
 
-  .textright:last-child {
-    margin-bottom: 3em;
-  }
-
   .desktopOnly {
     display: block;
   }
-}
 
-/* @media (min-width: 2000px) {
-  .textContainer::before {
-    bottom: -90vh;
+  .logoSection {
+    margin-bottom: 0em;
   }
-} */
+
+}
