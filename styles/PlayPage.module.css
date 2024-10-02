@@ -337,6 +337,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    align-items: stretch;
     gap: 2rem;
   }
 
@@ -356,13 +357,14 @@
     position: relative;
     height: auto;
     min-height: 100vh;
+    flex-direction: column; /* Flexbox Layout verwenden */
   }
 
   .textContainer::before {
     content: '';
     position: absolute;
     top: 5em;
-    bottom: -20vh;
+    height: 100%; /* Höhe immer auf 100% der Spalte setzen */
     right: 0;
     width: 1px;
     background-color: black;
@@ -456,8 +458,8 @@
   }
 }
 
-@media (min-width: 2000px) {
+/* @media (min-width: 2000px) {
   .textContainer::before {
     bottom: -90vh;
   }
-}
+} */

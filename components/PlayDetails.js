@@ -245,10 +245,13 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
       ?.split("?")[0] || "";
 
   useEffect(() => {
-    console.log("All Credits:", allCredits);
-    console.log("DE Credits:", deCredits);
-    console.log("EN Credits:", enCredits);
-  }, [allCredits, deCredits, enCredits]);
+    const container = document.querySelector(`.${styles.textContainer}`);
+    const strich = container?.querySelector("::before");
+
+    if (container && strich) {
+      strich.style.height = `${container.clientHeight}px`;
+    }
+  }, []);
 
   return (
     <>
