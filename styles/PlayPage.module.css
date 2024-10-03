@@ -182,8 +182,6 @@
   height: 1rem; /* Temporär eine feste Höhe setzen */
 }
 
-
-
 .creditLine {
   width: 100%;
   text-align: center;
@@ -308,8 +306,8 @@
   }
 
   .mobileImages .image {
-    margin-top: 2em;
-    height: 80vh;
+    margin-top: 3em;
+    height: 100vh;
     width: 100%;
     object-fit: cover;
   }

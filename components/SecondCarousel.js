@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from "react";
 import Image from "next/image";
-import styles from "../styles/PlayPage.module.css";
+import styles from "../styles/SecondCarousel.module.css";
 
 const SecondCarousel = ({
   images,

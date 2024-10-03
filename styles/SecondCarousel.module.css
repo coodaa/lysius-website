@@ -1,0 +1,86 @@
+/* SecondCarousel.module.css */
+
+.carouselWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: auto;
+  background-color: black;
+  margin-bottom: 1rem;
+  margin-top: 2em;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.carouselImage {
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  object-fit: contain;
+  opacity: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.carouselImage.show {
+  opacity: 1;
+}
+
+.carouselDots {
+  display: flex;
+  justify-content: center;
+}
+
+.dot,
+.activeDot {
+  height: 1em;
+  width: 1em;
+  margin: 0 .3em;
+  border-radius: 50%;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.dot {
+  background-color: black;
+  border: 1px solid white;
+}
+
+.activeDot {
+  background-color: white;
+  border: 1px solid black;
+}
+
+.carouselCredits {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-size: 0.9rem;
+  color: black;
+  margin-top: 0.5rem;
+  margin-bottom: 1em;
+  max-width: 95vw;
+  min-height: 1rem;
+  height: auto;
+  transition: height 0.3s ease-in-out;
+}
+
+.creditLine {
+  width: 100%;
+  text-align: center;
+  padding: 0.2rem 0;
+}
+
+@media (min-width: 768px) {
+  .carousel {
+    aspect-ratio: 3 / 2;
+  }
+}

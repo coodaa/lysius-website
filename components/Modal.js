@@ -74,7 +74,7 @@ const Modal = ({ images, initialIndex, onClose }) => {
         </div>
 
         {/* Navigationspunkte */}
-        <div className={styles.carouselDots}>
+        {/* <div className={styles.carouselDots}>
           {images.map((_, index) => (
             <span
               key={index}
@@ -84,7 +84,7 @@ const Modal = ({ images, initialIndex, onClose }) => {
               onClick={() => handleDotClick(index)}
             ></span>
           ))}
-        </div>
+        </div> */}
       </div>
     </div>
   );
