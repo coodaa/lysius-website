@@ -172,7 +172,7 @@
   font-size: 0.9rem;
   color: black;
   margin-top: 0.5rem;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
   max-width: 95vw;
   min-height: 1rem; /* Mindesthöhe hinzufügen */
   height: auto; /* Automatische Höhe für die Inhalte */
@@ -270,10 +270,6 @@
   outline: none;
 }
 
-/* .textright:last-child {
-  margin-bottom: 10em;
-} */
-
 .horizontalLine {
   border: none;
   border-top: 1px solid black;
@@ -312,7 +308,8 @@
   }
 
   .mobileImages .image {
-    height: 100vh;
+    margin-top: 5em;
+    height: 80vh;
     width: 100%;
     object-fit: cover;
   }
@@ -373,7 +370,7 @@
   }
 
   .textright {
-    margin-top: 2rem;
+    margin-top: 1rem;
     max-width: 100%;
     text-align: left;
     display: block;
@@ -449,7 +446,7 @@
   }
 
   .textright {
-    margin-top: 2rem;
+    margin-top: 1rem;
     max-width: 100%;
     text-align: left;
   }
