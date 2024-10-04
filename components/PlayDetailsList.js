@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslation } from "next-i18next";
 import styles from "../styles/PlayPage.module.css";
 
@@ -57,6 +57,23 @@ const PlayDetailsList = ({ play }) => {
     return text;
   };
 
+  // Funktion, die die Namen entsprechend den Kommata trennt und ein `&nbsp;` für den Zusammenhalt der Teile verwendet
+  const formatName = (name) => {
+    if (!name) return t("unknown");
+
+    // Teile den Namen anhand des Kommas und stelle sicher, dass jedes Segment zusammengehalten wird
+    const segments = name.split(",").map((segment, index) => {
+      // Entferne unnötige Leerzeichen und füge &nbsp; hinzu, um Zeilenumbrüche innerhalb eines Namens zu verhindern
+      return (
+        <span key={index} style={{ whiteSpace: "nowrap" }}>
+          {segment.trim()}
+        </span>
+      );
+    });
+
+    return segments.reduce((prev, curr) => [prev, ", ", curr]);
+  };
+
   return (
     <div className={styles.details}>
       {positions.map((position) => {
@@ -67,7 +84,7 @@ const PlayDetailsList = ({ play }) => {
           return (
             <React.Fragment key={position.key}>
               <p className={styles.label}>{positionText}</p>
-              <p className={styles.value}>{positionName || t("unknown")}</p>
+              <p className={styles.value}>{formatName(positionName)}</p>
             </React.Fragment>
           );
         }
