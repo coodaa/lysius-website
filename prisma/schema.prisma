@@ -238,3 +238,23 @@ model Play {
   @@index([topMobileImage1(length: 768)], map: "topMobileImage1")
   @@index([topMobileImage1(length: 768)], map: "topMobileImage1_2")
 }
+
+model Contact {
+  id          Int     @id @default(autoincrement())
+  position_de String? @db.VarChar(255)
+  position_en String? @db.VarChar(255)
+  name        String? @db.VarChar(255)
+}
+
+model Members {
+  id          Int     @id @default(autoincrement())
+  position_de String? @db.VarChar(255)
+  position_en String? @db.VarChar(255)
+  name        String? @db.VarChar(255)
+}
+
+model News {
+  id      Int     @id @default(autoincrement())
+  news_de String? @db.Text
+  news_en String? @db.Text
+}

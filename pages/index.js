@@ -8,6 +8,7 @@ import styles from "../styles/Home.module.css";
 export async function getServerSideProps({ locale }) {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
   let images = [];
+  let news = ""; // Hinzufügen einer news-Variable
 
   try {
     const res = await fetch(`${apiUrl}/api/landingpageimg`);
@@ -17,18 +18,34 @@ export async function getServerSideProps({ locale }) {
       console.error("Failed to fetch images:", res.status);
     }
   } catch (error) {
-    console.error("Error fetching images:", error);
+    console.error("Error fetching images:", error.message);
   }
+
+  try {
+    const newsRes = await fetch(`${apiUrl}/api/news`);
+    if (newsRes.ok) {
+      const newsData = await newsRes.json();
+      news = newsData?.[`${locale === "en" ? "news_en" : "news_de"}`] || "";
+      console.log("Fetched news data:", news); // Konsolenlog für News-Daten
+    } else {
+      console.error("Failed to fetch news:", newsRes.status);
+    }
+  } catch (error) {
+    console.error("Error fetching news:", error.message);
+  }
+
+  console.log("News content in component:", news);
 
   return {
     props: {
       images,
+      news, // News in die Props aufnehmen
       ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }
 
-const HomePage = ({ images }) => {
+const HomePage = ({ images, news }) => {
   const { t } = useTranslation("common");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -57,6 +74,11 @@ const HomePage = ({ images }) => {
 
     return () => clearInterval(interval);
   }, [images.length]);
+
+  useEffect(() => {
+    console.log("Rendered HomePage component with images:", images);
+    console.log("Rendered HomePage component with news:", news);
+  }, [images, news]);
 
   return (
     <>
@@ -93,9 +115,13 @@ const HomePage = ({ images }) => {
       </Head>
 
       <div className={styles.container}>
-        <div className={styles.constructionOverlay}>
-          Diese Seite befindet sich im Bau.
-        </div>
+        {/* Durchlaufendes Banner nur anzeigen, wenn news nicht leer ist */}
+
+        {news && (
+          <div className={styles.marquee} style={{ backgroundColor: "yellow" }}>
+            <p>{news}</p>
+          </div>
+        )}
 
         <div className={styles.overlayContainer}>
           <div className={styles.imageWrapper}>

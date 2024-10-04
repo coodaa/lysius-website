@@ -76,6 +76,34 @@
   font-size: 1rem; /* Standard-Schriftgröße */
 }
 
+.marquee {
+  position: fixed; /* Fest am oberen Bildschirmrand */
+  top: 0; /* Platzierung oben */
+  left: 0; /* Platzierung links */
+  width: 100%; /* Volle Breite */
+  height: 50px; /* Höhe des Banners */
+  background-color: rgba(0, 0, 0, 0.8); /* Dunkler Hintergrund */
+  color: white; /* Weiße Schrift */
+  z-index: 10000; /* Oberste Schicht */
+  overflow: hidden; /* Verstecke den Überlauf */
+}
+
+.marquee p {
+  display: inline-block; /* Inline-Block-Element */
+  white-space: nowrap; /* Kein Zeilenumbruch */
+  padding-left: 100%; /* Starten außerhalb des Sichtbereichs */
+  animation: marquee 15s linear infinite; /* Animation */
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0); /* Startposition */
+  }
+  100% {
+    transform: translateX(-100%); /* Verschiebt den Text vollständig nach links */
+  }
+}
+
 @media (max-width: 600px) {
   .description {
     font-size: 0.8rem; /* Kleinere Schriftgröße für Mobilgeräte */
@@ -99,4 +127,3 @@
     height: calc(100vh - 7rem);
   }
 }
-
