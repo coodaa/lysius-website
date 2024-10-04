@@ -92,6 +92,39 @@
 }
 
 
+/* Pfeile */
+.arrowLeft,
+.arrowRight {
+  position: fixed; /* Setze auf fixed, damit sie immer an der gleichen Stelle bleiben */
+  top: 50%; /* Vertikale Position in der Mitte des Bildschirms */
+  font-size: 3rem;
+  color: black;
+  background: rgba(255, 255, 255, 0); /* Vollständig transparenter Hintergrund */
+  border: none;
+  cursor: pointer;
+  z-index: 3001; /* Stelle sicher, dass der z-index hoch genug ist */
+  padding: 0.5rem 1rem;
+  transform: translateY(-50%); /* Vertikale Zentrierung */
+  font-family: 'Roboto', sans-serif; /* Roboto-Schriftart */
+  font-weight: bold;
+  mix-blend-mode: difference;
+}
+
+.arrowLeft {
+  left: 1rem; /* Position links */
+}
+
+.arrowRight {
+  right: 1rem; /* Position rechts */
+}
+
+.arrowLeft:hover,
+.arrowRight:hover {
+  background: rgba(255, 255, 255, 0);
+  color: rgba(89, 86, 86, 0.8);
+}
+
+
 @media (max-width: 1199px) {
   .modalContent {
     padding-left: 5em;

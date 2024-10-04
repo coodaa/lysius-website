@@ -20,45 +20,19 @@ const Modal = ({ images, initialIndex, onClose }) => {
     });
   }, [images]);
 
-  // Swipe-Handling für Touch-Geräte
-  let touchStartX = 0;
-  let touchEndX = 0;
-
-  const handleTouchStart = (e) => {
-    touchStartX = e.changedTouches[0].screenX;
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
 
-  const handleTouchMove = (e) => {
-    touchEndX = e.changedTouches[0].screenX;
-  };
-
-  const handleTouchEnd = () => {
-    if (touchStartX - touchEndX > 50) {
-      // Swipe nach links (nächstes Bild)
-      setCurrentIndex((prevIndex) => (prevIndex + 1) % images.length);
-    }
-    if (touchStartX - touchEndX < -50) {
-      // Swipe nach rechts (vorheriges Bild)
-      setCurrentIndex(
-        (prevIndex) => (prevIndex - 1 + images.length) % images.length
-      );
-    }
-  };
-
-  const handleDotClick = (index) => {
-    setCurrentIndex(index);
+  const handlePrev = () => {
+    setCurrentIndex(
+      (prevIndex) => (prevIndex - 1 + images.length) % images.length
+    );
   };
 
   return (
-    <div
-      className={styles.modalOverlay}
-      onClick={onClose}
-      onTouchStart={handleTouchStart}
-      onTouchMove={handleTouchMove}
-      onTouchEnd={handleTouchEnd}
-    >
+    <div className={styles.modalOverlay} onClick={onClose}>
       <div className={styles.modalContent} onClick={(e) => e.stopPropagation()}>
-        {/* Schließen-Button */}
         <button className={styles.closeButton} onClick={onClose}>
           X
         </button>
@@ -68,23 +42,16 @@ const Modal = ({ images, initialIndex, onClose }) => {
             src={images[currentIndex]}
             alt={`Bild ${currentIndex + 1}`}
             layout="fill"
-            objectFit="contain" // Fest auf "contain" setzen
+            objectFit="contain"
             className={styles.modalImage}
           />
+          <button className={styles.arrowLeft} onClick={handlePrev}>
+            &lt;
+          </button>
+          <button className={styles.arrowRight} onClick={handleNext}>
+            &gt;
+          </button>
         </div>
-
-        {/* Navigationspunkte */}
-        {/* <div className={styles.carouselDots}>
-          {images.map((_, index) => (
-            <span
-              key={index}
-              className={`${styles.dot} ${
-                index === currentIndex ? styles.activeDot : ""
-              }`}
-              onClick={() => handleDotClick(index)}
-            ></span>
-          ))}
-        </div> */}
       </div>
     </div>
   );
