@@ -323,16 +323,16 @@
     height: 92vh;
   }
 
-
-  .imageContainer {
+  /* .imageContainer {
     margin-bottom: 0em;
-  }
+  } */
 
   .logoContainer {
     grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
   }
 }
+
 
 @media (min-width: 768px) {
   .contentContainer {

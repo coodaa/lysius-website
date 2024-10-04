@@ -233,11 +233,15 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     }
   }, [desktopImages, mobileImages]);
 
-  const handleImageClick = useCallback((index, imagesArray) => {
-    setModalImages(imagesArray); // Setze die Bilder für das Modal
-    setModalImageIndex(index); // Setze den Index für das Modal
-    setIsModalOpen(true);
-  }, []);
+  const handleImageClick = useCallback(
+    (index, imagesArray) => {
+      if (isMobile) return;
+      setModalImages(imagesArray);
+      setModalImageIndex(index);
+      setIsModalOpen(true);
+    },
+    [isMobile]
+  );
 
   const videoUrl =
     play?.videoUrl1
