@@ -65,7 +65,7 @@
   padding: 10px;
   font-weight: bold;
   position: fixed;
-  top: 4rem;
+  top: 3rem;
   width: 100%;
   z-index: 1;
 }
@@ -79,7 +79,7 @@
   white-space: nowrap;
   padding: 10px;
   box-sizing: border-box;
-  font-size: 4em;
+  font-size: 3em;
 }
 
 .marqueeContent {
@@ -106,6 +106,10 @@
 @media (min-width: 600px) {
   .container {
     height: calc(100vh - 4rem);
+  }
+
+  .marqueeWrapper {
+    font-size: 4em;
   }
 }
 

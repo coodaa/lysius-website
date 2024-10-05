@@ -33,28 +33,23 @@ const Navbar = ({ currentTitle, plays }) => {
   // Sprachwechsel zwischen Deutsch und Englisch
   const switchLanguage = (lang) => {
     router.push(router.pathname, router.asPath, { locale: lang });
+    setMenuOpen(false); // Menü schließen, wenn Sprache gewechselt wird
   };
 
-  // Fügt Event-Listener zum Schließen des Menüs hinzu/entfernt sie
-  useEffect(() => {
-    if (menuOpen) {
-      document.addEventListener("mousedown", closeMenu);
-    } else {
-      document.removeEventListener("mousedown", closeMenu);
-    }
-    return () => {
-      document.removeEventListener("mousedown", closeMenu);
-    };
-  }, [menuOpen]);
-
-  // Scroll nach oben bei Seitenwechsel
+  // Scroll nach oben bei Seitenwechsel erzwingen
   useEffect(() => {
     const handleRouteChange = () => {
-      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      console.log("Route changed, forcing scroll to top...");
+      // Nach dem Seitenwechsel die Scroll-Position erzwingen
+      setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+        console.log("Scrolled to top");
+      }, 50); // Timeout auf 50ms, um sicherzustellen, dass es nach dem Routenwechsel passiert
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
 
+    // Cleanup-Funktion zum Entfernen des Event-Listeners
     return () => {
       router.events.off("routeChangeComplete", handleRouteChange);
     };
@@ -77,6 +72,16 @@ const Navbar = ({ currentTitle, plays }) => {
 
   const displayTitle = getDisplayTitle();
 
+  // Direkter Click-Handler für die Navigation testen
+  const navigateToPlay = (id) => {
+    console.log("Navigating to:", `/plays/${id}`);
+    router.push(`/plays/${id}`).then(() => {
+      // Scroll nach oben erzwingen, nachdem die Route gewechselt wurde
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      console.log("Navigated and scrolled to top.");
+    });
+  };
+
   return (
     <header className={styles.navbar}>
       <div className={styles.logo}>
@@ -94,17 +99,15 @@ const Navbar = ({ currentTitle, plays }) => {
 
             return (
               <li key={play.id} onClick={handleLinkClick}>
-                <Link href={`/plays/${play.id}`} scroll={false} legacyBehavior>
-                  <a
-                    className={`${styles.link} ${
-                      router.pathname === `/plays/${play.id}`
-                        ? styles.active
-                        : ""
-                    }`}
-                  >
-                    {playTitle}
-                  </a>
-                </Link>
+                {/* Ersetze Link-Komponente zum Testen durch router.push */}
+                <span
+                  className={`${styles.link} ${
+                    router.pathname === `/plays/${play.id}` ? styles.active : ""
+                  }`}
+                  onClick={() => navigateToPlay(play.id)}
+                >
+                  {playTitle}
+                </span>
               </li>
             );
           })}
@@ -116,7 +119,7 @@ const Navbar = ({ currentTitle, plays }) => {
         >
           {/* Lysius Link */}
           <li className={styles.footerItem} onClick={handleLinkClick}>
-            <Link href="/" scroll={false} legacyBehavior>
+            <Link href="/" legacyBehavior>
               <a
                 className={`${styles.link} ${
                   router.pathname === "/" ? styles.active : ""
@@ -129,7 +132,7 @@ const Navbar = ({ currentTitle, plays }) => {
 
           {/* Terms Link */}
           <li onClick={handleLinkClick}>
-            <Link href="/terms" scroll={false} legacyBehavior>
+            <Link href="/terms" legacyBehavior>
               <a
                 className={`${styles.link} ${
                   router.pathname === "/terms" ? styles.active : ""
@@ -142,7 +145,7 @@ const Navbar = ({ currentTitle, plays }) => {
 
           {/* Legal Link */}
           <li onClick={handleLinkClick}>
-            <Link href="/legal" scroll={false} legacyBehavior>
+            <Link href="/legal" legacyBehavior>
               <a
                 className={`${styles.link} ${
                   router.pathname === "/legal" ? styles.active : ""

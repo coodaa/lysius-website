@@ -75,6 +75,20 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     [play]
   );
 
+  useEffect(() => {
+    window.scrollTo(0, 0); // Sofortiges Scrollen ohne Verhaltenseinstellung
+
+    const handleRouteChangeComplete = () => {
+      window.scrollTo(0, 0); // Scrollt ebenfalls direkt zum Anfang bei einem Seitenwechsel
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChangeComplete);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChangeComplete);
+    };
+  }, [router.asPath]);
+
   const desktopImages = useMemo(
     () =>
       [
@@ -185,7 +199,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     [play]
   );
 
-  const allCredits = desktopImages.map((img) => img.credit); // Allgemeine Credits
+  // const allCredits = desktopImages.map((img) => img.credit); // Allgemeine Credits
   const deCredits = desktopImages.map((img) => img.credit_de); // Deutsche Credits
   const enCredits = desktopImages.map((img) => img.credit_en); // Englische Credits
 
