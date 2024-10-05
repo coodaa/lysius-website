@@ -1,88 +1,132 @@
+/* Hauptcontainer für die gesamte Seite */
+.mainContainer {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  overflow: auto;
+}
+
+/* Titel "Lysius" */
+.fixedTitle {
+  position: relative;
+  margin: 0;
+  margin-top: 3rem;
+  font-size: clamp(5rem, 10vw, 12rem); /* Kleinere Schriftgröße für Mobilgeräte */
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  width: 100%;
+}
+
+/* Container für den gesamten Inhalt */
 .pageContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  padding: 5rem 2rem; /* Außenabstand hinzufügen */
-}
-
-.sidebar {
-  flex: 1;
-  margin-right: 2rem;
-  text-align: left;
+  margin-top: 10rem; /* Weniger Abstand für mobile Geräte */
   padding: 1rem;
-}
-
-.contentContainer {
-  flex: 2;
-  background-color: white;
-  padding: 1rem 2rem;
-  max-width: 60%;
-}
-
-.title {
-  font-size: 3rem;
-  font-family: 'Playfair Display', serif;
-  line-height: 1;
-  margin-bottom: 1em;
-}
-
-.titleDesktop {
-  font-size: 5rem;
-  font-family: 'Playfair Display', serif;
-  margin-bottom: 0em;
-  line-height: 1;
-}
-
-.contactSection {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  gap: 2rem; /* Abstand zwischen den Abschnitten */
+  align-items: center;
+  justify-content: flex-start;
 }
 
-.contactSection h2 {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin: 1rem 0 0.5rem 0;
+/* Wrapper für die Sidebar und den Inhalt */
+.contentWrapper {
+  display: flex;
+  flex-direction: column; /* Inhalte untereinander anordnen */
+  align-items: center;
+  width: 100%;
 }
 
-.contactSection p {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+/* Linker Sidebar-Bereich */
+.sidebar {
+  width: 100%; /* Volle Breite für Mobilgeräte */
+  text-align: left;
+  margin-bottom: 2rem; /* Abstand nach unten */
+  padding: 1rem;
+  /* background: #f7f7f7; */
+  border-radius: 8px;
 }
 
-.horizontalLine {
-  border: none;
-  border-top: 1px solid black;
-  margin: 1rem 0;
+/* Rechter Content-Bereich */
+.contentContainer {
+  width: 100%; /* Volle Breite für Mobilgeräte */
+  background-color: white;
+  padding: 1rem 2rem;
+  border-radius: 8px;
 }
 
+/* Container für den About-Text */
 .aboutTextContainer {
   text-align: left;
   width: 100%;
 }
 
+/* Text innerhalb des About-Text-Containers */
 .text {
   font-size: 1.2rem;
   line-height: 1.5;
   margin-bottom: 2em;
 }
 
-@media only screen and (max-width: 768px) {
+/* Kontakt- und Mitgliedsinformationen */
+.contactSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Untertitel in der Kontakt-Sektion */
+.contactSection h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem 0;
+}
+
+/* Text in der Kontakt-Sektion */
+.contactSection p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Horizontale Trennlinie */
+.horizontalLine {
+  border: none;
+  border-top: 1px solid black;
+  margin: 1rem 0;
+}
+
+/* ----- Anpassungen für Tablets und größere Bildschirme ----- */
+@media only screen and (min-width: 768px) {
   .pageContainer {
-    flex-direction: column;
+    margin-top: 5rem; /* Abstand für größere Bildschirme anpassen */
+    padding: 2rem;
+  }
+
+  .fixedTitle {
+    font-size: clamp(15rem, 8vw, 25rem); /* Größere Schriftgröße */
+  }
+
+  .contentWrapper {
+    flex-direction: row; /* Inhalte nebeneinander anordnen */
+    justify-content: space-between; /* Abstand zwischen Sidebar und Inhalt */
   }
 
   .sidebar {
-    margin-bottom: 3rem;
-    width: 100%;
+    flex: 1;
+    margin-right: 2rem;
+    min-width: 250px; /* Begrenze die minimale Breite */
+    width: auto;
+    margin-bottom: 0;
   }
 
   .contentContainer {
-    width: 100%;
+    flex: 2;
+    width: auto;
   }
+}
 
-  .titleDesktop {
-    font-size: 3rem;
-    text-align: center;
+
+@media only screen and (min-width: 1200px) {
+  .fixedTitle {
+    font-size: clamp(20rem, 8vw, 28rem);
   }
 }

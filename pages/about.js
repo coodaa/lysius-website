@@ -2,7 +2,7 @@ import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { PrismaClient } from "@prisma/client";
 import Head from "next/head";
-import styles from "../styles/AboutPage.module.css"; // CSS anpassen
+import styles from "../styles/AboutPage.module.css"; // Importiere das angepasste CSS
 
 const prisma = new PrismaClient();
 
@@ -27,46 +27,52 @@ const AboutPage = ({ aboutData }) => {
         />
       </Head>
 
-      {/* Übergeordnetes Container-Element für die Seite */}
-      <div className={styles.pageContainer}>
-        {/* Container für die linke Seite mit Kontaktinformationen */}
-        <div className={styles.sidebar}>
-          <h1 className={styles.title}>Lysius</h1>
+      {/* Hauptcontainer für die gesamte Seite */}
+      <div className={styles.mainContainer}>
+        {/* Titel Lysius */}
+        <h1 className={styles.fixedTitle}>Lysius</h1>
 
-          <div className={styles.contactSection}>
-            <h2>{t("contact")}</h2>
-            <p>{t("contact_details")}</p>
-            <hr className={styles.horizontalLine} />
+        {/* Container für den restlichen Inhalt */}
+        <div className={styles.pageContainer}>
+          {/* Wrapper für Sidebar und Content */}
+          <div className={styles.contentWrapper}>
+            {/* Linke Seite: Kontakt, Mitglieder, Newsletter */}
+            <div className={styles.sidebar}>
+              <div className={styles.contactSection}>
+                <h2>{t("contact")}</h2>
+                <p>{t("contact_details")}</p>
+                <hr className={styles.horizontalLine} />
 
-            <h2>{t("members")}</h2>
-            <p>{t("members_description")}</p>
-            <hr className={styles.horizontalLine} />
+                <h2>{t("members")}</h2>
+                <p>{t("members_description")}</p>
+                <hr className={styles.horizontalLine} />
 
-            <h2>{t("newsletter")}</h2>
-            <p>{t("newsletter_details")}</p>
-          </div>
-        </div>
+                <h2>{t("newsletter")}</h2>
+                <p>{t("newsletter_details")}</p>
+              </div>
+            </div>
 
-        {/* Container für die rechte Seite mit dem `aboutData`-Text */}
-        <div className={styles.contentContainer}>
-          <div className={styles.aboutTextContainer}>
-            <h1 className={styles.titleDesktop}>Lysius</h1>
-            <div className={styles.text}>
-              <p>
-                {isEnglish ? aboutData.textField1_en : aboutData.textField1}
-              </p>
-              <p>
-                {isEnglish ? aboutData.textField2_en : aboutData.textField2}
-              </p>
-              <p>
-                {isEnglish ? aboutData.textField3_en : aboutData.textField3}
-              </p>
-              <p>
-                {isEnglish ? aboutData.textField4_en : aboutData.textField4}
-              </p>
-              <p>
-                {isEnglish ? aboutData.textField5_en : aboutData.textField5}
-              </p>
+            {/* Rechte Seite: About Text */}
+            <div className={styles.contentContainer}>
+              <div className={styles.aboutTextContainer}>
+                <div className={styles.text}>
+                  <p>
+                    {isEnglish ? aboutData.textField1_en : aboutData.textField1}
+                  </p>
+                  <p>
+                    {isEnglish ? aboutData.textField2_en : aboutData.textField2}
+                  </p>
+                  <p>
+                    {isEnglish ? aboutData.textField3_en : aboutData.textField3}
+                  </p>
+                  <p>
+                    {isEnglish ? aboutData.textField4_en : aboutData.textField4}
+                  </p>
+                  <p>
+                    {isEnglish ? aboutData.textField5_en : aboutData.textField5}
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
