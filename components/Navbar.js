@@ -40,11 +40,7 @@ const Navbar = ({ currentTitle, plays }) => {
   useEffect(() => {
     const handleRouteChange = () => {
       console.log("Route changed, forcing scroll to top...");
-      // Nach dem Seitenwechsel die Scroll-Position erzwingen
-      setTimeout(() => {
-        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
-        console.log("Scrolled to top");
-      }, 50); // Timeout auf 50ms, um sicherzustellen, dass es nach dem Routenwechsel passiert
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
     };
 
     router.events.on("routeChangeComplete", handleRouteChange);
@@ -72,7 +68,6 @@ const Navbar = ({ currentTitle, plays }) => {
 
   const displayTitle = getDisplayTitle();
 
-  // Direkter Click-Handler für die Navigation testen
   const navigateToPlay = (id) => {
     console.log("Navigating to:", `/plays/${id}`);
     router.push(`/plays/${id}`).then(() => {

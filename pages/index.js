@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import NextImage from "next/image"; // Verwende Next.js Image-Komponente
-import Head from "next/head"; // Für SEO Meta-Tags
+import NextImage from "next/image";
+import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import { PrismaClient } from "@prisma/client";
 
@@ -18,7 +18,7 @@ export async function getServerSideProps({ locale }) {
 
     // Fetch the first news entry from the News table
     news = await prisma.News.findFirst();
-    console.log("Fetched news:", news); // Prüfe, ob die Daten korrekt geladen wurden
+    console.log("Fetched news:", news);
   } catch (error) {
     console.error("Error fetching data from database:", error);
   }
@@ -26,21 +26,21 @@ export async function getServerSideProps({ locale }) {
   return {
     props: {
       images,
-      news, // Füge die Nachricht hier hinzu
+      news,
       ...(await serverSideTranslations(locale, ["common"])),
     },
   };
 }
 
 const HomePage = ({ images, news }) => {
-  const { t } = useTranslation("common");
+  const { t, i18n } = useTranslation("common"); // Füge i18n hinzu
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
   // Überwache die Bildschirmbreite und setze den Zustand für mobile Geräte
   useEffect(() => {
     const updateIsMobile = () => {
-      setIsMobile(window.innerWidth <= 768); // Setze einen Schwellenwert für mobile Geräte
+      setIsMobile(window.innerWidth <= 768);
     };
 
     updateIsMobile();
@@ -102,7 +102,10 @@ const HomePage = ({ images, news }) => {
           <div className={styles.newsBanner}>
             <div className={styles.marqueeWrapper}>
               <div className={styles.marqueeContent}>
-                {news.news_de} {news.news_de} {news.news_de}
+                {/* Auswahl der Sprache für die News basierend auf der aktiven Sprache */}
+                {i18n.language === "de" ? news.news_de : news.news_en}{" "}
+                {i18n.language === "de" ? news.news_de : news.news_en}{" "}
+                {i18n.language === "de" ? news.news_de : news.news_en}
               </div>
             </div>
           </div>
@@ -110,8 +113,8 @@ const HomePage = ({ images, news }) => {
           <div className={styles.newsBanner}>
             <div className={styles.marqueeWrapper}>
               <div className={styles.marqueeContent}>
-                Keine aktuellen Nachrichten verfügbar Keine aktuellen
-                Nachrichten verfügbar Keine aktuellen Nachrichten verfügbar
+                {t("noNewsAvailable")} {t("noNewsAvailable")}{" "}
+                {t("noNewsAvailable")}
               </div>
             </div>
           </div>
@@ -126,7 +129,6 @@ const HomePage = ({ images, news }) => {
                   index === currentImageIndex ? styles.show : ""
                 }`}
               >
-                {/* Verwende Next.js Image-Komponente */}
                 <NextImage
                   src={
                     isMobile && image.mobileImageUrl
