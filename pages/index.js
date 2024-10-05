@@ -97,12 +97,10 @@ const HomePage = ({ images, news }) => {
       </Head>
 
       <div className={styles.container}>
-        {/* News Banner */}
         {news ? (
           <div className={styles.newsBanner}>
             <div className={styles.marqueeWrapper}>
               <div className={styles.marqueeContent}>
-                {/* Auswahl der Sprache für die News basierend auf der aktiven Sprache */}
                 {i18n.language === "de" ? news.news_de : news.news_en}{" "}
                 {i18n.language === "de" ? news.news_de : news.news_en}{" "}
                 {i18n.language === "de" ? news.news_de : news.news_en}

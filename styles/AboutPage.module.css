@@ -1,27 +1,88 @@
-/* Container, der scrollen kann */
-.container {
-  margin-top: 10em;
-  min-height: 100vh;
-  overflow-y: auto;
+.pageContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 5rem 2rem; /* Außenabstand hinzufügen */
+}
+
+.sidebar {
+  flex: 1;
+  margin-right: 2rem;
+  text-align: left;
+  padding: 1rem;
+}
+
+.contentContainer {
+  flex: 2;
+  background-color: white;
+  padding: 1rem 2rem;
+  max-width: 60%;
+}
+
+.title {
+  font-size: 3rem;
+  font-family: 'Playfair Display', serif;
+  line-height: 1;
+  margin-bottom: 1em;
+}
+
+.titleDesktop {
+  font-size: 5rem;
+  font-family: 'Playfair Display', serif;
+  margin-bottom: 0em;
+  line-height: 1;
+}
+
+.contactSection {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem; /* Abstand zwischen den Abschnitten */
+}
+
+.contactSection h2 {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 1rem 0 0.5rem 0;
+}
+
+.contactSection p {
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+.horizontalLine {
+  border: none;
+  border-top: 1px solid black;
+  margin: 1rem 0;
+}
+
+.aboutTextContainer {
+  text-align: left;
+  width: 100%;
 }
 
 .text {
-  margin: 0 auto;
-  width: 95vw;
-  margin-bottom: 10em;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  margin-bottom: 2em;
 }
 
-/* Ab einer bestimmten Bildschirmbreite (Desktop) */
-@media (min-width: 768px) {
-
-  .container {
-    margin-top: 15em;
+@media only screen and (max-width: 768px) {
+  .pageContainer {
+    flex-direction: column;
   }
 
-  .text {
-    width: 75%;
-    margin: 0;
-    padding-left: 0;
-    padding: 0em;
+  .sidebar {
+    margin-bottom: 3rem;
+    width: 100%;
+  }
+
+  .contentContainer {
+    width: 100%;
+  }
+
+  .titleDesktop {
+    font-size: 3rem;
+    text-align: center;
   }
 }

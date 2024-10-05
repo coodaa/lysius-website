@@ -125,7 +125,18 @@ const Navbar = ({ currentTitle, plays }) => {
             </Link>
           </li>
 
-          {/* Terms Link */}
+          <li onClick={handleLinkClick}>
+            <Link href="/about" legacyBehavior>
+              <a
+                className={`${styles.link} ${
+                  router.pathname === "/about" ? styles.active : ""
+                }`}
+              >
+                {t("about")}
+              </a>
+            </Link>
+          </li>
+
           <li onClick={handleLinkClick}>
             <Link href="/terms" legacyBehavior>
               <a
@@ -137,7 +148,6 @@ const Navbar = ({ currentTitle, plays }) => {
               </a>
             </Link>
           </li>
-
           {/* Legal Link */}
           <li onClick={handleLinkClick}>
             <Link href="/legal" legacyBehavior>
@@ -150,7 +160,6 @@ const Navbar = ({ currentTitle, plays }) => {
               </a>
             </Link>
           </li>
-
           {/* Language Switch */}
           <li className={styles.languageSwitch}>
             <span
