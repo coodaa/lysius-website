@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
+import ScrollToTop from "./ScrollToTop";
 import styles from "../styles/Layout.module.css";
 
 const Layout = ({ children }) => {
   const [currentTitle, setCurrentTitle] = useState("LYSIUS");
   const [plays, setPlays] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false); // Modal-Zustand
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     const fetchPlays = async () => {
@@ -27,19 +28,20 @@ const Layout = ({ children }) => {
   const childrenWithProps = React.Children.map(children, (child) =>
     React.cloneElement(child, {
       setCurrentTitle,
-      setIsModalOpen, // Übergib den Modal-Zustand an die Kinder
+      setIsModalOpen,
     })
   );
 
   return (
     <div className={styles.pageContainer}>
+      <ScrollToTop /> {/* ScrollToTop-Komponente hier eingebunden */}
       <Navbar
         currentTitle={currentTitle}
         plays={plays}
-        isModalOpen={isModalOpen} // Übergib den Modal-Zustand an die Navbar
-        closeModal={() => setIsModalOpen(false)} // Funktion zum Schließen des Modals
+        isModalOpen={isModalOpen}
+        closeModal={() => setIsModalOpen(false)}
       />
-      <div className={styles.rightSidebar}></div> {/* Der weiße Balken */}
+      <div className={styles.rightSidebar}></div>
       <main className={styles.contentContainer}>{childrenWithProps}</main>
     </div>
   );

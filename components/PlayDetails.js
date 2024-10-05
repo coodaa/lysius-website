@@ -1,5 +1,11 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
-import NextImage from "next/image"; // Import umbenannt
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+  useRef,
+} from "react";
+import NextImage from "next/image";
 import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import Head from "next/head";
@@ -25,10 +31,11 @@ function useIsMobile() {
 const PlayDetails = ({ play, setCurrentTitle }) => {
   const router = useRouter();
   const { t, i18n } = useTranslation("common");
+  const topRef = useRef(null);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [modalImageIndex, setModalImageIndex] = useState(0); // Zustand für das Modal
-  const [modalImages, setModalImages] = useState([]); // Bilder für das Modal
+  const [modalImageIndex, setModalImageIndex] = useState(0);
+  const [modalImages, setModalImages] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const isEnglish = useMemo(() => i18n.language === "en", [i18n.language]);
@@ -42,7 +49,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     [isEnglish, play, t]
   );
 
-  // Auswahl der passenden Subtitles basierend auf der Sprache
   const subtitles = useMemo(() => {
     const defaultSubtitles = [
       play?.subtitle1,
@@ -75,134 +81,38 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     [play]
   );
 
-  useEffect(() => {
-    window.scrollTo(0, 0); // Sofortiges Scrollen ohne Verhaltenseinstellung
+  const desktopImages = useMemo(() => {
+    const images = [];
+    for (let i = 1; i <= 10; i++) {
+      images.push({
+        url: play?.[`imageUrl${i}`],
+        credit: play?.[`imageCredit${i}`] || "",
+        credit_de:
+          play?.[`imageCredit${i}_de`] || play?.[`imageCredit${i}`] || "",
+        credit_en:
+          play?.[`imageCredit${i}_en`] || play?.[`imageCredit${i}`] || "",
+      });
+    }
+    return images.filter((image) => image.url);
+  }, [play]);
 
-    const handleRouteChangeComplete = () => {
-      window.scrollTo(0, 0); // Scrollt ebenfalls direkt zum Anfang bei einem Seitenwechsel
-    };
+  const mobileImages = useMemo(() => {
+    const images = [];
+    for (let i = 1; i <= 6; i++) {
+      images.push({
+        url: play?.[`topMobileImage${i}`] || play?.[`imageUrl${i}`],
+        credit: play?.[`imageCredit${i}`] || "",
+        credit_de:
+          play?.[`imageCredit${i}_de`] || play?.[`imageCredit${i}`] || "",
+        credit_en:
+          play?.[`imageCredit${i}_en`] || play?.[`imageCredit${i}`] || "",
+      });
+    }
+    return images.filter((image) => image.url);
+  }, [play]);
 
-    router.events.on("routeChangeComplete", handleRouteChangeComplete);
-
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChangeComplete);
-    };
-  }, [router.asPath]);
-
-  const desktopImages = useMemo(
-    () =>
-      [
-        {
-          url: play?.imageUrl1,
-          credit: play?.imageCredit1 || "", // Allgemeine Credits
-          credit_de: play?.imageCredit1_de || play?.imageCredit1 || "",
-          credit_en: play?.imageCredit1_en || play?.imageCredit1 || "",
-        },
-        {
-          url: play?.imageUrl2,
-          credit: play?.imageCredit2 || "",
-          credit_de: play?.imageCredit2_de || play?.imageCredit2 || "",
-          credit_en: play?.imageCredit2_en || play?.imageCredit2 || "",
-        },
-        {
-          url: play?.imageUrl3,
-          credit: play?.imageCredit3 || "",
-          credit_de: play?.imageCredit3_de || play?.imageCredit3 || "",
-          credit_en: play?.imageCredit3_en || play?.imageCredit3 || "",
-        },
-        {
-          url: play?.imageUrl4,
-          credit: play?.imageCredit4 || "",
-          credit_de: play?.imageCredit4_de || play?.imageCredit4 || "",
-          credit_en: play?.imageCredit4_en || play?.imageCredit4 || "",
-        },
-        {
-          url: play?.imageUrl5,
-          credit: play?.imageCredit5 || "",
-          credit_de: play?.imageCredit5_de || play?.imageCredit5 || "",
-          credit_en: play?.imageCredit5_en || play?.imageCredit5 || "",
-        },
-        {
-          url: play?.imageUrl6,
-          credit: play?.imageCredit6 || "",
-          credit_de: play?.imageCredit6_de || play?.imageCredit6 || "",
-          credit_en: play?.imageCredit6_en || play?.imageCredit6 || "",
-        },
-        {
-          url: play?.imageUrl7,
-          credit: play?.imageCredit7 || "",
-          credit_de: play?.imageCredit7_de || play?.imageCredit7 || "",
-          credit_en: play?.imageCredit7_en || play?.imageCredit7 || "",
-        },
-        {
-          url: play?.imageUrl8,
-          credit: play?.imageCredit8 || "",
-          credit_de: play?.imageCredit8_de || play?.imageCredit8 || "",
-          credit_en: play?.imageCredit8_en || play?.imageCredit8 || "",
-        },
-        {
-          url: play?.imageUrl9,
-          credit: play?.imageCredit9 || "",
-          credit_de: play?.imageCredit9_de || play?.imageCredit9 || "",
-          credit_en: play?.imageCredit9_en || play?.imageCredit9 || "",
-        },
-        {
-          url: play?.imageUrl10,
-          credit: play?.imageCredit10 || "",
-          credit_de: play?.imageCredit10_de || play?.imageCredit10 || "",
-          credit_en: play?.imageCredit10_en || play?.imageCredit10 || "",
-        },
-      ].filter((image) => image.url),
-    [play]
-  );
-
-  const mobileImages = useMemo(
-    () =>
-      [
-        {
-          url: play?.topMobileImage1 || play?.imageUrl1,
-          credit: play?.imageCredit1 || "",
-          credit_de: play?.imageCredit1_de || play?.imageCredit1 || "",
-          credit_en: play?.imageCredit1_en || play?.imageCredit1 || "",
-        },
-        {
-          url: play?.topMobileImage2 || play?.imageUrl2,
-          credit: play?.imageCredit2 || "",
-          credit_de: play?.imageCredit2_de || play?.imageCredit2 || "",
-          credit_en: play?.imageCredit2_en || play?.imageCredit2 || "",
-        },
-        {
-          url: play?.topMobileImage3 || play?.imageUrl3,
-          credit: play?.imageCredit3 || "",
-          credit_de: play?.imageCredit3_de || play?.imageCredit3 || "",
-          credit_en: play?.imageCredit3_en || play?.imageCredit3 || "",
-        },
-        {
-          url: play?.topMobileImage4 || play?.imageUrl4,
-          credit: play?.imageCredit4 || "",
-          credit_de: play?.imageCredit4_de || play?.imageCredit4 || "",
-          credit_en: play?.imageCredit4_en || play?.imageCredit4 || "",
-        },
-        {
-          url: play?.topMobileImage5 || play?.imageUrl5,
-          credit: play?.imageCredit5 || "",
-          credit_de: play?.imageCredit5_de || play?.imageCredit5 || "",
-          credit_en: play?.imageCredit5_en || play?.imageCredit5 || "",
-        },
-        {
-          url: play?.topMobileImage6 || play?.imageUrl6,
-          credit: play?.imageCredit6 || "",
-          credit_de: play?.imageCredit6_de || play?.imageCredit6 || "",
-          credit_en: play?.imageCredit6_en || play?.imageCredit6 || "",
-        },
-      ].filter((image) => image.url),
-    [play]
-  );
-
-  // const allCredits = desktopImages.map((img) => img.credit); // Allgemeine Credits
-  const deCredits = desktopImages.map((img) => img.credit_de); // Deutsche Credits
-  const enCredits = desktopImages.map((img) => img.credit_en); // Englische Credits
-
+  const deCredits = desktopImages.map((img) => img.credit_de);
+  const enCredits = desktopImages.map((img) => img.credit_en);
   const activeImages = isMobile ? mobileImages : topImages;
 
   const logos = [
@@ -219,10 +129,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
     if (activeImages.length > 0) {
       const interval = setInterval(() => {
-        setCurrentImageIndex((prevIndex) => {
-          const nextIndex = (prevIndex + 1) % activeImages.length;
-          return nextIndex;
-        });
+        setCurrentImageIndex(
+          (prevIndex) => (prevIndex + 1) % activeImages.length
+        );
       }, 7000);
       return () => clearInterval(interval);
     } else {
@@ -230,22 +139,34 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     }
   }, [title, play, activeImages, setCurrentTitle]);
 
-  // Bilder vorab laden
   useEffect(() => {
     if (typeof window !== "undefined") {
-      // Alle Bilder, die im Modal angezeigt werden können
       const preloadImages = [
         ...desktopImages.map((img) => img.url),
         ...mobileImages.map((img) => img.url),
       ];
-
-      // Bilder vorab laden
       preloadImages.forEach((imageSrc) => {
         const img = new Image();
         img.src = imageSrc;
       });
     }
   }, [desktopImages, mobileImages]);
+
+  useEffect(() => {
+    const handleRouteChange = () => {
+      if (topRef.current) {
+        topRef.current.scrollIntoView({ behavior: "smooth" });
+      } else {
+        window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+      }
+    };
+
+    router.events.on("routeChangeComplete", handleRouteChange);
+
+    return () => {
+      router.events.off("routeChangeComplete", handleRouteChange);
+    };
+  }, [router.events]);
 
   const handleImageClick = useCallback(
     (index, imagesArray) => {
@@ -288,8 +209,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
         ))}
       </Head>
 
-      <div className={styles.pageContainer}>
-        {/* Mobiles Carousel */}
+      <div className={styles.pageContainer} ref={topRef}>
         {isMobile && mobileImages.length > 0 && (
           <div className={`${styles.imageContainer} ${styles.mobileImages}`}>
             {mobileImages.map((image, index) =>
@@ -322,7 +242,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
           </div>
         )}
 
-        {/* Desktop Carousel für topImages */}
         {!isMobile && topImages.length > 0 && (
           <div className={`${styles.imageContainer} ${styles.desktopImages}`}>
             {topImages.map((image, index) =>
@@ -352,7 +271,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
         <div className={styles.contentContainer}>
           <div className={styles.textContainer}>
             <h1 className={styles.title}>{title}</h1>
-
             <div className={styles.subtitle}>
               {subtitles.map((subtitle, i) => (
                 <p key={i}>
@@ -362,11 +280,9 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 </p>
               ))}
             </div>
-
             <div className={styles.playDesktop}>
               <PlayDetailsList play={play} />
             </div>
-
             <div className={styles.description}>
               {[1, 2, 3, 4].map((i, index) => {
                 const description = isEnglish
@@ -393,7 +309,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
           <div className={styles.carouselVideoContainer}>
             <h1 className={styles.titleDesktop}>{title}</h1>
-
             {subtitles.map((subtitle, i) => (
               <p key={i} className={styles.subtitleDesktop}>
                 {subtitle.split(" ").map((word, index) => (
@@ -402,13 +317,12 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
               </p>
             ))}
 
-            {/* Desktop Carousel für desktopImages */}
             {desktopImages.length > 0 && (
               <SecondCarousel
                 images={desktopImages.map((img) => img.url)}
-                credits={i18n.language === "de" ? deCredits : enCredits} // Richtiges Credit Array basierend auf der Sprache
-                credits_de={deCredits} // Deutsche Credits
-                credits_en={enCredits} // Englische Credits
+                credits={i18n.language === "de" ? deCredits : enCredits}
+                credits_de={deCredits}
+                credits_en={enCredits}
                 language={i18n.language}
                 onImageClick={(index) =>
                   handleImageClick(
@@ -421,7 +335,6 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
             {videoUrl && <CustomVideoPlayer videoUrl={videoUrl} />}
 
-            {/* Video Credit unter dem Video anzeigen */}
             {play?.videoCredit1 && (
               <div className={styles.videoCredit}>
                 <p>{play.videoCredit1}</p>
@@ -460,7 +373,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
         {isModalOpen && (
           <Modal
-            images={modalImages} // Verwenden Sie modalImages hier
+            images={modalImages}
             initialIndex={modalImageIndex}
             onClose={() => setIsModalOpen(false)}
           />
