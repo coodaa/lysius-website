@@ -4,42 +4,29 @@ import { useTranslation } from "next-i18next";
 import NextImage from "next/image"; // Verwende Next.js Image-Komponente
 import Head from "next/head"; // Für SEO Meta-Tags
 import styles from "../styles/Home.module.css";
+import { PrismaClient } from "@prisma/client";
+
+const prisma = new PrismaClient();
 
 export async function getServerSideProps({ locale }) {
-  const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
   let images = [];
-  let news = ""; // Hinzufügen einer news-Variable
+  let news = null;
 
   try {
-    const res = await fetch(`${apiUrl}/api/landingpageimg`);
-    if (res.ok) {
-      images = await res.json();
-    } else {
-      console.error("Failed to fetch images:", res.status);
-    }
-  } catch (error) {
-    console.error("Error fetching images:", error.message);
-  }
+    // Fetch images from the landingpageimg table
+    images = await prisma.landingpageimg.findMany();
 
-  try {
-    const newsRes = await fetch(`${apiUrl}/api/news`);
-    if (newsRes.ok) {
-      const newsData = await newsRes.json();
-      news = newsData?.[`${locale === "en" ? "news_en" : "news_de"}`] || "";
-      console.log("Fetched news data:", news); // Konsolenlog für News-Daten
-    } else {
-      console.error("Failed to fetch news:", newsRes.status);
-    }
+    // Fetch the first news entry from the News table
+    news = await prisma.News.findFirst();
+    console.log("Fetched news:", news); // Prüfe, ob die Daten korrekt geladen wurden
   } catch (error) {
-    console.error("Error fetching news:", error.message);
+    console.error("Error fetching data from database:", error);
   }
-
-  console.log("News content in component:", news);
 
   return {
     props: {
       images,
-      news, // News in die Props aufnehmen
+      news, // Füge die Nachricht hier hinzu
       ...(await serverSideTranslations(locale, ["common"])),
     },
   };
@@ -74,11 +61,6 @@ const HomePage = ({ images, news }) => {
 
     return () => clearInterval(interval);
   }, [images.length]);
-
-  useEffect(() => {
-    console.log("Rendered HomePage component with images:", images);
-    console.log("Rendered HomePage component with news:", news);
-  }, [images, news]);
 
   return (
     <>
@@ -115,11 +97,23 @@ const HomePage = ({ images, news }) => {
       </Head>
 
       <div className={styles.container}>
-        {/* Durchlaufendes Banner nur anzeigen, wenn news nicht leer ist */}
-
-        {news && (
-          <div className={styles.marquee} style={{ backgroundColor: "yellow" }}>
-            <p>{news}</p>
+        {/* News Banner */}
+        {news ? (
+          <div className={styles.newsBanner}>
+            <div className={styles.marqueeWrapper}>
+              <div className={styles.marqueeContent}>
+                {news.news_de} {news.news_de} {news.news_de}
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div className={styles.newsBanner}>
+            <div className={styles.marqueeWrapper}>
+              <div className={styles.marqueeContent}>
+                Keine aktuellen Nachrichten verfügbar Keine aktuellen
+                Nachrichten verfügbar Keine aktuellen Nachrichten verfügbar
+              </div>
+            </div>
           </div>
         )}
 
@@ -132,16 +126,16 @@ const HomePage = ({ images, news }) => {
                   index === currentImageIndex ? styles.show : ""
                 }`}
               >
+                {/* Verwende Next.js Image-Komponente */}
                 <NextImage
                   src={
                     isMobile && image.mobileImageUrl
                       ? image.mobileImageUrl
                       : image.url
                   }
-                  alt={image.name}
+                  alt={image.alt || `Image ${index + 1}`}
                   layout="fill"
                   objectFit="cover"
-                  priority={index === 0} // Erstes Bild wird priorisiert geladen
                 />
               </div>
             ))}

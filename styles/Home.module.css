@@ -1,21 +1,5 @@
-.constructionOverlay {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 10%;
-  background-color: rgba(217, 101, 101, 0.9);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  text-align: center;
-  font-family: 'Arial', sans-serif;
-  font-size: 2rem;
-  padding: 20px;
-  box-sizing: border-box;
-}
+
+/* CSS Code for Home.module.css */
 
 .container {
   position: relative;
@@ -76,31 +60,40 @@
   font-size: 1rem; /* Standard-Schriftgröße */
 }
 
-.marquee {
-  position: fixed; /* Fest am oberen Bildschirmrand */
-  top: 0; /* Platzierung oben */
-  left: 0; /* Platzierung links */
-  width: 100%; /* Volle Breite */
-  height: 50px; /* Höhe des Banners */
-  background-color: rgba(0, 0, 0, 0.8); /* Dunkler Hintergrund */
-  color: white; /* Weiße Schrift */
-  z-index: 10000; /* Oberste Schicht */
-  overflow: hidden; /* Verstecke den Überlauf */
+.newsBanner {
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  position: fixed;
+  top: 4rem;
+  width: 100%;
+  z-index: 1;
 }
 
-.marquee p {
-  display: inline-block; /* Inline-Block-Element */
-  white-space: nowrap; /* Kein Zeilenumbruch */
-  padding-left: 100%; /* Starten außerhalb des Sichtbereichs */
-  animation: marquee 15s linear infinite; /* Animation */
+.marqueeWrapper {
+  overflow: hidden;
+  position: relative;
+  font-family: 'Playfair Display', serif;
+  color: #FF0000;
+  width: 100%;
+  white-space: nowrap;
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 4em;
+}
+
+.marqueeContent {
+  display: inline-block;
+  animation: marquee 25s linear infinite;
+  padding-left: 100%;
 }
 
 @keyframes marquee {
   0% {
-    transform: translateX(0); /* Startposition */
+    transform: translateX(0%);
   }
   100% {
-    transform: translateX(-100%); /* Verschiebt den Text vollständig nach links */
+    transform: translateX(-100%);
   }
 }
 

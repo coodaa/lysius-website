@@ -16,6 +16,12 @@ model landingpageimg {
   mobileImageUrl String? @db.VarChar(255)
 }
 
+model News {
+  id      Int     @id @default(autoincrement())
+  news_de String? @db.Text
+  news_en String? @db.Text
+}
+
 model About {
   id            Int     @id @default(autoincrement())
   textField1    String? @db.Text
@@ -251,10 +257,4 @@ model Members {
   position_de String? @db.VarChar(255)
   position_en String? @db.VarChar(255)
   name        String? @db.VarChar(255)
-}
-
-model News {
-  id      Int     @id @default(autoincrement())
-  news_de String? @db.Text
-  news_en String? @db.Text
 }
