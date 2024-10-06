@@ -4,9 +4,10 @@ import { PrismaClient } from "@prisma/client";
 import Head from "next/head";
 import styles from "../styles/AboutPage.module.css"; // Importiere das angepasste CSS
 
+// Prisma Client initialisieren
 const prisma = new PrismaClient();
 
-const AboutPage = ({ aboutData }) => {
+const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
   const { t, i18n } = useTranslation("common");
   const isEnglish = i18n.language === "en";
 
@@ -29,7 +30,7 @@ const AboutPage = ({ aboutData }) => {
 
       {/* Hauptcontainer für die gesamte Seite */}
       <div className={styles.mainContainer}>
-        {/* Titel Lysius */}
+        {/* Fixierter Titel Lysius */}
         <h1 className={styles.fixedTitle}>Lysius</h1>
 
         {/* Container für den restlichen Inhalt */}
@@ -39,16 +40,41 @@ const AboutPage = ({ aboutData }) => {
             {/* Linke Seite: Kontakt, Mitglieder, Newsletter */}
             <div className={styles.sidebar}>
               <div className={styles.contactSection}>
+                {/* Anzeige der Contact-Daten */}
                 <h2>{t("contact")}</h2>
-                <p>{t("contact_details")}</p>
+                {contactData ? (
+                  contactData.map((contact, index) => (
+                    <p key={index}>
+                      {isEnglish ? contact.position_en : contact.position_de}:{" "}
+                      {contact.name}
+                    </p>
+                  ))
+                ) : (
+                  <p>{t("no_contact_available")}</p>
+                )}
                 <hr className={styles.horizontalLine} />
 
+                {/* Anzeige der Members-Daten */}
                 <h2>{t("members")}</h2>
-                <p>{t("members_description")}</p>
+                {membersData ? (
+                  membersData.map((member, index) => (
+                    <p key={index}>
+                      {isEnglish ? member.position_en : member.position_de}:{" "}
+                      {member.name}
+                    </p>
+                  ))
+                ) : (
+                  <p>{t("no_members_available")}</p>
+                )}
                 <hr className={styles.horizontalLine} />
 
+                {/* Anzeige der Newsletter-Daten */}
                 <h2>{t("newsletter")}</h2>
-                <p>{t("newsletter_details")}</p>
+                <p>
+                  {isEnglish
+                    ? newsletterData.details_en
+                    : newsletterData.details}
+                </p>
               </div>
             </div>
 
@@ -82,15 +108,40 @@ const AboutPage = ({ aboutData }) => {
 };
 
 // Server-side function to fetch data from MySQL using Prisma
-export const getServerSideProps = async ({ locale }) => {
-  const aboutData = await prisma.about.findFirst();
 
-  return {
-    props: {
-      aboutData,
-      ...(await serverSideTranslations(locale, ["common"])),
-    },
-  };
+export const getServerSideProps = async ({ locale }) => {
+  try {
+    // Abruf der Daten aus den entsprechenden Tabellen
+    const aboutData = await prisma.about.findFirst();
+    const contactData = await prisma.contact.findMany();
+    const membersData = await prisma.members.findMany();
+    let newsletterData = await prisma.newsletter.findFirst();
+
+    // Falls `newsletterData` existiert, konvertiere das `created_at`-Feld zu einem String
+    if (newsletterData && newsletterData.created_at) {
+      newsletterData = {
+        ...newsletterData,
+        created_at: newsletterData.created_at.toISOString(), // Datum in einen String umwandeln
+      };
+    }
+
+    return {
+      props: {
+        aboutData: aboutData || null,
+        contactData: contactData.length > 0 ? contactData : null,
+        membersData: membersData.length > 0 ? membersData : null,
+        newsletterData: newsletterData || null,
+        ...(await serverSideTranslations(locale, ["common"])),
+      },
+    };
+  } catch (error) {
+    console.error("Error fetching data from database:", error);
+    return {
+      props: {
+        error: "Error fetching data",
+      },
+    };
+  }
 };
 
 export default AboutPage;

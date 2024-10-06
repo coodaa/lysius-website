@@ -258,3 +258,10 @@ model Members {
   position_en String? @db.VarChar(255)
   name        String? @db.VarChar(255)
 }
+
+model newsletter {
+  id         Int      @id @default(autoincrement())
+  details    String   @db.Text
+  details_en String?  @db.Text
+  created_at DateTime @default(now()) @db.Timestamp(0)
+}
