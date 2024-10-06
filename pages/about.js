@@ -30,7 +30,6 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
 
       {/* Hauptcontainer für die gesamte Seite */}
       <div className={styles.mainContainer}>
-        {/* Fixierter Titel Lysius */}
         <h1 className={styles.fixedTitle}>Lysius</h1>
 
         {/* Container für den restlichen Inhalt */}

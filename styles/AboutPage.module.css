@@ -11,7 +11,7 @@
   position: relative;
   margin: 0;
   margin-top: 3rem;
-  font-size: clamp(5rem, 10vw, 12rem); /* Kleinere Schriftgröße für Mobilgeräte */
+  font-size: 28vw;
   font-family: 'Playfair Display', serif;
   text-align: center;
   width: 100%;
@@ -19,8 +19,7 @@
 
 /* Container für den gesamten Inhalt */
 .pageContainer {
-  margin-top: 10rem; /* Weniger Abstand für mobile Geräte */
-  padding: 1rem;
+  margin-top: 10rem;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -31,26 +30,32 @@
 /* Wrapper für die Sidebar und den Inhalt */
 .contentWrapper {
   display: flex;
-  flex-direction: column; /* Inhalte untereinander anordnen */
+  flex-direction: column;
   align-items: center;
   width: 100%;
 }
 
 /* Linker Sidebar-Bereich */
 .sidebar {
-  width: 100%; /* Volle Breite für Mobilgeräte */
+  width: 100%;
   text-align: left;
-  margin-bottom: 2rem; /* Abstand nach unten */
-  padding: 1rem;
-  /* background: #f7f7f7; */
-  border-radius: 8px;
-}
+  position: relative;
+  padding-right: 2rem;
+  }
+
+  .sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -1px;
+  width: 1px;
+  height: 120vh;
+  background-color: black;
+  }
 
 /* Rechter Content-Bereich */
 .contentContainer {
-  width: 100%; /* Volle Breite für Mobilgeräte */
-  background-color: white;
-  padding: 1rem 2rem;
+  width: 100%;
   border-radius: 8px;
 }
 
@@ -64,56 +69,51 @@
 .text {
   font-size: 1.2rem;
   line-height: 1.5;
-  margin-bottom: 2em;
+  margin-bottom: 1em; /* Abstand zwischen den Absätzen im About-Text */
 }
 
 /* Kontakt- und Mitgliedsinformationen */
 .contactSection {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
 }
 
 /* Untertitel in der Kontakt-Sektion */
 .contactSection h2 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: bold;
-  margin: 1rem 0 0.5rem 0;
+  margin: 0.5rem 0 0.5rem 0; /* Reduzierter Abstand */
 }
 
 /* Text in der Kontakt-Sektion */
 .contactSection p {
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  margin: 0.2rem 0; /* Reduzierter Abstand zwischen den Absätzen */
+  line-height: 1.3; /* Weniger Abstand zwischen den Zeilen */
 }
 
 /* Horizontale Trennlinie */
 .horizontalLine {
   border: none;
   border-top: 1px solid black;
-  margin: 1rem 0;
+  margin: 0.5rem 0; /* Reduzierter Abstand zu den horizontalen Linien */
 }
 
 /* ----- Anpassungen für Tablets und größere Bildschirme ----- */
 @media only screen and (min-width: 768px) {
   .pageContainer {
-    margin-top: 5rem; /* Abstand für größere Bildschirme anpassen */
-    padding: 2rem;
-  }
-
-  .fixedTitle {
-    font-size: clamp(15rem, 8vw, 25rem); /* Größere Schriftgröße */
+    margin-top: 5rem;
   }
 
   .contentWrapper {
-    flex-direction: row; /* Inhalte nebeneinander anordnen */
-    justify-content: space-between; /* Abstand zwischen Sidebar und Inhalt */
+    flex-direction: row;
+    justify-content: space-between;
   }
 
   .sidebar {
     flex: 1;
-    margin-right: 2rem;
-    min-width: 250px; /* Begrenze die minimale Breite */
+    margin-right: 6rem;
+    min-width: 250px;
     width: auto;
     margin-bottom: 0;
   }
@@ -121,12 +121,5 @@
   .contentContainer {
     flex: 2;
     width: auto;
-  }
-}
-
-
-@media only screen and (min-width: 1200px) {
-  .fixedTitle {
-    font-size: clamp(20rem, 8vw, 28rem);
   }
 }
