@@ -231,6 +231,10 @@
   font-size: 1.2rem;
 }
 
+.textright:last-child {
+  margin-bottom: 5em;
+}
+
 .mobileImages {
   display: none;
 }
@@ -398,6 +402,10 @@
     width: 100%;
     box-sizing: border-box;
     position: relative;
+  }
+
+  .textright:last-child {
+    margin-bottom: 0em;
   }
 
   .carousel {
