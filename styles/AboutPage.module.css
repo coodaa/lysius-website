@@ -1,12 +1,12 @@
-/* Hauptcontainer für die gesamte Seite */
+
 .mainContainer {
   width: 100%;
   min-height: 100vh;
   position: relative;
-  overflow: auto;
+  overflow-x: hidden; /* Verhindert horizontales Scrollen */
+  overflow-y: auto;   /* Ermöglicht vertikales Scrollen */
 }
 
-/* Titel "Lysius" */
 .fixedTitle {
   position: relative;
   margin: 0;
@@ -17,7 +17,6 @@
   width: 100%;
 }
 
-/* Container für den gesamten Inhalt */
 .pageContainer {
   margin-top: 5rem;
   width: 100%;
@@ -29,109 +28,89 @@
   max-width: 95vw;
   text-align: left;
   word-break: break-word;
+  overflow-x: hidden; /* Verhindert horizontales Scrollen */
 }
 
-/* Wrapper für die Sidebar und den Inhalt */
 .contentWrapper {
   display: flex;
-  flex-direction: column; /* Standardmäßig als Spalte anzeigen */
-  align-items: flex-start; /* Inhalt nach links ausrichten */
+  flex-direction: column;
+  align-items: flex-start;
   width: 100%;
-  justify-content: flex-start; /* Inhalt nach oben ausrichten */
-  margin-top: 0; /* Verhindert zusätzlichen vertikalen Abstand */
-  padding-top: 0; /* Verhindert zusätzliches Padding */
+  justify-content: flex-start;
+  margin-top: 0;
+  padding-top: 0;
 }
 
-/* Linker Sidebar-Bereich */
 .sidebar {
-  width: 100%; /* Volle Breite bei mobiler Ansicht */
+  width: 100%;
   text-align: left;
   position: relative;
   padding-right: 2rem;
-  align-self: flex-start; /* Sidebar nach oben ausrichten */
-  margin-top: 0; /* Entferne den zusätzlichen oberen Abstand */
-  padding-top: 0; /* Verhindert zusätzliches Padding */
-  flex: 1; /* Die Sidebar soll 1 Einheit des verfügbaren Platzes einnehmen */
+  align-self: flex-start;
+  margin-top: 0;
+  padding-top: 0;
+  flex: 1;
 }
 
-.sidebar::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: -1px;
-  width: 1px;
-  height: 120vh;
-  background-color: black;
-}
-
-/* Rechter Content-Bereich */
 .contentContainer {
-  width: 100%; /* Volle Breite bei mobiler Ansicht */
+  width: 100%;
   display: flex;
   border-radius: 8px;
-  margin-top: 0; /* Verhindert zusätzlichen vertikalen Abstand */
-  padding-top: 0; /* Verhindert zusätzliches Padding */
-  flex: 2; /* Die rechte Seite soll doppelt so viel Platz wie die Sidebar einnehmen */
+  margin-top: 0;
+  padding-top: 0;
+  flex: 2;
+  overflow-x: hidden; /* Verhindert horizontales Scrollen */
 }
 
-/* Container für den About-Text */
 .aboutTextContainer {
   text-align: left;
   width: 100%;
-  margin-top: 0; /* Verhindert zusätzlichen vertikalen Abstand */
-  padding-top: 0; /* Verhindert zusätzliches Padding */
+  margin-top: 0;
+  padding-top: 0;
 }
 
-/* Text innerhalb des About-Text-Containers */
 .text {
   font-size: 1.2rem;
   line-height: 1.5;
   margin-bottom: 1em;
-  margin-top: 0; /* Verhindert zusätzlichen vertikalen Abstand */
-  padding-top: 0; /* Verhindert zusätzliches Padding */
+  margin-top: 0;
+  padding-top: 0;
 }
 
-/* Text-Absätze innerhalb des About-Textes */
 .text p {
-  margin-top: 0; /* Verhindert zusätzlichen vertikalen Abstand */
-  padding-top: 0; /* Verhindert zusätzliches Padding */
+  margin-top: 0;
+  padding-top: 0;
 }
 
-/* Kontakt- und Mitgliedsinformationen */
 .contactSection {
   display: flex;
   flex-direction: column;
 }
 
-/* Untertitel in der Kontakt-Sektion */
 .contactSection h2 {
   font-size: 1.3rem;
   font-weight: bold;
   margin: 0 0 0.5rem 0;
 }
 
-/* Text in der Kontakt-Sektion */
 .contactSection p {
   font-size: 1.1rem;
-  margin: 0.2rem 0; /* Reduzierter Abstand zwischen den Absätzen */
-  line-height: 1.3; /* Weniger Abstand zwischen den Zeilen */
+  margin: 0.2rem 0;
+  line-height: 1.3;
 }
 
-/* Horizontale Trennlinie */
 .horizontalLine {
   border: none;
   border-top: 1px solid black;
   margin: 1rem 0;
 }
 
-/* Newsletter Formular */
 .newsletterForm {
   display: flex;
   flex-direction: column;
   margin-top: 1rem;
 }
 
-/* Eingabefeld für die E-Mail */
 .emailInput {
   padding: 0.5rem;
   border: 1px solid #ccc;
@@ -140,12 +119,11 @@
   font-size: 1rem;
 }
 
-/* Button zum Abonnieren des Newsletters */
 .subscribeButton {
   background-color: #000000;
   color: #fff;
   border: none;
-  padding: .8rem 1rem;
+  padding: 0.8rem 1rem;
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-size: 1.3rem;
@@ -156,14 +134,13 @@
   background-color: #555;
 }
 
-/* ----- Anpassungen für Tablets und größere Bildschirme ----- */
 @media only screen and (min-width: 768px) {
   .pageContainer {
     margin-top: 3rem;
   }
 
   .contentWrapper {
-    flex-direction: row; /* Wechsel zu Zeilenlayout */
+    flex-direction: row;
     justify-content: space-between;
   }
 
@@ -172,34 +149,41 @@
   }
 
   .sidebar {
-    flex: 1.5; /* Nimmt eine Einheit des verfügbaren Platzes ein */
+    flex: 1.5;
     margin-right: 6rem;
     min-width: 250px;
     width: auto;
     margin-bottom: 0;
-    margin-top: 0; /* Sicherstellen, dass keine zusätzliche obere Margin existiert */
+    margin-top: 0;
   }
 
   .contentContainer {
-    flex: 2; /* Nimmt doppelt so viel Platz wie die Sidebar ein */
+    flex: 2;
     width: auto;
-    margin-top: 0; /* Sicherstellen, dass keine zusätzliche obere Margin existiert */
+    margin-top: 0;
+    overflow-x: hidden; /* Verhindert horizontales Scrollen */
   }
 }
 
-/* ----- Weitere Anpassungen für große Bildschirme ----- */
 @media only screen and (min-width: 1024px) {
   .pageContainer {
     margin-top: 5rem;
   }
 
   .sidebar {
-    margin-top: 0; /* Sicherstellen, dass keine zusätzliche obere Margin existiert */
-    padding-top: 0; /* Verhindert zusätzliches Padding */
+    margin-top: 0;
+    padding-top: 0;
   }
 
   .contentContainer {
-    margin-top: 0; /* Sicherstellen, dass keine zusätzliche obere Margin existiert */
-    padding-top: 0; /* Verhindert zusätzliches Padding */
+    margin-top: 0;
+    padding-top: 0;
+    overflow-x: hidden; /* Verhindert horizontales Scrollen */
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .sidebar::after {
+    display: none; /* Linie auf der rechten Seite im mobilen Modus entfernen */
   }
 }
