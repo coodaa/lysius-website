@@ -12,8 +12,8 @@ model landingpageimg {
   url            String  @db.VarChar(255)
   name           String  @db.VarChar(255)
   metadata       String? @db.LongText
-  description    String? @db.VarChar(255)
   mobileImageUrl String? @db.VarChar(255)
+  description    String? @db.VarChar(255)
 }
 
 model News {

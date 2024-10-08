@@ -4,7 +4,8 @@ import { useRouter } from "next/router";
 import { useTranslation } from "next-i18next";
 import styles from "../styles/Navbar.module.css";
 
-const Navbar = ({ currentTitle, plays }) => {
+const Navbar = ({ currentTitle, plays = [] }) => {
+  // Standardwert für plays ist ein leeres Array
   const [menuOpen, setMenuOpen] = useState(false);
   const router = useRouter();
   const { t, i18n } = useTranslation("common");
@@ -88,24 +89,30 @@ const Navbar = ({ currentTitle, plays }) => {
       </div>
       <nav className={`${styles.nav} ${menuOpen ? styles.open : ""}`}>
         <ul className={styles.navList}>
-          {plays.map((play) => {
-            const playTitle =
-              i18n.language === "en" ? play.title_en || play.title : play.title;
+          {/* Sicherstellen, dass plays ein Array ist, bevor es gemappt wird */}
+          {Array.isArray(plays) &&
+            plays.map((play) => {
+              const playTitle =
+                i18n.language === "en"
+                  ? play.title_en || play.title
+                  : play.title;
 
-            return (
-              <li key={play.id} onClick={handleLinkClick}>
-                {/* Ersetze Link-Komponente zum Testen durch router.push */}
-                <span
-                  className={`${styles.link} ${
-                    router.pathname === `/plays/${play.id}` ? styles.active : ""
-                  }`}
-                  onClick={() => navigateToPlay(play.id)}
-                >
-                  {playTitle}
-                </span>
-              </li>
-            );
-          })}
+              return (
+                <li key={play.id} onClick={handleLinkClick}>
+                  {/* Ersetze Link-Komponente zum Testen durch router.push */}
+                  <span
+                    className={`${styles.link} ${
+                      router.pathname === `/plays/${play.id}`
+                        ? styles.active
+                        : ""
+                    }`}
+                    onClick={() => navigateToPlay(play.id)}
+                  >
+                    {playTitle}
+                  </span>
+                </li>
+              );
+            })}
         </ul>
         <ul
           className={`${styles.footerList} ${
