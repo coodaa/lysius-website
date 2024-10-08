@@ -192,6 +192,54 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     }
   }, []);
 
+  useEffect(() => {
+    const addLineClasses = () => {
+      const subtitleElements = document.querySelectorAll(
+        `.${styles.subtitle} span`
+      );
+      if (subtitleElements.length === 0) return;
+
+      // Entferne vorherige Klassen falls vorhanden
+      subtitleElements.forEach((span) => {
+        span.classList.remove(styles.lastInLine);
+        span.classList.remove(styles.firstInLine);
+      });
+
+      let previousTopOffset = subtitleElements[0].getBoundingClientRect().top;
+      let firstSpanInRow = subtitleElements[0];
+      let lastSpanInRow = subtitleElements[0];
+
+      // Durchlaufen und Klassen für erste und letzte Elemente jeder Zeile zuweisen
+      subtitleElements.forEach((span, index) => {
+        const currentTopOffset = span.getBoundingClientRect().top;
+
+        if (currentTopOffset !== previousTopOffset) {
+          // Die letzte und erste Klasse für die vorherige Zeile zuweisen
+          lastSpanInRow.classList.add(styles.lastInLine);
+          firstSpanInRow.classList.add(styles.firstInLine);
+
+          // Setze die neuen Referenzen für die aktuelle Zeile
+          firstSpanInRow = span;
+          previousTopOffset = currentTopOffset;
+        }
+        lastSpanInRow = span;
+      });
+
+      // Letztes Element in der letzten Zeile und erstes Element in der letzten Zeile hinzufügen
+      lastSpanInRow.classList.add(styles.lastInLine);
+      firstSpanInRow.classList.add(styles.firstInLine);
+    };
+
+    // Füge Eventlistener für Resize hinzu
+    addLineClasses();
+    window.addEventListener("resize", addLineClasses);
+
+    // Cleanup Eventlistener
+    return () => {
+      window.removeEventListener("resize", addLineClasses);
+    };
+  }, []);
+
   return (
     <>
       <Head>

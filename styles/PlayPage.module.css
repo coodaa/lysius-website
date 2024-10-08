@@ -50,6 +50,15 @@
   line-height: 1.9;
 }
 
+.subtitle .lastInLine {
+  padding-right: .5em;
+}
+
+
+.firstInLine {
+  padding-left: .5em;
+}
+
 .titleDesktop {
   display: none;
 }

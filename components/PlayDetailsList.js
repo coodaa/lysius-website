@@ -58,11 +58,12 @@ const PlayDetailsList = ({ play }) => {
   };
 
   // Funktion, die die Namen entsprechend den Kommata trennt und ein `&nbsp;` für den Zusammenhalt der Teile verwendet
+  // Funktion, die die Namen entsprechend den Kommata und den Wörtern "und"/"and" trennt und ein `&nbsp;` für den Zusammenhalt der Teile verwendet
   const formatName = (name) => {
     if (!name) return t("unknown");
 
-    // Teile den Namen anhand des Kommas und stelle sicher, dass jedes Segment zusammengehalten wird
-    const segments = name.split(",").map((segment, index) => {
+    // Teile den Namen anhand von Kommas, "und" und "and" und stelle sicher, dass jedes Segment zusammengehalten wird
+    const segments = name.split(/,| und | and /i).map((segment, index) => {
       // Entferne unnötige Leerzeichen und füge &nbsp; hinzu, um Zeilenumbrüche innerhalb eines Namens zu verhindern
       return (
         <span key={index} style={{ whiteSpace: "nowrap" }}>
@@ -71,7 +72,19 @@ const PlayDetailsList = ({ play }) => {
       );
     });
 
-    return segments.reduce((prev, curr) => [prev, ", ", curr]);
+    // Füge das entsprechende Trennzeichen ("und" oder "and") zwischen den Segmenten ein
+    return segments.reduce((prev, curr, index) => {
+      let separator = ", "; // Standardmäßig Komma als Trennzeichen
+
+      // Bestimme das Trennzeichen basierend auf der Position des Segments
+      if (name.match(/ und /i) && index > 0) {
+        separator = " und ";
+      } else if (name.match(/ and /i) && index > 0) {
+        separator = " and ";
+      }
+
+      return [prev, separator, curr];
+    });
   };
 
   return (
