@@ -350,7 +350,7 @@
     justify-content: space-between;
     align-items: flex-start;
     align-items: stretch;
-    gap: 2rem;
+    gap: 4rem;
   }
 
   .playDesktop {
@@ -373,7 +373,7 @@
     flex: 1;
     max-width: 50%;
     text-align: left;
-    padding-right: 2rem;
+    padding-right: 3rem;
     position: relative;
     height: auto;
     min-height: 100vh;

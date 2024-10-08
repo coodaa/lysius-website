@@ -52,7 +52,6 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
                   <p>{t("no_contact_available")}</p>
                 )}
                 <hr className={styles.horizontalLine} />
-
                 {/* Anzeige der Members-Daten */}
                 <h2>{t("members")}</h2>
                 {membersData ? (
@@ -66,14 +65,50 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
                   <p>{t("no_members_available")}</p>
                 )}
                 <hr className={styles.horizontalLine} />
-
-                {/* Anzeige der Newsletter-Daten */}
                 <h2>{t("newsletter")}</h2>
                 <p>
                   {isEnglish
                     ? newsletterData.details_en
                     : newsletterData.details}
                 </p>
+                <form
+                  className={styles.newsletterForm}
+                  onSubmit={async (e) => {
+                    e.preventDefault();
+                    const email = e.target.elements.email.value;
+
+                    try {
+                      const response = await fetch("/api/newsletter", {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({ email }),
+                      });
+
+                      if (response.ok) {
+                        alert("Thank you for subscribing!");
+                        e.target.reset(); // Formular zurücksetzen
+                      } else {
+                        alert("Failed to subscribe.");
+                      }
+                    } catch (error) {
+                      console.error("Failed to subscribe:", error);
+                      alert("Failed to subscribe.");
+                    }
+                  }}
+                >
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder={t("enter_email")}
+                    required
+                    className={styles.emailInput}
+                  />
+                  <button type="submit" className={styles.subscribeButton}>
+                    {t("subscribe")}
+                  </button>
+                </form>
               </div>
             </div>
 
