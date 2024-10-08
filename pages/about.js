@@ -71,40 +71,23 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
                     ? newsletterData.details_en
                     : newsletterData.details}
                 </p>
+
                 <form
                   className={styles.newsletterForm}
-                  onSubmit={async (e) => {
+                  onSubmit={(e) => {
                     e.preventDefault();
-                    const email = e.target.elements.email.value;
+                    const subject = isEnglish
+                      ? "Newsletter Subscription"
+                      : "Newsletter Anmeldung";
+                    const body = isEnglish
+                      ? "Hello,\n\nI would like to subscribe to the Lysius newsletter.\n\nBest regards"
+                      : "Hallo,\n\nich möchte mich gerne für den Lysius Newsletter anmelden.\n\nBeste Grüße";
 
-                    try {
-                      const response = await fetch("/api/newsletter", {
-                        method: "POST",
-                        headers: {
-                          "Content-Type": "application/json",
-                        },
-                        body: JSON.stringify({ email }),
-                      });
-
-                      if (response.ok) {
-                        alert("Thank you for subscribing!");
-                        e.target.reset(); // Formular zurücksetzen
-                      } else {
-                        alert("Failed to subscribe.");
-                      }
-                    } catch (error) {
-                      console.error("Failed to subscribe:", error);
-                      alert("Failed to subscribe.");
-                    }
+                    window.location.href = `mailto:kemmann@lysius.org?subject=${encodeURIComponent(
+                      subject
+                    )}&body=${encodeURIComponent(body)}`;
                   }}
                 >
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder={t("enter_email")}
-                    required
-                    className={styles.emailInput}
-                  />
                   <button type="submit" className={styles.subscribeButton}>
                     {t("subscribe")}
                   </button>
