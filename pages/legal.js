@@ -1,3 +1,4 @@
+// pages/legal.js
 import { PrismaClient } from "@prisma/client";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
@@ -15,18 +16,16 @@ const LegalPage = ({ legalData }) => {
   // Den Text in Absätze aufteilen
   const paragraphs = content ? content.split("\n").filter(Boolean) : [];
 
-  const pageTitle = legalData.type === "AGB" ? t("terms") : t("privacy_policy");
-  const pageDescription = isEnglish
-    ? `Read our ${pageTitle} in English.`
-    : `Lesen Sie unsere ${pageTitle} auf Deutsch.`;
-
   return (
     <>
       <Head>
-        <title>{pageTitle} | Lysius</title>
-        <meta name="description" content={pageDescription} />
-        <meta property="og:title" content={`${pageTitle} | Lysius`} />
-        <meta property="og:description" content={pageDescription} />
+        <title>{t("legal_notice")} | Lysius</title>
+        <meta name="description" content={t("legal_notice_description")} />
+        <meta property="og:title" content={`${t("legal_notice")} | Lysius`} />
+        <meta
+          property="og:description"
+          content={t("legal_notice_description")}
+        />
         <meta property="og:url" content="https://www.lysius.org/legal" />
         <meta property="og:type" content="website" />
         <meta
@@ -34,8 +33,11 @@ const LegalPage = ({ legalData }) => {
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${pageTitle} | Lysius`} />
-        <meta name="twitter:description" content={pageDescription} />
+        <meta name="twitter:title" content={`${t("legal_notice")} | Lysius`} />
+        <meta
+          name="twitter:description"
+          content={t("legal_notice_description")}
+        />
         <meta
           name="twitter:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
@@ -43,7 +45,7 @@ const LegalPage = ({ legalData }) => {
       </Head>
 
       <div className={styles.container}>
-        <h1>{pageTitle}</h1>
+        {/* <h1>{t("legal_notice")}</h1> */}
         <div className={styles.text}>
           {paragraphs.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
@@ -55,16 +57,12 @@ const LegalPage = ({ legalData }) => {
 };
 
 // Server-side Daten holen
-export const getServerSideProps = async ({ locale, query }) => {
-  const { type } = query;
-
-  // AGB oder Datenschutz basierend auf dem `type`-Parameter abfragen
+export const getServerSideProps = async ({ locale }) => {
   const legalData = await prisma.legal.findFirst({
-    where: { type },
+    where: { type: "Impressum" },
   });
 
   if (legalData) {
-    // Konvertiere createdAt (und andere Date-Felder, falls nötig) in ein ISO-String-Format
     legalData.createdAt = legalData.createdAt.toISOString();
   }
 
