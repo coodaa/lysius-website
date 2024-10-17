@@ -26,7 +26,6 @@ const Landscape = () => {
       <div className={styles.landscapeOverlay}>
         <p className={styles.message}>
           {t("landscape_warning")}{" "}
-          {/* Verwende die Übersetzung für die Nachricht */}
         </p>
       </div>
     );

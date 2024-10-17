@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Navbar from "./Navbar";
 import ScrollToTop from "./ScrollToTop";
-import Landscape from "./LandscapeWarning"; 
+import Landscape from "./LandscapeWarning";
 import styles from "../styles/Layout.module.css";
 
 const Layout = ({ children }) => {
@@ -35,8 +35,8 @@ const Layout = ({ children }) => {
 
   return (
     <div className={styles.pageContainer}>
-      <ScrollToTop /> {/* ScrollToTop-Komponente hier eingebunden */}
-      <Landscape /> {/* Landscape-Komponente eingebunden */}
+      <ScrollToTop />
+      {/* <Landscape /> */}
       <Navbar
         currentTitle={currentTitle}
         plays={plays}
