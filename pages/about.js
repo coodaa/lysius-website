@@ -65,7 +65,7 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
                   <p>{t("no_members_available")}</p>
                 )}
                 <hr className={styles.horizontalLine} />
-                <h2>{t("newsletter")}</h2>
+                {/* <h2>{t("newsletter")}</h2> */}
                 <p>
                   {isEnglish
                     ? newsletterData.details_en
