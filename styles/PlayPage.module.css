@@ -326,10 +326,13 @@
 
   .mobileImages .image {
     margin-top: 3em;
-    height: 100vh;
+    height: 100%;
     width: 90%;
     object-fit: cover;
   }
+
+
+
 
   .mobileImages .image.show {
     opacity: 1;
