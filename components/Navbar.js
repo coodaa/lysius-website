@@ -12,38 +12,32 @@ const Navbar = ({ currentTitle, plays = [] }) => {
   const titleRef = useRef(null);
 
   useEffect(() => {
-    const checkOverflow = () => {
+    const observer = new ResizeObserver(() => {
       if (titleRef.current) {
         setIsTextOverflowing(
           titleRef.current.scrollWidth > titleRef.current.clientWidth
         );
       }
+    });
+
+    if (titleRef.current) {
+      observer.observe(titleRef.current);
+    }
+
+    return () => {
+      if (titleRef.current) {
+        observer.unobserve(titleRef.current);
+      }
     };
-
-    // Initial check
-    checkOverflow();
-
-    // Recheck on window resize
-    window.addEventListener("resize", checkOverflow);
-    return () => window.removeEventListener("resize", checkOverflow);
   }, []);
 
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
 
-  const closeMenu = (e) => {
-    if (
-      !e.target.closest(`.${styles.nav}`) &&
-      !e.target.closest(`.${styles.menuButton}`)
-    ) {
-      setMenuOpen(false);
-    }
-  };
-
   const handleLinkClick = () => {
     setMenuOpen(false);
-    window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   const switchLanguage = (lang) => {
@@ -75,6 +69,7 @@ const Navbar = ({ currentTitle, plays = [] }) => {
           className={`${styles.title} ${
             isTextOverflowing ? styles.overflow : ""
           }`}
+          title={isTextOverflowing ? displayTitle : ""}
         >
           {displayTitle}
         </span>
