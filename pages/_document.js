@@ -5,10 +5,7 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta
-            name="description"
-            content="Der gemeinnützige Verein Lysius e.V. verbindet seit 2019 eine Initiative von Kulturschaffenden, die an der Schnittstelle von Musik, Theater, Gesellschaft, Politik und insbesondere am Lehrstück arbeitet und forscht."
-          />
+          {/* Standard Meta-Tags */}
           <meta charSet="UTF-8" />
           <meta
             name="viewport"
@@ -21,29 +18,26 @@ export default class MyDocument extends Document {
             href="/apple-touch-icon.png"
           />
 
-          {/* Open Graph Meta Tags for Rich Preview */}
-          <meta
-            property="og:title"
-            content="Lysius e.V. - Förderung von Kunst, Kultur und Wissenschaft"
-          />
+          {/* Open Graph Meta-Tags */}
+          <meta property="og:title" content="Lysius" />
           <meta
             property="og:description"
-            content="Lysius e.V. verbindet eine Initiative von Kulturschaffenden, die an der Schnittstelle von Musik, Theater und Gesellschaft forscht."
+            content="Interweaving performance cultures"
           />
           <meta
             property="og:image"
             content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
           />
-          <meta property="og:url" content="https://www.lysius.org/" />
+          <meta property="og:url" content="https://www.lysius.org" />
           <meta property="og:type" content="website" />
-          <meta property="og:site_name" content="Lysius e.V." />
+          <meta property="og:site_name" content="Lysius" />
 
-          {/* Twitter Card Tags for Rich Preview */}
+          {/* Twitter Card Tags */}
           <meta name="twitter:card" content="summary_large_image" />
-          <meta name="twitter:title" content="Lysius e.V." />
+          <meta name="twitter:title" content="Lysius" />
           <meta
             name="twitter:description"
-            content="Förderung von Kunst, Kultur und Wissenschaft im Sinne der Völkerverständigung."
+            content="Interweaving performance cultures"
           />
           <meta
             name="twitter:image"
