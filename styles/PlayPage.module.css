@@ -13,6 +13,18 @@
   margin-bottom: 5em;
 }
 
+.image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  max-height: 100%;
+}
+
+
+
 .contentContainer {
   background-color: white;
 }
@@ -103,14 +115,7 @@
   overflow: hidden;
 }
 
-.image {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-}
+
 
 .image.show {
   opacity: 1;
@@ -322,7 +327,7 @@
   .mobileImages .image {
     margin-top: 3em;
     height: 100vh;
-    width: 100%;
+    width: 90%;
     object-fit: cover;
   }
 
