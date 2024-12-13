@@ -5,7 +5,11 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          {/* Standard Meta-Tags */}
+          {/* Meta-Informationen */}
+          <meta
+            name="description"
+            content="Lysius - Interweaving performance cultures"
+          />
           <meta charSet="UTF-8" />
           <meta
             name="viewport"
@@ -18,7 +22,7 @@ export default class MyDocument extends Document {
             href="/apple-touch-icon.png"
           />
 
-          {/* Open Graph Meta-Tags */}
+          {/* Open Graph Meta Tags for Rich Preview */}
           <meta property="og:title" content="Lysius" />
           <meta
             property="og:description"
@@ -28,11 +32,13 @@ export default class MyDocument extends Document {
             property="og:image"
             content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
           />
+          <meta property="og:image:width" content="1200" />
+          <meta property="og:image:height" content="627" />
           <meta property="og:url" content="https://www.lysius.org" />
           <meta property="og:type" content="website" />
           <meta property="og:site_name" content="Lysius" />
 
-          {/* Twitter Card Tags */}
+          {/* Twitter Card Tags for Rich Preview */}
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:title" content="Lysius" />
           <meta

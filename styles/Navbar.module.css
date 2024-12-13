@@ -26,16 +26,28 @@
 }
 
 .logo {
-  padding: 1rem 1rem 0 .5rem;
+  padding: 1rem 0rem 0 .5rem;
 }
 
 .logo .title {
-  font-size: 1.6rem; /* Gleiche Schriftgröße wie vorher */
+  font-size: 1.6rem;
   font-weight: bold;
   color: black;
   position: relative;
-  text-decoration: none; /* Kein Unterstrich */
-  cursor: pointer; /* Damit es sich wie ein Link anfühlt */
+  text-decoration: none;
+  cursor: pointer;
+
+  /* Wichtig für das Abschneiden */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-block; /* Notwendig für `text-overflow` */
+  max-width: calc(100% - 2rem); /* Passe die maximale Breite an */
+}
+
+.logo .title.overflow {
+  color: red; /* Beispiel, um zu sehen, wann abgeschnitten wird */
+  text-overflow: ellipsis;
 }
 
 .menuButton {
@@ -97,7 +109,7 @@
   text-decoration: none;
   color: black;
   font-weight: bold;
-  cursor: pointer; 
+  cursor: pointer;
 }
 
 .footerList {
@@ -141,6 +153,8 @@
   text-decoration: underline;
 }
 
+
+
 /* For desktop version */
 @media (min-width: 600px) {
   .nav {
@@ -165,8 +179,11 @@
   }
 
   .navbar::after {
-    width: calc(100% - 4rem); /* Matches the padding */
+    width: calc(100% - 4rem);
   }
+
+  .logo .title {
+    max-width: 100%;
 }
 
 @media (min-width: 900px) {
@@ -199,4 +216,5 @@
   .navbar::after {
     width: calc(100% - 14rem);
   }
+}
 }
