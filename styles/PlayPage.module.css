@@ -327,12 +327,9 @@
   .mobileImages .image {
     margin-top: 3em;
     height: 100%;
-    width: 90%;
+    width: 100%;
     object-fit: cover;
   }
-
-
-
 
   .mobileImages .image.show {
     opacity: 1;
@@ -343,10 +340,6 @@
     width: 100%;
     height: 92vh;
   }
-
-  /* .imageContainer {
-    margin-bottom: 0em;
-  } */
 
   .logoContainer {
     grid-template-columns: repeat(2, 1fr);
@@ -365,6 +358,8 @@
     gap: 4rem;
   }
 
+
+  
   .playDesktop {
     padding-top: 5em;
     margin-bottom: 5em;
