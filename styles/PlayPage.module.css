@@ -18,12 +18,25 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: top; 
   opacity: 0;
   transition: opacity 1s ease-in-out;
-  max-height: 100%;
 }
 
+.mobileImages {
+  position: relative;
+  width: 100%;
+  padding-top: 56.25%; /* Seitenverhältnis des Bildes (z. B. 16:9) */
+  overflow: hidden;
+}
 
+.mobileImages .image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+}
 
 .contentContainer {
   background-color: white;
@@ -359,7 +372,7 @@
   }
 
 
-  
+
   .playDesktop {
     padding-top: 5em;
     margin-bottom: 5em;

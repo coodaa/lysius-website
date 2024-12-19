@@ -279,6 +279,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                     alt={title}
                     layout="fill"
                     objectFit="cover"
+                    objectPosition="top"
                     priority={index === 0}
                     loading={index === 0 ? "eager" : "lazy"}
                     sizes="(max-width: 768px) 100vw, 50vw"
