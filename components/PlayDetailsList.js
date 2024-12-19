@@ -40,11 +40,12 @@ const PlayDetailsList = ({ play }) => {
 
   const getText = (key) => {
     if (!play) {
-      console.error(`Play data is missing for key: ${key}`);
+      if (process.env.NODE_ENV === "development") {
+        console.error(`Play data is missing for key: ${key}`);
+      }
       return "";
     }
-
-    // Gibt die englische Version zurück, falls vorhanden, ansonsten die lokale
+   
     const text =
       i18n.language === "en" && play[`${key}_en`]
         ? play[`${key}_en`]

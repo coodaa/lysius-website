@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PlayDetails from "../../components/PlayDetails";
 import prisma from "../../lib/prisma";
 
-const PlayPage = ({ play, setCurrentTitle }) => {
+const PlayPage = ({ play }) => {
+  const [currentTitle, setCurrentTitle] = useState("");
   return <PlayDetails play={play} setCurrentTitle={setCurrentTitle} />;
 };
 
 export async function getServerSideProps(context) {
   const { id } = context.params;
 
+  if (isNaN(parseInt(id, 10))) {
+    return {
+      notFound: true,
+    };
+  }
+
   try {
     const play = await prisma.play.findUnique({
-      where: { id: parseInt(id) },
+      where: { id: parseInt(id, 10) },
       select: {
         id: true,
         title: true,
@@ -143,66 +150,8 @@ export async function getServerSideProps(context) {
         position30_name: true,
         position30_en: true,
         position30_name_en: true,
-        descriptionleft1: true,
-        descriptionleft1_en: true,
-        descriptionleft2: true,
-        descriptionleft2_en: true,
-        descriptionleft3: true,
-        descriptionleft3_en: true,
-        descriptionleft4: true,
-        descriptionleft4_en: true,
-        textright1: true,
-        textright1_en: true,
-        textright2: true,
-        textright2_en: true,
-        textright3: true,
-        textright3_en: true,
-        textright4: true,
-        textright4_en: true,
-        topImage1: true,
-        topImage2: true,
-        topImage3: true,
-        topImage4: true,
-        topImage5: true,
-        topImage6: true,
-        imageUrl1: true,
-        imageUrl2: true,
-        imageUrl3: true,
-        imageUrl4: true,
-        imageUrl5: true,
-        imageUrl6: true,
-        imageUrl7: true,
-        imageUrl8: true,
-        imageUrl9: true,
-        imageUrl10: true,
-        imageCredit1_de: true,
-        imageCredit1_en: true,
-        imageCredit2_de: true,
-        imageCredit2_en: true,
-        imageCredit3_de: true,
-        imageCredit3_en: true,
-        imageCredit4_de: true,
-        imageCredit4_en: true,
-        imageCredit5_de: true,
-        imageCredit5_en: true,
-        imageCredit6_de: true,
-        imageCredit6_en: true,
-        imageCredit7_de: true,
-        imageCredit7_en: true,
-        imageCredit8_de: true,
-        imageCredit8_en: true,
-        imageCredit9_de: true,
-        imageCredit9_en: true,
-        imageCredit10_de: true,
-        imageCredit10_en: true,
-        topMobileImage1: true,
-        topMobileImage2: true,
-        topMobileImage3: true,
-        topMobileImage4: true,
-        topMobileImage5: true,
-        topMobileImage6: true,
-        videoUrl1: true,
-        videoCredit1: true,
+        videoCredit1_de: true,
+        videoCredit1_en: true,
         logo1: true,
         logo2: true,
         logo3: true,
@@ -225,10 +174,10 @@ export async function getServerSideProps(context) {
       },
     };
   } catch (error) {
-    console.error("Error fetching play:", error);
+    console.error("Error fetching play data:", error.message);
     return {
       props: {
-        error: "Error fetching play",
+        error: "Error fetching play data",
       },
     };
   }

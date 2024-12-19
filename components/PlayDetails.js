@@ -306,6 +306,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                     alt={title}
                     layout="fill"
                     objectFit="cover"
+                    objectPosition="top"
                     priority={index === 0}
                     loading={index === 0 ? "eager" : "lazy"}
                     sizes="(max-width: 1200px) 100vw, 50vw"
@@ -384,9 +385,13 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
 
             {videoUrl && <CustomVideoPlayer videoUrl={videoUrl} />}
 
-            {play?.videoCredit1 && (
+            {(play?.videoCredit1_de || play?.videoCredit1_en) && (
               <div className={styles.videoCredit}>
-                <p>{play.videoCredit1}</p>
+                <p>
+                  {isEnglish
+                    ? play?.videoCredit1_en || play?.videoCredit1_de
+                    : play?.videoCredit1_de || play?.videoCredit1_en}
+                </p>
               </div>
             )}
 
