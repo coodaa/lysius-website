@@ -37,20 +37,14 @@
   color: black;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;
   max-width: calc(100% - 4rem); /* Platz für den Menübutton lassen */
   display: inline-block;
   transition: all 0.3s ease; /* Weicher Übergang bei Änderungen */
 }
 
-.title.overflow {
-  text-overflow: ellipsis;
-}
-
 .title:hover {
-  text-overflow: clip;
-  white-space: normal;
-  overflow: visible;
+  white-space: normal; /* Optional: Voller Titel bei Hover sichtbar */
+  overflow: visible; /* Optional: Voller Titel bei Hover sichtbar */
 }
 
 .menuButton {

@@ -309,7 +309,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                     objectPosition="top"
                     priority={index === 0}
                     loading={index === 0 ? "eager" : "lazy"}
-                    sizes="(max-width: 1200px) 100vw, 50vw"
+                    sizes="(max-width: 1000px) 100vw, 50vw"
                     onError={(e) => (e.target.style.display = "none")}
                   />
                 </div>

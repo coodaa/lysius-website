@@ -9,16 +9,18 @@
 .imageContainer {
   position: relative;
   width: 100%;
-  height: 100vh;
-  margin-bottom: 5em;
+  height: 100vh; /* Vollständige Bildschirmhöhe */
+  margin-bottom: 0; /* Kein Abstand unten */
 }
+
+
 
 .image {
   position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: top; 
+  object-position: top;
   opacity: 0;
   transition: opacity 1s ease-in-out;
 }
@@ -121,13 +123,12 @@
 
 .imageWrapper {
   position: absolute;
-  width: 100%;
-  height: 100%;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
 }
-
 
 
 .image.show {
@@ -261,6 +262,10 @@
   display: block;
 }
 
+.desktopImages .image {
+  margin-top: 3em;
+}
+
 .videoContainer {
   position: relative;
   padding-bottom: 56.25%;
@@ -380,12 +385,7 @@
   }
 
   .imageContainer {
-    height: 93vh;
-  }
-
-  .imageContainer {
-    height: 93vh;
-    margin-bottom: 0em;
+    height: 100vh;
   }
 
 
