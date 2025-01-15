@@ -47,6 +47,9 @@ const Navbar = ({ currentTitle, plays = [] }) => {
 
   const getDisplayTitle = () => {
     if (router.pathname.startsWith("/plays/")) {
+      if (window.innerWidth <= 767) {
+        return currentTitle.split(" - ")[0];
+      }
       return currentTitle;
     } else if (router.pathname === "/about") {
       return t("about");
