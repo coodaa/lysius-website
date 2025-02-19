@@ -136,6 +136,7 @@ const HomePage = ({ images, news }) => {
                   alt={image.alt || `Image ${index + 1}`}
                   layout="fill"
                   objectFit="cover"
+                  objectPosition="top" // Hier wird der obere Bildbereich fixiert
                 />
               </div>
             ))}
