@@ -33,7 +33,7 @@ export async function getServerSideProps({ locale }) {
 }
 
 const HomePage = ({ images, news }) => {
-  const { t, i18n } = useTranslation("common"); // Füge i18n hinzu
+  const { t, i18n } = useTranslation("common"); 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -136,7 +136,7 @@ const HomePage = ({ images, news }) => {
                   alt={image.alt || `Image ${index + 1}`}
                   layout="fill"
                   objectFit="cover"
-                  objectPosition="top" // Hier wird der obere Bildbereich fixiert
+                  objectPosition="top"
                 />
               </div>
             ))}
