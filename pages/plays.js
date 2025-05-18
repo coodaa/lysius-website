@@ -1,40 +1,12 @@
+// pages/plays.js
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import { PrismaClient } from "@prisma/client";
 import Head from "next/head";
-
-let prisma;
-
-if (!global.prisma) {
-  prisma = new PrismaClient();
-  if (process.env.NODE_ENV === "development") {
-    global.prisma = prisma;
-  }
-} else {
-  prisma = global.prisma;
-}
-
-export async function handler(req, res) {
-  try {
-    console.log("API /api/plays hit");
-    const plays = await prisma.play.findMany();
-    console.log("Fetched plays from database:", plays);
-    res.status(200).json(plays);
-  } catch (error) {
-    console.error(
-      process.env.NODE_ENV === "development"
-        ? `Error fetching plays: ${error}`
-        : "An error occurred while fetching plays."
-    );
-    res.status(500).json({ error: "Internal Server Error" });
-  }
-}
 
 export async function getServerSideProps({ locale }) {
   console.log("getServerSideProps called");
 
   const apiUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
-  console.log("API URL:", apiUrl);
   let plays = [];
 
   try {
@@ -47,7 +19,7 @@ export async function getServerSideProps({ locale }) {
       plays = plays.map((play) => ({
         ...play,
         videoUrl: play.videoUrl
-          .replace("youtu.be/", "youtube.com/embed/")
+          ?.replace("youtu.be/", "youtube.com/embed/")
           .replace("watch?v=", "embed/"),
       }));
     } else {
@@ -65,10 +37,8 @@ export async function getServerSideProps({ locale }) {
   };
 }
 
-export default function Home({ plays }) {
+export default function PlaysPage({ plays }) {
   const { t } = useTranslation("common");
-
-  console.log("Rendering Home component");
 
   return (
     <>
@@ -87,7 +57,7 @@ export default function Home({ plays }) {
           property="og:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
-        <meta property="og:url" content="https://www.lysius.org/" />
+        <meta property="og:url" content="https://www.lysius.org/plays" />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Theaterstücke | Lysius" />
@@ -112,7 +82,7 @@ export default function Home({ plays }) {
                 <img
                   src={play.imageUrl}
                   alt={play.title}
-                  loading="lazy" // Lazy loading for performance
+                  loading="lazy"
                 />
               )}
               {play.videoUrl && (
