@@ -7,10 +7,12 @@ import styles from "../styles/Navbar.module.css";
 const Navbar = ({ currentTitle, plays = [] }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isTextOverflowing, setIsTextOverflowing] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const router = useRouter();
   const { t, i18n } = useTranslation("common");
   const titleRef = useRef(null);
 
+  // Beobachtet Titelüberlauf
   useEffect(() => {
     const observer = new ResizeObserver(() => {
       if (titleRef.current) {
@@ -31,6 +33,16 @@ const Navbar = ({ currentTitle, plays = [] }) => {
     };
   }, []);
 
+  // Erkennung Mobilgerät
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 767);
+    };
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
   };
@@ -47,9 +59,7 @@ const Navbar = ({ currentTitle, plays = [] }) => {
 
   const getDisplayTitle = () => {
     if (router.pathname.startsWith("/plays/")) {
-      if (typeof window !== "undefined" && window.innerWidth <= 767) {        return currentTitle.split(" - ")[0];
-      }
-      return currentTitle;
+      return isMobile ? currentTitle.split(" - ")[0] : currentTitle;
     } else if (router.pathname === "/about") {
       return t("about");
     } else if (router.pathname === "/legal") {
@@ -89,23 +99,23 @@ const Navbar = ({ currentTitle, plays = [] }) => {
                   : play.title;
 
               return (
-                <li key={play.id} onClick={handleLinkClick}>
-                  <span
-                    className={`${styles.link} ${
-                      router.pathname === `/plays/${play.id}`
-                        ? styles.active
-                        : ""
-                    }`}
-                    onClick={() =>
-                      router
-                        .push(`/plays/${play.id}`)
-                        .then(() =>
-                          window.scrollTo({ top: 0, behavior: "smooth" })
-                        )
-                    }
+                <li key={play.id}>
+                  <Link
+                    href={`/plays/${play.id}`}
+                    scroll={false}
+                    legacyBehavior
                   >
-                    {playTitle}
-                  </span>
+                    <a
+                      className={`${styles.link} ${
+                        router.pathname === `/plays/${play.id}`
+                          ? styles.active
+                          : ""
+                      }`}
+                      onClick={handleLinkClick}
+                    >
+                      {playTitle}
+                    </a>
+                  </Link>
                 </li>
               );
             })}
@@ -115,45 +125,49 @@ const Navbar = ({ currentTitle, plays = [] }) => {
             menuOpen ? styles.footerOpen : ""
           }`}
         >
-          <li className={styles.footerItem} onClick={handleLinkClick}>
+          <li className={styles.footerItem}>
             <Link href="/" legacyBehavior>
               <a
                 className={`${styles.link} ${
                   router.pathname === "/" ? styles.active : ""
                 }`}
+                onClick={handleLinkClick}
               >
                 Lysius
               </a>
             </Link>
           </li>
-          <li onClick={handleLinkClick}>
+          <li>
             <Link href="/about" legacyBehavior>
               <a
                 className={`${styles.link} ${
                   router.pathname === "/about" ? styles.active : ""
                 }`}
+                onClick={handleLinkClick}
               >
                 {t("about")}
               </a>
             </Link>
           </li>
-          <li onClick={handleLinkClick}>
+          <li>
             <Link href="/terms" legacyBehavior>
               <a
                 className={`${styles.link} ${
                   router.pathname === "/terms" ? styles.active : ""
                 }`}
+                onClick={handleLinkClick}
               >
                 {t("terms")}
               </a>
             </Link>
           </li>
-          <li onClick={handleLinkClick}>
+          <li>
             <Link href="/legal" legacyBehavior>
               <a
                 className={`${styles.link} ${
                   router.pathname === "/legal" ? styles.active : ""
                 }`}
+                onClick={handleLinkClick}
               >
                 {t("legal")}
               </a>
