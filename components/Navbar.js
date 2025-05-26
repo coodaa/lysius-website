@@ -37,7 +37,9 @@ const Navbar = ({ currentTitle, plays = [] }) => {
 
   const handleLinkClick = () => {
     setMenuOpen(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    if (typeof window !== "undefined") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   };
 
   const switchLanguage = (lang) => {
@@ -47,7 +49,7 @@ const Navbar = ({ currentTitle, plays = [] }) => {
 
   const getDisplayTitle = () => {
     if (router.pathname.startsWith("/plays/")) {
-      if (window.innerWidth <= 767) {
+      if (typeof window !== "undefined" && window.innerWidth <= 767) {
         return currentTitle.split(" - ")[0];
       }
       return currentTitle;
@@ -98,11 +100,11 @@ const Navbar = ({ currentTitle, plays = [] }) => {
                         : ""
                     }`}
                     onClick={() =>
-                      router
-                        .push(`/plays/${play.id}`)
-                        .then(() =>
-                          window.scrollTo({ top: 0, behavior: "smooth" })
-                        )
+                      router.push(`/plays/${play.id}`).then(() => {
+                        if (typeof window !== "undefined") {
+                          window.scrollTo({ top: 0, behavior: "smooth" });
+                        }
+                      })
                     }
                   >
                     {playTitle}
