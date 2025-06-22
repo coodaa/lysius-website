@@ -33,7 +33,7 @@ export async function getServerSideProps({ locale }) {
 }
 
 const HomePage = ({ images, news }) => {
-  const { t, i18n } = useTranslation("common"); 
+  const { t, i18n } = useTranslation("common");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
