@@ -45,7 +45,7 @@ const PlayDetailsList = ({ play }) => {
       }
       return "";
     }
-   
+
     const text =
       i18n.language === "en" && play[`${key}_en`]
         ? play[`${key}_en`]
@@ -98,7 +98,14 @@ const PlayDetailsList = ({ play }) => {
           return (
             <React.Fragment key={position.key}>
               <p className={styles.label}>{positionText}</p>
-              <p className={styles.value}>{formatName(positionName)}</p>
+              <p
+                className={styles.value}
+                dangerouslySetInnerHTML={{
+                  __html: formatName(positionName)
+                    ? positionName.replace(/\n/g, "<br />")
+                    : "",
+                }}
+              ></p>{" "}
             </React.Fragment>
           );
         }
