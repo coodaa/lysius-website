@@ -77,11 +77,11 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
                   onSubmit={(e) => {
                     e.preventDefault();
                     const subject = isEnglish
-                      ? "Newsletter Subscription"
-                      : "Newsletter Anmeldung";
+                      ? "Lysius Newsletter"
+                      : "Lysius Newsletter";
                     const body = isEnglish
-                      ? "Hello,\n\nI would like to subscribe to the Lysius newsletter.\n\nBest regards"
-                      : "Hallo,\n\nich möchte mich gerne für den Lysius Newsletter anmelden.\n\nBeste Grüße";
+                      ? "Dear Ladies and Gentlemen,\n\nI would like to subscribe to the Newsletter of Lysius.\n\nKind regards"
+                      : "Sehr geehrte Damen und Herren,\n\nbitte schicken Sie mir den Newsletter von Lysius.\n\nMit freundlichem Gruß";
 
                     window.location.href = `mailto:kemmann@lysius.org?subject=${encodeURIComponent(
                       subject
