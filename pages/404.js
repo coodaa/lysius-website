@@ -7,8 +7,8 @@ export default function Custom404() {
       <div className={styles.errorContainer}>
         <h1 className={styles.title}>:(</h1>
         <p className={styles.message}>Die Seite existiert leider nicht</p>
-        <Link legacyBehavior href="/">
-          <a className={styles.homeLink}>zur Startseite</a>
+        <Link href="/" className={styles.homeLink}>
+          zur Startseite
         </Link>
       </div>
     </div>

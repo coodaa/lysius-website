@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { useTranslation } from "next-i18next";
-import NextImage from "next/image";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import prisma from "../lib/prisma";
+import { cloudinarySrc, cloudinarySrcSet } from "../lib/cloudinaryImage";
 
 export async function getStaticProps({ locale }) {
   let images = [];
@@ -30,21 +30,6 @@ export async function getStaticProps({ locale }) {
 const HomePage = ({ images, news }) => {
   const { t, i18n } = useTranslation("common");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Überwache die Bildschirmbreite und setze den Zustand für mobile Geräte
-  useEffect(() => {
-    const updateIsMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
-    };
-
-    updateIsMobile();
-    window.addEventListener("resize", updateIsMobile);
-
-    return () => {
-      window.removeEventListener("resize", updateIsMobile);
-    };
-  }, []);
 
   // Image rotation logic
   useEffect(() => {
@@ -178,19 +163,33 @@ const HomePage = ({ images, news }) => {
                   index === currentImageIndex ? styles.show : ""
                 }`}
               >
-                <NextImage
-                  src={
-                    isMobile && image.mobileImageUrl
-                      ? image.mobileImageUrl
-                      : image.url
-                  }
-                  alt={image.description || image.name || `Lysius – Bild ${index + 1}`}
-                  fill
-                  style={{ objectFit: "cover", objectPosition: "top" }}
-                  sizes="100vw"
-                  priority={index === 0}
-                  loading={index === 0 ? "eager" : "lazy"}
-                />
+                <picture>
+                  {image.mobileImageUrl && (
+                    <source
+                      media="(max-width: 768px)"
+                      srcSet={
+                        cloudinarySrcSet(image.mobileImageUrl, [480, 768, 1080]) ||
+                        image.mobileImageUrl
+                      }
+                    />
+                  )}
+                  <img
+                    src={cloudinarySrc(image.url, 1920)}
+                    srcSet={cloudinarySrcSet(image.url, [750, 1080, 1920, 2560])}
+                    sizes="100vw"
+                    alt={image.description || image.name || `Lysius – Bild ${index + 1}`}
+                    loading={index === 0 ? "eager" : "lazy"}
+                    fetchPriority={index === 0 ? "high" : "auto"}
+                    style={{
+                      position: "absolute",
+                      inset: 0,
+                      width: "100%",
+                      height: "100%",
+                      objectFit: "cover",
+                      objectPosition: "top",
+                    }}
+                  />
+                </picture>
               </div>
             ))}
           </div>

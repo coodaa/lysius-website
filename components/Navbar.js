@@ -95,19 +95,18 @@ const Navbar = ({ currentTitle, plays = [] }) => {
 
               return (
                 <li key={play.id} onClick={handleLinkClick}>
-                  <Link href={playHref} legacyBehavior>
-                    <a
-                      className={`${styles.link} ${
-                        router.asPath === playHref ? styles.active : ""
-                      }`}
-                      onClick={() => {
-                        if (typeof window !== "undefined") {
-                          window.scrollTo({ top: 0, behavior: "smooth" });
-                        }
-                      }}
-                    >
-                      {playTitle}
-                    </a>
+                  <Link
+                    href={playHref}
+                    className={`${styles.link} ${
+                      router.asPath === playHref ? styles.active : ""
+                    }`}
+                    onClick={() => {
+                      if (typeof window !== "undefined") {
+                        window.scrollTo({ top: 0, behavior: "smooth" });
+                      }
+                    }}
+                  >
+                    {playTitle}
                   </Link>
                 </li>
               );
@@ -119,47 +118,43 @@ const Navbar = ({ currentTitle, plays = [] }) => {
           }`}
         >
           <li className={styles.footerItem} onClick={handleLinkClick}>
-            <Link href="/" legacyBehavior>
-              <a
-                className={`${styles.link} ${
-                  router.pathname === "/" ? styles.active : ""
-                }`}
-              >
-                Lysius
-              </a>
+            <Link
+              href="/"
+              className={`${styles.link} ${
+                router.pathname === "/" ? styles.active : ""
+              }`}
+            >
+              Lysius
             </Link>
           </li>
           <li onClick={handleLinkClick}>
-            <Link href="/about" legacyBehavior>
-              <a
-                className={`${styles.link} ${
-                  router.pathname === "/about" ? styles.active : ""
-                }`}
-              >
-                {t("about")}
-              </a>
+            <Link
+              href="/about"
+              className={`${styles.link} ${
+                router.pathname === "/about" ? styles.active : ""
+              }`}
+            >
+              {t("about")}
             </Link>
           </li>
           <li onClick={handleLinkClick}>
-            <Link href="/terms" legacyBehavior>
-              <a
-                className={`${styles.link} ${
-                  router.pathname === "/terms" ? styles.active : ""
-                }`}
-              >
-                {t("terms")}
-              </a>
+            <Link
+              href="/terms"
+              className={`${styles.link} ${
+                router.pathname === "/terms" ? styles.active : ""
+              }`}
+            >
+              {t("terms")}
             </Link>
           </li>
           <li onClick={handleLinkClick}>
-            <Link href="/legal" legacyBehavior>
-              <a
-                className={`${styles.link} ${
-                  router.pathname === "/legal" ? styles.active : ""
-                }`}
-              >
-                {t("legal")}
-              </a>
+            <Link
+              href="/legal"
+              className={`${styles.link} ${
+                router.pathname === "/legal" ? styles.active : ""
+              }`}
+            >
+              {t("legal")}
             </Link>
           </li>
           <li className={styles.languageSwitch}>

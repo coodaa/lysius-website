@@ -13,6 +13,7 @@ import PlayDetailsList from "./PlayDetailsList";
 import SecondCarousel from "./SecondCarousel";
 import CustomVideoPlayer from "./CustomVideoPlayer";
 import styles from "../styles/PlayPage.module.css";
+import { cloudinarySrc, cloudinarySrcSet } from "../lib/cloudinaryImage";
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -71,6 +72,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     () =>
       [1, 2, 3, 4, 5, 6]
         .map((i) => ({
+          slot: i,
           url: play?.[`topImage${i}`],
           credit_de: play?.[`imageCredit${i}_de`] || play?.[`imageCredit${i}`] || "",
           credit_en: play?.[`imageCredit${i}_en`] || play?.[`imageCredit${i}`] || "",
@@ -98,6 +100,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
     const images = [];
     for (let i = 1; i <= 6; i++) {
       images.push({
+        slot: i,
         url: play?.[`topMobileImage${i}`] || play?.[`imageUrl${i}`],
         credit: play?.[`imageCredit${i}`] || "",
         credit_de:
@@ -241,7 +244,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
   return (
     <>
       <div className={styles.pageContainer} ref={topRef}>
-        {isMobile && mobileImages.length > 0 && (
+        {mobileImages.length > 0 && (
           <div className={`${styles.imageContainer} ${styles.mobileImages}`}>
             {mobileImages.map((image, index) =>
               image.url ? (
@@ -257,26 +260,58 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                     )
                   }
                 >
-                  <NextImage
-                    src={image.url}
-                    alt={
-                      (isEnglish ? image.credit_en : image.credit_de) ||
-                      `${title} – ${index + 1}`
-                    }
-                    fill
-                    style={{ objectFit: "cover", objectPosition: "top" }}
-                    priority={index === 0}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                    onError={(e) => (e.target.style.display = "none")}
-                  />
+                  {index === 0 ? (
+                    <picture>
+                      <source
+                        media="(min-width: 768px)"
+                        srcSet={
+                          cloudinarySrcSet(play?.[`topImage${image.slot}`], [750, 1080, 1600]) ||
+                          play?.[`topImage${image.slot}`] ||
+                          undefined
+                        }
+                      />
+                      <img
+                        src={cloudinarySrc(image.url, 1080)}
+                        srcSet={cloudinarySrcSet(image.url, [480, 768, 1080])}
+                        sizes="100vw"
+                        alt={
+                          (isEnglish ? image.credit_en : image.credit_de) ||
+                          `${title} – ${index + 1}`
+                        }
+                        loading="eager"
+                        fetchPriority="high"
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          objectPosition: "top",
+                        }}
+                        onError={(e) => (e.target.style.display = "none")}
+                      />
+                    </picture>
+                  ) : (
+                    <NextImage
+                      src={image.url}
+                      alt={
+                        (isEnglish ? image.credit_en : image.credit_de) ||
+                        `${title} – ${index + 1}`
+                      }
+                      fill
+                      style={{ objectFit: "cover", objectPosition: "top" }}
+                      loading="lazy"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                      onError={(e) => (e.target.style.display = "none")}
+                    />
+                  )}
                 </div>
               ) : null
             )}
           </div>
         )}
 
-        {!isMobile && topImages.length > 0 && (
+        {topImages.length > 0 && (
           <div className={`${styles.imageContainer} ${styles.desktopImages}`}>
             {topImages.map((image, index) =>
               image.url ? (
@@ -286,19 +321,55 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                     index === currentImageIndex ? styles.show : ""
                   }`}
                 >
-                  <NextImage
-                    src={image.url}
-                    alt={
-                      (isEnglish ? image.credit_en : image.credit_de) ||
-                      `${title} – ${index + 1}`
-                    }
-                    fill
-                    style={{ objectFit: "cover", objectPosition: "top" }}
-                    priority={index === 0}
-                    loading={index === 0 ? "eager" : "lazy"}
-                    sizes="(max-width: 1000px) 100vw, 50vw"
-                    onError={(e) => (e.target.style.display = "none")}
-                  />
+                  {index === 0 ? (
+                    <picture>
+                      <source
+                        media="(max-width: 767px)"
+                        srcSet={
+                          cloudinarySrcSet(
+                            play?.[`topMobileImage${image.slot}`] || play?.[`imageUrl${image.slot}`],
+                            [480, 768, 1080]
+                          ) ||
+                          play?.[`topMobileImage${image.slot}`] ||
+                          play?.[`imageUrl${image.slot}`] ||
+                          undefined
+                        }
+                      />
+                      <img
+                        src={cloudinarySrc(image.url, 1600)}
+                        srcSet={cloudinarySrcSet(image.url, [750, 1080, 1600, 2200])}
+                        sizes="(max-width: 1000px) 100vw, 50vw"
+                        alt={
+                          (isEnglish ? image.credit_en : image.credit_de) ||
+                          `${title} – ${index + 1}`
+                        }
+                        loading="eager"
+                        fetchPriority="high"
+                        style={{
+                          position: "absolute",
+                          inset: 0,
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
+                          objectPosition: "top",
+                        }}
+                        onError={(e) => (e.target.style.display = "none")}
+                      />
+                    </picture>
+                  ) : (
+                    <NextImage
+                      src={image.url}
+                      alt={
+                        (isEnglish ? image.credit_en : image.credit_de) ||
+                        `${title} – ${index + 1}`
+                      }
+                      fill
+                      style={{ objectFit: "cover", objectPosition: "top" }}
+                      loading="lazy"
+                      sizes="(max-width: 1000px) 100vw, 50vw"
+                      onError={(e) => (e.target.style.display = "none")}
+                    />
+                  )}
                 </div>
               ) : null
             )}
