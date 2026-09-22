@@ -226,7 +226,7 @@ export async function getStaticProps(context) {
         play: serializedPlay,
         ...(await serverSideTranslations(context.locale, ["common"])),
       },
-      revalidate: 3600,
+      revalidate: 60,
     };
   } catch (error) {
     console.error("Error fetching play:", error);
