@@ -25,7 +25,7 @@ const PlayPage = ({ play, setCurrentTitle }) => {
     ? rawOgImage.replace("/upload/", "/upload/c_fill,w_1200,h_630,f_auto,q_auto/")
     : rawOgImage;
   const slug = playSlug(play);
-  const canonicalUrl = `${BASE_URL}/${slug}`;
+  const canonicalUrl = locale === "en" ? `${BASE_URL}/en/${slug}` : `${BASE_URL}/${slug}`;
 
   const youtubeId = (() => {
     const url = play.videoUrl1 || "";
@@ -98,7 +98,12 @@ const PlayPage = ({ play, setCurrentTitle }) => {
               "@context": "https://schema.org",
               "@type": "BreadcrumbList",
               itemListElement: [
-                { "@type": "ListItem", position: 1, name: "Lysius", item: "https://www.lysius.org" },
+                {
+                  "@type": "ListItem",
+                  position: 1,
+                  name: "Lysius",
+                  item: locale === "en" ? `${BASE_URL}/en` : BASE_URL,
+                },
                 { "@type": "ListItem", position: 2, name: title, item: canonicalUrl },
               ],
             }),

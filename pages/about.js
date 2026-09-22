@@ -27,7 +27,10 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
         />
         <meta name="author" content="Fabiane Kemmann" />
         <meta name="robots" content="index, follow, max-image-preview:large" />
-        <link rel="canonical" href="https://www.lysius.org/about" />
+        <link
+          rel="canonical"
+          href={isEnglish ? "https://www.lysius.org/en/about" : "https://www.lysius.org/about"}
+        />
         <link rel="alternate" hrefLang="de" href="https://www.lysius.org/about" />
         <link rel="alternate" hrefLang="en" href="https://www.lysius.org/en/about" />
         <link rel="alternate" hrefLang="x-default" href="https://www.lysius.org/about" />
@@ -37,7 +40,10 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
           property="og:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
-        <meta property="og:url" content="https://www.lysius.org/about" />
+        <meta
+          property="og:url"
+          content={isEnglish ? "https://www.lysius.org/en/about" : "https://www.lysius.org/about"}
+        />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="Lysius e.V." />
         <meta property="og:locale" content={isEnglish ? "en_US" : "de_DE"} />
@@ -125,7 +131,12 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
                     <p key={index}>
                       {isEnglish ? member.position_en : member.position_de}:{" "}
                       {member.position_de === "Programmierung" ? (
-                        <a href="https://www.coodaa.de" target="_blank" rel="noopener noreferrer">
+                        <a
+                          href="https://www.coodaa.de"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ fontWeight: "normal" }}
+                        >
                           coodaa
                         </a>
                       ) : (
