@@ -91,24 +91,24 @@ const Navbar = ({ currentTitle, plays = [] }) => {
                   ? play.title_en || play.title
                   : play.title;
 
+              const playHref = `/${play.slug || playSlug(play)}`;
+
               return (
                 <li key={play.id} onClick={handleLinkClick}>
-                  <span
-                    className={`${styles.link} ${
-                      router.asPath === `/${play.slug || playSlug(play)}`
-                        ? styles.active
-                        : ""
-                    }`}
-                    onClick={() =>
-                      router.push(`/${play.slug || playSlug(play)}`).then(() => {
+                  <Link href={playHref} legacyBehavior>
+                    <a
+                      className={`${styles.link} ${
+                        router.asPath === playHref ? styles.active : ""
+                      }`}
+                      onClick={() => {
                         if (typeof window !== "undefined") {
                           window.scrollTo({ top: 0, behavior: "smooth" });
                         }
-                      })
-                    }
-                  >
-                    {playTitle}
-                  </span>
+                      }}
+                    >
+                      {playTitle}
+                    </a>
+                  </Link>
                 </li>
               );
             })}

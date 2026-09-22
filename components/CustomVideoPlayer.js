@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import styles from "../styles/CustomVideoPlayer.module.css";
 
-const CustomVideoPlayer = ({ videoUrl }) => {
+const CustomVideoPlayer = ({ videoUrl, title }) => {
   const [isPlaying, setIsPlaying] = useState(false);
 
   // YouTube-Video-ID extrahieren
@@ -21,7 +21,7 @@ const CustomVideoPlayer = ({ videoUrl }) => {
         <div className={styles.thumbnailContainer} onClick={handlePlayClick}>
           <Image
             src={thumbnailUrl}
-            alt="Video thumbnail"
+            alt={title ? `Lysius e.V. – ${title} – Video` : "Video thumbnail"}
             fill
             style={{ objectFit: "cover" }}
             className={styles.thumbnail}

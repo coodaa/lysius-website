@@ -370,7 +370,7 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
               />
             )}
 
-            {videoUrl && <CustomVideoPlayer videoUrl={videoUrl} />}
+            {videoUrl && <CustomVideoPlayer videoUrl={videoUrl} title={title} />}
 
             {(play?.videoCredit1_de || play?.videoCredit1_en) && (
               <div className={styles.videoCredit}>
