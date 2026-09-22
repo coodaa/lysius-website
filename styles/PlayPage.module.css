@@ -258,6 +258,7 @@
 .textright a {
   text-decoration: underline;
   cursor: pointer;
+  font-weight: normal;
 }
 
 .description a:hover,
