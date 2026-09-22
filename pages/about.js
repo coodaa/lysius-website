@@ -25,44 +25,25 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
           content="Lysius, Fabiane Kemmann, Kultur, Kunst, Theater, Musik, Völkerverständigung, Wissenschaft, Kulturverein Berlin"
         />
         <meta name="author" content="Fabiane Kemmann" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <link rel="canonical" href="https://www.lysius.org/about" />
         <link rel="alternate" hrefLang="de" href="https://www.lysius.org/about" />
         <link rel="alternate" hrefLang="en" href="https://www.lysius.org/en/about" />
         <link rel="alternate" hrefLang="x-default" href="https://www.lysius.org/about" />
-        <meta
-          property="og:title"
-          content={isEnglish ? "About – Lysius" : "Über uns – Lysius"}
-        />
-        <meta
-          property="og:description"
-          content={
-            isEnglish
-              ? "Lysius is a cultural association for theatre, music and intercultural dialogue. Director: Fabiane Kemmann."
-              : "Lysius ist ein Kulturverein für Theater, Musik und interkulturelle Verständigung. Leitung: Fabiane Kemmann."
-          }
-        />
+        <meta property="og:title" content="Lysius e.V." />
+        <meta property="og:description" content="Interweaving performance cultures" />
         <meta
           property="og:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
         <meta property="og:url" content="https://www.lysius.org/about" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Lysius" />
+        <meta property="og:site_name" content="Lysius e.V." />
         <meta property="og:locale" content={isEnglish ? "en_US" : "de_DE"} />
         <meta property="og:locale:alternate" content={isEnglish ? "de_DE" : "en_US"} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content={isEnglish ? "About – Lysius" : "Über uns – Lysius"}
-        />
-        <meta
-          name="twitter:description"
-          content={
-            isEnglish
-              ? "Lysius is a cultural association for theatre, music and intercultural dialogue. Director: Fabiane Kemmann."
-              : "Lysius ist ein Kulturverein für Theater, Musik und interkulturelle Verständigung. Leitung: Fabiane Kemmann."
-          }
-        />
+        <meta name="twitter:title" content="Lysius e.V." />
+        <meta name="twitter:description" content="Interweaving performance cultures" />
         <meta
           name="twitter:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
@@ -75,6 +56,7 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
               "@type": "Organization",
               name: "Lysius",
               url: "https://www.lysius.org",
+              logo: "https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg",
               description: isEnglish
                 ? "Cultural association for theatre, music and intercultural dialogue"
                 : "Kulturverein für Theater, Musik und interkulturelle Verständigung",
@@ -86,6 +68,26 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
                   url: "https://www.lysius.org/about",
                 },
               ],
+            }),
+          }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ImageObject",
+              contentUrl:
+                "https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg",
+              caption: isEnglish
+                ? "Lysius e.V. – Theatre & Music Berlin"
+                : "Lysius e.V. – Theater & Musik Berlin",
+              description: isEnglish
+                ? "Lysius e.V. – Theatre & Music Berlin"
+                : "Lysius e.V. – Theater & Musik Berlin",
+              name: isEnglish
+                ? "Lysius e.V. – Theatre & Music Berlin"
+                : "Lysius e.V. – Theater & Musik Berlin",
             }),
           }}
         />
@@ -152,7 +154,7 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
                       ? "Dear Ladies and Gentlemen,\n\nI would like to subscribe to the Newsletter of Lysius.\n\nKind regards"
                       : "Sehr geehrte Damen und Herren,\n\nbitte schicken Sie mir den Newsletter von Lysius.\n\nMit freundlichem Gruß";
 
-                    window.location.href = `mailto:kemmann@lysius.org?subject=${encodeURIComponent(
+                    window.location.href = `mailto:production@lysius.org?subject=${encodeURIComponent(
                       subject
                     )}&body=${encodeURIComponent(body)}`;
                   }}

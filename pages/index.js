@@ -77,6 +77,7 @@ const HomePage = ({ images, news }) => {
           name="keywords"
           content="Lysius, Lysius e.V., Kultur, Kunst, Theater, Musik, Berlin, Kulturverein, Fabiane Kemmann"
         />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <link
           rel="canonical"
           href={i18n.language === "en" ? "https://www.lysius.org/en" : "https://www.lysius.org/"}
@@ -85,14 +86,7 @@ const HomePage = ({ images, news }) => {
         <link rel="alternate" hrefLang="en" href="https://www.lysius.org/en" />
         <link rel="alternate" hrefLang="x-default" href="https://www.lysius.org/" />
         <meta property="og:title" content="Lysius e.V." />
-        <meta
-          property="og:description"
-          content={
-            i18n.language === "en"
-              ? "Lysius e.V. – a Berlin-based cultural association for theatre, music and intercultural dialogue."
-              : "Lysius e.V. – ein Berliner Kulturverein für Theater, Musik und interkulturelle Verständigung."
-          }
-        />
+        <meta property="og:description" content="Interweaving performance cultures" />
         <meta
           property="og:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/c_fill,w_1200,h_630,f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
@@ -101,19 +95,12 @@ const HomePage = ({ images, news }) => {
         <meta property="og:image:height" content="630" />
         <meta property="og:url" content="https://www.lysius.org/" />
         <meta property="og:type" content="website" />
-        <meta property="og:site_name" content="Lysius" />
+        <meta property="og:site_name" content="Lysius e.V." />
         <meta property="og:locale" content={i18n.language === "en" ? "en_US" : "de_DE"} />
         <meta property="og:locale:alternate" content={i18n.language === "en" ? "de_DE" : "en_US"} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Lysius e.V." />
-        <meta
-          name="twitter:description"
-          content={
-            i18n.language === "en"
-              ? "Lysius e.V. – a Berlin-based cultural association for theatre, music and intercultural dialogue."
-              : "Lysius e.V. – ein Berliner Kulturverein für Theater, Musik und interkulturelle Verständigung."
-          }
-        />
+        <meta name="twitter:description" content="Interweaving performance cultures" />
         <meta
           name="twitter:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/c_fill,w_1200,h_630,f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
@@ -165,6 +152,24 @@ const HomePage = ({ images, news }) => {
             }),
           }}
         />
+
+        {/* JSON-LD: ImageObject für Startseiten-Bilder */}
+        {images.map((image, index) => (
+          <script
+            key={`img-${index}`}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "ImageObject",
+                contentUrl: image.url,
+                caption: image.description || `Lysius e.V. Theater Berlin – ${image.name}`,
+                description: image.description || `Lysius e.V. Theater Berlin – ${image.name}`,
+                name: `Lysius e.V. Theater Berlin – ${image.name}`,
+              }),
+            }}
+          />
+        ))}
       </Head>
 
       <div className={styles.container}>

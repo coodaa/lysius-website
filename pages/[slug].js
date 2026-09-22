@@ -56,23 +56,24 @@ const PlayPage = ({ play, setCurrentTitle }) => {
       <Head>
         <title>{title} – Lysius</title>
         <meta name="description" content={description} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
         <link rel="canonical" href={canonicalUrl} />
         <link rel="alternate" hrefLang="de" href={`${BASE_URL}/${slug}`} />
         <link rel="alternate" hrefLang="en" href={`${BASE_URL}/en/${slug}`} />
         <link rel="alternate" hrefLang="x-default" href={`${BASE_URL}/${slug}`} />
-        <meta property="og:title" content={`${title} – Lysius`} />
-        <meta property="og:description" content={description} />
+        <meta property="og:title" content="Lysius e.V." />
+        <meta property="og:description" content="Interweaving performance cultures" />
         <meta property="og:image" content={ogImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:url" content={canonicalUrl} />
         <meta property="og:type" content="article" />
-        <meta property="og:site_name" content="Lysius" />
+        <meta property="og:site_name" content="Lysius e.V." />
         <meta property="og:locale" content={locale === "en" ? "en_US" : "de_DE"} />
         <meta property="og:locale:alternate" content={locale === "en" ? "de_DE" : "en_US"} />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content={`${title} – Lysius`} />
-        <meta name="twitter:description" content={description} />
+        <meta name="twitter:title" content="Lysius e.V." />
+        <meta name="twitter:description" content="Interweaving performance cultures" />
         <meta name="twitter:image" content={ogImage} />
         <script
           type="application/ld+json"

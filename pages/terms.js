@@ -20,26 +20,18 @@ const TermsPage = ({ legalData }) => {
         <title>{t("privacy_policy")} | Lysius</title>
         <meta name="robots" content="noindex, nofollow" />
         <meta name="description" content={t("privacy_policy_description")} />
-        <meta property="og:title" content={`${t("privacy_policy")} | Lysius`} />
-        <meta
-          property="og:description"
-          content={t("privacy_policy_description")}
-        />
+        <meta property="og:title" content="Lysius e.V." />
+        <meta property="og:description" content="Interweaving performance cultures" />
         <meta property="og:url" content="https://www.lysius.org/terms" />
         <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="Lysius e.V." />
         <meta
           property="og:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta
-          name="twitter:title"
-          content={`${t("privacy_policy")} | Lysius`}
-        />
-        <meta
-          name="twitter:description"
-          content={t("privacy_policy_description")}
-        />
+        <meta name="twitter:title" content="Lysius e.V." />
+        <meta name="twitter:description" content="Interweaving performance cultures" />
         <meta
           name="twitter:image"
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
