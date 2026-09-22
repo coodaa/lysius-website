@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps }) {
       <Head>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       </Head>
-      <Layout>
+      <Layout plays={pageProps.navPlays}>
         <Component {...pageProps} key={router.asPath} />
       </Layout>
     </>

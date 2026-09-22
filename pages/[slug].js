@@ -5,6 +5,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import PlayDetails from "../components/PlayDetails";
 import prisma from "../lib/prisma";
 import { playSlug } from "../lib/slugify";
+import { getNavPlays } from "../lib/getNavPlays";
 
 const BASE_URL = "https://www.lysius.org";
 
@@ -224,13 +225,21 @@ export async function getStaticProps(context) {
     return {
       props: {
         play: serializedPlay,
+        navPlays: await getNavPlays(),
         ...(await serverSideTranslations(context.locale, ["common"])),
       },
       revalidate: 60,
     };
   } catch (error) {
     console.error("Error fetching play:", error);
-    return { props: { error: "Error fetching play" }, revalidate: 60 };
+    return {
+      props: {
+        error: "Error fetching play",
+        navPlays: await getNavPlays(),
+        ...(await serverSideTranslations(context.locale, ["common"])),
+      },
+      revalidate: 60,
+    };
   }
 }
 

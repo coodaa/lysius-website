@@ -3,6 +3,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import styles from "../styles/AboutPage.module.css";
 import prisma from "../lib/prisma";
+import { getNavPlays } from "../lib/getNavPlays";
 
 const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
   const { t, i18n } = useTranslation("common");
@@ -219,6 +220,7 @@ export const getServerSideProps = async ({ locale }) => {
         contactData: contactData.length > 0 ? contactData : null,
         membersData: membersData.length > 0 ? membersData : null,
         newsletterData: newsletterData || null,
+        navPlays: await getNavPlays(),
         ...(await serverSideTranslations(locale, ["common"])),
       },
     };
@@ -227,6 +229,8 @@ export const getServerSideProps = async ({ locale }) => {
     return {
       props: {
         error: "Error fetching data",
+        navPlays: await getNavPlays(),
+        ...(await serverSideTranslations(locale, ["common"])),
       },
     };
   }

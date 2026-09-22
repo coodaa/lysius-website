@@ -4,18 +4,25 @@ import ScrollToTop from "./ScrollToTop";
 import Landscape from "./LandscapeWarning";
 import styles from "../styles/Layout.module.css";
 
-const Layout = ({ children }) => {
-  const [currentTitle, setCurrentTitle] = useState("LYSIUS");
-  const [plays, setPlays] = useState([]);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const hasPlays = (list) => Array.isArray(list) && list.length > 0;
 
+const Layout = ({ children, plays: playsProp }) => {
+  const [currentTitle, setCurrentTitle] = useState("LYSIUS");
+  const [fetchedPlays, setFetchedPlays] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const plays = hasPlays(playsProp) ? playsProp : fetchedPlays;
+
+  // Fallback for pages that don't provide navPlays via getStaticProps/
+  // getServerSideProps (e.g. the 404 page).
   useEffect(() => {
+    if (hasPlays(playsProp)) return;
+
     const fetchPlays = async () => {
       try {
         const res = await fetch("/api/plays");
         if (res.ok) {
           const data = await res.json();
-          setPlays(data || []);
+          setFetchedPlays(data || []);
         } else {
           console.error("Failed to fetch plays:", res.status);
         }
@@ -24,7 +31,7 @@ const Layout = ({ children }) => {
       }
     };
     fetchPlays();
-  }, []);
+  }, [playsProp]);
 
   const childrenWithProps = React.Children.map(children, (child) =>
     React.isValidElement(child)

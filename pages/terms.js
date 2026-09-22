@@ -4,6 +4,7 @@ import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import Head from "next/head";
 import styles from "../styles/LegalPage.module.css";
 import prisma from "../lib/prisma";
+import { getNavPlays } from "../lib/getNavPlays";
 
 const TermsPage = ({ legalData }) => {
   const { t, i18n } = useTranslation("common");
@@ -63,6 +64,7 @@ export const getServerSideProps = async ({ locale }) => {
   return {
     props: {
       legalData,
+      navPlays: await getNavPlays(),
       ...(await serverSideTranslations(locale, ["common"])),
     },
   };

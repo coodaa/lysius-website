@@ -5,6 +5,7 @@ import Head from "next/head";
 import styles from "../styles/Home.module.css";
 import prisma from "../lib/prisma";
 import { cloudinarySrc, cloudinarySrcSet } from "../lib/cloudinaryImage";
+import { getNavPlays } from "../lib/getNavPlays";
 
 export async function getStaticProps({ locale }) {
   let images = [];
@@ -21,6 +22,7 @@ export async function getStaticProps({ locale }) {
     props: {
       images: JSON.parse(JSON.stringify(images)),
       news: JSON.parse(JSON.stringify(news)),
+      navPlays: await getNavPlays(),
       ...(await serverSideTranslations(locale, ["common"])),
     },
     revalidate: 60,
