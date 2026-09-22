@@ -60,19 +60,8 @@ const HomePage = ({ images, news }) => {
   return (
     <>
       <Head>
-        <title>
-          {i18n.language === "en"
-            ? "Lysius e.V. – Theatre & Music Berlin | Fabiane Kemmann"
-            : "Lysius e.V. – Theater & Musik Berlin | Fabiane Kemmann"}
-        </title>
-        <meta
-          name="description"
-          content={
-            i18n.language === "en"
-              ? "Lysius e.V. – a Berlin-based cultural association for theatre, music and intercultural dialogue, founded in 2019."
-              : "Lysius e.V. – ein Berliner Kulturverein für Theater, Musik und interkulturelle Verständigung, gegründet 2019."
-          }
-        />
+        <title>Lysius e.V.</title>
+        <meta name="description" content="Interweaving performance cultures" />
         <meta
           name="keywords"
           content="Lysius, Lysius e.V., Kultur, Kunst, Theater, Musik, Berlin, Kulturverein, Fabiane Kemmann"
