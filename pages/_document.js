@@ -8,7 +8,8 @@ export default class MyDocument extends Document {
         <Head>
           <meta charSet="UTF-8" />
           <link rel="icon" href="/favicon.ico" />
-          <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+          <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
+          <link rel="manifest" href="/manifest.json" />
           <link rel="preconnect" href="https://res.cloudinary.com" />
           <link rel="dns-prefetch" href="https://res.cloudinary.com" />
           <link rel="preconnect" href="https://img.youtube.com" />
