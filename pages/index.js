@@ -110,7 +110,6 @@ const HomePage = ({ images, news }) => {
                   jobTitle: i18n.language === "en" ? "Director" : "Leitung",
                 },
               ],
-              sameAs: ["https://www.lysius.org"],
             }),
           }}
         />
