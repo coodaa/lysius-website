@@ -54,7 +54,7 @@ const PlayPage = ({ play, setCurrentTitle }) => {
   return (
     <>
       <Head>
-        <title>{title} – Lysius</title>
+        <title>{`${title} – Lysius`}</title>
         <meta name="description" content={description} />
         <meta name="robots" content="index, follow, max-image-preview:large" />
         <link rel="canonical" href={canonicalUrl} />

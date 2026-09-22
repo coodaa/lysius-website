@@ -14,12 +14,12 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: "http",
-        hostname: "**",
+        protocol: "https",
+        hostname: "res.cloudinary.com",
       },
       {
         protocol: "https",
-        hostname: "**",
+        hostname: "img.youtube.com",
       },
     ],
   },

@@ -17,7 +17,7 @@ const TermsPage = ({ legalData }) => {
   return (
     <>
       <Head>
-        <title>{t("privacy_policy")} | Lysius</title>
+        <title>{`${t("privacy_policy")} | Lysius`}</title>
         <meta name="robots" content="noindex, nofollow" />
         <meta name="description" content={t("privacy_policy_description")} />
         <meta property="og:title" content="Lysius e.V." />

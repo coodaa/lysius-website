@@ -17,7 +17,7 @@ const LegalPage = ({ legalData }) => {
   return (
     <>
       <Head>
-        <title>{t("legal_notice")} | Lysius</title>
+        <title>{`${t("legal_notice")} | Lysius`}</title>
         <meta name="robots" content="noindex, nofollow" />
         <meta name="description" content={t("legal_notice_description")} />
         <meta property="og:title" content="Lysius e.V." />

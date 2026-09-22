@@ -51,10 +51,6 @@ const PlayDetailsList = ({ play }) => {
         ? play[`${key}_en`]
         : play[key] || "";
 
-    if (!text) {
-      console.warn(`Missing value for key: ${key}`);
-    }
-
     return text;
   };
 
