@@ -95,20 +95,6 @@ const HomePage = ({ images, news }) => {
           content="https://res.cloudinary.com/dmpiogwyy/image/upload/c_fill,w_1200,h_630,f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg"
         />
 
-        {/* Preload-Links für Bilder */}
-        {images.map((image, index) => (
-          <link
-            key={index}
-            rel="preload"
-            href={
-              isMobile && image.mobileImageUrl
-                ? image.mobileImageUrl
-                : image.url
-            }
-            as="image"
-          />
-        ))}
-
         {/* JSON-LD: Organization */}
         <script
           type="application/ld+json"
@@ -201,6 +187,9 @@ const HomePage = ({ images, news }) => {
                   alt={image.description || image.name || `Lysius – Bild ${index + 1}`}
                   fill
                   style={{ objectFit: "cover", objectPosition: "top" }}
+                  sizes="100vw"
+                  priority={index === 0}
+                  loading={index === 0 ? "eager" : "lazy"}
                 />
               </div>
             ))}
