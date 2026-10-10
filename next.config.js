@@ -25,6 +25,7 @@ module.exports = {
     return [
       { source: "/plays", destination: "/", permanent: true },
       { source: "/plays/:slug", destination: "/:slug", permanent: true },
+      { source: "/agb", destination: "/legal", permanent: true },
     ];
   },
   i18n: {
