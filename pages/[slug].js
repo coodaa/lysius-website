@@ -87,7 +87,7 @@ const PlayPage = ({ play, setCurrentTitle }) => {
               image: ogImage,
               url: canonicalUrl,
               inLanguage: locale === "en" ? "en" : "de",
-              producer: { "@type": "Organization", name: "Lysius", url: "https://www.lysius.org" },
+              producer: { "@type": "PerformingGroup", name: "Lysius e.V.", url: "https://www.lysius.org" },
             }),
           }}
         />

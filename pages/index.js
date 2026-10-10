@@ -88,7 +88,7 @@ const HomePage = ({ images, news }) => {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
+              "@type": "PerformingGroup",
               name: "Lysius e.V.",
               url: "https://www.lysius.org",
               logo: "https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg",
@@ -98,9 +98,17 @@ const HomePage = ({ images, news }) => {
                   : "Kulturverein für Theater, Musik und interkulturelle Verständigung, gegründet 2019 in Berlin.",
               foundingDate: "2019",
               areaServed: "Berlin",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Lenaustrasse 3-4",
+                postalCode: "12047",
+                addressLocality: "Berlin",
+                addressCountry: "DE",
+              },
               contactPoint: {
                 "@type": "ContactPoint",
-                email: "kemmann@lysius.org",
+                email: "production@lysius.org",
+                telephone: "+49-176-80441754",
                 contactType: "customer service",
               },
               member: [

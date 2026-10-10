@@ -60,13 +60,26 @@ const AboutPage = ({ aboutData, contactData, membersData, newsletterData }) => {
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
-              name: "Lysius",
+              "@type": "PerformingGroup",
+              name: "Lysius e.V.",
               url: "https://www.lysius.org",
               logo: "https://res.cloudinary.com/dmpiogwyy/image/upload/f_auto,q_auto/v1722353263/Landingpage/egbmhvzu33mdjswom7iq.jpg",
               description: isEnglish
                 ? "Cultural association for theatre, music and intercultural dialogue"
                 : "Kulturverein für Theater, Musik und interkulturelle Verständigung",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "Lenaustrasse 3-4",
+                postalCode: "12047",
+                addressLocality: "Berlin",
+                addressCountry: "DE",
+              },
+              contactPoint: {
+                "@type": "ContactPoint",
+                email: "production@lysius.org",
+                telephone: "+49-176-80441754",
+                contactType: "customer service",
+              },
               member: [
                 {
                   "@type": "Person",
