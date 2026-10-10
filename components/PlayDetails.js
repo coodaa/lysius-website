@@ -13,7 +13,7 @@ import PlayDetailsList from "./PlayDetailsList";
 import SecondCarousel from "./SecondCarousel";
 import CustomVideoPlayer from "./CustomVideoPlayer";
 import styles from "../styles/PlayPage.module.css";
-import { cloudinarySrc, cloudinarySrcSet } from "../lib/cloudinaryImage";
+import { cloudinarySrc, cloudinarySrcSet, cloudinaryFilenameLabel } from "../lib/cloudinaryImage";
 
 function useIsMobile() {
   const [isMobile, setIsMobile] = useState(false);
@@ -470,10 +470,12 @@ const PlayDetails = ({ play, setCurrentTitle }) => {
                 <div className={styles.logoContainer}>
                   {logos.map((logo, index) => (
                     <div key={index} className={styles.logoWrapper}>
+                      {/* eslint-disable-next-line @next/next/no-img-element -- logos have no known fixed aspect ratio; next/image would risk shifting funder branding */}
                       <img
                         src={logo}
-                        alt={`Logo ${index + 1}`}
+                        alt={cloudinaryFilenameLabel(logo, `Logo ${index + 1}`)}
                         className={styles.logoImage}
+                        loading="lazy"
                       />
                     </div>
                   ))}

@@ -13,6 +13,7 @@ const Navbar = ({ currentTitle, plays = [] }) => {
   const titleRef = useRef(null);
 
   useEffect(() => {
+    const el = titleRef.current;
     const observer = new ResizeObserver(() => {
       if (titleRef.current) {
         setIsTextOverflowing(
@@ -21,12 +22,11 @@ const Navbar = ({ currentTitle, plays = [] }) => {
       }
     });
 
-    if (titleRef.current) {
-      observer.observe(titleRef.current);
+    if (el) {
+      observer.observe(el);
     }
 
     return () => {
-      const el = titleRef.current;
       if (el) observer.unobserve(el);
     };
   }, []);
